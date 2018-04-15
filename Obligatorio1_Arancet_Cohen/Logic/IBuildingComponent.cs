@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obligatorio1_Arancet_Cohen
+namespace Logic
 {
     interface IBuildingComponent
     {
+        int Heigth();
+
+        int Width();
+
+        int Length();
+
     }
 }
