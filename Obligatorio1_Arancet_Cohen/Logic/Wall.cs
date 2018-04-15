@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace Logic{
 
-    class WallUnit : IBuildingComponent{
+    public class Wall : IBuildingComponent{
 
-        public WallUnit(Point from) {
+        public Wall(Point from, Point to) {
             HeightValue = 3;
             WidthValue = 0.20F;
-            LengthValue = 1;
-            BeginningValue =from;
+            BeginningPoint =from;
+            EndPoint =to;
             UnitPriceValue =50;
         }
 
         private float HeightValue {set; get; }
         private float WidthValue {set; get; }
-        public float LengthValue {set; get; }
-        private Point BeginningValue {set; get; }
-        private Point EndValue {set; get; }
+        private Point BeginningPoint {set; get; }
+        private Point EndPoint {set; get; }
         private float UnitPriceValue {set; get; }
 
         public float Height(){
@@ -32,14 +31,19 @@ namespace Logic{
         }
 
         public float Length(){
-            return LengthValue;
+            float distance= (float)Math.Sqrt( Math.Pow((BeginningPoint.CoordX - EndPoint.CoordX),2) + Math.Pow((BeginningPoint.CoordY - EndPoint.CoordY),2));
+            return distance;
         }
 
         public Point Beginning(){
-            return BeginningValue;
+            return BeginningPoint;
         }
 
-        public float UnitPrice(){
+        public Point End(){
+            return EndPoint;
+        }
+
+        public float Price(){
             return UnitPriceValue;
         }
     }

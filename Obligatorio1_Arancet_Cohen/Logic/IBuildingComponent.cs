@@ -14,7 +14,7 @@ namespace Logic{
 
         Point Beginning();
 
-        float UnitPrice();
+        float Price();
 
     }
 }

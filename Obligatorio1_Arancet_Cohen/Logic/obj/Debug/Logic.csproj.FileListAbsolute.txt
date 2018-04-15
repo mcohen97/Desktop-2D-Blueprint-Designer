@@ -1,0 +1,5 @@
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Obligatorio1_Arancet_Cohen.dll
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Obligatorio1_Arancet_Cohen.pdb
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.csprojResolveAssemblyReference.cache
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Obligatorio1_Arancet_Cohen.dll
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Obligatorio1_Arancet_Cohen.pdb
