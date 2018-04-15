@@ -8,37 +8,39 @@ namespace Logic{
 
     class WallUnit : IBuildingComponent{
 
-        public WallUnit() { }
-
-       /* public int Height { private set; get; }
-        public int Width { private set; get; }
-        public int Length { private set; get; }
-        public Point Beginning { private set; get; }
-        public Point End { private set; get; }
-        public int UnitPrice { private set; get; }*/
-
-        public int Height(){
-            throw new NotImplementedException();
+        public WallUnit(Point from) {
+            HeightValue = 3;
+            WidthValue = 0.20F;
+            LengthValue = 1;
+            BeginningValue =from;
+            UnitPriceValue =50;
         }
 
-        public int Width(){
-            throw new NotImplementedException();
+        private float HeightValue {set; get; }
+        private float WidthValue {set; get; }
+        public float LengthValue {set; get; }
+        private Point BeginningValue {set; get; }
+        private Point EndValue {set; get; }
+        private float UnitPriceValue {set; get; }
+
+        public float Height(){
+            return HeightValue;
         }
 
-        public int Length(){
-            throw new NotImplementedException();
+        public float Width(){
+            return WidthValue;
+        }
+
+        public float Length(){
+            return LengthValue;
         }
 
         public Point Beginning(){
-            throw new NotImplementedException();
+            return BeginningValue;
         }
 
-        public Point End(){
-            throw new NotImplementedException();
-        }
-
-        public int UnitPrice(){
-            throw new NotImplementedException();
+        public float UnitPrice(){
+            return UnitPriceValue;
         }
     }
 }

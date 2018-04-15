@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace Logic{
     interface IBuildingComponent {
-        int Height();
+        float Height();
 
-        int Width();
+        float Width();
 
-        int Length();
+        float Length();
 
         Point Beginning();
 
-        Point End();
-
-        int UnitPrice();
+        float UnitPrice();
 
     }
 }
