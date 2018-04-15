@@ -8,29 +8,43 @@ namespace Logic
 {
     public class Viga : IBuildingComponent
     {
-        public Point Beginning()
-        {
-            throw new NotImplementedException();
+        private Point Position { get; set; }
+        private float HeightValue { get; set; }
+        private float WidthValue { get; set; }
+        private float UnitPrice { get; set; }
+
+        public Viga(Point aPlace) {
+            Position = aPlace;
+            HeightValue = 3;
+            WidthValue = 0.20F;
+            UnitPrice = 50;
         }
 
         public float Height()
         {
-            throw new NotImplementedException();
-        }
-
-        public float Length()
-        {
-            throw new NotImplementedException();
-        }
-
-        public float Price()
-        {
-            throw new NotImplementedException();
+            return HeightValue;
         }
 
         public float Width()
         {
-            throw new NotImplementedException();
+            return WidthValue;
         }
+
+        public float Length()
+        {
+            return 0;
+        }
+
+        public Point Beginning()
+        {
+            return Position;
+        }
+
+        public float Price()
+        {
+            return UnitPrice;
+        }
+
+      
     }
 }
