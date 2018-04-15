@@ -8,8 +8,6 @@ namespace Logic{
     interface IBuildingComponent {
         float Height();
 
-        float Width();
-
         float Length();
 
         Point Beginning();

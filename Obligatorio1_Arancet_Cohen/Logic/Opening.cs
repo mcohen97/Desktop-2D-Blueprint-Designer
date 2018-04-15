@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class Opening : IBuildingComponent
+    public abstract class Opening : IBuildingComponent
     {
         public Point Beginning()
         {
@@ -24,11 +24,6 @@ namespace Logic
         }
 
         public float Price()
-        {
-            throw new NotImplementedException();
-        }
-
-        public float Width()
         {
             throw new NotImplementedException();
         }

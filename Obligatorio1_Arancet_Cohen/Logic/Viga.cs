@@ -10,24 +10,17 @@ namespace Logic
     {
         private Point Position { get; set; }
         private float HeightValue { get; set; }
-        private float WidthValue { get; set; }
         private float UnitPrice { get; set; }
 
         public Viga(Point aPlace) {
             Position = aPlace;
             HeightValue = 3;
-            WidthValue = 0.20F;
             UnitPrice = 50;
         }
 
         public float Height()
         {
             return HeightValue;
-        }
-
-        public float Width()
-        {
-            return WidthValue;
         }
 
         public float Length()
