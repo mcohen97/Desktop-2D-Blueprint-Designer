@@ -8,10 +8,10 @@ namespace Logic
 {
     public abstract class Opening : IBuildingComponent
     {
-        private float HeightValue { get; set; }
-        private float LengthValue { get; set; }
-        private Point Position { get; set; }
-        private float UnitPrice { get; set; }
+        protected float HeightValue { get; set; }
+        protected float LengthValue { get; set; }
+        protected Point Position { get; set; }
+        protected float UnitPrice { get; set; }
 
         public Opening(Point aPlace) {
             Position = aPlace;

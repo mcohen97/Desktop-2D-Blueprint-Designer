@@ -10,7 +10,7 @@ namespace Logic.Test
         public void GetHeighTest()
         {
             Opening instance = new Door(new Point(3, 2));
-            float expectedResult = 3;
+            float expectedResult = 2.20F;
             float actualResult = instance.Height();
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -19,7 +19,7 @@ namespace Logic.Test
         public void GetLengthTest()
         {
             Opening instance = new Door(new Point(3, 2));
-            float expectedResult = 0;
+            float expectedResult = 0.85F;
             float actualResult = instance.Length();
             Assert.AreEqual(expectedResult, actualResult);
 

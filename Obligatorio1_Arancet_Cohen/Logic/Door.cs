@@ -10,6 +10,9 @@ namespace Logic
     {
         public Door(Point aPlace) : base(aPlace)
         {
+            HeightValue = 2.20F;
+            LengthValue = 0.85F;
+            UnitPrice = 50;
         }
     }
 }
