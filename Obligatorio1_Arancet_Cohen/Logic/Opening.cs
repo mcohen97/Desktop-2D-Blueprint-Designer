@@ -8,24 +8,33 @@ namespace Logic
 {
     public abstract class Opening : IBuildingComponent
     {
-        public Point Beginning()
-        {
-            throw new NotImplementedException();
+        private float HeightValue { get; set; }
+        private float LengthValue { get; set; }
+        private Point Position { get; set; }
+        private float UnitPrice { get; set; }
+
+        public Opening(Point aPlace) {
+            Position = aPlace;
         }
 
         public float Height()
         {
-            throw new NotImplementedException();
+            return HeightValue;
         }
 
         public float Length()
         {
-            throw new NotImplementedException();
+            return LengthValue;
+        }
+
+        public Point Beginning()
+        {
+            return Position;
         }
 
         public float Price()
         {
-            throw new NotImplementedException();
+            return UnitPrice;
         }
     }
 }

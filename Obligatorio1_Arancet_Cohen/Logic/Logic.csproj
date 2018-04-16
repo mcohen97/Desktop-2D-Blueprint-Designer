@@ -7,8 +7,8 @@
     <ProjectGuid>{4812C714-5750-45B7-8B01-88C8A5298218}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Obligatorio1_Arancet_Cohen</RootNamespace>
-    <AssemblyName>Obligatorio1_Arancet_Cohen</AssemblyName>
+    <RootNamespace>Logic</RootNamespace>
+    <AssemblyName>Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Door.cs" />
     <Compile Include="IBuildingComponent.cs" />
     <Compile Include="Opening.cs" />
     <Compile Include="Point.cs" />
