@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1ArancetCohen;
+using Obligatorio1_Arancet_Cohen;
 
 namespace AdminTest
 {
@@ -8,7 +8,7 @@ namespace AdminTest
     public class AdminTest
     {
         [TestMethod]
-        public void AdminConstructorWithParameters()
+        public void constructorWithParameters()
         {
             string name = "Joe";
             string surname = "Jaguar";
@@ -35,6 +35,23 @@ namespace AdminTest
         }
 
         [TestMethod]
+        public void setNameTest()
+        {
+            string name = "Joe";
+            string surname = "Jaguar";
+            string userName = "jjadmin";
+            string password = "iamthejaguar";
+            DateTime registrationDate = DateTime.Now;
+
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            string newName = "Angelo";
+            admin.Name = newName;
+
+            Assert.AreEqual(newName, admin.Name);
+        }
+
+        [TestMethod]
         public void getSurnameTest()
         {
             string name = "Joe";
@@ -46,6 +63,23 @@ namespace AdminTest
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(surname, admin.Surname);
+        }
+
+        [TestMethod]
+        public void setSurnameTest()
+        {
+            string name = "Joe";
+            string surname = "Jaguar";
+            string userName = "jjadmin";
+            string password = "iamthejaguar";
+            DateTime registrationDate = DateTime.Now;
+
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            string newSurname = "Panter";
+            admin.Surname = newSurname;
+
+            Assert.AreEqual(newSurname, admin.Surname);
         }
 
         [TestMethod]
@@ -63,6 +97,23 @@ namespace AdminTest
         }
 
         [TestMethod]
+        public void setUserNameTest()
+        {
+            string name = "Joe";
+            string surname = "Jaguar";
+            string userName = "jjadmin";
+            string password = "iamthejaguar";
+            DateTime registrationDate = DateTime.Now;
+
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            string newUserName = "jaguarmin";
+            admin.UserName = newUserName;
+
+            Assert.AreEqual(newUserName, admin.UserName);
+        }
+
+        [TestMethod]
         public void getPasswordTest()
         {
             string name = "Joe";
@@ -77,6 +128,23 @@ namespace AdminTest
         }
 
         [TestMethod]
+        public void setPasswordTest()
+        {
+            string name = "Joe";
+            string surname = "Jaguar";
+            string userName = "jjadmin";
+            string password = "iamthejaguar";
+            DateTime registrationDate = DateTime.Now;
+
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            string newPassword = "iamthegreatjaguar";
+            admin.Password = newPassword;
+
+            Assert.AreEqual(newPassword, admin.Password);
+        }
+
+        [TestMethod]
         public void getRegistrationDateTest()
         {
             string name = "Joe";
@@ -88,6 +156,23 @@ namespace AdminTest
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(registrationDate, admin.RegistrationDate);
+        }
+
+        [TestMethod]
+        public void setRegistrationDateTest()
+        {
+            string name = "Joe";
+            string surname = "Jaguar";
+            string userName = "jjadmin";
+            string password = "iamthejaguar";
+            DateTime registrationDate = DateTime.Now;
+
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            DateTime newRegistrationDate = DateTime.MinValue;
+            admin.RegistrationDate = newRegistrationDate;
+
+            Assert.AreEqual(newRegistrationDate, admin.RegistrationDate);
         }
 
         [TestMethod]

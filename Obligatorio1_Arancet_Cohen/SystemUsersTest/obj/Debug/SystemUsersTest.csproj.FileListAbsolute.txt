@@ -1,8 +1,7 @@
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\SystemUsersTest.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\SystemUsersTest.pdb
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Obligatorio1_Arancet_Cohen.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Obligatorio1_Arancet_Cohen.pdb
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.csprojResolveAssemblyReference.cache

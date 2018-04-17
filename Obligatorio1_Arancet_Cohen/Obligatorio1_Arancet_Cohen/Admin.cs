@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Obligatorio1ArancetCohen
+namespace Obligatorio1_Arancet_Cohen
 {
-    public class Admin
+    public class Admin : Person
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastLoginDate { get; set; }
-        private List<Client> listOfEnabledClients;
+        private List<Person> listOfEnabledClients;
 
         public Admin(string name, string surname, string userName, string password, DateTime registrationDate)
         {
@@ -21,7 +15,7 @@ namespace Obligatorio1ArancetCohen
             Password = password;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
-            listOfEnabledClients = new List<Client>();
+            listOfEnabledClients = new List<Person>();
         }
 
         public DateTime updateLastLoginDate()
@@ -31,9 +25,10 @@ namespace Obligatorio1ArancetCohen
             return dateOfLogin;
         }
 
-        public void enableClient(Client client)
+        public void enableClient(Person client)
         {
             listOfEnabledClients.Add(client);
+            //should throw exception if Person its not a Client
         }
 
         public void assignPasswordToClient(Client client, string passwordAssigned)

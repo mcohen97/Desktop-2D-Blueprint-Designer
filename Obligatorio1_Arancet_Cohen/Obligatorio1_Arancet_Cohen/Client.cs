@@ -1,17 +1,12 @@
 ﻿using System;
 
-namespace Obligatorio1ArancetCohen
+namespace Obligatorio1_Arancet_Cohen
 {
-    public class Client
+    public class Client : Person
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+      
         public string Phone { get; set; }
         public string Id { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastLoginDate { get; set; }
 
         public Client(string name, string surname, string userName, string password, string phone, string id, DateTime registrationDate)
         {

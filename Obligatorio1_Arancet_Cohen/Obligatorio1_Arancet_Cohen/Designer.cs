@@ -1,16 +1,10 @@
 ﻿using System;
 
-namespace Obligatorio1ArancetCohen
+namespace Obligatorio1_Arancet_Cohen
 {
-    public class Designer
+    public class Designer : Person
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime LastLoginDate { get; set; }
-
+       
         public Designer(string name, string surname, string userName, string password, DateTime registrationDate)
         {
             Name = name;
