@@ -46,5 +46,15 @@ namespace Logic{
         public float Price(){
             return UnitPriceValue;
         }
+
+        public bool IsHorizontal() {
+            return BeginningPoint.CoordY == EndPoint.CoordY;
+        }
+
+        public bool IsVertical() {
+            return BeginningPoint.CoordX == EndPoint.CoordX;
+        }
+
+
     }
 }

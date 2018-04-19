@@ -58,5 +58,29 @@ namespace Logic.Test {
             float actualResult = instance.Price();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void IsNotHorizontalTest() {
+            Assert.IsFalse(instance.IsHorizontal());
+        }
+
+        [TestMethod]
+        public void IsHorizontalTest() {
+            instance= new Wall(new Point(0,0),new Point(2,0));
+            Assert.IsTrue(instance.IsHorizontal());
+        }
+
+        [TestMethod]
+        public void IsNotVerticalTest() {
+            Assert.IsFalse(instance.IsVertical());
+        }
+
+        [TestMethod]
+        public void IsVerticalTest() {
+            instance = new Wall(new Point(0, 0), new Point(0, 2));
+            Assert.IsTrue(instance.IsVertical());
+        }
+
+
     }
 }
