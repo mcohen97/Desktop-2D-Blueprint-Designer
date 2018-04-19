@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic{
+
     interface IBuildingComponent {
+
         float Height();
 
         float Length();

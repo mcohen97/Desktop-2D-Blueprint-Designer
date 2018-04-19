@@ -3,8 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic;
 
 namespace Logic.Test {
+
     [TestClass]
     public class VigaTest {
+
         private Viga instance;
 
         [TestInitialize]
