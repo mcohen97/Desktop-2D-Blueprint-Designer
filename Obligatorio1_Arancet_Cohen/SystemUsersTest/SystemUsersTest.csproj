@@ -55,7 +55,6 @@
     <Compile Include="AdminTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="DesignerTest.cs" />
-    <Compile Include="ProjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ namespace Obligatorio1_Arancet_Cohen
 {
     public class Admin : Person
     {
-        private List<Person> listOfEnabledClients;
+        private List<Person> listOfRegisteredClients;
 
         public Admin(string name, string surname, string userName, string password, DateTime registrationDate)
         {
@@ -15,20 +15,13 @@ namespace Obligatorio1_Arancet_Cohen
             Password = password;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
-            listOfEnabledClients = new List<Person>();
+            listOfRegisteredClients = new List<Person>();
         }
 
-        public DateTime updateLastLoginDate()
+        public void registClient(Person client)
         {
-            DateTime dateOfLogin = DateTime.Now;
-            LastLoginDate = dateOfLogin;
-            return dateOfLogin;
-        }
-
-        public void enableClient(Person client)
-        {
-            listOfEnabledClients.Add(client);
-            //should throw exception if Person its not a Client
+            listOfRegisteredClients.Add(client);
+            //should throw exception if Person is not a Client
         }
 
         public void assignPasswordToClient(Client client, string passwordAssigned)
@@ -36,9 +29,9 @@ namespace Obligatorio1_Arancet_Cohen
             client.Password = passwordAssigned;
         }
 
-        public bool isClientEnabled(Client client)
+        public bool isClientRegistered(Client client)
         {
-            return listOfEnabledClients.Contains(client);
+            return listOfRegisteredClients.Contains(client);
         }
     }
 }

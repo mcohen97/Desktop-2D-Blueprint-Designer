@@ -14,5 +14,12 @@ namespace Obligatorio1_Arancet_Cohen
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
+
+        public DateTime updateLastLoginDate()
+        {
+            DateTime dateOfLogin = DateTime.Now;
+            LastLoginDate = dateOfLogin;
+            return dateOfLogin;
+        }
     }
 }

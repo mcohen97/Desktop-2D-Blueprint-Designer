@@ -210,9 +210,9 @@ namespace AdminTest
             DateTime registrationDateClient = DateTime.Now;
             Client client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, idClient, registrationDateClient);
 
-            admin.enableClient(client);
+            admin.registClient(client);
 
-            Assert.IsTrue(admin.isClientEnabled(client));
+            Assert.IsTrue(admin.isClientRegistered(client));
         }
 
         [TestMethod]

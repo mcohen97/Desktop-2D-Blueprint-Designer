@@ -19,13 +19,6 @@ namespace Obligatorio1_Arancet_Cohen
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
         }
-
-        public DateTime updateLastLoginDate()
-        {
-            DateTime dateOfLogin = DateTime.Now;
-            LastLoginDate = dateOfLogin;
-            return dateOfLogin;
-        }
     }
 
     
