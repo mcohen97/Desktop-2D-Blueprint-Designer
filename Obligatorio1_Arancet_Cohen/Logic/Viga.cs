@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class Viga : IBuildingComponent
+    public class Viga 
     {
         private Point Position { get; set; }
         private float HeightValue { get; set; }
@@ -21,11 +21,6 @@ namespace Logic
         public float Height()
         {
             return HeightValue;
-        }
-
-        public float Length()
-        {
-            return 0;
         }
 
         public Point Beginning()
