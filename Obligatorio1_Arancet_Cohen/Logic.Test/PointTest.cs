@@ -8,9 +8,15 @@ namespace Logic.Test
     [TestClass]
     public class PointTest
     {
+        private Point instance;
+
+        [TestInitialize]
+        public void SetUp() {
+            instance = new Point(3, 2);
+        }
+
         [TestMethod]
         public void GetCoordXTest(){
-            Point instance = new Point(3, 2);
             int expectedResult = 3;
             int actualResult= instance.CoordX;
             Assert.AreEqual(expectedResult,actualResult);
@@ -18,7 +24,6 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetCoordYTest(){
-            Point instance = new Point(3, 2);
             int expectedResult = 2;
             int actualResult = instance.CoordY;
             Assert.AreEqual(expectedResult, actualResult);

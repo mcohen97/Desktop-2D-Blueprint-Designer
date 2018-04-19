@@ -7,9 +7,16 @@ namespace Logic.Test
     [TestClass]
     public class WallTest
     {
+        private Wall instance;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            instance = new Wall(new Point(0, 0), new Point(3, 2));
+        }
+
         [TestMethod]
         public void GetHeighTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(3, 2));
             float expectedResult = 3;
             float actualResult = instance.Height();
             Assert.AreEqual(expectedResult, actualResult);
@@ -17,7 +24,6 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetWidthTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(3, 2));
             float expectedResult = 0.20F;
             float actualResult = instance.Width();
             Assert.AreEqual(expectedResult, actualResult);
@@ -25,8 +31,7 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetLengthTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(0, 2));
-            float expectedResult =2;
+            float expectedResult =(float)Math.Sqrt(13);
             float actualResult = instance.Length();
             Assert.AreEqual(expectedResult, actualResult);
 
@@ -34,7 +39,6 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetBeginningTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(0, 2));
             int expectedXResult = 0;
             int expectedYResult = 0;
             Point actualResult = instance.Beginning();
@@ -43,8 +47,7 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetEndTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(0, 2));
-            int expectedXResult = 0;
+            int expectedXResult = 3;
             int expectedYResult = 2;
             Point actualResult = instance.End();
             Assert.IsTrue((actualResult.CoordX == expectedXResult) && (actualResult.CoordY == expectedYResult));
@@ -52,7 +55,6 @@ namespace Logic.Test
 
         [TestMethod]
         public void GetPriceTest(){
-            Wall instance = new Wall(new Point(0, 0), new Point(0, 2));
             float expectedResult = 50;
             float actualResult = instance.Price();
             Assert.AreEqual(expectedResult, actualResult);
