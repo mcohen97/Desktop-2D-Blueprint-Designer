@@ -44,7 +44,8 @@
     <Compile Include="Client.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Designer.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Permission.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

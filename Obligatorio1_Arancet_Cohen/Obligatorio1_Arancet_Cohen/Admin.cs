@@ -16,6 +16,9 @@ namespace Obligatorio1_Arancet_Cohen
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
             listOfRegisteredClients = new List<User>();
+
+            permissions = new List<Permission>();
+            permissions.Add(Permission.ALL_PERMISSIONS);
         }
 
         public void registClient(User client)

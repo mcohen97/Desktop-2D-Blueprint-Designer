@@ -7,17 +7,29 @@ namespace ClientTest
     [TestClass]
     public class ClientTest
     {
+        public string name;
+        public string surname;
+        public string userName;
+        public string password;
+        public string phone;
+        public string id;
+        public DateTime registrationDate;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            name = "Paul";
+            surname = "Richards";
+            userName = "paulrichards";
+            password = "paulrichards1";
+            phone = "099888777";
+            id = "54443332";
+            registrationDate = DateTime.Now;
+        }
+
         [TestMethod]
         public void constructorWithParametersTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.IsNotNull(client);
@@ -26,14 +38,6 @@ namespace ClientTest
         [TestMethod]
         public void getNameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(name, client.Name);
@@ -42,14 +46,6 @@ namespace ClientTest
         [TestMethod]
         public void setNameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newName = "Jhon";
@@ -61,14 +57,6 @@ namespace ClientTest
         [TestMethod]
         public void getSurnameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(surname, client.Surname);
@@ -77,14 +65,6 @@ namespace ClientTest
         [TestMethod]
         public void setSurnameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newSurname = "Wildfield";
@@ -96,14 +76,6 @@ namespace ClientTest
         [TestMethod]
         public void getUserNameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(userName, client.UserName);
@@ -112,14 +84,6 @@ namespace ClientTest
         [TestMethod]
         public void setUserNameTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newUserName = "richardspaul";
@@ -131,14 +95,6 @@ namespace ClientTest
         [TestMethod]
         public void getPasswordTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(password, client.Password);
@@ -147,14 +103,6 @@ namespace ClientTest
         [TestMethod]
         public void setPasswordTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newPassword = "paulDbeast";
@@ -166,14 +114,6 @@ namespace ClientTest
         [TestMethod]
         public void getPhoneTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(phone, client.Phone);
@@ -182,14 +122,6 @@ namespace ClientTest
         [TestMethod]
         public void setPhoneTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newPhoneNumber = "099777888";
@@ -201,14 +133,6 @@ namespace ClientTest
         [TestMethod]
         public void getIdTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(id, client.Id);
@@ -217,14 +141,6 @@ namespace ClientTest
         [TestMethod]
         public void setIdTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             string newId = "12223334";
@@ -236,14 +152,6 @@ namespace ClientTest
         [TestMethod]
         public void getRegistrationDateTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             Assert.AreEqual(registrationDate, client.RegistrationDate);
@@ -252,14 +160,6 @@ namespace ClientTest
         [TestMethod]
         public void setRegistrationDateTest()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             DateTime newRegistrationDate = DateTime.MinValue;
@@ -271,12 +171,6 @@ namespace ClientTest
         [TestMethod]
         public void updateLastLoginDate()
         {
-            string name = "Paul";
-            string surname = "Richards";
-            string userName = "paulrichards";
-            string password = "paulrichards1";
-            string phone = "099888777";
-            string id = "54443332";
             DateTime registrationDate = DateTime.Now;
 
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);

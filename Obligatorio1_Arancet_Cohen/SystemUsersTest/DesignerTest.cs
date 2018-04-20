@@ -7,16 +7,26 @@ namespace DesignerTest
     [TestClass]
     public class DesignerTest
     {
+        string name;
+        string surname;
+        string userName;
+        string password;
+        DateTime registrationDate;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            name = "Michael";
+            surname = "Rockford";
+            userName = "mirockfo";
+            password = "drofkcor";
+            registrationDate = DateTime.Now;
+        }
+
         [TestMethod]
         public void constructorWithParametersTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
-            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+           Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.IsNotNull(designer);
         }
@@ -24,10 +34,6 @@ namespace DesignerTest
         [TestMethod]
         public void getNameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
             DateTime registrationDate = DateTime.Now;
 
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -38,10 +44,6 @@ namespace DesignerTest
         [TestMethod]
         public void setNameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
             DateTime registrationDate = DateTime.Now;
 
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -55,12 +57,6 @@ namespace DesignerTest
         [TestMethod]
         public void getSurnameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(surname, designer.Surname);
@@ -69,12 +65,6 @@ namespace DesignerTest
         [TestMethod]
         public void setSurnameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             string newSurname = "Flanders";
@@ -86,12 +76,6 @@ namespace DesignerTest
         [TestMethod]
         public void getUserNameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(userName, designer.UserName);
@@ -100,12 +84,6 @@ namespace DesignerTest
         [TestMethod]
         public void setUserNameTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             string newUserName = "myrock";
@@ -117,12 +95,6 @@ namespace DesignerTest
         [TestMethod]
         public void getPasswordTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(password, designer.Password);
@@ -131,12 +103,6 @@ namespace DesignerTest
         [TestMethod]
         public void setPasswordTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             string newPassword = "drofkcormich";
@@ -148,12 +114,6 @@ namespace DesignerTest
         [TestMethod]
         public void getRegistrationDateTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(registrationDate, designer.RegistrationDate);
@@ -162,12 +122,6 @@ namespace DesignerTest
         [TestMethod]
         public void setRegistrationDateTest()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             DateTime newRegistrationDate = DateTime.MaxValue;
@@ -179,12 +133,6 @@ namespace DesignerTest
         [TestMethod]
         public void updateLastLoginDate()
         {
-            string name = "Michael";
-            string surname = "Rockford";
-            string userName = "mirockfo";
-            string password = "drofkcor";
-            DateTime registrationDate = DateTime.Now;
-
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             DateTime dateAssigned = designer.updateLastLoginDate();

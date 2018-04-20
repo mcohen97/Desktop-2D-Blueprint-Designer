@@ -8,6 +8,7 @@ namespace Obligatorio1_Arancet_Cohen
 {
     public enum Permission
     {
+        ALL_PERMISSIONS,
         READ_BLUEPRINT,
         EDIR_BLUEPRINT,
         DELETE_BLUEPRINT,

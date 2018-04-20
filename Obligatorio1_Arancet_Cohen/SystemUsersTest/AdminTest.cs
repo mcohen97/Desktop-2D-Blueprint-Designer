@@ -196,7 +196,7 @@ namespace AdminTest
         }
 
         [TestMethod]
-        public void canCreatUsersTest()
+        public void canCreateUsersTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             bool canCreateUsers = admin.hasPermission(Permission.CREATE_USER);
