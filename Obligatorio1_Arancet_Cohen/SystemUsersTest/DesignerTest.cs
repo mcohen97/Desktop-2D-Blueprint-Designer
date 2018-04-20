@@ -169,5 +169,15 @@ namespace DesignerTest
 
             Assert.IsTrue(canDeleteBlueprint);
         }
+
+        [TestMethod]
+        public void canReadBlueprintTest()
+        {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            bool canReadBlueprint = designer.hasPermission(Permission.READ_BLUEPRINT);
+
+            Assert.IsTrue(canReadBlueprint);
+        }
     }
 }
