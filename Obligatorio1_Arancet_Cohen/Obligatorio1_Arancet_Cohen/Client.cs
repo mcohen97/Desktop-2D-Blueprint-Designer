@@ -2,7 +2,7 @@
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public class Client : Person
+    public class Client : User
     {
       
         public string Phone { get; set; }

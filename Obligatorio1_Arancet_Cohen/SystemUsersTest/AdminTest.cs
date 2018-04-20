@@ -7,28 +7,33 @@ namespace AdminTest
     [TestClass]
     public class AdminTest
     {
+        string name;
+        string surname;
+        string userName;
+        string password;
+        DateTime registrationDate;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            name = "Joe";
+            surname = "Jaguar";
+            userName = "jjadmin";
+            password = "iamthejaguar";
+            registrationDate = DateTime.Now;
+        }
+
         [TestMethod]
         public void constructorWithParameters()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
+            Assert.IsNotNull(admin);
         }
 
         [TestMethod]
         public void getNameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(name, admin.Name);
@@ -37,12 +42,6 @@ namespace AdminTest
         [TestMethod]
         public void setNameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string newName = "Angelo";
@@ -54,12 +53,6 @@ namespace AdminTest
         [TestMethod]
         public void getSurnameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(surname, admin.Surname);
@@ -68,12 +61,6 @@ namespace AdminTest
         [TestMethod]
         public void setSurnameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string newSurname = "Panter";
@@ -85,12 +72,6 @@ namespace AdminTest
         [TestMethod]
         public void getUserNameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(userName, admin.UserName);
@@ -99,12 +80,6 @@ namespace AdminTest
         [TestMethod]
         public void setUserNameTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string newUserName = "jaguarmin";
@@ -116,12 +91,6 @@ namespace AdminTest
         [TestMethod]
         public void getPasswordTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(password, admin.Password);
@@ -130,12 +99,6 @@ namespace AdminTest
         [TestMethod]
         public void setPasswordTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string newPassword = "iamthegreatjaguar";
@@ -147,12 +110,6 @@ namespace AdminTest
         [TestMethod]
         public void getRegistrationDateTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(registrationDate, admin.RegistrationDate);
@@ -161,12 +118,6 @@ namespace AdminTest
         [TestMethod]
         public void setRegistrationDateTest()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             DateTime newRegistrationDate = DateTime.MinValue;
@@ -178,12 +129,6 @@ namespace AdminTest
         [TestMethod]
         public void updateLastLoginDate()
         {
-            string name = "Joe";
-            string surname = "Jaguar";
-            string userName = "jjadmin";
-            string password = "iamthejaguar";
-            DateTime registrationDate = DateTime.Now;
-
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             DateTime dateAssigned = admin.updateLastLoginDate();
@@ -194,12 +139,7 @@ namespace AdminTest
         [TestMethod]
         public void enableClient()
         {
-            string nameAdmin = "Joe";
-            string surnameAdmin = "Jaguar";
-            string userNameAdmin = "jjadmin";
-            string passwordAdmin = "iamthejaguar";
-            DateTime registrationDateAdmin = DateTime.Now;
-            Admin admin = new Admin(nameAdmin, surnameAdmin, userNameAdmin, passwordAdmin, registrationDateAdmin);
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string nameClient = "Paul";
             string surnameClient = "Richards";
@@ -218,12 +158,7 @@ namespace AdminTest
         [TestMethod]
         public void assignPasswordToClientTest()
         {
-            string nameAdmin = "Joe";
-            string surnameAdmin = "Jaguar";
-            string userNameAdmin = "jjadmin";
-            string passwordAdmin = "iamthejaguar";
-            DateTime registrationDateAdmin = DateTime.Now;
-            Admin admin = new Admin(nameAdmin, surnameAdmin, userNameAdmin, passwordAdmin, registrationDateAdmin);
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             string nameClient = "Paul";
             string surnameClient = "Richards";
@@ -238,6 +173,53 @@ namespace AdminTest
             admin.assignPasswordToClient(client, passwordAssignedByAdmin);
             
             Assert.AreEqual(client.Password, passwordAssignedByAdmin);
+        }
+
+        [TestMethod]
+        public void updateClientInfoTest()
+        {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+
+            string nameClient = "Paul";
+            string surnameClient = "Richards";
+            string userNameClient = "paulrichards";
+            string passwordClient = "paulrichards1";
+            string phoneClient = "099888777";
+            string idClient = "54443332";
+            DateTime registrationDateClient = DateTime.Now;
+            Client client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, idClient, registrationDateClient);
+
+            string passwordAssignedByAdmin = "thisIsYourNewPass";
+            admin.assignPasswordToClient(client, passwordAssignedByAdmin);
+
+            Assert.AreEqual(client.Password, passwordAssignedByAdmin);
+        }
+
+        [TestMethod]
+        public void canCreatUsersTest()
+        {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            bool canCreateUsers = admin.hasPermission(Permission.CREATE_USER);
+
+            Assert.IsTrue(canCreateUsers);
+        }
+
+        [TestMethod]
+        public void canEditUsersTest()
+        {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            bool canEditUsers = admin.hasPermission(Permission.EDIT_USER);
+
+            Assert.IsTrue(canEditUsers);
+        }
+
+        [TestMethod]
+        public void canDeleteUsersTest()
+        {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            bool canDeleteUsers = admin.hasPermission(Permission.DELETE_USER);
+
+            Assert.IsTrue(canDeleteUsers);
         }
     }
 }

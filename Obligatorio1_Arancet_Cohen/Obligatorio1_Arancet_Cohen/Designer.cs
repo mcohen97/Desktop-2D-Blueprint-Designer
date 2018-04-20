@@ -2,7 +2,7 @@
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public class Designer : Person
+    public class Designer : User
     {
        
         public Designer(string name, string surname, string userName, string password, DateTime registrationDate)

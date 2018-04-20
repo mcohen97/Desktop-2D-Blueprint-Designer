@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public class Admin : Person
+    public class Admin : User
     {
-        private List<Person> listOfRegisteredClients;
+        private List<User> listOfRegisteredClients;
 
         public Admin(string name, string surname, string userName, string password, DateTime registrationDate)
         {
@@ -15,10 +15,10 @@ namespace Obligatorio1_Arancet_Cohen
             Password = password;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
-            listOfRegisteredClients = new List<Person>();
+            listOfRegisteredClients = new List<User>();
         }
 
-        public void registClient(Person client)
+        public void registClient(User client)
         {
             listOfRegisteredClients.Add(client);
             //should throw exception if Person is not a Client
@@ -33,5 +33,6 @@ namespace Obligatorio1_Arancet_Cohen
         {
             return listOfRegisteredClients.Contains(client);
         }
+
     }
 }

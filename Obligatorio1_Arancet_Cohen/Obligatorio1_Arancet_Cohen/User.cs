@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public abstract class Person
+    public abstract class User
     {
         public string Name { get; set; }
         public string Surname { get; set; }
