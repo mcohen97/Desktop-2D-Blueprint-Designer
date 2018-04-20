@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace GeometryLogic {
+namespace Logic {
     public class SegmentsDoNotIntersectException : Exception {
         public SegmentsDoNotIntersectException() {
         }

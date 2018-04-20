@@ -52,5 +52,13 @@ namespace Logic.Test
             Wall otherInstance = new Wall(instance,instance);
             Assert.AreNotEqual(instance, otherInstance);
         }
+
+        [TestMethod]
+        public void MinusOperatorTest() {
+            Point otherInstance = new Point(2, 1);
+            Point expectedResult = new Point(1, 1);
+            Point actualResult = instance - otherInstance;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
