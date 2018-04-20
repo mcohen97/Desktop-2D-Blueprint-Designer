@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Obligatorio1_Arancet_Cohen
 {
@@ -18,6 +19,9 @@ namespace Obligatorio1_Arancet_Cohen
             Id = id;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
+
+            permissions = new List<Permission>();
+            permissions.Add(Permission.READ_BLUEPRINT);
         }
     }
 
