@@ -16,6 +16,20 @@ namespace Logic {
             CoordY = y;
         }
 
+        public override bool Equals(object obj) {
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType()) {
+                areEqual = false;
+            } else {
+                Point otherPoint = (Point)obj;
+                areEqual = (CoordX == otherPoint.CoordX) && (CoordY == otherPoint.CoordY);
+            }
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return CoordX * CoordY;
+        }
 
     }
 }

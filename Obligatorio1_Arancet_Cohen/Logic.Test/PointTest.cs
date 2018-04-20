@@ -38,7 +38,7 @@ namespace Logic.Test
         [TestMethod]
         public void NotEqualsTest() {
             Point otherInstance = new Point(5, 2);
-            Assert.AreEqual(instance, otherInstance);
+            Assert.AreNotEqual(instance, otherInstance);
         }
 
         [TestMethod]
