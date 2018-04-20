@@ -43,13 +43,13 @@ namespace Logic.Test
 
         [TestMethod]
         public void EqualsNullTest() {
-            Point otherInstance = new Point(3, 2);
+            Point otherInstance = null;
             Assert.AreNotEqual(instance, otherInstance);
         }
 
         [TestMethod]
         public void EqualsOtherObjectTest() {
-            Point otherInstance = new Point(3, 2);
+            Wall otherInstance = new Wall(instance,instance);
             Assert.AreNotEqual(instance, otherInstance);
         }
     }
