@@ -31,5 +31,8 @@ namespace Logic {
             return CoordX * CoordY;
         }
 
+        public static Point operator -(Point first, Point second) {
+            return new Point(first.CoordX - second.CoordX, first.CoordY - second.CoordY);
+        }
     }
 }
