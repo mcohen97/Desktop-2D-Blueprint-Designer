@@ -26,7 +26,7 @@ namespace DesignerTest
         [TestMethod]
         public void constructorWithParametersTest()
         {
-           Designer designer = new Designer(name, surname, userName, password, registrationDate);
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.IsNotNull(designer);
         }
@@ -131,13 +131,43 @@ namespace DesignerTest
         }
 
         [TestMethod]
-        public void updateLastLoginDate()
+        public void updateLastLoginDateTest()
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             DateTime dateAssigned = designer.updateLastLoginDate();
 
             Assert.AreEqual(dateAssigned, designer.LastLoginDate);
+        }
+
+        [TestMethod]
+        public void canCreateBlueprintTest()
+        {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            bool canCreateBlueprint = designer.hasPermission(Permission.CREATE_BLUEPRINT);
+
+            Assert.IsTrue(canCreateBlueprint);
+        }
+
+        [TestMethod]
+        public void canEditBlueprintTest()
+        {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            bool canEditBlueprint = designer.hasPermission(Permission.EDIT_BLUEPRINT);
+
+            Assert.IsTrue(canEditBlueprint);
+        }
+
+        [TestMethod]
+        public void canDeleteBlueprintTest()
+        {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            bool canDeleteBlueprint = designer.hasPermission(Permission.DELETE_BLUEPRINT);
+
+            Assert.IsTrue(canDeleteBlueprint);
         }
     }
 }
