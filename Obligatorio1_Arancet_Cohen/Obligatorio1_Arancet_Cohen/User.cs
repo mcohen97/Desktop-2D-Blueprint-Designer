@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public abstract class User
+    public abstract class User:IPermissible
     {
         public string Name { get; set; }
         public string Surname { get; set; }
