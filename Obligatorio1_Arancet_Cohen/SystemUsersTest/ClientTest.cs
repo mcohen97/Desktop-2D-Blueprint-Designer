@@ -171,13 +171,41 @@ namespace ClientTest
         [TestMethod]
         public void updateLastLoginDate()
         {
-            DateTime registrationDate = DateTime.Now;
-
             Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
 
             DateTime dateAssigned = client.updateLastLoginDate();
 
             Assert.AreEqual(dateAssigned, client.LastLoginDate);
+        }
+
+        [TestMethod]
+        public void canReadBlueprintTest()
+        {
+            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+
+            bool canReadBlueprint = client.hasPermission(Permission.READ_BLUEPRINT);
+
+            Assert.IsTrue(canReadBlueprint);
+        }
+
+        [TestMethod]
+        public void canEditBlueprintTest()
+        {
+            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+
+            bool canEditBlueprint = client.hasPermission(Permission.EDIT_BLUEPRINT);
+
+            Assert.IsFalse(canEditBlueprint);
+        }
+
+        [TestMethod]
+        public void canDeleteBlueprintTest()
+        {
+            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+
+            bool canDeleteBlueprint = client.hasPermission(Permission.DELETE_BLUEPRINT);
+
+            Assert.IsFalse(canDeleteBlueprint);
         }
 
     }

@@ -10,7 +10,7 @@ namespace Obligatorio1_Arancet_Cohen
     {
         ALL_PERMISSIONS,
         READ_BLUEPRINT,
-        EDIR_BLUEPRINT,
+        EDIT_BLUEPRINT,
         DELETE_BLUEPRINT,
         CREATE_BLUEPRINT,
         EDIT_USER,
