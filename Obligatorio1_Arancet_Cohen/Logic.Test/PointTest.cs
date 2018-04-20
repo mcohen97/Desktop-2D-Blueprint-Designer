@@ -27,7 +27,12 @@ namespace Logic.Test
             int expectedResult = 2;
             int actualResult = instance.CoordY;
             Assert.AreEqual(expectedResult, actualResult);
+        }
 
+        [TestMethod]
+        public void EqualsTest() {
+            Point otherInstance = new Point(3, 2);
+            Assert.AreEqual(instance,otherInstance);
         }
     }
 }
