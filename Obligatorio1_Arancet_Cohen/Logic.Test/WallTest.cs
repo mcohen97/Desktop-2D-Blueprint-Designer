@@ -66,7 +66,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void IsHorizontalTest() {
-            instance= new Wall(new Point(0,0),new Point(2,0));
+            instance = new Wall(new Point(0, 0), new Point(2, 0));
             Assert.IsTrue(instance.IsHorizontal());
         }
 
@@ -80,6 +80,63 @@ namespace Logic.Test {
             instance = new Wall(new Point(0, 0), new Point(0, 2));
             Assert.IsTrue(instance.IsVertical());
         }
+
+        [TestMethod]
+        public void WallsDoNotIntersectTest() {
+            Wall otherInstance = new Wall(new Point(0, 1), new Point(3, 3));
+            bool doTheyIntersect = instance.Intersects(otherInstance);
+            Assert.IsFalse(doTheyIntersect);
+        }
+
+        [TestMethod]
+        public void SecantWallsDoIntersectTest() {
+            Wall otherInstance = new Wall(new Point(0, 1), new Point(1, 0));
+            bool doTheyIntersect = instance.Intersects(otherInstance);
+            Assert.IsTrue(doTheyIntersect);
+
+        }
+
+        [TestMethod]
+        public void TShapeWallsIntersectTest() {
+            Wall instance = new Wall(new Point(0, 5), new Point(0, -5));
+            Wall otherInstance = new Wall(new Point(5, 0), new Point(0, 0));
+            bool doTheyIntersect = instance.Intersects(otherInstance);
+            Assert.IsTrue(doTheyIntersect);
+        }
+
+        [TestMethod]
+        public void GetIntersectionNotIntersectedWallsTest() {
+            Wall otherInstance = new Wall(new Point(1, 0), new Point(2, 0));
+            Point intersection = instance.GetIntersection(otherInstance);
+
+
+        }
+
+        [TestMethod]
+        public void GetIntersectionColinearWallsTest() {
+            Wall otherInstance = new Wall(new Point(2, 1), new Point(4, 3));
+            Point intersection = instance.GetIntersection(otherInstance);
+
+
+
+        }
+
+        [TestMethod]
+        public void GetIntersectionSecantWallsTest() {
+            Wall insגtance = new Wall(new Point(0, 5), new Point(0, -5));
+            Wall otherInstance = new Wall(new Point(5, 0), new Point(-5, 0));
+            Point intersection = instance.GetIntersection(otherInstance);
+
+        }
+
+        [TestMethod]
+        public void GetIntersectionTshapeWallsTest() {
+            Wall insגtance = new Wall(new Point(0, 5), new Point(0, -5));
+            Wall otherInstance = new Wall(new Point(5, 0), new Point(0, 0));
+            Point intersection = instance.GetIntersection(otherInstance);
+        }
+
+
 
 
     }
