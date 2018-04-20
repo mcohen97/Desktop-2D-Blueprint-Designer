@@ -136,6 +136,7 @@ namespace Logic.Test {
             Point intersection = instance.GetIntersection(otherInstance);
         }
 
+        
 
 
 

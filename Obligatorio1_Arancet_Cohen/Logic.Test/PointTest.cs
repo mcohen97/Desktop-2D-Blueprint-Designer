@@ -18,14 +18,14 @@ namespace Logic.Test
         [TestMethod]
         public void GetCoordXTest(){
             int expectedResult = 3;
-            int actualResult= instance.CoordX;
+            float actualResult= instance.CoordX;
             Assert.AreEqual(expectedResult,actualResult);
         }
 
         [TestMethod]
         public void GetCoordYTest(){
             int expectedResult = 2;
-            int actualResult = instance.CoordY;
+            float actualResult = instance.CoordY;
             Assert.AreEqual(expectedResult, actualResult);
         }
 

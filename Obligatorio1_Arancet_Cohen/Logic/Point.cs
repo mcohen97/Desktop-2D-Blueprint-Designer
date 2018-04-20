@@ -8,10 +8,10 @@ namespace Logic {
 
     public class Point {
 
-        public int CoordX { set; get; }
-        public int CoordY { set; get; }
+        public float CoordX { set; get; }
+        public float CoordY { set; get; }
 
-        public Point(int x, int y) {
+        public Point(float x, float y) {
             CoordX = x;
             CoordY = y;
         }
@@ -28,7 +28,7 @@ namespace Logic {
         }
 
         public override int GetHashCode() {
-            return CoordX * CoordY;
+            return (int)(CoordX * CoordY);
         }
 
         public static Point operator -(Point first, Point second) {
