@@ -55,6 +55,13 @@ namespace Logic{
             return BeginningPoint.CoordX == EndPoint.CoordX;
         }
 
+        public bool DoesIntersect(Wall otherWall) {
+            return false;
+        }
+
+        public Point GetIntersection(Wall otherWall) {
+            return new Point(0, 0);
+        }
 
     }
 }

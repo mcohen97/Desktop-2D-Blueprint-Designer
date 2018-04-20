@@ -84,14 +84,14 @@ namespace Logic.Test {
         [TestMethod]
         public void WallsDoNotIntersectTest() {
             Wall otherInstance = new Wall(new Point(0, 1), new Point(3, 3));
-            bool doTheyIntersect = instance.Intersects(otherInstance);
+            bool doTheyIntersect = instance.DoesIntersect(otherInstance);
             Assert.IsFalse(doTheyIntersect);
         }
 
         [TestMethod]
         public void SecantWallsDoIntersectTest() {
             Wall otherInstance = new Wall(new Point(0, 1), new Point(1, 0));
-            bool doTheyIntersect = instance.Intersects(otherInstance);
+            bool doTheyIntersect = instance.DoesIntersect(otherInstance);
             Assert.IsTrue(doTheyIntersect);
 
         }
@@ -100,7 +100,7 @@ namespace Logic.Test {
         public void TShapeWallsIntersectTest() {
             Wall instance = new Wall(new Point(0, 5), new Point(0, -5));
             Wall otherInstance = new Wall(new Point(5, 0), new Point(0, 0));
-            bool doTheyIntersect = instance.Intersects(otherInstance);
+            bool doTheyIntersect = instance.DoesIntersect(otherInstance);
             Assert.IsTrue(doTheyIntersect);
         }
 
