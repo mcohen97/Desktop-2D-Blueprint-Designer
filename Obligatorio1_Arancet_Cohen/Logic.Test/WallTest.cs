@@ -105,6 +105,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        [ExpectedException(typeof(WallsDoNotIntersectException))]
         public void GetIntersectionNotIntersectedWallsTest() {
             Wall otherInstance = new Wall(new Point(1, 0), new Point(2, 0));
             Point intersection = instance.GetIntersection(otherInstance);
@@ -113,20 +114,18 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        [ExpectedException(typeof(WallsDoNotIntersectException))]
         public void GetIntersectionColinearWallsTest() {
-            Wall otherInstance = new Wall(new Point(2, 1), new Point(4, 3));
-            Point intersection = instance.GetIntersection(otherInstance);
-
-
-
+            Point intersection = instance.GetIntersection(instance);
         }
 
         [TestMethod]
         public void GetIntersectionSecantWallsTest() {
-            Wall insגtance = new Wall(new Point(0, 5), new Point(0, -5));
-            Wall otherInstance = new Wall(new Point(5, 0), new Point(-5, 0));
-            Point intersection = instance.GetIntersection(otherInstance);
-
+            Wall instance = new Wall(new Point(0, 2), new Point(2, 2));
+            Wall otherInstance = new Wall(new Point(1, 0), new Point(1, 4));
+            Point expectedResult = new Point(1, 2);
+            Point actualResult = instance.GetIntersection(otherInstance);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
@@ -134,6 +133,9 @@ namespace Logic.Test {
             Wall insגtance = new Wall(new Point(0, 5), new Point(0, -5));
             Wall otherInstance = new Wall(new Point(5, 0), new Point(0, 0));
             Point intersection = instance.GetIntersection(otherInstance);
+            Point expectedResult = new Point(0, 0);
+            Point actualResult = instance.GetIntersection(otherInstance);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         

@@ -77,7 +77,7 @@ namespace Logic{
 
             bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
             if (!intersect) {
-                throw new SegmentsDoNotIntersectException();
+                throw new WallsDoNotIntersectException();
             }
             return GetIntersectedPoint(alphaNumerator, denominator);
 
@@ -99,6 +99,7 @@ namespace Logic{
             return division >= 0 && division <= 1;
         }
         public float[] AlfaNumerator0_BetaNumerator1_Denominator2(Wall otherWall) {
+
             Point a = EndPoint - BeginningPoint;
             Point b = otherWall.BeginningPoint - otherWall.EndPoint;
             Point c = BeginningPoint - otherWall.BeginningPoint;
@@ -113,6 +114,7 @@ namespace Logic{
         }
 
         private Point GetIntersectedPoint(float alphaNumerator, float denominator) {
+
             float alphaOfIntersection = alphaNumerator / denominator;
             float x = BeginningPoint.CoordX + alphaOfIntersection * (EndPoint.CoordX - BeginningPoint.CoordX);
             float y = BeginningPoint.CoordY + alphaOfIntersection * (EndPoint.CoordY - BeginningPoint.CoordY);
