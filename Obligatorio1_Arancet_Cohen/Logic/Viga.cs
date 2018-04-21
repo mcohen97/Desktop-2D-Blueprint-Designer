@@ -30,6 +30,5 @@ namespace Logic {
             return UnitPrice;
         }
 
-
     }
 }

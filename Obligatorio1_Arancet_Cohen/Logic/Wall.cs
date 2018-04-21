@@ -120,6 +120,5 @@ namespace Logic{
             float y = BeginningPoint.CoordY + alphaOfIntersection * (EndPoint.CoordY - BeginningPoint.CoordY);
             return new Point(x, y);
         }
-
     }
 }
