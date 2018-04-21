@@ -138,9 +138,26 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        
+        [TestMethod]
+        public void DoesNotBelongToWallTest() {
+            Viga instance = new Viga(new Point(3, 2));
+            Wall testWall = new Wall(new Point(2, 0), new Point(5, 0));
+            Assert.IsFalse(testWall.DoesContainComponent(instance));
+        }
 
+        [TestMethod]
+        public void BelongsToWallTest() {
+            Viga instance = new Viga(new Point(3, 2));
+            Wall testWall = new Wall(new Point(0, 2), new Point(5, 2));
+            Assert.IsTrue(testWall.DoesContainComponent(instance));
+        }
 
+        [TestMethod]
+        public void BelongsToEdgeOfWallTest() {
+            Viga instance = new Viga(new Point(3, 2));
+            Wall testWall = new Wall(new Point(3, 0), new Point(3, 5));
+            Assert.IsTrue(testWall.DoesContainComponent(instance));
+        }
 
     }
 }
