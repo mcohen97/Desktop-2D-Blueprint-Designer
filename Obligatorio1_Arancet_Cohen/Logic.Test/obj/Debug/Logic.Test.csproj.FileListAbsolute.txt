@@ -5,3 +5,10 @@ C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligato
 C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.csprojResolveAssemblyReference.cache
 C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.dll
 C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\bin\Debug\Logic.Test.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\bin\Debug\Logic.Test.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\bin\Debug\Logic.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\bin\Debug\Logic.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.csprojResolveAssemblyReference.cache
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic.Test\obj\Debug\Logic.Test.pdb

@@ -58,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Obligatorio1_Arancet_Cohen\Logic.csproj">
+    <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812C714-5750-45B7-8B01-88C8A5298218}</Project>
       <Name>Logic</Name>
     </ProjectReference>

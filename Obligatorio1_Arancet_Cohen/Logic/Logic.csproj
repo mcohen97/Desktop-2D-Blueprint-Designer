@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="IBuildingComponent.cs" />
     <Compile Include="Opening.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Admin.cs" />
-    <Compile Include="Client.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Designer.cs" />
     <Compile Include="IPermissible.cs" />
