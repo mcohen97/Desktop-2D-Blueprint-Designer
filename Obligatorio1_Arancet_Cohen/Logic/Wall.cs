@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic{
 
-    public class Wall : IBuildingComponent{
+    public class Wall {
 
         public Wall(Point from, Point to) {
             HeightValue = 3;
@@ -120,5 +120,19 @@ namespace Logic{
             float y = BeginningPoint.CoordY + alphaOfIntersection * (EndPoint.CoordY - BeginningPoint.CoordY);
             return new Point(x, y);
         }
+
+        public bool DoesContainComponent(ISinglePointComponent component) {
+            // if the point belongs to segment, the segment from one of the extremes to the position of the component should be colinear
+            Wall auxilliaryWall = new Wall(Beginning(), component.GetPosition());
+            bool colinearWalls;
+            try {
+               colinearWalls = !DoesIntersect(auxilliaryWall);
+            } catch(WallsDoNotIntersectException) {
+                colinearWalls = false;
+
+            } 
+            return colinearWalls;
+        }
+
     }
 }
