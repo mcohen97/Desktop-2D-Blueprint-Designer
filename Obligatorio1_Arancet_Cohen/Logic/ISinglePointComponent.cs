@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic {
-    interface ISinglePointComponent {
+    public interface ISinglePointComponent {
+        Point GetPosition();
     }
 }

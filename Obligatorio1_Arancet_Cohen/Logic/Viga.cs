@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Logic  {
 
-    public class Viga {
+    public class Viga : ISinglePointComponent {
 
         private Point Position { get; set; }
         private float HeightValue { get; set; }
@@ -22,7 +22,7 @@ namespace Logic {
             return HeightValue;
         }
 
-        public Point Beginning() {
+        public Point GetPosition() {
             return Position;
         }
 

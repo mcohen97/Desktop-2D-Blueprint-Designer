@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public abstract class Opening : IBuildingComponent {
+    public abstract class Opening : ISinglePointComponent {
 
         protected float HeightValue { get; set; }
         protected float LengthValue { get; set; }
@@ -25,7 +25,7 @@ namespace Logic {
             return LengthValue;
         }
 
-        public Point Beginning() {
+        public Point GetPosition() {
             return Position;
         }
 

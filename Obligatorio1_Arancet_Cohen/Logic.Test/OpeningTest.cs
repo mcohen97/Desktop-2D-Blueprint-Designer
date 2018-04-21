@@ -32,7 +32,7 @@ namespace Logic.Test {
         public void GetBeginningTest() {
             int expectedXResult = 3;
             int expectedYResult = 2;
-            Point actualResult = instance.Beginning();
+            Point actualResult = instance.GetPosition();
             Assert.IsTrue((actualResult.CoordX == expectedXResult) && (actualResult.CoordY == expectedYResult));
         }
 
@@ -46,13 +46,19 @@ namespace Logic.Test {
         [TestMethod]
         public void DoesNotBelongToWallTest() {
             Wall testWall = new Wall(new Point(2, 0), new Point(5, 0));
-            Assert.IsTrue(instance.DoesBelongToWall(testWall));
+            Assert.IsFalse(testWall.DoesContainComponent(instance));
         }
 
         [TestMethod]
         public void BelongsToWallTest() {
             Wall testWall = new Wall(new Point(0, 2), new Point(5, 2));
-            Assert.IsTrue(instance.DoesBelongToWall(testWall));
+            Assert.IsTrue(testWall.DoesContainComponent(instance));
+        }
+
+        [TestMethod]
+        public void BelongsToEdgeOfWallTest() {
+            Wall testWall = new Wall(new Point(3, 0), new Point(3, 5));
+            Assert.IsTrue(testWall.DoesContainComponent(instance));
         }
     }
 }

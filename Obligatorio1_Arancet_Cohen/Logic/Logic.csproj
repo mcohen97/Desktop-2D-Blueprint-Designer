@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Door.cs" />
-    <Compile Include="IBuildingComponent.cs" />
+    <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="Opening.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
