@@ -42,5 +42,17 @@ namespace Logic.Test {
             float actualResult = instance.Price();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void DoesNotBelongToWallTest() {
+            Wall testWall = new Wall(new Point(2, 0), new Point(5, 0));
+            Assert.IsTrue(instance.DoesBelongToWall(testWall));
+        }
+
+        [TestMethod]
+        public void BelongsToWallTest() {
+            Wall testWall = new Wall(new Point(0, 2), new Point(5, 2));
+            Assert.IsTrue(instance.DoesBelongToWall(testWall));
+        }
     }
 }
