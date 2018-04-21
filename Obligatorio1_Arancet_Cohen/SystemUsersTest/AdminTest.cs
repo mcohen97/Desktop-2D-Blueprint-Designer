@@ -7,11 +7,12 @@ namespace AdminTest
     [TestClass]
     public class AdminTest
     {
-        string name;
-        string surname;
-        string userName;
-        string password;
-        DateTime registrationDate;
+        public string name;
+        public string surname;
+        public string userName;
+        public string password;
+        public DateTime registrationDate;
+        public Client client;
 
         [TestInitialize]
         public void TestInitialize()
@@ -21,6 +22,16 @@ namespace AdminTest
             userName = "jjadmin";
             password = "iamthejaguar";
             registrationDate = DateTime.Now;
+
+            string nameClient = "Paul";
+            string surnameClient = "Richards";
+            string userNameClient = "paulrichards";
+            string passwordClient = "paulrichards1";
+            string phoneClient = "099888777";
+            string addressClient = "MyAddress 2233";
+            string idClient = "54443332";
+            DateTime registrationDateClient = DateTime.Now;
+            client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, addressClient, idClient, registrationDateClient);
         }
 
         [TestMethod]
@@ -141,15 +152,6 @@ namespace AdminTest
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
-            string nameClient = "Paul";
-            string surnameClient = "Richards";
-            string userNameClient = "paulrichards";
-            string passwordClient = "paulrichards1";
-            string phoneClient = "099888777";
-            string idClient = "54443332";
-            DateTime registrationDateClient = DateTime.Now;
-            Client client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, idClient, registrationDateClient);
-
             admin.registClient(client);
 
             Assert.IsTrue(admin.isClientRegistered(client));
@@ -159,15 +161,6 @@ namespace AdminTest
         public void assignPasswordToClientTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string nameClient = "Paul";
-            string surnameClient = "Richards";
-            string userNameClient = "paulrichards";
-            string passwordClient = "paulrichards1";
-            string phoneClient = "099888777";
-            string idClient = "54443332";
-            DateTime registrationDateClient = DateTime.Now;
-            Client client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, idClient, registrationDateClient);
 
             string passwordAssignedByAdmin = "thisIsYourNewPass";
             admin.assignPasswordToClient(client, passwordAssignedByAdmin);
@@ -179,15 +172,6 @@ namespace AdminTest
         public void updateClientInfoTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string nameClient = "Paul";
-            string surnameClient = "Richards";
-            string userNameClient = "paulrichards";
-            string passwordClient = "paulrichards1";
-            string phoneClient = "099888777";
-            string idClient = "54443332";
-            DateTime registrationDateClient = DateTime.Now;
-            Client client = new Client(nameClient, surnameClient, userNameClient, passwordClient, phoneClient, idClient, registrationDateClient);
 
             string passwordAssignedByAdmin = "thisIsYourNewPass";
             admin.assignPasswordToClient(client, passwordAssignedByAdmin);
