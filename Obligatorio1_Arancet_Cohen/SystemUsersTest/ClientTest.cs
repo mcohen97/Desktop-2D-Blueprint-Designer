@@ -12,6 +12,7 @@ namespace ClientTest
         public string userName;
         public string password;
         public string phone;
+        public string address;
         public string id;
         public DateTime registrationDate;
 
@@ -23,6 +24,7 @@ namespace ClientTest
             userName = "paulrichards";
             password = "paulrichards1";
             phone = "099888777";
+            address = "Thomas.T 3232";
             id = "54443332";
             registrationDate = DateTime.Now;
         }
@@ -30,7 +32,7 @@ namespace ClientTest
         [TestMethod]
         public void constructorWithParametersTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.IsNotNull(client);
         }
@@ -38,7 +40,7 @@ namespace ClientTest
         [TestMethod]
         public void getNameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(name, client.Name);
         }
@@ -46,7 +48,7 @@ namespace ClientTest
         [TestMethod]
         public void setNameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newName = "Jhon";
             client.Name = newName;
@@ -57,7 +59,7 @@ namespace ClientTest
         [TestMethod]
         public void getSurnameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(surname, client.Surname);
         }
@@ -65,7 +67,7 @@ namespace ClientTest
         [TestMethod]
         public void setSurnameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newSurname = "Wildfield";
             client.Surname = newSurname;
@@ -76,7 +78,7 @@ namespace ClientTest
         [TestMethod]
         public void getUserNameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(userName, client.UserName);
         }
@@ -84,7 +86,7 @@ namespace ClientTest
         [TestMethod]
         public void setUserNameTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newUserName = "richardspaul";
             client.UserName = newUserName;
@@ -95,7 +97,7 @@ namespace ClientTest
         [TestMethod]
         public void getPasswordTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(password, client.Password);
         }
@@ -103,7 +105,7 @@ namespace ClientTest
         [TestMethod]
         public void setPasswordTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newPassword = "paulDbeast";
             client.Password = newPassword;
@@ -114,7 +116,7 @@ namespace ClientTest
         [TestMethod]
         public void getPhoneTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(phone, client.Phone);
         }
@@ -122,7 +124,7 @@ namespace ClientTest
         [TestMethod]
         public void setPhoneTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newPhoneNumber = "099777888";
             client.Phone = newPhoneNumber;
@@ -131,9 +133,28 @@ namespace ClientTest
         }
 
         [TestMethod]
+        public void getAddressTest()
+        {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            Assert.AreEqual(address, client.Address);
+        }
+
+        [TestMethod]
+        public void setAddressTest()
+        {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newAddress = "MyStreet 2223";
+            client.Address = newAddress;
+
+            Assert.AreEqual(newAddress, client.Address);
+        }
+
+        [TestMethod]
         public void getIdTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(id, client.Id);
         }
@@ -141,7 +162,7 @@ namespace ClientTest
         [TestMethod]
         public void setIdTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newId = "12223334";
             client.Id = newId;
@@ -152,7 +173,7 @@ namespace ClientTest
         [TestMethod]
         public void getRegistrationDateTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(registrationDate, client.RegistrationDate);
         }
@@ -160,7 +181,7 @@ namespace ClientTest
         [TestMethod]
         public void setRegistrationDateTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             DateTime newRegistrationDate = DateTime.MinValue;
             client.RegistrationDate = newRegistrationDate;
@@ -171,7 +192,7 @@ namespace ClientTest
         [TestMethod]
         public void updateLastLoginDate()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             DateTime dateAssigned = client.updateLastLoginDate();
 
@@ -181,7 +202,7 @@ namespace ClientTest
         [TestMethod]
         public void canReadBlueprintTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             bool canReadBlueprint = client.hasPermission(Permission.READ_BLUEPRINT);
 
@@ -191,7 +212,7 @@ namespace ClientTest
         [TestMethod]
         public void canEditBlueprintTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             bool canEditBlueprint = client.hasPermission(Permission.EDIT_BLUEPRINT);
 
@@ -201,7 +222,7 @@ namespace ClientTest
         [TestMethod]
         public void canDeleteBlueprintTest()
         {
-            Client client = new Client(name, surname, userName, password, phone, id, registrationDate);
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             bool canDeleteBlueprint = client.hasPermission(Permission.DELETE_BLUEPRINT);
 
