@@ -5,3 +5,10 @@ C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUser
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.csprojResolveAssemblyReference.cache
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Logic.dll
 C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Logic.pdb
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\SystemUsersTest.dll
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\SystemUsersTest.pdb
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Logic.dll
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\Logic.pdb
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.csprojResolveAssemblyReference.cache
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.dll
+C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\SystemUsersTest\obj\Debug\SystemUsersTest.pdb
