@@ -57,6 +57,7 @@
     <Compile Include="DesignerTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="OpeningTest.cs" />
+    <Compile Include="ComponentsContainerTest.cs" />
     <Compile Include="VigaTest.cs" />
     <Compile Include="WallTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
