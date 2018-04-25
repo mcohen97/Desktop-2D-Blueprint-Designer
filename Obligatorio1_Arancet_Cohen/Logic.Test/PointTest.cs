@@ -49,7 +49,7 @@ namespace Logic.Test
 
         [TestMethod]
         public void EqualsOtherObjectTest() {
-            Wall otherInstance = new Wall(instance,instance);
+            Wall otherInstance = new Wall(instance,new Point(5,2));
             Assert.AreNotEqual(instance, otherInstance);
         }
 

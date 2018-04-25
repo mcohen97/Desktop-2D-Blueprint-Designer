@@ -9,6 +9,9 @@ namespace Logic{
     public class Wall {
 
         public Wall(Point from, Point to) {
+            if (from.Equals(to)) {
+                throw new ArgumentException();
+            }
             HeightValue = 3;
             WidthValue = 0.20F;
             BeginningPoint =from;
