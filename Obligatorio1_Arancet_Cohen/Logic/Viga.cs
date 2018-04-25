@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
-{
-    public class Viga : IBuildingComponent
-    {
+namespace Logic  {
+
+    public class Viga : ISinglePointComponent {
+
         private Point Position { get; set; }
         private float HeightValue { get; set; }
         private float UnitPrice { get; set; }
@@ -18,26 +18,17 @@ namespace Logic
             UnitPrice = 50;
         }
 
-        public float Height()
-        {
+        public float Height() {
             return HeightValue;
         }
 
-        public float Length()
-        {
-            return 0;
-        }
-
-        public Point Beginning()
-        {
+        public Point GetPosition() {
             return Position;
         }
 
-        public float Price()
-        {
+        public float Price() {
             return UnitPrice;
         }
 
-      
     }
 }
