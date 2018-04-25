@@ -15,6 +15,12 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ZeroLengthWall() {
+            instance = new Wall(new Point(0, 0), new Point(0, 0));
+        }
+
+        [TestMethod]
         public void GetHeighTest() {
             float expectedResult = 3;
             float actualResult = instance.Height();
