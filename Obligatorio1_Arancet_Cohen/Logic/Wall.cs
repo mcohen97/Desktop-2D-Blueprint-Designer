@@ -142,13 +142,13 @@ namespace Logic{
             bool areEqual;
             if (obj == null || GetType() != obj.GetType()) {
                 areEqual = false;
+            } else {
+                Wall otherWall = (Wall)obj;
+
+                //they are equal if they have the same two points
+                areEqual = BeginningPoint.Equals(otherWall.BeginningPoint) && EndPoint.Equals(otherWall.EndPoint);
+                areEqual |= EndPoint.Equals(otherWall.BeginningPoint) && BeginningPoint.Equals(otherWall.EndPoint);
             }
-            Wall otherWall = (Wall)obj;
-
-            //they are equal if they have the same two points
-            areEqual = BeginningPoint.Equals(otherWall.BeginningPoint)&& EndPoint.Equals(otherWall.EndPoint);
-            areEqual |= EndPoint.Equals(otherWall.BeginningPoint) && BeginningPoint.Equals(otherWall.EndPoint);
-
             return areEqual;
         }
 

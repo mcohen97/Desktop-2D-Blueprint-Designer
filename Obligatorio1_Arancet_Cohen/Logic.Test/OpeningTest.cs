@@ -46,7 +46,7 @@ namespace Logic.Test {
         [TestMethod]
         public void EqualsTest() {
             Opening otherInstance = new Window(new Point(3, 2));
-            Assert.AreEqual(instance, otherInstance);
+            Assert.IsTrue(instance.Equals(otherInstance));
         }
 
         [TestMethod]

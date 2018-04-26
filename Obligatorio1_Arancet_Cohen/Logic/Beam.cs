@@ -34,9 +34,10 @@ namespace Logic {
             bool areEqual;
             if (obj == null || GetType() != obj.GetType()) {
                 areEqual = false;
+            } else {
+                Beam otherBeam = (Beam)obj;
+                areEqual = Position.Equals(otherBeam.Position);
             }
-            Beam otherBeam = (Beam)obj;
-            areEqual = Position.Equals(otherBeam.Position);
             return areEqual;
         }
 

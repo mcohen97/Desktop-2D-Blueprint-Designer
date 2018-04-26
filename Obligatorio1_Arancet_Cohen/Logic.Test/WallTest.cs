@@ -177,5 +177,15 @@ namespace Logic.Test {
             Assert.AreNotEqual(instance, otherInstance);
         }
 
+        [TestMethod]
+        public void EqualsNullTest() {
+            Assert.AreNotEqual(instance, null);
+        }
+
+        [TestMethod]
+        public void EqualsOtherTypeTest() {
+            Assert.AreNotEqual(instance, new Window(new Point(0,0)));
+        }
+
     }
 }

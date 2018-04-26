@@ -36,11 +36,12 @@ namespace Logic {
         public override bool Equals(object obj) {
 
             bool areEqual;
-            if (obj == null || GetType() != obj.GetType()) {
+            if (obj == null) {
                 areEqual = false;
+            } else {
+                Opening otherOpening = (Opening)obj;
+                areEqual = Position.Equals(otherOpening.GetPosition());
             }
-            Opening otherOpening = (Opening)obj;
-            areEqual= Position.Equals(otherOpening.GetPosition());
             return areEqual;
         }
 
