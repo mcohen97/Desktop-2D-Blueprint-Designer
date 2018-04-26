@@ -55,5 +55,10 @@ namespace Logic.Test {
             Assert.AreNotEqual(instance, otherInstance);
         }
 
+        [TestMethod]
+        public void EqualsNullTest() {
+            Assert.AreNotEqual(instance, null);
+        }
+
     }
 }
