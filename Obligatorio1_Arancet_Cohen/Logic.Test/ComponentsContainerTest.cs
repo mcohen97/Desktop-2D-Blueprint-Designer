@@ -15,22 +15,22 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void emptyContainerNoWallsTest() {
+        public void EmptyContainerNoWallsTest() {
             Assert.IsTrue(instance.isWallsEmpty());
         }
 
         [TestMethod]
-        public void emptyContainerNoVigasTest() {
-            Assert.IsTrue(instance.isVigasEmpty());
+        public void EmptyContainerNoBeamsTest() {
+            Assert.IsTrue(instance.isBeamsEmpty());
         }
 
         [TestMethod]
-        public void emptyContainerNoOpeningsTest() {
+        public void EmptyContainerNoOpeningsTest() {
             Assert.IsTrue(instance.isOpeningsEmpty());
         }
 
         [TestMethod]
-        public void addWallTest() {
+        public void AddWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.addWall(testWall);
             int expectedResult = 1;
@@ -40,29 +40,29 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void addNullWallTest() {
+        public void AddNullWallTest() {
             instance.addWall(null);
         }
 
         [TestMethod]
-        public void addVigaTest() {
-            Viga testViga = new Viga(new Point(3, 2));
-            instance.addViga(testViga);
+        public void AddBeamTest() {
+            Beam testBeam = new Beam(new Point(3, 2));
+            instance.AddBeam(testBeam);
             int expectedResult = 1;
-            int actualResult = instance.VigasCount();
+            int actualResult = instance.BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void addNullVigaTest() {
+        public void AddNullBeamTest() {
             instance.addWall(null);
         }
 
         [TestMethod]
-        public void addOpeningTest() {
+        public void AddOpeningTest() {
             Opening testOpening = new Door(new Point(3, 2));
-            instance.addOpening(testOpening);
+            instance.AddOpening(testOpening);
             int expectedResult = 1;
             int actualResult = instance.OpeningsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -70,15 +70,15 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void addNullOpeningTest() {
-            instance.addOpening(null);
+        public void AddNullOpeningTest() {
+            instance.AddOpening(null);
         }
 
         [TestMethod]
-        public void removeWallTest() {
+        public void RemoveWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.addWall(testWall);
-            instance.removeWall(testWall);
+            instance.RemoveWall(testWall);
             int expectedResult = 0;
             int actualResult = instance.WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -86,31 +86,31 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void removeNullWallTest() {
-            instance.removeWall(null);
+        public void RemoveNullWallTest() {
+            instance.RemoveWall(null);
         }
 
         [TestMethod]
-        public void removeVigaTest() {
-            Viga testViga = new Viga(new Point(3, 2));
-            instance.addViga(testViga);
-            instance.removeViga(testViga);
+        public void RemoveBeamTest() {
+            Beam testBeam = new Beam(new Point(3, 2));
+            instance.AddBeam(testBeam);
+            instance.RemoveBeam(testBeam);
             int expectedResult = 0;
-            int actualResult = instance.VigasCount();
+            int actualResult = instance.BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void removeNullVigaTest() {
-            instance.removeViga(null);
+        public void RemoveNullBeamTest() {
+            instance.RemoveBeam(null);
         }
 
         [TestMethod]
-        public void removeOpeningTest() {
+        public void RemoveOpeningTest() {
             Opening testOpening = new Door(new Point(3, 2));
-            instance.addOpening(testOpening);
-            instance.removeOpening(testOpening);
+            instance.AddOpening(testOpening);
+            instance.RemoveOpening(testOpening);
             int expectedResult = 0;
             int actualResult = instance.OpeningsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -119,11 +119,11 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void removeNullOpeningTest() {
-            instance.removeOpening(null);
+            instance.RemoveOpening(null);
         }
 
         [TestMethod]
-        public void getWallsCollectionTest() {
+        public void GetWallsCollectionTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.addWall(testWall);
             ICollection<Wall> expectedResult = new List<Wall>();
@@ -133,19 +133,19 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void getVigasCollectionTest() {
-            Viga testViga = new Viga(new Point(2, 2));
-            instance.addWall(testViga);
-            ICollection<Viga> expectedResult = new List<Viga>();
-            expectedResult.Add(testViga);
-            ICollection actualResult = instance.GetVigas();
+        public void GetBeamsCollectionTest() {
+            Beam testBeam = new Beam(new Point(2, 2));
+            instance.AddBeam(testBeam);
+            ICollection<Beam> expectedResult = new List<Beam>();
+            expectedResult.Add(testBeam);
+            ICollection actualResult = instance.GetBeams();
             CollectionAssert.AreEquivalent((ICollection)expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void getOpeningsCollectionTest() {
+        public void GetOpeningsCollectionTest() {
             Opening testOpening = new Door(new Point(2, 2));
-            instance.addOpening(testOpening);
+            instance.AddOpening(testOpening);
             ICollection<Opening> expectedResult = new List<Opening>();
             expectedResult.Add(testOpening);
             ICollection actualResult = instance.GetOpenings();
@@ -153,42 +153,43 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void containsWallTest() {
+        public void ContainsWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.addWall(testWall);
-            Assert.IsTrue(instance.containsWall(testWall));
+            Assert.IsTrue(instance.ContainsWall(testWall));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void containsNullWallTest() {
-            instance.containsWall(null);
+        public void ContainsNullWallTest() {
+            instance.ContainsWall(null);
         }
 
         [TestMethod]
-        public void containsVigaTest() {
-            Viga testViga = new Viga(new Point(3, 2));
-            instance.addViga(testViga);
-            Assert.IsTrue(instance.containsViga(testViga));
+        public void containsBeamTest() {
+            Beam testBeam = new Beam(new Point(3, 2));
+            instance.AddBeam(testBeam);
+            Assert.IsTrue(instance.ContainsBeam(testBeam));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void containsNullVigaTest() {
-            instance.containsViga(null);
+        public void containsNullBeamTest() {
+            instance.ContainsBeam(null);
         }
 
         [TestMethod]
         public void containsOpeningTest() {
             Opening testOpening = new Door(new Point(3, 2));
-            instance.addOpening(testOpening);
-            Assert.IsTrue(instance.containsOpening(testOpening));
+            instance.AddOpening(testOpening);
+            Assert.IsTrue(instance.ContainsOpening(testOpening));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void containsNullOpeningTest() {
-            instance.containsOpening(null);
+            instance.C
+                ontainsOpening(null);
         }
 
 

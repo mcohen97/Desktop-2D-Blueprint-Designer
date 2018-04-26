@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Logic  {
 
-    public class Viga : ISinglePointComponent {
+    public class Beam : ISinglePointComponent {
 
         private Point Position { get; set; }
         private float HeightValue { get; set; }
         private float UnitPrice { get; set; }
 
-        public Viga(Point aPlace) {
+        public Beam(Point aPlace) {
             Position = aPlace;
             HeightValue = 3;
             UnitPrice = 50;

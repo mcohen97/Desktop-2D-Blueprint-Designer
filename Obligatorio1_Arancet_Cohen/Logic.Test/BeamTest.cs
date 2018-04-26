@@ -5,13 +5,13 @@ using Logic;
 namespace Logic.Test {
 
     [TestClass]
-    public class VigaTest {
+    public class BeamTest {
 
-        private Viga instance;
+        private Beam instance;
 
         [TestInitialize]
         public void SetUp() {
-            instance = new Viga(new Point(3, 2));
+            instance = new Beam(new Point(3, 2));
         }
 
         [TestMethod]
