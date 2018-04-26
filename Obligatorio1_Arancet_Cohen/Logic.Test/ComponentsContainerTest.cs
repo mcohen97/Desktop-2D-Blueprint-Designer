@@ -156,7 +156,8 @@ namespace Logic.Test {
         public void ContainsWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.addWall(testWall);
-            Assert.IsTrue(instance.ContainsWall(testWall));
+            Wall otherTestWall = new Wall(new Point(3, 2), new Point(2, 2));
+            Assert.IsTrue(instance.ContainsWall(otherTestWall));
         }
 
         [TestMethod]
@@ -169,7 +170,8 @@ namespace Logic.Test {
         public void containsBeamTest() {
             Beam testBeam = new Beam(new Point(3, 2));
             instance.AddBeam(testBeam);
-            Assert.IsTrue(instance.ContainsBeam(testBeam));
+            Beam otherTestBeam = new Beam(new Point(3, 2));
+            Assert.IsTrue(instance.ContainsBeam(otherTestBeam));
         }
 
         [TestMethod]
@@ -182,7 +184,8 @@ namespace Logic.Test {
         public void containsOpeningTest() {
             Opening testOpening = new Door(new Point(3, 2));
             instance.AddOpening(testOpening);
-            Assert.IsTrue(instance.ContainsOpening(testOpening));
+            Opening otherTestOpening = new Window(new Point(3, 2));
+            Assert.IsTrue(instance.ContainsOpening(otherTestOpening));
         }
 
         [TestMethod]
