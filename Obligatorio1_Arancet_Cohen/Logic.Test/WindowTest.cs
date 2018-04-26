@@ -4,11 +4,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Logic.Test
 {
     [TestClass]
-    public class UnitTest2
+    public class WindowTest
     {
+        WindowTest instance;
+        [TestInitialize]
+        public void SetUp() {
+            instance = new Window(new Point(3, 2));
+        }
         [TestMethod]
-        public void TestMethod1()
-        {
+        public void GetHeightAboveFloorTest() {
+            float expectedResullt = 1;
+            float actualResult = instance.HeightAboveFloor;
+
         }
     }
 }

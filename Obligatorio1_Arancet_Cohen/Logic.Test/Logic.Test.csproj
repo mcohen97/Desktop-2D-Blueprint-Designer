@@ -61,6 +61,7 @@
     <Compile Include="BeamTest.cs" />
     <Compile Include="WallTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj">
