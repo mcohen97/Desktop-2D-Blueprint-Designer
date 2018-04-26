@@ -1,78 +1,118 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Logic {
     public class BuildingComponentContainer {
+
+        private ICollection<Wall> wallList;
+        private ICollection<Beam> beamList;
+        private ICollection<Opening> openingList;
+
+        public BuildingComponentContainer() {
+            wallList = new List<Wall>();
+            beamList = new List<Beam>();
+            openingList = new List<Opening>();
+        }
+
         public bool isWallsEmpty() {
-            throw new NotImplementedException();
+            return wallList.Count == 0;//couln't find anything like isEmpty();
         }
 
         public bool isBeamsEmpty() {
-            throw new NotImplementedException();
+            return beamList.Count == 0;
         }
 
         public bool isOpeningsEmpty() {
-            throw new NotImplementedException();
+            return openingList.Count == 0;
         }
 
-        public void addWall(Wall testWall) {
-            throw new NotImplementedException();
+        public void addWall(Wall aWall) {
+            if (aWall == null) {
+                throw new ArgumentNullException();
+            }
+            wallList.Add(aWall);
+            
         }
 
         public int WallsCount() {
-            throw new NotImplementedException();
+            return wallList.Count;
         }
 
-        public void AddBeam(Beam testBeam) {
-            throw new NotImplementedException();
+        public void AddBeam(Beam aBeam) {
+            if (aBeam == null) {
+                throw new ArgumentNullException();
+            }
+            beamList.Add(aBeam);
         }
 
         public int BeamsCount() {
-            throw new NotImplementedException();
+            return beamList.Count;
         }
 
-        public void AddOpening(Opening testOpening) {
-            throw new NotImplementedException();
+        public void AddOpening(Opening anOpening) {
+            if (anOpening == null) {
+                throw new ArgumentNullException();
+            }
+            openingList.Add(anOpening);
         }
 
         public int OpeningsCount() {
-            throw new NotImplementedException();
+            return openingList.Count;
         }
 
-        public void RemoveWall(Wall testWall) {
-            throw new NotImplementedException();
+        public void RemoveWall(Wall aWall) {
+            if (aWall == null) {
+                throw new ArgumentNullException();
+            }
+            wallList.Remove(aWall);
         }
 
-        public void RemoveBeam(Beam testBeam) {
-            throw new NotImplementedException();
+        public void RemoveBeam(Beam aBeam) {
+            if (aBeam == null) {
+                throw new ArgumentNullException();
+            }
+            beamList.Remove(aBeam);
         }
 
-        public void RemoveOpening(Opening testOpening) {
-            throw new NotImplementedException();
+        public void RemoveOpening(Opening anOpening) {
+            if (anOpening == null) {
+                throw new ArgumentNullException();
+            }
+            openingList.Remove(anOpening);
         }
 
         public ICollection GetWalls() {
-            throw new NotImplementedException();
+            return (ICollection)wallList;
         }
 
         public ICollection GetBeams() {
-            throw new NotImplementedException();
+           return (ICollection)beamList;
         }
 
         public ICollection GetOpenings() {
-            throw new NotImplementedException();
+            return (ICollection)openingList;
         }
 
-        public bool ContainsWall(Wall testWall) {
-            throw new NotImplementedException();
+        public bool ContainsWall(Wall aWall) {
+            if (aWall == null) {
+                throw new ArgumentNullException();
+            }
+            return wallList.Contains(aWall);
         }
 
-        public bool ContainsBeam(object p) {
-            throw new NotImplementedException();
+        public bool ContainsBeam(Beam aBeam) {
+            if (aBeam == null) {
+                throw new ArgumentNullException();
+            }
+            return beamList.Contains(aBeam);
         }
 
-        public bool ContainsOpening(Opening testOpening) {
-            throw new NotImplementedException();
+        public bool ContainsOpening(Opening anOpening) {
+            if (anOpening == null) {
+                throw new ArgumentNullException();
+            }
+            return openingList.Contains(anOpening);
         }
     }
 }

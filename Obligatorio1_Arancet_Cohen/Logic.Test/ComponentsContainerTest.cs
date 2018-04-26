@@ -39,7 +39,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullWallTest() {
             instance.addWall(null);
         }
@@ -54,7 +54,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullBeamTest() {
             instance.addWall(null);
         }
@@ -69,7 +69,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullOpeningTest() {
             instance.AddOpening(null);
         }
@@ -85,7 +85,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveNullWallTest() {
             instance.RemoveWall(null);
         }
@@ -101,7 +101,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void RemoveNullBeamTest() {
             instance.RemoveBeam(null);
         }
@@ -117,7 +117,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void removeNullOpeningTest() {
             instance.RemoveOpening(null);
         }
@@ -160,7 +160,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void ContainsNullWallTest() {
             instance.ContainsWall(null);
         }
@@ -173,7 +173,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void containsNullBeamTest() {
             instance.ContainsBeam(null);
         }
@@ -186,10 +186,9 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void containsNullOpeningTest() {
-            instance.C
-                ontainsOpening(null);
+            instance.ContainsOpening(null);
         }
 
 
