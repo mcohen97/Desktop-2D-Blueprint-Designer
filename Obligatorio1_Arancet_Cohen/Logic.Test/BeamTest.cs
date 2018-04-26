@@ -36,5 +36,17 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void EqualsTest() {
+            Beam otherInstance = new Beam(new Point(3, 2));
+            Assert.AreEqual(instance, otherInstance);
+        }
+
+        [TestMethod]
+        public void NotEqualsTest() {
+            Beam otherInstance = new Beam(new Point(3, 5));
+            Assert.AreNotEqual(instance, otherInstance);
+        }
+
     }
 }

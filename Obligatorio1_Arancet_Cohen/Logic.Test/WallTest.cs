@@ -165,5 +165,17 @@ namespace Logic.Test {
             Assert.IsTrue(testWall.DoesContainComponent(instance));
         }
 
+        [TestMethod]
+        public void EqualsTest() {
+            Wall otherInstance = new Wall(new Point(0,0), new Point(3,2));
+            Assert.AreEqual(instance, otherInstance);
+        }
+
+        [TestMethod]
+        public void NotEqualsTest() {
+            Wall otherInstance = new Wall(new Point(0, 0), new Point(3, 8));
+            Assert.AreNotEqual(instance, otherInstance);
+        }
+
     }
 }

@@ -43,6 +43,17 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        
+        [TestMethod]
+        public void EqualsTest() {
+            Opening otherInstance = new Window(new Point(3, 2));
+            Assert.AreEqual(instance, otherInstance);
+        }
+
+        [TestMethod]
+        public void NotEqualsTest() {
+            Opening otherInstance = new Window(new Point(3, 8));
+            Assert.AreNotEqual(instance, otherInstance);
+        }
+
     }
 }
