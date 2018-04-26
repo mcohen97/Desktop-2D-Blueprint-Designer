@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic  {
+namespace Logic {
 
     public class Beam : ISinglePointComponent {
 
@@ -30,5 +30,18 @@ namespace Logic  {
             return UnitPrice;
         }
 
+        public override bool Equals(object obj) {
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType()) {
+                areEqual = false;
+            }
+            Beam otherBeam = (Beam)obj;
+            areEqual = Position.Equals(otherBeam.Position);
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return Position.GetHashCode();
+        }
     }
 }

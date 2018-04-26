@@ -137,5 +137,23 @@ namespace Logic{
             return colinearWalls;
         }
 
+        public override bool Equals(object obj) {
+
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType()) {
+                areEqual = false;
+            }
+            Wall otherWall = (Wall)obj;
+
+            //they are equal if they have the same two points
+            areEqual = BeginningPoint.Equals(otherWall.BeginningPoint)&& EndPoint.Equals(otherWall.EndPoint);
+            areEqual |= EndPoint.Equals(otherWall.BeginningPoint) && BeginningPoint.Equals(otherWall.EndPoint);
+
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return BeginningPoint.GetHashCode() * EndPoint.GetHashCode(); 
+        }
     }
 }

@@ -32,5 +32,20 @@ namespace Logic {
         public float Price() {
             return UnitPrice;
         }
+
+        public override bool Equals(object obj) {
+
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType()) {
+                areEqual = false;
+            }
+            Opening otherOpening = (Opening)obj;
+            areEqual= Position.Equals(otherOpening.GetPosition());
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return Position.GetHashCode();
+        }
     }
 }
