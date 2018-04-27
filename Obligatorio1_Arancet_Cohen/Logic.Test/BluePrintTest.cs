@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Logic.Test {
-    class BluePrintTest {
+    [TestClass]
+    public class BlueprintTest {
+        [TestMethod]
+        public void TestMethod1() {
+        }
     }
 }
