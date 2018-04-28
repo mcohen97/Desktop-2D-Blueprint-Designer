@@ -1,0 +1,9 @@
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\obj\Debug\SystemLoginTest.csprojResolveAssemblyReference.cache
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\SystemLoginTest.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\SystemLoginTest.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\Logic.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\Logic.pdb
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\obj\Debug\SystemLoginTest.dll
+C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemLoginTest\obj\Debug\SystemLoginTest.pdb
