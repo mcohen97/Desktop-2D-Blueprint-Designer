@@ -193,5 +193,28 @@ namespace LoginTest
 
             Assert.IsNull(loggedUser);
         }
+
+        [TestMethod]
+        public void updateLoginDateTest()
+        {
+            UserAdministrator system = new UserAdministrator(defaultAdmin);
+            system.Login(defaultAdmin.UserName, defaultAdmin.Password);
+            system.Regist(designer1);
+            system.Logout();
+
+            system.Login(designer1.UserName, designer1.Password);
+
+            Assert.AreEqual(designer1.LastLoginDate, system.LastLoginDate);
+        }
+
+        [TestMethod]
+        public void registrationDateTest()
+        {
+            UserAdministrator system = new UserAdministrator(defaultAdmin);
+            system.Login(defaultAdmin.UserName, defaultAdmin.Password);
+            system.Regist(designer1);
+
+            Assert.AreEqual(designer1.RegistrationDate, system.LastRegistrationDate);
+        }
     }
 }

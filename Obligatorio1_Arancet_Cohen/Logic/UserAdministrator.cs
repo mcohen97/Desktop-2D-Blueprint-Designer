@@ -9,9 +9,12 @@ namespace Logic
         private List<User> Users;
         private User LoggedUser;
         private User DefaultAdmin;
+        public DateTime LastLoginDate;
+        public DateTime LastRegistrationDate;
 
         public UserAdministrator(User unremovableAdmin)
         {
+            LastLoginDate = Constants.NEVER;
             Users = new List<User>();
             DefaultAdmin = unremovableAdmin;
             Users.Add(DefaultAdmin);
@@ -22,10 +25,11 @@ namespace Logic
         {
             if (IsUserRegistered(userName))
             {
-                User userRegistrated = Users.Find(x => x.UserName.Equals(userName));
-                if(userRegistrated.Password == password)
+                User userLogin = Users.Find(x => x.UserName.Equals(userName));
+                if(userLogin.Password == password)
                 {
-                    LoggedUser = userRegistrated;
+                    LoggedUser = userLogin;
+                    LastLoginDate = LoggedUser.UpdateLastLoginDate();
                 }
             }
         }
@@ -39,6 +43,8 @@ namespace Logic
         {
             if (LoggedUser.HasPermission(Permission.CREATE_USER))
             {
+                LastRegistrationDate = DateTime.Now;
+                user.RegistrationDate = LastRegistrationDate;
                 Users.Add(user);
             }
         }
