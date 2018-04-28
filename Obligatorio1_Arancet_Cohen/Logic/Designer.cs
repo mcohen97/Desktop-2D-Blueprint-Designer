@@ -15,11 +15,11 @@ namespace Obligatorio1_Arancet_Cohen
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
 
-            permissions = new List<Permission>();
-            permissions.Add(Permission.CREATE_BLUEPRINT);
-            permissions.Add(Permission.EDIT_BLUEPRINT);
-            permissions.Add(Permission.DELETE_BLUEPRINT);
-            permissions.Add(Permission.READ_BLUEPRINT);
+            Permissions = new List<Permission>();
+            Permissions.Add(Permission.CREATE_BLUEPRINT);
+            Permissions.Add(Permission.EDIT_BLUEPRINT);
+            Permissions.Add(Permission.DELETE_BLUEPRINT);
+            Permissions.Add(Permission.READ_BLUEPRINT);
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Obligatorio1_Arancet_Cohen
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
 
-            permissions = new List<Permission>();
-            permissions.Add(Permission.READ_BLUEPRINT);
+            Permissions = new List<Permission>();
+            Permissions.Add(Permission.READ_BLUEPRINT);
         }
     }
 

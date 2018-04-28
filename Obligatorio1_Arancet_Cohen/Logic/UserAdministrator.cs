@@ -37,7 +37,7 @@ namespace Logic
 
         public void Regist(User user)
         {
-            if (LoggedUser.hasPermission(Permission.CREATE_USER))
+            if (LoggedUser.HasPermission(Permission.CREATE_USER))
             {
                 Users.Add(user);
             }
@@ -66,7 +66,7 @@ namespace Logic
 
         public void RemoveUser(User userToRemove)
         {
-            if (LoggedUser.hasPermission(Permission.REMOVE_USER) && !IsUserDefaultAdmin(userToRemove))
+            if (LoggedUser.HasPermission(Permission.REMOVE_USER) && !IsUserDefaultAdmin(userToRemove))
             {
                 Users.Remove(userToRemove);
             }
@@ -87,7 +87,7 @@ namespace Logic
         public Client GetClientInfo(User askedClient)
         {
             Client returnedClient = null;
-            if (LoggedUser.hasPermission(Permission.READ_USER) || LoggedUser.Equals(askedClient))
+            if (LoggedUser.HasPermission(Permission.READ_USER) || LoggedUser.Equals(askedClient))
             {
                 User searchedUser = GetUser(askedClient);
                 if (searchedUser is Client)
@@ -101,7 +101,7 @@ namespace Logic
         public Designer GetDesignerInfo(User askedDesigner)
         {
             Designer returnedDesigner = null;
-            if (LoggedUser.hasPermission(Permission.READ_USER) || LoggedUser.Equals(askedDesigner))
+            if (LoggedUser.HasPermission(Permission.READ_USER) || LoggedUser.Equals(askedDesigner))
             {
                 User searchedUser = GetUser(askedDesigner);
                 if (searchedUser is Designer)
@@ -115,7 +115,7 @@ namespace Logic
         public Admin GetAdminInfo(User askedAdmin)
         {
             Admin returnedAdmin = null;
-            if (LoggedUser.hasPermission(Permission.ALL_PERMISSIONS) || LoggedUser.Equals(askedAdmin))
+            if (LoggedUser.HasPermission(Permission.ALL_PERMISSIONS) || LoggedUser.Equals(askedAdmin))
             {
                 User searchedUser = GetUser(askedAdmin);
                 if (searchedUser is Admin)

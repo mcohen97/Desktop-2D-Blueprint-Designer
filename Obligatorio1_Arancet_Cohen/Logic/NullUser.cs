@@ -18,7 +18,7 @@ namespace Logic
             RegistrationDate = Constants.NEVER;
             LastLoginDate = Constants.NEVER;
 
-            permissions = new List<Permission>();
+            Permissions = new List<Permission>();
         }
     }
 }
