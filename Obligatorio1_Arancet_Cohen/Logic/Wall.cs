@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Logic{
 
-    public class Wall : IBuildingComponent{
+    public class Wall {
 
         public Wall(Point from, Point to) {
+            if (from.Equals(to)) {
+                throw new ArgumentException();
+            }
             HeightValue = 3;
             WidthValue = 0.20F;
             BeginningPoint =from;
@@ -45,6 +48,112 @@ namespace Logic{
 
         public float Price(){
             return UnitPriceValue;
+        }
+
+        public bool IsHorizontal() {
+            return BeginningPoint.CoordY == EndPoint.CoordY;
+        }
+
+        public bool IsVertical() {
+            return BeginningPoint.CoordX == EndPoint.CoordX;
+        }
+
+        
+        public bool DoesIntersect(Wall otherWall) {
+            float[] equationParameters = AlfaNumerator0_BetaNumerator1_Denominator2(otherWall);
+
+            float alphaNumerator = equationParameters[0];
+            float betaNumerator = equationParameters[1];
+            float denominator = equationParameters[2];
+
+            bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
+
+            return intersect;
+        }
+
+        public Point GetIntersection(Wall otherWall) {
+            float[] equationParameters = AlfaNumerator0_BetaNumerator1_Denominator2(otherWall);
+
+            float alphaNumerator = equationParameters[0];
+            float betaNumerator = equationParameters[1];
+            float denominator = equationParameters[2];
+
+            bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
+            if (!intersect) {
+                throw new WallsDoNotIntersectException();
+            }
+            return GetIntersectedPoint(alphaNumerator, denominator);
+
+        }
+
+        public bool IntersectionPointExists(float alphaNumerator, float betaNumerator, float denominator) {
+            bool intersect = !CheckForCollinearity(denominator);
+            intersect &= CompareNumeratorWithDenominator(alphaNumerator, denominator);
+            intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
+            return intersect;
+        }
+
+        private bool CheckForCollinearity(float denominator) {
+            return denominator == 0;
+        }
+
+        private bool CompareNumeratorWithDenominator(float numerator, float denominator) {
+            float division = numerator / denominator;
+            return division >= 0 && division <= 1;
+        }
+        public float[] AlfaNumerator0_BetaNumerator1_Denominator2(Wall otherWall) {
+
+            Point a = EndPoint - BeginningPoint;
+            Point b = otherWall.BeginningPoint - otherWall.EndPoint;
+            Point c = BeginningPoint - otherWall.BeginningPoint;
+
+            float alphaNumerator = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
+            float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
+            float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
+
+            float[] returnArray = new float[] { alphaNumerator, betaNumerator, denominator };
+
+            return returnArray;
+        }
+
+        private Point GetIntersectedPoint(float alphaNumerator, float denominator) {
+
+            float alphaOfIntersection = alphaNumerator / denominator;
+            float x = BeginningPoint.CoordX + alphaOfIntersection * (EndPoint.CoordX - BeginningPoint.CoordX);
+            float y = BeginningPoint.CoordY + alphaOfIntersection * (EndPoint.CoordY - BeginningPoint.CoordY);
+            return new Point(x, y);
+        }
+
+        public bool DoesContainComponent(ISinglePointComponent component) {
+            // if the point belongs to segment, the segment from one of the extremes to the position of the component should be colinear
+            Wall auxilliaryWall = new Wall(Beginning(), component.GetPosition());
+            bool colinearWalls;
+            try {
+               colinearWalls = !DoesIntersect(auxilliaryWall);
+            } catch(WallsDoNotIntersectException) {
+                colinearWalls = false;
+
+            } 
+            return colinearWalls;
+        }
+
+        public override bool Equals(object obj) {
+
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType()) {
+                areEqual = false;
+            } else {
+                Wall otherWall = (Wall)obj;
+
+                //they are equal if they have the same two points
+                areEqual = BeginningPoint.Equals(otherWall.BeginningPoint) && EndPoint.Equals(otherWall.EndPoint);
+                areEqual |= EndPoint.Equals(otherWall.BeginningPoint) && BeginningPoint.Equals(otherWall.EndPoint);
+            }
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return BeginningPoint.GetHashCode() * EndPoint.GetHashCode(); 
         }
     }
 }

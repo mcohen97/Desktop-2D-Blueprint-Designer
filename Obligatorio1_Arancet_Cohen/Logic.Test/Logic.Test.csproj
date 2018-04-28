@@ -52,11 +52,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AdminTest.cs" />
+    <Compile Include="ClientTest.cs" />
+    <Compile Include="DesignerTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="OpeningTest.cs" />
-    <Compile Include="VigaTest.cs" />
+    <Compile Include="ComponentsContainerTest.cs" />
+    <Compile Include="BeamTest.cs" />
     <Compile Include="WallTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj">

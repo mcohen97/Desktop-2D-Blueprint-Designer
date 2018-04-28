@@ -14,7 +14,8 @@ namespace Obligatorio1_Arancet_Cohen
         DELETE_BLUEPRINT,
         CREATE_BLUEPRINT,
         EDIT_USER,
-        DELETE_USER,
-        CREATE_USER
+        REMOVE_USER,
+        CREATE_USER,
+        READ_USER
     }
 }

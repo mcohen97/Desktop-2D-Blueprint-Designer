@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
-{
-    public abstract class Opening : IBuildingComponent
-    {
+namespace Logic {
+
+    public abstract class Opening : ISinglePointComponent {
+
         protected float HeightValue { get; set; }
         protected float LengthValue { get; set; }
         protected Point Position { get; set; }
@@ -17,24 +17,36 @@ namespace Logic
             Position = aPlace;
         }
 
-        public float Height()
-        {
+        public float Height() {
             return HeightValue;
         }
 
-        public float Length()
-        {
+        public float Length() {
             return LengthValue;
         }
 
-        public Point Beginning()
-        {
+        public Point GetPosition() {
             return Position;
         }
 
-        public float Price()
-        {
+        public float Price() {
             return UnitPrice;
+        }
+
+        public override bool Equals(object obj) {
+
+            bool areEqual;
+            if (obj == null) {
+                areEqual = false;
+            } else {
+                Opening otherOpening = (Opening)obj;
+                areEqual = Position.Equals(otherOpening.GetPosition());
+            }
+            return areEqual;
+        }
+
+        public override int GetHashCode() {
+            return Position.GetHashCode();
         }
     }
 }

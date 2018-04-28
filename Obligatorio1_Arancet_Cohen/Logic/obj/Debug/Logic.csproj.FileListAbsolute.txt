@@ -1,9 +1,0 @@
-C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Logic.dll
-C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Logic.pdb
-C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.dll
-C:\Users\Marcel\Desktop\Obligatorio1Diseño1\Obligatorio1_Arancet_Cohen\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.pdb
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Logic.dll
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic\bin\Debug\Logic.pdb
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.csprojResolveAssemblyReference.cache
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.dll
-C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\Logic\obj\Debug\Logic.pdb
