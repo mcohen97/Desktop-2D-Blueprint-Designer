@@ -1,31 +1,24 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Logic;
 
 namespace Logic.Test {
 
     [TestClass]
-    public class OpeningTest {
+    public class BeamTest {
 
-        private Opening instance;
+        private Beam instance;
 
         [TestInitialize]
         public void SetUp() {
-            instance = new Door(new Point(3, 2));
+            instance = new Beam(new Point(3, 2));
         }
 
         [TestMethod]
         public void GetHeighTest() {
-            float expectedResult = 2.20F;
+            float expectedResult = 3;
             float actualResult = instance.Height();
             Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
-        public void GetLengthTest() {
-            float expectedResult = 0.85F;
-            float actualResult = instance.Length();
-            Assert.AreEqual(expectedResult, actualResult);
-
         }
 
         [TestMethod]
@@ -45,19 +38,14 @@ namespace Logic.Test {
 
         [TestMethod]
         public void EqualsTest() {
-            Opening otherInstance = new Window(new Point(3, 2));
-            Assert.IsTrue(instance.Equals(otherInstance));
+            Beam otherInstance = new Beam(new Point(3, 2));
+            Assert.AreEqual(instance, otherInstance);
         }
 
         [TestMethod]
         public void NotEqualsTest() {
-            Opening otherInstance = new Window(new Point(3, 8));
+            Beam otherInstance = new Beam(new Point(3, 5));
             Assert.AreNotEqual(instance, otherInstance);
-        }
-
-        [TestMethod]
-        public void EqualsNullTest() {
-            Assert.AreNotEqual(instance, null);
         }
 
     }

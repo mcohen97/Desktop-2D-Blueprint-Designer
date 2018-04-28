@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public abstract class Opening : ISinglePointComponent {
+    public class Beam : ISinglePointComponent {
 
-        protected float HeightValue { get; set; }
-        protected float LengthValue { get; set; }
-        protected Point Position { get; set; }
-        protected float UnitPrice { get; set; }
+        private Point Position { get; set; }
+        private float HeightValue { get; set; }
+        private float UnitPrice { get; set; }
 
-        public Opening(Point aPlace) {
+        public Beam(Point aPlace) {
             Position = aPlace;
+            HeightValue = 3;
+            UnitPrice = 50;
         }
 
         public float Height() {
             return HeightValue;
-        }
-
-        public float Length() {
-            return LengthValue;
         }
 
         public Point GetPosition() {
@@ -34,13 +31,12 @@ namespace Logic {
         }
 
         public override bool Equals(object obj) {
-
             bool areEqual;
-            if (obj == null) {
+            if (obj == null || GetType() != obj.GetType()) {
                 areEqual = false;
             } else {
-                Opening otherOpening = (Opening)obj;
-                areEqual = Position.Equals(otherOpening.GetPosition());
+                Beam otherBeam = (Beam)obj;
+                areEqual = Position.Equals(otherBeam.Position);
             }
             return areEqual;
         }
