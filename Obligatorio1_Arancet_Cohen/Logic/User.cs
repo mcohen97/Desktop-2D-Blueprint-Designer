@@ -15,20 +15,20 @@ namespace Obligatorio1_Arancet_Cohen
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
-        protected List<Permission> permissions;
+        protected List<Permission> Permissions;
         public static readonly User NULL_USER = new NullUser();
 
-        public DateTime updateLastLoginDate()
+        public DateTime UpdateLastLoginDate()
         {
             DateTime dateOfLogin = DateTime.Now;
             LastLoginDate = dateOfLogin;
             return dateOfLogin;
         }
 
-        public bool hasPermission(Permission permissionAsked)
+        public bool HasPermission(Permission permissionAsked)
         {
             bool userHasPermission = false;
-            if (permissions.Contains(Permission.ALL_PERMISSIONS) || permissions.Contains(permissionAsked))
+            if (Permissions.Contains(Permission.ALL_PERMISSIONS) || Permissions.Contains(permissionAsked))
             {
                 userHasPermission = true;
             }

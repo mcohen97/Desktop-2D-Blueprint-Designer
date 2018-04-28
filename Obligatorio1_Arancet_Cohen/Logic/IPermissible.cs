@@ -8,6 +8,6 @@ namespace Obligatorio1_Arancet_Cohen
 {
     interface IPermissible
     {
-        bool hasPermission(Permission permissionAsked);
+        bool HasPermission(Permission permissionAsked);
     }
 }

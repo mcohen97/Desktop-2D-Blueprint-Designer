@@ -194,7 +194,7 @@ namespace ClientTest
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
-            DateTime dateAssigned = client.updateLastLoginDate();
+            DateTime dateAssigned = client.UpdateLastLoginDate();
 
             Assert.AreEqual(dateAssigned, client.LastLoginDate);
         }
@@ -204,7 +204,7 @@ namespace ClientTest
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
-            bool canReadBlueprint = client.hasPermission(Permission.READ_BLUEPRINT);
+            bool canReadBlueprint = client.HasPermission(Permission.READ_BLUEPRINT);
 
             Assert.IsTrue(canReadBlueprint);
         }
@@ -214,7 +214,7 @@ namespace ClientTest
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
-            bool canEditBlueprint = client.hasPermission(Permission.EDIT_BLUEPRINT);
+            bool canEditBlueprint = client.HasPermission(Permission.EDIT_BLUEPRINT);
 
             Assert.IsFalse(canEditBlueprint);
         }
@@ -224,7 +224,7 @@ namespace ClientTest
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
-            bool canDeleteBlueprint = client.hasPermission(Permission.DELETE_BLUEPRINT);
+            bool canDeleteBlueprint = client.HasPermission(Permission.DELETE_BLUEPRINT);
 
             Assert.IsFalse(canDeleteBlueprint);
         }
