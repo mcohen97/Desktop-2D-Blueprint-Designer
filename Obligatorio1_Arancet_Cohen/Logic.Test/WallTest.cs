@@ -121,7 +121,7 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(WallsDoNotIntersectException))]
-        public void GetIntersectionColinearWallsTest() {
+        public void GetIntersectionCollinearWallsTest() {
             Point intersection = instance.GetIntersection(instance);
         }
 
