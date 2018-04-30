@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace Logic {
     public class Blueprint {
+
         private int Length;
         private int Width;
+        private BuildingComponentContainer materials;
 
         public Blueprint(int aLength, int aWidth) {
             Length = aLength;
             Width = aWidth;
         }
 
-        public void InsertWall(Wall testWall) {
+        public BuildingComponentContainer GetComponentsContainer() {
             throw new NotImplementedException();
         }
 
-        public BuildingComponentContainer GetComponentsContainer() {
-            throw new NotImplementedException();
+        public void InsertWall(Wall aWall) {
+            if (!InRange(aWall.Beginning) || !InRange(aWall.End)) {
+
+            } else {
+
+
+            }
         }
 
         public void InsertOpening(Opening testOpening) {
