@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Point {
+    public class Point: IComparable<Point> {
 
         public float CoordX { set; get; }
         public float CoordY { set; get; }
@@ -37,6 +37,10 @@ namespace Logic {
 
         public float DistanceToOrigin() {
             return (float)Math.Sqrt(Math.Pow(CoordX, 2) + Math.Pow(CoordY, 2)); 
+        }
+
+        public int CompareTo(Point other) {
+            return (int)(DistanceToOrigin() - other.DistanceToOrigin());
         }
     }
 }
