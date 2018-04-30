@@ -149,7 +149,7 @@ namespace Logic.Test {
             Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
             instance.InsertWall(otherTestWall);
             int expectedResult = 1;
-            int actualResult = instance.GetComponentContainer().WallsCount();
+            int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -160,7 +160,7 @@ namespace Logic.Test {
             Wall otherTestWall = new Wall(new Point(3, 0), new Point(7, 0));
             instance.InsertWall(otherTestWall);
             int expectedResult = 2;
-            int actualResult = instance.GetComponentContainer().WallsCount();
+            int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -190,7 +190,7 @@ namespace Logic.Test {
             Wall removingWall = new Wall(new Point(8, 5), new Point(8, 8));
             instance.RemoveWall(removingWall);
             int expectedResult = 2;
-            int actualResult = instance.GetComponentContainer().WallsCount();
+            int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -203,7 +203,7 @@ namespace Logic.Test {
             Wall removingWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.RemoveWall(removingWall);
             int expectedResult = 1;
-            int actualResult = instance.GetComponentContainer().WallsCount();
+            int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -267,7 +267,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ComponentOutOfWall))]
+        [ExpectedException(typeof (ComponentOutOfWallException))]
         public void InsertOpeningInNoWall() {
             Opening testOpening = new Door(new Point(2, 0));
             instance.InsertOpening(testOpening);
@@ -275,4 +275,6 @@ namespace Logic.Test {
 
         
     }
+
+    
 }
