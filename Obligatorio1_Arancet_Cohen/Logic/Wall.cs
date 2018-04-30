@@ -14,8 +14,13 @@ namespace Logic{
             }
             HeightValue = 3;
             WidthValue = 0.20F;
-            BeginningPoint =from;
-            EndPoint =to;
+            if (from.IsCloserToOriginThan(to)) {
+                BeginningPoint = from;
+                EndPoint = to;
+            } else {
+                BeginningPoint = to;
+                EndPoint = from;
+            }
             UnitPriceValue =50;
         }
 
