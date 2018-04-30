@@ -60,23 +60,30 @@ namespace Logic{
 
         
         public bool DoesIntersect(Wall otherWall) {
-            float[] equationParameters = AlfaNumerator0_BetaNumerator1_Denominator2(otherWall);
+            bool intersects;
+            try {
+                GetIntersection(otherWall);
+                intersects = true;
+            } catch (WallsDoNotIntersectException) {
+                intersects = false;
 
-            float alphaNumerator = equationParameters[0];
-            float betaNumerator = equationParameters[1];
-            float denominator = equationParameters[2];
-
-            bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
-
-            return intersect;
+            }
+            return intersects;
         }
 
         public Point GetIntersection(Wall otherWall) {
-            float[] equationParameters = AlfaNumerator0_BetaNumerator1_Denominator2(otherWall);
+            //float[] equationParameters = AlfaNumerator0_BetaNumerator1_Denominator2(otherWall);
 
-            float alphaNumerator = equationParameters[0];
+            Point a = EndPoint - BeginningPoint;
+            Point b = otherWall.BeginningPoint - otherWall.EndPoint;
+            Point c = BeginningPoint - otherWall.BeginningPoint;
+
+            float alphaNumerator = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
+            float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
+            float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
+            /*float alphaNumerator = equationParameters[0];
             float betaNumerator = equationParameters[1];
-            float denominator = equationParameters[2];
+            float denominator = equationParameters[2];*/
 
             bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
             if (!intersect) {
@@ -101,7 +108,7 @@ namespace Logic{
             float division = numerator / denominator;
             return division >= 0 && division <= 1;
         }
-        public float[] AlfaNumerator0_BetaNumerator1_Denominator2(Wall otherWall) {
+       /* public float[] AlfaNumerator0_BetaNumerator1_Denominator2(Wall otherWall) {
 
             Point a = EndPoint - BeginningPoint;
             Point b = otherWall.BeginningPoint - otherWall.EndPoint;
@@ -114,7 +121,7 @@ namespace Logic{
             float[] returnArray = new float[] { alphaNumerator, betaNumerator, denominator };
 
             return returnArray;
-        }
+        }*/
 
         private Point GetIntersectedPoint(float alphaNumerator, float denominator) {
 
