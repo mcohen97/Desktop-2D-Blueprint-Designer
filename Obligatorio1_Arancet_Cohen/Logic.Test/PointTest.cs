@@ -65,6 +65,7 @@ namespace Logic.Test
         public void DistanceToOriginTest() {
             float expectedResult = (float)Math.Sqrt(13);
             float actualResult = instance.DistanceToOrigin();
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
