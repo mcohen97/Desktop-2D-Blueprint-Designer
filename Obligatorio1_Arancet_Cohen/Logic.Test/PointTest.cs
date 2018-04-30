@@ -73,5 +73,12 @@ namespace Logic.Test
             Point testPoint = new Point(5,2);
             Assert.IsTrue(instance.CompareTo(testPoint)< 0);
         }
+
+        [TestMethod]
+        public void IsCloserThanTest(Point otherPoint) {
+            Point testPoint = new Point(5, 2);
+            Assert.IsTrue(IsCloserThan(otherPoint));
+        }
+
     }
 }
