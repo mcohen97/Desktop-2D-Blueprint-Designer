@@ -34,5 +34,9 @@ namespace Logic {
         public static Point operator -(Point first, Point second) {
             return new Point(first.CoordX - second.CoordX, first.CoordY - second.CoordY);
         }
+
+        public float DistanceToOrigin() {
+            return (float)Math.Sqrt(Math.Pow(CoordX, 2) + Math.Pow(CoordY, 2)); 
+        }
     }
 }
