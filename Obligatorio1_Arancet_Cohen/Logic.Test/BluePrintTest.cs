@@ -10,11 +10,18 @@ namespace Logic.Test {
 
         [TestInitialize]
         public void SetUp() {
-            instance = new Blueprint();
+            instance = new Blueprint(20,20);
         }
 
-        
+
         //Tests for insertion of walls
+        [TestMethod]
+        [ExpectedException(typeof(OutOfRangeComponentException))]
+        public void InsertOutOfRangeWallTest() {
+            Wall testWall = new Wall(new Point(-5, -20), new Point(20,100));
+            instance.InsertWall(testWall);
+        }
+
         [TestMethod]
         public void InsertFirstWallTest() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8,5));
@@ -43,7 +50,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void InsertIntersectedWallsCount() {
+        public void InsertIntersectedXShapeWallsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
@@ -54,7 +61,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void InsertIntersectedWallsBeamsCount() {
+        public void InsertIntersectedXShapeWallsBeamsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
@@ -86,6 +93,14 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(CollinearWallsException))]
+        public void InsertCollinearWallTest() {
+            Wall testWall = new Wall(new Point(1,0), new Point(5,0));
+            Wall otherTestWall = new Wall(new Point(3, 0), new Point(7, 0));
+            instance.InsertWall(testWall);
+            instance.InsertWall(otherTestWall);
+        }
 
         [TestMethod]
         public void InsertNotIntersectedWallsCount() {
@@ -202,46 +217,60 @@ namespace Logic.Test {
             BuildingComponentContainer structure = instance.GetComponentsContainer();
             Assert.IsTrue(structure.isBeamsEmpty() && structure.isOpeningsEmpty());
         }
-    
+
 
         //tests for insertion of beams
-        [TestMethod]
-        public void InsertBeamToWallTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
-            Beam testBeam = new Beam(new Point(1, 0));
-            Assert.IsTrue(instance.InsertBeam(testBeam));
-        }
+        /* [TestMethod]
+         public void InsertBeamToWallTest() {
+             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
+             instance.InsertWall(testWall);
+             Beam testBeam = new Beam(new Point(1, 0));
+             instance.InsertBeam(testBeam);
 
-        [TestMethod]
-        public void InsertBeamWithoutWallTest() {
-            Beam testBeam = new Beam(new Point(0, 0));
-            Assert.IsFalse(instance.InsertBeam(testBeam));
-        }
+         }
 
-        [TestMethod]
-        public void InsertAlreadyExistingBeamTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
-            Beam testBeam = new Beam(new Point(1, 0));
-            instance.InsertBeam(testBeam);
-            Assert.IsFalse(instance.InsertBeam(testBeam));
-        }
+         [TestMethod]
+         [ExpectedException(typeof ComponentOutOfWall)]
+         public void InsertBeamWithoutWallTest() {
+             Beam testBeam = new Beam(new Point(0, 0));
+             instance.InsertBeam(testBeam);
+         }
 
+         [TestMethod]
+         [ExpectedException (typeof OccupiedSpace)]
+         public void InsertAlreadyExistingBeamTest() {
+             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
+             instance.InsertWall(testWall);
+             Beam testBeam = new Beam(new Point(1, 0));
+             instance.InsertBeam(testBeam);
+             Assert.IsFalse(instance.InsertBeam(testBeam));
+         }
+         */
 
         //tests for insertion of openings
+        [TestMethod]
+        [ExpectedException(typeof(OutOfRangeComponentException))]
+        public void InsertOpeningOutOfRangeTest() {
+            Opening testOpening = new Door(new Point(50, -3));
+            instance.InsertOpening(testOpening);
+        }
+
         [TestMethod]
         public void InsertOpeningCorrectly() {
             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
             instance.InsertWall(testWall);
             Opening testOpening = new Door(new Point(2, 0));
-            Assert.IsTrue(instance.InsertOpening(testOpening));
+            instance.InsertOpening(testOpening);
+            int expectedResult = 1;
+            int actualResult=instance.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
+        [ExpectedException(typeof (ComponentOutOfWall))]
         public void InsertOpeningInNoWall() {
             Opening testOpening = new Door(new Point(2, 0));
-            Assert.IsFalse(instance.InsertOpening(testOpening));
+            instance.InsertOpening(testOpening);
         }
 
         
