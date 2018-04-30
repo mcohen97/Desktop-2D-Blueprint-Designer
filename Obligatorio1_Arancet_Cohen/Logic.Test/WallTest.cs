@@ -15,6 +15,14 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        public void ConstructorSortedPointsTest() {
+            Wall testWall= new Wall(new Point(3, 2), new Point(1, 1));
+            bool beginningOk = testWall.Beginning().Equals(new Point(1, 1));
+            bool endOk = testWall.End().Equals(new Point(3, 2));
+            Assert.IsTrue(beginningOk && endOk);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ZeroLengthWall() {
             instance = new Wall(new Point(0, 0), new Point(0, 0));
