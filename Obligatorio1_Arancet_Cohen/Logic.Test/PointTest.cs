@@ -67,5 +67,11 @@ namespace Logic.Test
             float actualResult = instance.DistanceToOrigin();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void CompareToTest() {
+            Point testPoint = new Point(5,2);
+            Assert.IsTrue(instance.CompareTo(testPoint)< 0);
+        }
     }
 }
