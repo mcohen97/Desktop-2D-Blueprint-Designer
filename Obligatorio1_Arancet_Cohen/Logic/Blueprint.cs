@@ -72,7 +72,7 @@ namespace Logic {
         }
 
         private void AdjustWall(Wall generatedWall) {
-            InsertWall(generatedWall);//pending refactory
+            PlaceNewWall(generatedWall);//pending refactory
         }
 
         private bool InRange(Point aPoint) {
