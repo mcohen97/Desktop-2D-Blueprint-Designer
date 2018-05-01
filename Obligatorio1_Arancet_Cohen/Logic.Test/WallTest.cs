@@ -23,7 +23,7 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ZeroLengthWallException))]
         public void ZeroLengthWall() {
             instance = new Wall(new Point(0, 0), new Point(0, 0));
         }
