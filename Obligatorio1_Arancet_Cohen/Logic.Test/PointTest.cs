@@ -86,6 +86,13 @@ namespace Logic.Test
             Assert.IsFalse(testPoint.IsCloserToOriginThan(instance));
         }
 
+        [TestMethod]
+        public void DistanceToOtherPointTest() {
+            Point testPoint = new Point(3, 0);
+            float expectedResult = 2;
+            float actualResult = testPoint.DistanceToPoint(testPoint);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
     }
 }
