@@ -54,5 +54,10 @@ namespace Logic {
         public bool IsCloserToOriginThan(Point otherPoint) {
            return CompareTo(otherPoint) < 0;
         }
+
+        public float DistanceToPoint(Point testPoint) {
+            float distance = (float)Math.Sqrt(Math.Pow(CoordX-testPoint.CoordX,2)+Math.Pow(CoordY-testPoint.CoordY,2));
+            return distance;
+        }
     }
 }
