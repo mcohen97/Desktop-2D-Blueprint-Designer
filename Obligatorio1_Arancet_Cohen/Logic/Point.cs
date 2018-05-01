@@ -40,7 +40,15 @@ namespace Logic {
         }
 
         public int CompareTo(Point other) {
-            return (int)(DistanceToOrigin() - other.DistanceToOrigin());
+            float result = DistanceToOrigin() - other.DistanceToOrigin();
+            int intAdaptedResult = 0;
+            if (result < 0) {
+                intAdaptedResult = -1;
+            }
+            if (result > 0) {
+                intAdaptedResult = 1;
+            }
+            return intAdaptedResult;
         }
 
         public bool IsCloserToOriginThan(Point otherPoint) {
