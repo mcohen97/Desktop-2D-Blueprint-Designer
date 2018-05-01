@@ -75,10 +75,17 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void IsCloserThanTest(Point otherPoint) {
-            Point testPoint = new Point(5, 2);
-            Assert.IsTrue(instance.IsCloserToOriginThan(otherPoint));
+        public void IsCloserToOriginTest() {
+            Point testPoint1 = new Point(5, 5);
+            Point testPoint2 = new Point(6, 5);
+            Assert.IsTrue(testPoint1.IsCloserToOriginThan(testPoint2));
         }
+        [TestMethod]
+        public void IsNotCloserToOriginTest() {
+            Point testPoint = new Point(5, 2);
+            Assert.IsFalse(testPoint.IsCloserToOriginThan(instance));
+        }
+
 
     }
 }
