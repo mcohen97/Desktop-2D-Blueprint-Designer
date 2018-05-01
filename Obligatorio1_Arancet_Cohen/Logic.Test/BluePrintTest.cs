@@ -27,7 +27,9 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(5, 5), new Point(8,5));
             instance.InsertWall(testWall);
             ICollection actualWallCollection= instance.GetComponentsContainer().GetWalls();
-            Wall actualResultWall = (Wall)actualWallCollection.GetEnumerator().Current;
+            IEnumerator itr = actualWallCollection.GetEnumerator();
+            itr.MoveNext();
+            Wall actualResultWall = (Wall)itr.Current;
             Assert.AreEqual(testWall, actualResultWall);
        }
 
@@ -54,7 +56,7 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
-            instance.InsertWall(testWall);
+            instance.InsertWall(otherTestWall);
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -65,7 +67,7 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
-            instance.InsertWall(testWall);
+            instance.InsertWall(otherTestWall);
             int expectedResult = 5;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -76,7 +78,7 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 8));
-            instance.InsertWall(testWall);
+            instance.InsertWall(otherTestWall);
             int expectedResult = 3;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -87,7 +89,7 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
             Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 8));
-            instance.InsertWall(testWall);
+            instance.InsertWall(otherTestWall);
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
