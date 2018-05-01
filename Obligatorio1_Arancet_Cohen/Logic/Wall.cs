@@ -10,7 +10,7 @@ namespace Logic{
 
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {
-                throw new ArgumentException();
+                throw new ZeroLengthWallException();
             }
             HeightValue = 3;
             WidthValue = 0.20F;
