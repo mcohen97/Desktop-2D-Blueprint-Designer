@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic{
+namespace Logic {
 
     public class Wall {
 
@@ -21,37 +21,37 @@ namespace Logic{
                 BeginningPoint = to;
                 EndPoint = from;
             }
-            UnitPriceValue =50;
+            UnitPriceValue = 50;
         }
 
-        private float HeightValue {set; get; }
-        private float WidthValue {set; get; }
-        private Point BeginningPoint {set; get; }
-        private Point EndPoint {set; get; }
-        private float UnitPriceValue {set; get; }
+        private float HeightValue { set; get; }
+        private float WidthValue { set; get; }
+        private Point BeginningPoint { set; get; }
+        private Point EndPoint { set; get; }
+        private float UnitPriceValue { set; get; }
 
-        public float Height(){
+        public float Height() {
             return HeightValue;
         }
 
-        public float Width(){
+        public float Width() {
             return WidthValue;
         }
 
-        public float Length(){
-            float distance= (float)Math.Sqrt( Math.Pow((BeginningPoint.CoordX - EndPoint.CoordX),2) + Math.Pow((BeginningPoint.CoordY - EndPoint.CoordY),2));
+        public float Length() {
+            float distance = (float)Math.Sqrt(Math.Pow((BeginningPoint.CoordX - EndPoint.CoordX), 2) + Math.Pow((BeginningPoint.CoordY - EndPoint.CoordY), 2));
             return distance;
         }
 
-        public Point Beginning(){
+        public Point Beginning() {
             return BeginningPoint;
         }
 
-        public Point End(){
+        public Point End() {
             return EndPoint;
         }
 
-        public float Price(){
+        public float Price() {
             return UnitPriceValue;
         }
 
@@ -63,7 +63,7 @@ namespace Logic{
             return BeginningPoint.CoordX == EndPoint.CoordX;
         }
 
-        
+
         public bool DoesIntersect(Wall otherWall) {
             bool intersects;
             try {
@@ -71,7 +71,6 @@ namespace Logic{
                 intersects = true;
             } catch (WallsDoNotIntersectException) {
                 intersects = false;
-
             }
             return intersects;
         }
@@ -86,17 +85,22 @@ namespace Logic{
             float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
             float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
 
-            bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
-            if (!intersect) {
-                throw new WallsDoNotIntersectException();
+            bool collinear = CheckForCollinearity(denominator);
+            if (collinear) {
+                throw new CollinearWallsException();
+            } else {
+                bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
+                if (!intersect) {
+                    throw new WallsDoNotIntersectException();
+                }
+                return GetIntersectedPoint(alphaNumerator, denominator);
             }
-            return GetIntersectedPoint(alphaNumerator, denominator);
+
 
         }
 
         public bool IntersectionPointExists(float alphaNumerator, float betaNumerator, float denominator) {
-            bool intersect = !CheckForCollinearity(denominator);
-            intersect &= CompareNumeratorWithDenominator(alphaNumerator, denominator);
+            bool intersect = CompareNumeratorWithDenominator(alphaNumerator, denominator);
             intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
             return intersect;
         }
@@ -123,11 +127,11 @@ namespace Logic{
             Wall auxilliaryWall = new Wall(Beginning(), component.GetPosition());
             bool colinearWalls;
             try {
-               colinearWalls = !DoesIntersect(auxilliaryWall);
-            } catch(WallsDoNotIntersectException) {
+                colinearWalls = !DoesIntersect(auxilliaryWall);
+            } catch (WallsDoNotIntersectException) {
                 colinearWalls = false;
 
-            } 
+            }
             return colinearWalls;
         }
 
@@ -147,7 +151,7 @@ namespace Logic{
         }
 
         public override int GetHashCode() {
-            return BeginningPoint.GetHashCode() * EndPoint.GetHashCode(); 
+            return BeginningPoint.GetHashCode() * EndPoint.GetHashCode();
         }
     }
 }
