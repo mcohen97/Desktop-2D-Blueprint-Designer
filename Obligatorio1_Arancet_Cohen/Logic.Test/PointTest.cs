@@ -90,7 +90,7 @@ namespace Logic.Test
         public void DistanceToOtherPointTest() {
             Point testPoint = new Point(3, 0);
             float expectedResult = 2;
-            float actualResult = testPoint.DistanceToPoint(testPoint);
+            float actualResult = instance.DistanceToPoint(testPoint);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
