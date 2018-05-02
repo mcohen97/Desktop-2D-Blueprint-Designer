@@ -39,8 +39,7 @@ namespace Logic {
         }
 
         public float Length() {
-            float distance = (float)Math.Sqrt(Math.Pow((BeginningPoint.CoordX - EndPoint.CoordX), 2) + Math.Pow((BeginningPoint.CoordY - EndPoint.CoordY), 2));
-            return distance;
+            return Beginning().DistanceToPoint(End());
         }
 
         public Point Beginning() {
@@ -63,12 +62,14 @@ namespace Logic {
             return BeginningPoint.CoordX == EndPoint.CoordX;
         }
 
-
         public bool DoesIntersect(Wall otherWall) {
             bool intersects;
             try {
                 GetIntersection(otherWall);
                 intersects = true;
+            } catch(CollinearWallsException) {
+                intersects = false;
+
             } catch (WallsDoNotIntersectException) {
                 intersects = false;
             }
@@ -85,18 +86,32 @@ namespace Logic {
             float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
             float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
 
-            bool collinear = CheckForCollinearity(denominator);
-            if (collinear) {
+            bool parallel = CheckForParalelism(denominator);
+            
+            if (parallel && SharesSpace(otherWall)) { 
+                //if they are parallel and share points, they are collinear
                 throw new CollinearWallsException();
             } else {
                 bool intersect = IntersectionPointExists(alphaNumerator, betaNumerator, denominator);
                 if (!intersect) {
                     throw new WallsDoNotIntersectException();
+                } else {
+                    return GetIntersectedPoint(alphaNumerator, denominator);
                 }
-                return GetIntersectedPoint(alphaNumerator, denominator);
             }
 
 
+        }
+
+        private bool SharesSpace(Wall otherWall) {
+            bool overlaps = Equals(otherWall);
+            overlaps |= DoesContainPoint(otherWall.Beginning()) || DoesContainPoint(otherWall.End());
+            overlaps |= otherWall.DoesContainPoint(Beginning()) || otherWall.DoesContainPoint(End());
+            return overlaps;
+        }
+
+        public bool Overlaps(Wall aWall) {
+            return !DoesIntersect(aWall) && SharesSpace(aWall);
         }
 
         public bool IntersectionPointExists(float alphaNumerator, float betaNumerator, float denominator) {
@@ -105,7 +120,7 @@ namespace Logic {
             return intersect;
         }
 
-        private bool CheckForCollinearity(float denominator) {
+        private bool CheckForParalelism(float denominator) {
             return denominator == 0;
         }
 
@@ -123,16 +138,27 @@ namespace Logic {
         }
 
         public bool DoesContainComponent(ISinglePointComponent component) {
-            // if the point belongs to segment, the segment from one of the extremes to the position of the component should be colinear
-            Wall auxilliaryWall = new Wall(Beginning(), component.GetPosition());
-            bool colinearWalls;
-            try {
-                colinearWalls = !DoesIntersect(auxilliaryWall);
-            } catch (WallsDoNotIntersectException) {
-                colinearWalls = false;
+            return DoesContainPoint(component.GetPosition());
+        }
 
+        private bool DoesContainPoint(Point aPoint) {
+            bool isContained;
+            if (BelongsToEdge(aPoint)) {
+                isContained = false;
+            } else {
+
+                float distanceAC = Beginning().DistanceToPoint(aPoint);
+                float distanceCB = End().DistanceToPoint(aPoint);
+                float distanceAB = Length();
+                isContained = Math.Abs((distanceAC + distanceCB) - distanceAB)<0.1;
+                //should be a ==, but minimal difference is generated
             }
-            return colinearWalls;
+            return isContained;
+
+        }
+
+        private bool BelongsToEdge(Point aPoint) {
+            return aPoint.Equals(Beginning()) || aPoint.Equals(End());
         }
 
         public override bool Equals(object obj) {
