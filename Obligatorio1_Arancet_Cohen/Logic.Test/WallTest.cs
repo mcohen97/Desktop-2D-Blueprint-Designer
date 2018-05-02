@@ -161,14 +161,15 @@ namespace Logic.Test {
 
         [TestMethod]
         public void OverlapsWallTest() {
-            Wall testWall = new Wall(new Point(2, 1), new Point(3, 2));
-            Assert.IsTrue(instance.Overlaps(testWall));
+            Wall testWall = new Wall(new Point(1, 1), new Point(3, 3));
+            Wall otherTestWall = new Wall(new Point(2, 2), new Point(3, 3));
+            Assert.IsTrue(otherTestWall.Overlaps(testWall));
         }
 
         [TestMethod]
         public void DoesNotOverlapWallTest() {
             Wall testWall = new Wall(new Point(0, 1), new Point(0, 2));
-            Assert.IsTrue(instance.Overlaps(testWall));
+            Assert.IsFalse(instance.Overlaps(testWall));
         }
 
         [TestMethod]
