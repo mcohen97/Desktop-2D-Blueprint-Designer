@@ -160,6 +160,18 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        public void OverlapsWallTest() {
+            Wall testWall = new Wall(new Point(2, 1), new Point(3, 2));
+            Assert.IsTrue(instance.Overlaps(testWall));
+        }
+
+        [TestMethod]
+        public void DoesNotOverlapWallTest() {
+            Wall testWall = new Wall(new Point(0, 1), new Point(0, 2));
+            Assert.IsTrue(instance.Overlaps(testWall));
+        }
+
+        [TestMethod]
         public void DoesNotBelongToWallTest() {
             Beam instance = new Beam(new Point(3, 2));
             Wall testWall = new Wall(new Point(2, 0), new Point(5, 0));
@@ -175,9 +187,9 @@ namespace Logic.Test {
 
         [TestMethod]
         public void BelongsToEdgeOfWallTest() {
-            Beam instance = new Beam(new Point(3, 2));
+            Beam instance = new Beam(new Point(3, 5));
             Wall testWall = new Wall(new Point(3, 0), new Point(3, 5));
-            Assert.IsTrue(testWall.DoesContainComponent(instance));
+            Assert.IsFalse(testWall.DoesContainComponent(instance));
         }
 
         [TestMethod]
