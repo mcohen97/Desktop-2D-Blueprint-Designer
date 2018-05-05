@@ -215,5 +215,19 @@ namespace Logic.Test {
             Assert.AreNotEqual(instance, new Window(new Point(0,0)));
         }
 
+        [TestMethod]
+        public void AreContinuousTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(3,0), new Point(5,0));
+            Assert.IsTrue(testWall.IsContinuous(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreNotContinuousTest() {
+            Wall testWall = new Wall(new Point(1,0), new Point(3,0));
+            Wall otherTestWall = new Wall(new Point(4,0), new Point(5,0));
+            Assert.IsFalse(testWall.IsContinuous(otherTestWall));
+        }
+
     }
 }

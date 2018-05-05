@@ -157,8 +157,12 @@ namespace Logic {
 
         }
 
-        private bool BelongsToEdge(Point aPoint) {
+        public bool BelongsToEdge(Point aPoint) {
             return aPoint.Equals(Beginning()) || aPoint.Equals(End());
+        }
+
+        public bool BelongsToEdge(ISinglePointComponent punctualComponent) {
+            return BelongsToEdge(punctualComponent.GetPosition());
         }
 
         public override bool Equals(object obj) {
