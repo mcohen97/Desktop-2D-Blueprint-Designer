@@ -15,13 +15,6 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void GetHeighTest() {
-            float expectedResult = 3;
-            float actualResult = instance.Height();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
         public void GetBeginningTest() {
             int expectedXResult = 3;
             int expectedYResult = 2;
