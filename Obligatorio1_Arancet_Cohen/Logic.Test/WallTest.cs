@@ -229,5 +229,27 @@ namespace Logic.Test {
             Assert.IsFalse(testWall.IsContinuous(otherTestWall));
         }
 
+        [TestMethod]
+        public void AreConnectedContinuousTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
+            Assert.IsTrue(testWall.IsConnected(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreConnectedLShapeTest() {
+            Wall testWall = new Wall(new Point(0, 0), new Point(0, 2));
+            Wall otherTestWall = new Wall(new Point(2, 0), new Point(0, 0));
+            Assert.IsTrue(testWall.IsConnected(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreNotConnectedTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(4, 0), new Point(5, 0));
+            Assert.IsFalse(testWall.IsConnected(otherTestWall));
+        }
+
+
     }
 }
