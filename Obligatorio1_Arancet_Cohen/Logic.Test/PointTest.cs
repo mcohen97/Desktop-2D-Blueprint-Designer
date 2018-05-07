@@ -93,6 +93,33 @@ namespace Logic.Test
             float actualResult = instance.DistanceToPoint(testPoint);
             Assert.AreEqual(expectedResult, actualResult);
         }
+        [TestMethod]
+        public void PlusOperatorTest() {
+            Point otherOperand = new Point(1,1);
+            Point expectedResult = new Point(4, 3);
+            Point actualResult = instance+otherOperand;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
+        [TestMethod]
+        public void PointAtSameHorizontalLineTest() {
+            Point a = new Point(2,0);
+            Point b = new Point(3, 0);
+            Point vector = b - a;
+            Point expectedResult = new Point(5, 0);
+            Point actualResult = a.PointInSameLineAtSomeDistance(vector, 3);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void PointAtSameLineTest() {
+            Point testPoint = new Point(4, 3);
+            Point vector = testPoint - instance;
+            Point actualResult = instance.PointInSameLineAtSomeDistance(vector, 5);
+            float expectedX = 3 + (float)(5 / Math.Sqrt(2));
+            float expectedY = 2 + (float)(5 / Math.Sqrt(2));
+            Point expectedResult = instance + new Point(expectedX,expectedY);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
