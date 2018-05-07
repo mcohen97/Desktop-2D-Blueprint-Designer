@@ -183,5 +183,15 @@ namespace Logic {
         public override int GetHashCode() {
             return BeginningPoint.GetHashCode() * EndPoint.GetHashCode();
         }
+
+        public bool IsContinuous(Wall otherWall) {
+            Wall auxWall = new Wall(Beginning(),otherWall.End());
+            //this wall should contain the other wall, if they are collinear
+            return IsConnected(otherWall) && auxWall.Overlaps(otherWall);
+        }
+
+        public bool IsConnected(Wall otherWall) {
+            return BelongsToEdge(otherWall.Beginning()) || BelongsToEdge(otherWall.End());
+        }
     }
 }
