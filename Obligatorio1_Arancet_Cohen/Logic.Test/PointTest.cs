@@ -102,6 +102,13 @@ namespace Logic.Test
         }
 
         [TestMethod]
+        public void MultipliedByScalarOperatorTest() {
+            Point expectedResult = new Point(6, 4);
+            Point actualResult = 2 * instance;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void PointAtSameHorizontalLineTest() {
             Point a = new Point(2,0);
             Point b = new Point(3, 0);
