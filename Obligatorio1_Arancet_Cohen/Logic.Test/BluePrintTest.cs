@@ -55,7 +55,7 @@ namespace Logic.Test {
         public void InsertIntersectedXShapeWallsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
+            Wall otherTestWall = new Wall(new Point(6, 3), new Point(6, 7));
             instance.InsertWall(otherTestWall);
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().WallsCount();
@@ -66,7 +66,7 @@ namespace Logic.Test {
         public void InsertIntersectedXShapeWallsBeamsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(6, 2), new Point(6, 8));
+            Wall otherTestWall = new Wall(new Point(6, 3), new Point(6, 7));
             instance.InsertWall(otherTestWall);
             int expectedResult = 5;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
@@ -77,7 +77,7 @@ namespace Logic.Test {
         public void InsertIntersectedTShapeWallsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 8));
+            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
             instance.InsertWall(otherTestWall);
             int expectedResult = 3;
             int actualResult = instance.GetComponentsContainer().WallsCount();
@@ -88,7 +88,7 @@ namespace Logic.Test {
         public void InsertIntersectedTShapeWallsBeamsCount() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 8));
+            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
             instance.InsertWall(otherTestWall);
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
@@ -148,7 +148,7 @@ namespace Logic.Test {
         public void ContinuousWallsInsertedMergeTest() {
             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
+            Wall otherTestWall = new Wall(new Point(3, 0), new Point(4, 0));
             instance.InsertWall(otherTestWall);
             int expectedResult = 1;
             int actualResult = instance.GetComponentsContainer().WallsCount();
@@ -169,7 +169,7 @@ namespace Logic.Test {
         //Tests for removal of walls
         [TestMethod]
         public void RemoveSingleWallCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(12, 0));
+            Wall testWall = new Wall(new Point(0, 0), new Point(5, 0));
             instance.InsertWall(testWall);
             instance.RemoveWall(testWall);
             Assert.IsTrue(instance.GetComponentsContainer().isWallsEmpty());
@@ -177,7 +177,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void RemoveSingleWallBeamsCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(12, 0));
+            Wall testWall = new Wall(new Point(0, 0), new Point(5, 0));
             instance.InsertWall(testWall);
             instance.RemoveWall(testWall);
             Assert.IsTrue(instance.GetComponentsContainer().isBeamsEmpty());
@@ -187,9 +187,9 @@ namespace Logic.Test {
         public void RemoveFromTShapeWallLeavingLShapeTest() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 8));
+            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
             instance.InsertWall(otherTestWall);
-            Wall removingWall = new Wall(new Point(8, 5), new Point(8, 8));
+            Wall removingWall = new Wall(new Point(8, 5), new Point(8, 7));
             instance.RemoveWall(removingWall);
             int expectedResult = 2;
             int actualResult = instance.GetComponentsContainer().WallsCount();
