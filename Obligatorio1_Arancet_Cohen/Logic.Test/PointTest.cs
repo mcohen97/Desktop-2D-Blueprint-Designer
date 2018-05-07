@@ -125,7 +125,7 @@ namespace Logic.Test
             Point actualResult = instance.PointInSameLineAtSomeDistance(vector, 5);
             float expectedX = 3 + (float)(5 / Math.Sqrt(2));
             float expectedY = 2 + (float)(5 / Math.Sqrt(2));
-            Point expectedResult = instance + new Point(expectedX,expectedY);
+            Point expectedResult =new Point(expectedX,expectedY);
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
