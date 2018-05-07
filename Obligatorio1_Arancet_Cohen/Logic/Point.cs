@@ -39,6 +39,10 @@ namespace Logic {
             return new Point(first.CoordX + second.CoordX, first.CoordY + second.CoordY);
         }
 
+        public static Point operator *(float scalar, Point aPoint) {
+            return new Point(scalar* aPoint.CoordX, scalar* aPoint.CoordY);
+        }
+
         public float DistanceToOrigin() {
             return (float)Math.Sqrt(Math.Pow(CoordX, 2) + Math.Pow(CoordY, 2)); 
         }
@@ -64,8 +68,10 @@ namespace Logic {
             return distance;
         }
 
-        public Point PointInSameLineAtSomeDistance(Point vector, int v) {
-            throw new NotImplementedException();
+        public Point PointInSameLineAtSomeDistance(Point vector, float distance) {
+            float lambda = distance / (float)Math.Sqrt(Math.Pow(vector.CoordX, 2) + Math.Pow(vector.CoordY, 2));
+            Point translated = this + lambda *vector;
+            return translated;
         }
     }
 }
