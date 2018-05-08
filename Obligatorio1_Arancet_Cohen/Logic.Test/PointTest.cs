@@ -128,5 +128,15 @@ namespace Logic.Test
             Point expectedResult =new Point(expectedX,expectedY);
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void IsInRangeTest() {
+            Assert.IsTrue(instance.IsInRange(5,5));
+        }
+
+        [TestMethod]
+        public void IsNotInRangeTest() {
+            Assert.IsFalse(instance.IsInRange(2, 2));
+        }
     }
 }
