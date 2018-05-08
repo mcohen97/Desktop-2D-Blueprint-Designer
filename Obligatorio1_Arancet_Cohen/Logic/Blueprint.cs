@@ -21,129 +21,25 @@ namespace Logic {
             return materials;
         }
 
-        public void InsertWall(Wall newWall) {
+        public void InsertWall(Point from, Point to) {
+            Wall newWall = new Wall(from, to);
             if (!WallInRange(newWall)) {
                 throw new OutOfRangeComponentException();
             } else if (TakesOtherWallsPlace(newWall)) {
                 throw new CollinearWallsException();
-            } else if (newWall.Length()>5) {
-                InsertOversizedWall(newWall);
-            }else{
+            } else {
                 InsertValidatedWall(newWall);
             }
         }
 
-        private void InsertOversizedWall(Wall newWall) {
-            int maxLengthWallsCount = (int)newWall.Length() / 5;
-            float lengthOfRemainingWall= newWall.Length() % 5;
-            Point vector = newWall.End()-newWall.Beginning();
-            Point from=newWall.Beginning();
-            Point to;
-            Wall newFraction;
-            for (int i = 0; i < maxLengthWallsCount; i++) {
-                to = from.PointInSameLineAtSomeDistance(vector, 5);
-                newFraction = new Wall(from, to);
-                InsertValidatedWall(newFraction);
-                from = to;
+        public void RemoveWall(Point from, Point to) {
+            Wall aWall = new Wall(from, to);
+            if (materials.ContainsWall(aWall)) {
+                materials.RemoveWall(aWall);
+                RemoveOpeningsOfWall(aWall);
+                AdjustIntersection(aWall.Beginning());
+                AdjustIntersection(aWall.End());
             }
-            to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
-            newFraction = new Wall(from, to);
-            InsertValidatedWall(newFraction);
-        }
-
-        //we assume in this method that the wall an be added
-        private void InsertValidatedWall(Wall aWall) {
-            if (!IntersectsOtherWalls(aWall)) {
-                PlaceNewWall(aWall);
-            } else {
-                List<Point> intersectionPoints = new List<Point>();
-                Point actualIntersection;
-                foreach (Wall intersected in WallsIntersectedByThisOne(aWall)) {
-                    actualIntersection = intersected.GetIntersection(aWall);
-                    CreateFractionWall(intersected.Beginning(), actualIntersection);
-                    CreateFractionWall(actualIntersection, intersected.End());
-                    materials.RemoveWall(intersected); // we are replacing the old walls with two halves
-                    intersectionPoints.Add(actualIntersection);
-                }
-                intersectionPoints.Sort();
-                SplitWall(aWall, intersectionPoints);
-
-            }
-        }
-
-        private void PlaceNewWall(Wall newWall) {
-            if (newWall.Length() <= 5) {
-                Beam BeginningBeam = new Beam(newWall.Beginning());
-                Beam EndBeam = new Beam(newWall.End());
-                PlaceBeamIfNotExists(BeginningBeam);
-                PlaceBeamIfNotExists(EndBeam);
-                materials.addWall(newWall);
-            } else {
-
-            }
-        }
-
-        private void PlaceBeamIfNotExists(Beam aBeam) {
-            if (!materials.ContainsBeam(aBeam)) {
-                materials.AddBeam(aBeam);
-            }
-        }
-
-        private void SplitWall(Wall newWall, List<Point> intersectionPoints) {
-            CreateFractionWall(newWall.Beginning(), intersectionPoints.First());
-            for (int i = 1; i < intersectionPoints.Count-1; i++) {
-                CreateFractionWall(intersectionPoints[i], intersectionPoints[i + 1]);
-            }
-            CreateFractionWall(intersectionPoints.Last(), newWall.End());
-           
-        }
-
-        private void CreateFractionWall(Point from, Point to) {
-            try {
-                Wall generatedWall = new Wall(from, to);
-                PlaceNewWall(generatedWall);//pending refactory
-            } catch (ZeroLengthWallException) {
-            }
-        }
-
-        private bool WallInRange(Wall newWall) {
-            return PointInRange(newWall.Beginning()) && PointInRange(newWall.End());
-        }
-
-        private bool PunctualComponentInRange(ISinglePointComponent newComponent) {
-            return PointInRange(newComponent.GetPosition());
-        }
-
-        private bool PointInRange(Point aPoint) {
-            bool xInRange = aPoint.CoordX >= 0 && aPoint.CoordY <= Length;
-            bool yInRange = aPoint.CoordY >= 0 && aPoint.CoordY <= Width;
-            return xInRange && yInRange;
-        }
-
-        private bool TakesOtherWallsPlace(Wall newWall) {
-            bool overlaps = false;
-            IEnumerator<Wall> itr = (IEnumerator<Wall>)materials.GetWalls().GetEnumerator();
-            Wall existing;
-            while (itr.MoveNext() && !overlaps) {
-                existing = itr.Current;
-                overlaps |= existing.Overlaps(newWall);
-            }
-            return overlaps;
-        }
-
-        private bool IntersectsOtherWalls(Wall aWall) {
-            return WallsIntersectedByThisOne(aWall).Any();
-        }
-
-        private ICollection<Wall> WallsIntersectedByThisOne(Wall newWall){
-            List<Wall> intersectedWalls = new List<Wall>();
-           
-                foreach (Wall existentWall in materials.GetWalls()) {
-                    if (existentWall.DoesIntersect(newWall)) {
-                        intersectedWalls.Add(existentWall);
-                    }
-                }
-            return intersectedWalls;
         }
 
         public void InsertOpening(Opening newOpening) {
@@ -158,11 +54,143 @@ namespace Logic {
                 }
             }
         }
-        
+
+        //we assume in this method that the wall an be added
+        private void InsertValidatedWall(Wall aWall) {
+            if (IntersectsOtherWalls(aWall)) {
+                FractionNewIntersectedWall(aWall);
+            } else if (Oversized(aWall)) {
+                InsertOversizedWall(aWall);
+            } else {
+                PlaceNewWall(aWall);
+            }
+        }
+
+        private void FractionNewIntersectedWall(Wall aWall) {
+            List<Point> intersectionPoints = new List<Point>();
+            Point actualIntersection;
+            foreach (Wall intersected in WallsIntersectedByThisOne(aWall)) {
+                actualIntersection = intersected.GetIntersection(aWall);
+                // we are replacing the old walls with two halves
+                materials.RemoveWall(intersected);
+                RemoveOpeningIfExists(actualIntersection);
+                CreateAndPlaceWall(intersected.Beginning(), actualIntersection);
+                CreateAndPlaceWall(actualIntersection, intersected.End());
+                intersectionPoints.Add(actualIntersection);
+            }
+            intersectionPoints.Sort();
+            SplitWall(aWall, intersectionPoints);
+        }
+
+        private void RemoveOpeningIfExists(Point actualIntersection) {
+            Opening op = new Door(actualIntersection);
+            if (materials.ContainsOpening(op)) {
+                materials.RemoveOpening(op);
+            }
+        }
+
+        private void InsertOversizedWall(Wall newWall) {
+            int maxLengthWallsCount = (int)newWall.Length() / 5;
+            float lengthOfRemainingWall = newWall.Length() % 5;
+            Point vector = newWall.End() - newWall.Beginning();
+            Point from = newWall.Beginning();
+            Point to;
+            for (int i = 0; i < maxLengthWallsCount; i++) {
+                to = from.PointInSameLineAtSomeDistance(vector, 5);
+                CreateAndPlaceWall(from, to);
+                from = to;
+            }
+            to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
+            CreateAndPlaceWall(from, to);
+
+        }
+
+        private void PlaceNewWall(Wall newWall) {
+            PlaceWall(newWall);
+            AdjustIntersection(newWall.Beginning());
+            AdjustIntersection(newWall.End());
+        }
+
+        private void PlaceWall(Wall aWall) {
+            Beam BeginningBeam = new Beam(aWall.Beginning());
+            Beam EndBeam = new Beam(aWall.End());
+            PlaceBeamIfNotExists(BeginningBeam);
+            PlaceBeamIfNotExists(EndBeam);
+            materials.addWall(aWall);
+        }
+
+        private void PlaceBeamIfNotExists(Beam aBeam) {
+            if (!materials.ContainsBeam(aBeam)) {
+                materials.AddBeam(aBeam);
+            }
+        }
+
+        private void SplitWall(Wall newWall, List<Point> intersectionPoints) {
+            CreateAndPlaceWall(newWall.Beginning(), intersectionPoints.First());
+            for (int i = 0; i < intersectionPoints.Count - 1; i++) {
+                CreateAndPlaceWall(intersectionPoints[i], intersectionPoints[i + 1]);
+            }
+            CreateAndPlaceWall(intersectionPoints.Last(), newWall.End());
+
+        }
+
+        private void CreateAndPlaceWall(Point from, Point to) {
+            try {
+                Wall generatedWall = new Wall(from, to);
+                if (!Oversized(generatedWall)) {
+                    PlaceWall(generatedWall);
+                } else {
+                    InsertOversizedWall(generatedWall);
+                }
+            } catch (ZeroLengthWallException) {
+
+            }
+
+        }
+
+        private bool Oversized(Wall aWall) {
+            return aWall.Length() > 5;
+        }
+
+        private bool WallInRange(Wall newWall) {
+            return PointInRange(newWall.Beginning()) && PointInRange(newWall.End());
+        }
+
+        private bool PunctualComponentInRange(ISinglePointComponent newComponent) {
+            return PointInRange(newComponent.GetPosition());
+        }
+
+        private bool PointInRange(Point aPoint) {
+            return aPoint.IsInRange(Length,Width);
+        }
+
+        private bool TakesOtherWallsPlace(Wall newWall) {
+            bool overlaps = false;
+            foreach (Wall existing in materials.GetWalls()) {
+                overlaps |= existing.Overlaps(newWall);
+            }
+            return overlaps;
+        }
+
+        private bool IntersectsOtherWalls(Wall aWall) {
+            return WallsIntersectedByThisOne(aWall).Any();
+        }
+
+        private ICollection<Wall> WallsIntersectedByThisOne(Wall newWall) {
+            List<Wall> intersectedWalls = new List<Wall>();
+
+            foreach (Wall existentWall in materials.GetWalls()) {
+                if (existentWall.DoesIntersect(newWall)) {
+                    intersectedWalls.Add(existentWall);
+                }
+            }
+            return intersectedWalls;
+        }
+
         private bool OccupiedPosition(ISinglePointComponent punctualComponent) {
-            bool occupied=false;
+            bool occupied = false;
             foreach (Opening existing in materials.GetOpenings()) {
-                occupied |= punctualComponent.GetPosition().Equals(existing.GetPosition()); 
+                occupied |= punctualComponent.GetPosition().Equals(existing.GetPosition());
             }
             if (!occupied) {
                 foreach (Beam existing in materials.GetBeams()) {
@@ -183,54 +211,20 @@ namespace Logic {
             return doesBelong;
         }
 
-        public void RemoveWall(Wall aWall) {
-            if (materials.ContainsWall(aWall)) {
-                materials.RemoveWall(aWall);
-                RemoveOpeningsOfWall(aWall);
-                MergeAdjacentWallsIfNeeded(aWall);
-            }
-        }
-
-        private void MergeAdjacentWallsIfNeeded(Wall aWall) {
-            Beam from = new Beam(aWall.Beginning());
-            Beam to = new Beam(aWall.End());
-            if (materials.ContainsBeam(from)) {
-                AdjustToRemoval(from);
-            }
-            if (materials.ContainsBeam(to)) {
-                AdjustToRemoval(to);
-            }
-            
-        }
-
-        private void RemoveOrphanBeams(Wall aWall) {
-            Beam from = new Beam(aWall.Beginning());
-            Beam to = new Beam(aWall.End());
-            RemoveIfOrphan(from);
-            RemoveIfOrphan(to);
-        }
-
-        private void RemoveIfOrphan(Beam aBeam) {
-            if (!GetWallsSharingBeam(aBeam).Any()) {
-                materials.RemoveBeam(aBeam);
-            }
-        }
-
         private void RemoveOpeningsOfWall(Wall aWall) {
             foreach (Opening existing in GetOpeningsFromWall(aWall)) {
                 materials.RemoveOpening(existing);
             }
         }
 
-
-        private IEnumerable<Wall> GetWallsSharingBeam(Beam aBeam) {
+        private List<Wall> GetWallsSharingBeam(Beam aBeam) {
             List<Wall> sharingBeam = new List<Wall>();
-            foreach(Wall existing in materials.GetWalls()) {
+            foreach (Wall existing in materials.GetWalls()) {
                 if (existing.BelongsToEdge(aBeam)) {
                     sharingBeam.Add(existing);
                 }
             }
-            return sharingBeam.AsEnumerable<Wall>(); 
+            return sharingBeam;
         }
 
         private IEnumerable<Opening> GetOpeningsFromWall(Wall aWall) {
@@ -243,13 +237,9 @@ namespace Logic {
             return belonging.AsEnumerable<Opening>();
         }
 
-        private void AdjustToRemoval(Beam affectedBeam) {
-            List<Wall> involvedWalls = new List<Wall>();
-            foreach (Wall existingWall in materials.GetWalls()) {
-                if (existingWall.BelongsToEdge(affectedBeam)) {
-                    involvedWalls.Add(existingWall);
-                }
-            }
+        private void AdjustIntersection(Point intersection) {
+            Beam affectedBeam = new Beam(intersection);
+            List<Wall> involvedWalls = GetWallsSharingBeam(affectedBeam);
             if (!involvedWalls.Any()) {
                 materials.RemoveBeam(affectedBeam);
             } else if (involvedWalls.Count == 2) {
@@ -263,7 +253,7 @@ namespace Logic {
             bool LengthsSumLessThanLimit = wall1.Length() + wall2.Length() < 5;
             if (theyAreContinuous && LengthsSumLessThanLimit) {
                 MergeWalls(wall1, wall2);
-            } 
+            }
         }
 
         private void MergeWalls(Wall wall1, Wall wall2) {
@@ -283,7 +273,7 @@ namespace Logic {
             materials.RemoveWall(wall2);
             Wall newWall = new Wall(newBeginning, newEnd);
             materials.addWall(newWall);
-            
+
         }
 
         private void RemoveBeamInPoint(Point point) {

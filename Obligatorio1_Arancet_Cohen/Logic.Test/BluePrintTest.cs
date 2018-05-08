@@ -18,14 +18,13 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(OutOfRangeComponentException))]
         public void InsertOutOfRangeWallTest() {
-            Wall testWall = new Wall(new Point(-5, -20), new Point(20,100));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(-5, -20), new Point(20, 100));
         }
 
         [TestMethod]
         public void InsertFirstWallTest() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8,5));
-            instance.InsertWall(testWall);
+            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
             ICollection actualWallCollection= instance.GetComponentsContainer().GetWalls();
             IEnumerator itr = actualWallCollection.GetEnumerator();
             itr.MoveNext();
@@ -35,8 +34,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertFirstWallCountTest() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
             int expectedResult = 1;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -44,8 +42,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertFirstWallBeamsCountTest() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
             int expectedResult = 2;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -53,10 +50,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertIntersectedXShapeWallsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(6, 3), new Point(6, 7));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(6, 3), new Point(6, 7));
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -64,10 +59,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertIntersectedXShapeWallsBeamsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(6, 3), new Point(6, 7));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(6, 3), new Point(6, 7));
             int expectedResult = 5;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -75,10 +68,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertIntersectedTShapeWallsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(8, 2), new Point(8, 7));
             int expectedResult = 3;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -86,10 +77,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertIntersectedTShapeWallsBeamsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(8, 2), new Point(8, 7));
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -98,18 +87,14 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(CollinearWallsException))]
         public void InsertCollinearWallTest() {
-            Wall testWall = new Wall(new Point(1,0), new Point(5,0));
-            Wall otherTestWall = new Wall(new Point(3, 0), new Point(7, 0));
-            instance.InsertWall(testWall);
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(1, 0), new Point(5, 0));
+            instance.InsertWall(new Point(3, 0), new Point(7, 0));
         }
 
         [TestMethod]
         public void InsertNotIntersectedWallsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(5, 3), new Point(8, 3));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(5, 3), new Point(8, 3));
             int expectedResult = 2;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -117,10 +102,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertNotIntersectedWallsBeamsCount() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(5, 3), new Point(8, 3));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(5, 3), new Point(8, 3));
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -128,8 +111,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertOversizedWallCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(12, 0));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(12, 0));
             int expectedResult = 3;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -137,8 +119,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertOversizedWallBeamsCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(12, 0));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(12, 0));
             int expectedResult = 4;
             int actualResult = instance.GetComponentsContainer().BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -146,10 +127,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void ContinuousWallsInsertedMergeTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(3, 0), new Point(4, 0));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertWall(new Point(3, 0), new Point(4, 0));
             int expectedResult = 1;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -157,10 +136,8 @@ namespace Logic.Test {
 
         [TestMethod]
         public void ContinuousWallsInsertedNotMergeTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(3, 0), new Point(7, 0));
-            instance.InsertWall(otherTestWall);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertWall(new Point(3, 0), new Point(7, 0));
             int expectedResult = 2;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -169,28 +146,23 @@ namespace Logic.Test {
         //Tests for removal of walls
         [TestMethod]
         public void RemoveSingleWallCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(5, 0));
-            instance.InsertWall(testWall);
-            instance.RemoveWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(5, 0));
+            instance.RemoveWall(new Point(0, 0), new Point(5, 0));
             Assert.IsTrue(instance.GetComponentsContainer().isWallsEmpty());
         }
 
         [TestMethod]
         public void RemoveSingleWallBeamsCountTest() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(5, 0));
-            instance.InsertWall(testWall);
-            instance.RemoveWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(5, 0));
+            instance.RemoveWall(new Point(0, 0), new Point(5, 0));
             Assert.IsTrue(instance.GetComponentsContainer().isBeamsEmpty());
         }
 
         [TestMethod]
         public void RemoveFromTShapeWallLeavingLShapeTest() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 2), new Point(8, 7));
-            instance.InsertWall(otherTestWall);
-            Wall removingWall = new Wall(new Point(8, 5), new Point(8, 7));
-            instance.RemoveWall(removingWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(8, 2), new Point(8, 7));
+            instance.RemoveWall(new Point(8, 5), new Point(8, 7));
             int expectedResult = 2;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -198,12 +170,9 @@ namespace Logic.Test {
 
         [TestMethod]
         public void RemoveFromTShapeWallMergeTest() {
-            Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.InsertWall(testWall);
-            Wall otherTestWall = new Wall(new Point(8, 3), new Point(8, 7));
-            instance.InsertWall(otherTestWall);
-            Wall removingWall = new Wall(new Point(5, 5), new Point(8, 5));
-            instance.RemoveWall(removingWall);
+            instance.InsertWall(new Point(5, 5), new Point(8, 5));
+            instance.InsertWall(new Point(8, 3), new Point(8, 7));
+            instance.RemoveWall(new Point(5, 5), new Point(8, 5));
             int expectedResult = 1;
             int actualResult = instance.GetComponentsContainer().WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -211,44 +180,14 @@ namespace Logic.Test {
 
         [TestMethod]
         public void RemoveWallWithOpening() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
             Opening testOpening = new Door(new Point(2, 0));
             instance.InsertOpening(testOpening);
-            instance.RemoveWall(testWall);
+            instance.RemoveWall(new Point(0, 0), new Point(3, 0));
             int actualResult=instance.GetComponentsContainer().OpeningsCount();
             int expectedResult = 0;
             Assert.AreEqual(expectedResult, actualResult);
         }
-
-
-        //tests for insertion of beams
-        /* [TestMethod]
-         public void InsertBeamToWallTest() {
-             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-             instance.InsertWall(testWall);
-             Beam testBeam = new Beam(new Point(1, 0));
-             instance.InsertBeam(testBeam);
-
-         }
-
-         [TestMethod]
-         [ExpectedException(typeof ComponentOutOfWall)]
-         public void InsertBeamWithoutWallTest() {
-             Beam testBeam = new Beam(new Point(0, 0));
-             instance.InsertBeam(testBeam);
-         }
-
-         [TestMethod]
-         [ExpectedException (typeof OccupiedSpace)]
-         public void InsertAlreadyExistingBeamTest() {
-             Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-             instance.InsertWall(testWall);
-             Beam testBeam = new Beam(new Point(1, 0));
-             instance.InsertBeam(testBeam);
-             Assert.IsFalse(instance.InsertBeam(testBeam));
-         }
-         */
 
         //tests for insertion of openings
         [TestMethod]
@@ -260,8 +199,7 @@ namespace Logic.Test {
 
         [TestMethod]
         public void InsertOpeningCorrectly() {
-            Wall testWall = new Wall(new Point(0, 0), new Point(3, 0));
-            instance.InsertWall(testWall);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
             Opening testOpening = new Door(new Point(2, 0));
             instance.InsertOpening(testOpening);
             int expectedResult = 1;
@@ -276,7 +214,17 @@ namespace Logic.Test {
             instance.InsertOpening(testOpening);
         }
 
-        
+        [TestMethod]
+        public void MultipleInsertionsTest() {
+            instance.InsertWall(new Point(2,3), new Point(2,1));
+            instance.InsertWall(new Point(8, 1), new Point(8, 3));
+            instance.InsertWall(new Point(10, 1), new Point(10, 3));
+            instance.InsertWall(new Point(1,2), new Point(11,2));
+            int expectedResult = 11;
+            int actualResult = instance.GetComponentsContainer().WallsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 
     
