@@ -73,5 +73,11 @@ namespace Logic {
             Point translated = this + lambda *vector;
             return translated;
         }
+
+        public bool IsInRange(float xLimit, float yLimit) {
+            bool xInRange = CoordX >= 0 && CoordX <= xLimit;
+            bool yInRange = CoordY >= 0 && CoordY <= yLimit;
+            return yInRange && xInRange;
+        }
     }
 }
