@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component2D.cs" />
     <Compile Include="Blueprint.cs" />
     <Compile Include="BuildingComponentContainer.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CollinearWallsException.cs" />
+    <Compile Include="Component3D.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="ISinglePointComponent.cs" />
