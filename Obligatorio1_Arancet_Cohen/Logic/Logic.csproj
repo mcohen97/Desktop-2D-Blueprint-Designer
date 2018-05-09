@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentType.cs" />
     <Compile Include="IBlueprint.cs" />
     <Compile Include="IComponent2D.cs" />
     <Compile Include="Blueprint.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="IComponent3D.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
     <Compile Include="Door.cs" />
+    <Compile Include="IDrawable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="Opening.cs" />
     <Compile Include="OutOfRangeComponentException.cs" />
