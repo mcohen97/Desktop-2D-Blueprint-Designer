@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Wall:IComponent3D {
+    public class Wall:IComponent3D, IDrawable {
 
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {
@@ -192,6 +192,10 @@ namespace Logic {
 
         public bool IsConnected(Wall otherWall) {
             return BelongsToEdge(otherWall.Beginning()) || BelongsToEdge(otherWall.End());
+        }
+
+        public ComponentType GetComponentType() {
+            return ComponentType.WALL;
         }
     }
 }

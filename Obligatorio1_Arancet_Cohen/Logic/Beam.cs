@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Beam : ISinglePointComponent {
+    public class Beam : ISinglePointComponent, IDrawable {
 
         private Point Position { get; set; }
         private float UnitPrice { get; set; }
@@ -37,6 +37,10 @@ namespace Logic {
 
         public override int GetHashCode() {
             return Position.GetHashCode();
+        }
+
+        public ComponentType GetComponentType() {
+            return ComponentType.BEAM;
         }
     }
 }
