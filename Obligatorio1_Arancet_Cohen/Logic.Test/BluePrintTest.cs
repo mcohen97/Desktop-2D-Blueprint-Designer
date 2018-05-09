@@ -145,6 +145,16 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        public void InsertOpeningsTest() {
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertOpening(new Door(new Point(1, 0)));
+            instance.InsertOpening(new Door(new Point(2, 0)));
+            int expectedResult = 2;
+            int actualResult = materials.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void OpeningOnIntersectionRemovalTest() {
             instance.InsertWall(new Point(0, 0), new Point(3, 0));
             instance.InsertOpening(new Door(new Point(1, 0)));
