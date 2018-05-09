@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Obligatorio1_Arancet_Cohen
+namespace Logic
 {
     public class Designer : User
     {

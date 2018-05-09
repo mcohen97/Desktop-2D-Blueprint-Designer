@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obligatorio1_Arancet_Cohen
+namespace Logic
 {
     public abstract class User:IPermissible,IComparable
     {
