@@ -83,15 +83,17 @@ namespace Logic {
         }
 
         public ICollection GetWalls() {
-            return (ICollection)wallList;
+            return (ICollection)(new List<Wall>(wallList));
         }
 
         public ICollection GetBeams() {
-           return (ICollection)beamList;
+           return (ICollection)(new List<Beam>(beamList));
         }
 
         public ICollection GetOpenings() {
-            return (ICollection)openingList;
+            
+            return (ICollection)(new List<Opening>(openingList));
+            
         }
 
         public bool ContainsWall(Wall aWall) {
