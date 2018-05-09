@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public abstract class Opening : ISinglePointComponent, Component2D {
+    public abstract class Opening : ISinglePointComponent, IComponent2D {
 
         protected float HeightValue { get; set; }
         protected float LengthValue { get; set; }

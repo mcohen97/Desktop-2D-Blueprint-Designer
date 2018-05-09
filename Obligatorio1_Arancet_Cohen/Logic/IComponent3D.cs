@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic {
-    interface Component3D:Component2D {
+    interface IComponent3D:IComponent2D {
         float Width();
     }
 }

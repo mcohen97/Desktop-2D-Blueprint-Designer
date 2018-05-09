@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Wall:Component3D {
+    public class Wall:IComponent3D {
 
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {
