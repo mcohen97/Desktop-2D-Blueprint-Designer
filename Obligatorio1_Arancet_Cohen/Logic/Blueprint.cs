@@ -25,7 +25,9 @@ namespace Logic {
 
         public void InsertWall(Point from, Point to) {
             Wall newWall = new Wall(from, to);
-            if (!WallInRange(newWall)) {
+            if (!newWall.IsHorizontal() && !newWall.IsVertical()) {
+                throw new OutOfRangeComponentException("No es paralela a los ejes");
+            } else if (!WallInRange(newWall)) {
                 throw new OutOfRangeComponentException();
             } else if (TakesOtherWallsPlace(newWall)) {
                 throw new CollinearWallsException();
@@ -54,6 +56,12 @@ namespace Logic {
                 } else if (!belongsToWall) {
                     throw new ComponentOutOfWallException();
                 }
+            }
+        }
+
+        public void RemoveOpening(Opening anOpening) {
+            if (materials.ContainsOpening(anOpening)) {
+                materials.RemoveOpening(anOpening);
             }
         }
 
@@ -108,12 +116,12 @@ namespace Logic {
         }
 
         private void PlaceNewWall(Wall newWall) {
-            PlaceWall(newWall);
+            PlaceUnintersectedWall(newWall);
             AdjustIntersection(newWall.Beginning());
             AdjustIntersection(newWall.End());
         }
 
-        private void PlaceWall(Wall aWall) {
+        private void PlaceUnintersectedWall(Wall aWall) {
             Beam BeginningBeam = new Beam(aWall.Beginning());
             Beam EndBeam = new Beam(aWall.End());
             PlaceBeamIfNotExists(BeginningBeam);
@@ -140,7 +148,7 @@ namespace Logic {
             try {
                 Wall generatedWall = new Wall(from, to);
                 if (!Oversized(generatedWall)) {
-                    PlaceWall(generatedWall);
+                    PlaceUnintersectedWall(generatedWall);
                 } else {
                     InsertOversizedWall(generatedWall);
                 }
