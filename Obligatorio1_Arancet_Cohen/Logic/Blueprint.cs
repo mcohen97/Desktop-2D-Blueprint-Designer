@@ -17,8 +17,10 @@ namespace Logic {
             materials = new BuildingComponentContainer();
         }
 
-        public BuildingComponentContainer GetComponentsContainer() {
-            return materials;
+        public Blueprint(int aLength, int aWidth, BuildingComponentContainer container) {
+            Length = aLength;
+            Width = aWidth;
+            materials = container;
         }
 
         public void InsertWall(Point from, Point to) {
