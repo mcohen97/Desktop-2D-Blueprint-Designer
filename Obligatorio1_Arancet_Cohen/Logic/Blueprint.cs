@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic {
-    public class Blueprint {
+    public class Blueprint:IBlueprint {
 
         private int Length;//Horizontal X Mesaure
         private int Width;//Vertical Y Mesaure
@@ -282,5 +282,7 @@ namespace Logic {
             Beam toRemove = new Beam(point);
             materials.RemoveBeam(toRemove);
         }
+
+        
     }
 }
