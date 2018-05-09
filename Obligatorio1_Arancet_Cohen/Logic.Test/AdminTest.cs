@@ -201,7 +201,7 @@ namespace AdminTest
         public void canDeleteUsersTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-            bool canDeleteUsers = admin.hasPermission(Permission.DELETE_USER);
+            bool canDeleteUsers = admin.hasPermission(Permission.REMOVE_USER);
 
             Assert.IsTrue(canDeleteUsers);
         }

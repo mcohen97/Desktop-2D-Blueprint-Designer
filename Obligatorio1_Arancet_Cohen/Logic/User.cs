@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_Arancet_Cohen
 {
-    public abstract class User:IPermissible
+    public abstract class User:IPermissible,IComparable
     {
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -15,6 +16,7 @@ namespace Obligatorio1_Arancet_Cohen
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
         protected List<Permission> permissions;
+        public static readonly User NULL_USER = new NullUser();
 
         public DateTime updateLastLoginDate()
         {
@@ -32,5 +34,28 @@ namespace Obligatorio1_Arancet_Cohen
             }
             return userHasPermission;
         }
+
+        public int CompareTo(object obj)
+        {
+            User userParameter = (User)obj;
+            int comparation = UserName.CompareTo(userParameter.UserName);
+            return comparation;     
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool equal = false;
+            if (obj != null && obj is User)  {
+                User userParameter = (User)obj;
+                equal = userParameter.UserName.Equals(UserName);
+            }
+            return equal;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
+
 }
