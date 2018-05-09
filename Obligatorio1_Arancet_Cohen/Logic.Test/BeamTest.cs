@@ -41,5 +41,9 @@ namespace Logic.Test {
             Assert.AreNotEqual(instance, otherInstance);
         }
 
+        [TestMethod]
+        public void GetComponentTypeTest() {
+            Assert.AreEqual(ComponentType.BEAM, instance.GetComponentType());
+        }
     }
 }

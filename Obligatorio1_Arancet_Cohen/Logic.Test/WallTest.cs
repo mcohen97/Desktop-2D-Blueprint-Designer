@@ -250,6 +250,10 @@ namespace Logic.Test {
             Assert.IsFalse(testWall.IsConnected(otherTestWall));
         }
 
+        [TestMethod]
+        public void GetComponentTypeTest() {
+            Assert.AreEqual(ComponentType.WALL, instance.GetComponentType());
+        }
 
     }
 }
