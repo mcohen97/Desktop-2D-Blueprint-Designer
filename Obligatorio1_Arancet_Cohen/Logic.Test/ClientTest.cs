@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_Arancet_Cohen;
+using Logic;
 
 namespace ClientTest
 {
@@ -81,17 +81,6 @@ namespace ClientTest
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             Assert.AreEqual(userName, client.UserName);
-        }
-
-        [TestMethod]
-        public void setUserNameTest()
-        {
-            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
-
-            string newUserName = "richardspaul";
-            client.UserName = newUserName;
-
-            Assert.AreEqual(newUserName, client.UserName);
         }
 
         [TestMethod]

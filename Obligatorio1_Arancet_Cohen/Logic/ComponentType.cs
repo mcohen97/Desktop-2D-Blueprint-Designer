@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
-{
-    interface IPermissible
-    {
-        bool HasPermission(Permission permissionAsked);
+namespace Logic {
+    public enum ComponentType {
+        WALL,
+        BEAM,
+        DOOR,
+        WINDOW
     }
 }

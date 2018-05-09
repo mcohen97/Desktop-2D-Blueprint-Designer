@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_Arancet_Cohen;
+using Logic;
 
 namespace AdminTest
 {
@@ -86,17 +86,6 @@ namespace AdminTest
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(userName, admin.UserName);
-        }
-
-        [TestMethod]
-        public void setUserNameTest()
-        {
-            Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string newUserName = "jaguarmin";
-            admin.UserName = newUserName;
-
-            Assert.AreEqual(newUserName, admin.UserName);
         }
 
         [TestMethod]

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obligatorio1_Arancet_Cohen
+namespace Logic
 {
     public abstract class User:IPermissible,IComparable
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string UserName { get; set; }
+        public string UserName { get; protected set; }
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }

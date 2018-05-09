@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_Arancet_Cohen;
+using Logic;
 
 namespace DesignerTest
 {
@@ -79,17 +79,6 @@ namespace DesignerTest
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             Assert.AreEqual(userName, designer.UserName);
-        }
-
-        [TestMethod]
-        public void setUserNameTest()
-        {
-            Designer designer = new Designer(name, surname, userName, password, registrationDate);
-
-            string newUserName = "myrock";
-            designer.UserName = newUserName;
-
-            Assert.AreEqual(newUserName, designer.UserName);
         }
 
         [TestMethod]
