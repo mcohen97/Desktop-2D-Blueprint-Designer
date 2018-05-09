@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_Arancet_Cohen;
+using Logic;
 
 namespace AdminTest
 {
@@ -89,17 +89,6 @@ namespace AdminTest
         }
 
         [TestMethod]
-        public void setUserNameTest()
-        {
-            Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string newUserName = "jaguarmin";
-            admin.UserName = newUserName;
-
-            Assert.AreEqual(newUserName, admin.UserName);
-        }
-
-        [TestMethod]
         public void getPasswordTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
@@ -142,48 +131,16 @@ namespace AdminTest
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
 
-            DateTime dateAssigned = admin.updateLastLoginDate();
+            DateTime dateAssigned = admin.UpdateLastLoginDate();
 
             Assert.AreEqual(dateAssigned, admin.LastLoginDate);
-        }
-
-        [TestMethod]
-        public void enableClient()
-        {
-            Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            admin.registClient(client);
-
-            Assert.IsTrue(admin.isClientRegistered(client));
-        }
-
-        [TestMethod]
-        public void assignPasswordToClientTest()
-        {
-            Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string passwordAssignedByAdmin = "thisIsYourNewPass";
-            admin.assignPasswordToClient(client, passwordAssignedByAdmin);
-            
-            Assert.AreEqual(client.Password, passwordAssignedByAdmin);
-        }
-
-        [TestMethod]
-        public void updateClientInfoTest()
-        {
-            Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
-            string passwordAssignedByAdmin = "thisIsYourNewPass";
-            admin.assignPasswordToClient(client, passwordAssignedByAdmin);
-
-            Assert.AreEqual(client.Password, passwordAssignedByAdmin);
         }
 
         [TestMethod]
         public void canCreateUsersTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-            bool canCreateUsers = admin.hasPermission(Permission.CREATE_USER);
+            bool canCreateUsers = admin.HasPermission(Permission.CREATE_USER);
 
             Assert.IsTrue(canCreateUsers);
         }
@@ -192,7 +149,7 @@ namespace AdminTest
         public void canEditUsersTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-            bool canEditUsers = admin.hasPermission(Permission.EDIT_USER);
+            bool canEditUsers = admin.HasPermission(Permission.EDIT_USER);
 
             Assert.IsTrue(canEditUsers);
         }
@@ -201,7 +158,7 @@ namespace AdminTest
         public void canDeleteUsersTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-            bool canDeleteUsers = admin.hasPermission(Permission.REMOVE_USER);
+            bool canDeleteUsers = admin.HasPermission(Permission.REMOVE_USER);
 
             Assert.IsTrue(canDeleteUsers);
         }

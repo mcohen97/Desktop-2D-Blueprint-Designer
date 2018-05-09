@@ -5,30 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Obligatorio1_Arancet_Cohen
+namespace Logic
 {
     public abstract class User:IPermissible,IComparable
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string UserName { get; set; }
+        public string UserName { get; protected set; }
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
-        protected List<Permission> permissions;
+        protected List<Permission> Permissions;
         public static readonly User NULL_USER = new NullUser();
 
-        public DateTime updateLastLoginDate()
+        public DateTime UpdateLastLoginDate()
         {
             DateTime dateOfLogin = DateTime.Now;
             LastLoginDate = dateOfLogin;
             return dateOfLogin;
         }
 
-        public bool hasPermission(Permission permissionAsked)
+        public bool HasPermission(Permission permissionAsked)
         {
             bool userHasPermission = false;
-            if (permissions.Contains(Permission.ALL_PERMISSIONS) || permissions.Contains(permissionAsked))
+            if (Permissions.Contains(Permission.ALL_PERMISSIONS) || Permissions.Contains(permissionAsked))
             {
                 userHasPermission = true;
             }

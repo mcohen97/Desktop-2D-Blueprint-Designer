@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_Arancet_Cohen;
+using Logic;
 
 namespace DesignerTest
 {
@@ -82,17 +82,6 @@ namespace DesignerTest
         }
 
         [TestMethod]
-        public void setUserNameTest()
-        {
-            Designer designer = new Designer(name, surname, userName, password, registrationDate);
-
-            string newUserName = "myrock";
-            designer.UserName = newUserName;
-
-            Assert.AreEqual(newUserName, designer.UserName);
-        }
-
-        [TestMethod]
         public void getPasswordTest()
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -135,7 +124,7 @@ namespace DesignerTest
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
-            DateTime dateAssigned = designer.updateLastLoginDate();
+            DateTime dateAssigned = designer.UpdateLastLoginDate();
 
             Assert.AreEqual(dateAssigned, designer.LastLoginDate);
         }
@@ -145,7 +134,7 @@ namespace DesignerTest
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
-            bool canCreateBlueprint = designer.hasPermission(Permission.CREATE_BLUEPRINT);
+            bool canCreateBlueprint = designer.HasPermission(Permission.CREATE_BLUEPRINT);
 
             Assert.IsTrue(canCreateBlueprint);
         }
@@ -155,7 +144,7 @@ namespace DesignerTest
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
-            bool canEditBlueprint = designer.hasPermission(Permission.EDIT_BLUEPRINT);
+            bool canEditBlueprint = designer.HasPermission(Permission.EDIT_BLUEPRINT);
 
             Assert.IsTrue(canEditBlueprint);
         }
@@ -165,7 +154,7 @@ namespace DesignerTest
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
-            bool canDeleteBlueprint = designer.hasPermission(Permission.DELETE_BLUEPRINT);
+            bool canDeleteBlueprint = designer.HasPermission(Permission.DELETE_BLUEPRINT);
 
             Assert.IsTrue(canDeleteBlueprint);
         }
@@ -175,7 +164,7 @@ namespace DesignerTest
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
-            bool canReadBlueprint = designer.hasPermission(Permission.READ_BLUEPRINT);
+            bool canReadBlueprint = designer.HasPermission(Permission.READ_BLUEPRINT);
 
             Assert.IsTrue(canReadBlueprint);
         }
