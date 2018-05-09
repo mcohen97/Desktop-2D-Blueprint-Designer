@@ -144,6 +144,17 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void OpeningOnIntersectionRemovalTest() {
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertOpening(new Door(new Point(1, 0)));
+            instance.InsertOpening(new Door(new Point(2, 0)));
+            instance.InsertWall(new Point(2, 0), new Point(2, 2));
+            int expectedResult = 1;
+            int actualResult = materials.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
         //Tests for removal of walls
         [TestMethod]
         public void RemoveSingleWallCountTest() {
@@ -183,6 +194,8 @@ namespace Logic.Test {
         public void RemoveWallWithOpening() {
             instance.InsertWall(new Point(0, 0), new Point(3, 0));
             Opening testOpening = new Door(new Point(2, 0));
+            instance.InsertOpening(testOpening);
+            testOpening=new Door(new Point(1, 0));
             instance.InsertOpening(testOpening);
             instance.RemoveWall(new Point(0, 0), new Point(3, 0));
             int actualResult=materials.OpeningsCount();
@@ -225,6 +238,27 @@ namespace Logic.Test {
             int actualResult = materials.WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void RemoveOpeningTest() {
+            instance.InsertWall(new Point(2, 3), new Point(2, 1));
+            instance.InsertOpening(new Door(new Point(2, 2)));
+            instance.RemoveOpening(new Door(new Point(2,2)));
+            int expectedResult = 0;
+            int actualResult = materials.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void RemoveUnexistentOpening() {
+            instance.InsertWall(new Point(2, 3), new Point(2, 1));
+            instance.RemoveOpening(new Door(new Point(2, 2)));
+            int expectedResult = 0;
+            int actualResult = materials.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
 
     }
 
