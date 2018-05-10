@@ -59,12 +59,6 @@ namespace SystemUsersTest {
         }
 
         [TestMethod]
-        public void AddUseRegistrationDateTest() {
-            intializerWithData();
-            Assert.AreNotEqual(user1.RegistrationDate, Constants.NEVER);
-        }
-
-        [TestMethod]
         public void GetUserTest() {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
