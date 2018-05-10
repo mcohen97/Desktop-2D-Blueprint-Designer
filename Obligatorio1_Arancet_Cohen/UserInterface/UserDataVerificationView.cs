@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UserInterface {
-    public partial class MainWindow : Form {
-        public MainWindow() {
+    public partial class UserDataVerificationView : UserControl {
+        public UserDataVerificationView() {
             InitializeComponent();
         }
 
-        List<IUserFeatureControl> views = new List<IUserFeatureControl>(){
-                new LoginView()
+        private void label5_Click(object sender, EventArgs e) {
 
-            };
+        }
+
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
     }
 }

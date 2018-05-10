@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Logic;
 
 namespace UserInterface {
-    interface IUserPermissionControl {
+    interface IUserFeatureControl {
 
         Permission GetRequiredPermission();
 
