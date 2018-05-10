@@ -53,7 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AdminTest.cs" />
-    <Compile Include="BlueprintTest.cs" />
+    <Compile Include="BluePrintTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="DesignerTest.cs" />
     <Compile Include="PointTest.cs" />
