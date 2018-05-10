@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logic;
 
 namespace UserInterface {
-    public partial class UserDataVerificationView : UserControl {
+    public partial class UserDataVerificationView : UserControl, IUserFeatureControl {
         public UserDataVerificationView() {
             InitializeComponent();
         }
@@ -20,6 +21,10 @@ namespace UserInterface {
 
         private void label1_Click(object sender, EventArgs e) {
 
+        }
+
+        public Permission GetRequiredPermission() {
+            throw new NotImplementedException();
         }
     }
 }

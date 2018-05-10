@@ -105,12 +105,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button LogInButton;
         private System.Windows.Forms.Label WelcomeMessageLabel;
         private System.Windows.Forms.TextBox UsernameText;
         private System.Windows.Forms.TextBox PasswordText;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label PasswordLabel;
+        internal System.Windows.Forms.Button LogInButton;
     }
 }

@@ -11,12 +11,15 @@ using System.Windows.Forms;
 namespace UserInterface {
     public partial class MainWindow : Form {
         public MainWindow() {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
-        List<IUserFeatureControl> views = new List<IUserFeatureControl>(){
-                new LoginView()
+        void ShowLoginControl() {
+            LoginView login = new LoginView();
+            login.LogInButton.MouseClick+= new System.EventHandler(this.label5_Click);
 
-            };
+        private void OpenPostLoginControl(object sender, EventArgs e) {
+            throw new NotImplementedException();
+        }
     }
 }

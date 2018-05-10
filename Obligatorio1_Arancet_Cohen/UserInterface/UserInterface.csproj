@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IUserFeatureControl.cs" />
+    <Compile Include="LoggedInView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoggedInView.Designer.cs">
+      <DependentUpon>LoggedInView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     <Compile Include="UserDataVerificationView.Designer.cs">
       <DependentUpon>UserDataVerificationView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LoggedInView.resx">
+      <DependentUpon>LoggedInView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
