@@ -10,14 +10,23 @@ using System.Windows.Forms;
 using Logic;
 
 namespace UserInterface {
-    public partial class LoginView : UserControl, IUserFeatureControl {
-        public LoginView() {
+    public partial class LoginView : UserControl {
+
+        SessionConnector connector;
+        MainWindow mother;
+
+        public LoginView(MainWindow aWindow) {
+
             InitializeComponent();
+            mother = aWindow;
+            connector = new SessionConnector();
             PasswordText.PasswordChar = '*';
+
         }
 
-        public Permission GetRequiredPermission() {
-            return Permission.EDIT_USER;
+        private void LogInButton_Click(object sender, EventArgs e) {
+            //mother.CurrentSession=connector.LogIn(UsernameText.Text, PasswordText.Text);
+            mother.ProceedToMenu();
         }
     }
 }

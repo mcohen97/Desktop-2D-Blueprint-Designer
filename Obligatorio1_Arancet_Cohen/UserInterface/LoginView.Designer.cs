@@ -39,6 +39,7 @@
             this.LogInButton.TabIndex = 0;
             this.LogInButton.Text = "Log In";
             this.LogInButton.UseVisualStyleBackColor = true;
+            this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
             // 
             // WelcomeMessageLabel
             // 

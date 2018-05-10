@@ -7,19 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logic;
 
 namespace UserInterface {
     public partial class MainWindow : Form {
+
+        public Session CurrentSession { set; get; }
+        public UserControl currentPanel;
+
         public MainWindow() {
-            InitializeComponent(); 
+            InitializeComponent();
+            currentPanel = new LoginView(this);
+            mainPanel.Controls.Add(currentPanel);
         }
 
-        void ShowLoginControl() {
-            LoginView login = new LoginView();
-            login.LogInButton.MouseClick+= new System.EventHandler(this.label5_Click);
-
-        private void OpenPostLoginControl(object sender, EventArgs e) {
-            throw new NotImplementedException();
+        internal void ProceedToMenu() {
+            mainPanel.Controls.Remove(currentPanel);
+            currentPanel = new LoggedInView(this,CurrentSession);
+            //currentPanel,
+            mainPanel.Controls.Add(currentPanel);
         }
     }
 }

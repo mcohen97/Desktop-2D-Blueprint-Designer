@@ -9,22 +9,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic;
 
+
 namespace UserInterface {
     public partial class UserDataVerificationView : UserControl, IUserFeatureControl {
+
+        private Session CurrentSession { get; set; }
+
         public UserDataVerificationView() {
             InitializeComponent();
         }
 
-        private void label5_Click(object sender, EventArgs e) {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e) {
-
-        }
-
         public Permission GetRequiredPermission() {
-            throw new NotImplementedException();
+            return Permission.EDIT_USER;
+        }
+
+        public Button OptionMenuButton() {
+            Button optionButton = new Button();
+            optionButton.Text = "Edit Personal Info";
+            return optionButton;
+        }
+
+        public void SetSession(Session aSession) {
+            CurrentSession = aSession;
         }
     }
 }

@@ -79,7 +79,6 @@
             this.IDTitle.Size = new System.Drawing.Size(29, 22);
             this.IDTitle.TabIndex = 10;
             this.IDTitle.Text = "ID";
-            this.IDTitle.Click += new System.EventHandler(this.label5_Click);
             // 
             // telNumberTitle
             // 
@@ -159,7 +158,6 @@
             this.viewTitle.Size = new System.Drawing.Size(266, 22);
             this.viewTitle.TabIndex = 14;
             this.viewTitle.Text = "Verify your registration data";
-            this.viewTitle.Click += new System.EventHandler(this.label1_Click);
             // 
             // finishButton
             // 
