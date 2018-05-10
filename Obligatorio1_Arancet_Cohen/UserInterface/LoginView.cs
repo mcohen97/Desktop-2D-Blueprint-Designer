@@ -25,8 +25,27 @@ namespace UserInterface {
         }
 
         private void LogInButton_Click(object sender, EventArgs e) {
-            //mother.CurrentSession=connector.LogIn(UsernameText.Text, PasswordText.Text);
-            mother.ProceedToMenu();
+            try {
+                mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
+                mother.ProceedToMenu();
+            } catch (WrongPasswordException) {
+                FieldMessages.ErrorMessage(PasswordMsg, "Wrong Password!");
+            } catch(UserNotFoundException) {
+                FieldMessages.ErrorMessage(UserNameMsg, "User doesn't exist!");
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void UsernameText_TextChanged(object sender, EventArgs e) {
+            FieldMessages.ClearField(UserNameMsg);
+        }
+
+        private void PasswordText_TextChanged(object sender, EventArgs e) {
+            FieldMessages.ClearField(PasswordMsg);
         }
     }
 }

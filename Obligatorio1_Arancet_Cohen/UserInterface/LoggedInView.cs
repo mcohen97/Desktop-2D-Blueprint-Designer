@@ -14,28 +14,39 @@ namespace UserInterface {
 
         Session CurrentSession { get; set; }
         MainWindow mother;
+        List<IUserFeatureControl> availableViews;
 
         public LoggedInView(MainWindow aWindow, Session aSession) {
             InitializeComponent();
             CurrentSession = aSession;
             mother = aWindow;
+            availableViews = new List<IUserFeatureControl>() {
+           new UserDataVerificationView(CurrentSession),
+           new ChooseBlueprintView(CurrentSession, this),
+           new ManageCostsView(),
+           new ManageUsersView()
+
+        };
             SetMenu();
         }
 
-        List<IUserFeatureControl> availableViews = new List<IUserFeatureControl>() {
-           new UserDataVerificationView()
-
-        };
+         
 
         private void SetMenu() {
+            int buttonX = 50;
+            int buttonY = 50;
             Button currentButton;
             foreach (IUserFeatureControl control in availableViews) {
-                //if (CurrentSession.UserLogged.HasPermission(control.GetRequiredPermission())) {
-                currentButton = control.OptionMenuButton();
-                AddDelegate(currentButton, (UserControl)control);
-                menuPanel.Controls.Add(currentButton);
+                if (CurrentSession.UserLogged.HasPermission(control.GetRequiredPermission())) {
+                    currentButton = control.OptionMenuButton();
+                    currentButton.Left = buttonX;
+                    currentButton.Top = buttonY;
+                    AddDelegate(currentButton, (UserControl)control);
+                    menuPanel.Controls.Add(currentButton);
+                    Console.Write("add button");
+                    buttonX += 150;
 
-                //}
+                }
             }
             
         }

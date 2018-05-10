@@ -14,6 +14,5 @@ namespace UserInterface {
         void SetSession(Session aSession);
 
         Button OptionMenuButton();
-
     }
 }

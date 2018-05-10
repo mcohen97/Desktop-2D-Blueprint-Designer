@@ -88,7 +88,11 @@ namespace Logic {
         }
 
         public User GetUserByUserName(string userName) {
-            return Users.First(x => x.UserName == userName);
+            try {
+                return Users.First(x => x.UserName == userName);
+            } catch (Exception) {
+                throw new UserNotFoundException();
+            } 
         }
     }
 }

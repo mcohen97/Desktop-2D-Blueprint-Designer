@@ -9,27 +9,29 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic;
 
-
 namespace UserInterface {
-    public partial class UserDataVerificationView : UserControl, IUserFeatureControl {
+    public partial class ChooseBlueprintView : UserControl, IUserFeatureControl {
 
         private Session CurrentSession { get; set; }
+        private UserControl mother;
 
-        public UserDataVerificationView(Session aSession) {
+        public ChooseBlueprintView(Session aSession, UserControl loginView) {
             InitializeComponent();
+            mother = loginView;
             CurrentSession = aSession;
         }
 
         public Permission GetRequiredPermission() {
-            return Permission.EDIT_USER;
+            return Permission.READ_BLUEPRINT;
         }
 
         public Button OptionMenuButton() {
-            Button optionButton = new Button();
-            optionButton.Width = 100;
-            optionButton.Height = 50;
-            optionButton.Text = "Edit Personal Info";
-            return optionButton;
+            Button option = new Button();
+            option.Width = 100;
+            option.Height = 50;
+            option.Text = "Open Blueprint";
+            return option;
+
         }
 
         public void SetSession(Session aSession) {
