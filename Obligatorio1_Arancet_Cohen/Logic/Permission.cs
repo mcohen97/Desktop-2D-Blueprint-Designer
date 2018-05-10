@@ -16,6 +16,8 @@ namespace Logic
         EDIT_USER,
         REMOVE_USER,
         CREATE_USER,
-        READ_USER
+        READ_USER,
+        HOLD_EXTRA_DATA,
+        FIRST_LOGIN
     }
 }

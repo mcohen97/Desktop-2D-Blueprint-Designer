@@ -14,15 +14,47 @@ namespace UserInterface {
     public partial class UserDataVerificationView : UserControl, IUserFeatureControl {
 
         private Session CurrentSession { get; set; }
-
-        public UserDataVerificationView(Session aSession) {
+        public MainWindow parent;
+        public UserDataVerificationView(Session aSession, MainWindow aWindow) {
             InitializeComponent();
+            parent = aWindow;
             CurrentSession = aSession;
+            ShowData();
+        }
+
+        private void ShowData() {
+            SetCommonData();
+            if (CurrentSession.UserLogged.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+                onlyUserFields.Show();
+                SetUserData();
+            } else {
+                onlyUserFields.Hide();
+            }
+
+        }
+
+        private void SetCommonData() {
+            if (CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
+                viewTitle.Text = "Verify and edit your information";
+            } else {
+                viewTitle.Text = "Edit your information";
+            }
+            nameTxt.Text = CurrentSession.UserLogged.Name;
+            surnameText.Text = CurrentSession.UserLogged.Surname;
+            passwordText.Text = CurrentSession.UserLogged.Password;
+        }
+
+        private void SetUserData() {
+            Client logged = (Client)CurrentSession.UserLogged;
+            idText.Text = logged.Id;
+            telNumberText.Text = logged.Phone;
+            addressText.Text = logged.Address;
         }
 
         public Permission GetRequiredPermission() {
             return Permission.EDIT_USER;
         }
+
 
         public Button OptionMenuButton() {
             Button optionButton = new Button();
@@ -34,6 +66,13 @@ namespace UserInterface {
 
         public void SetSession(Session aSession) {
             CurrentSession = aSession;
+        }
+
+        private void finishButton_Click(object sender, EventArgs e) {
+            if (CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
+                CurrentSession.UserLogged.RemovePermission(Permission.FIRST_LOGIN);
+            }
+            parent.GoToMenu();
         }
     }
 }

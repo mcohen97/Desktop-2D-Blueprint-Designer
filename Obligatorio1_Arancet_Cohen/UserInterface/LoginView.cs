@@ -27,7 +27,7 @@ namespace UserInterface {
         private void LogInButton_Click(object sender, EventArgs e) {
             try {
                 mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
-                mother.ProceedToMenu();
+                mother.GoToMenu();
             } catch (WrongPasswordException) {
                 FieldMessages.ErrorMessage(PasswordMsg, "Wrong Password!");
             } catch(UserNotFoundException) {

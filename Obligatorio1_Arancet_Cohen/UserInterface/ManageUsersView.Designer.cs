@@ -41,7 +41,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Name = "ManageUsersView";
-            this.Size = new System.Drawing.Size(384, 312);
+            this.Size = new System.Drawing.Size(884, 561);
             this.ResumeLayout(false);
             this.PerformLayout();
 

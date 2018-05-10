@@ -41,7 +41,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Name = "ManageCostsView";
-            this.Size = new System.Drawing.Size(546, 544);
+            this.Size = new System.Drawing.Size(884, 561);
             this.ResumeLayout(false);
             this.PerformLayout();
 

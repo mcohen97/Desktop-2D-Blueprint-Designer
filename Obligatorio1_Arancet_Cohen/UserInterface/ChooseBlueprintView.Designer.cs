@@ -28,9 +28,9 @@
             // 
             // blueprintsList
             // 
-            this.blueprintsList.Location = new System.Drawing.Point(56, 109);
+            this.blueprintsList.Location = new System.Drawing.Point(167, 60);
             this.blueprintsList.Name = "blueprintsList";
-            this.blueprintsList.Size = new System.Drawing.Size(396, 357);
+            this.blueprintsList.Size = new System.Drawing.Size(543, 434);
             this.blueprintsList.TabIndex = 0;
             this.blueprintsList.UseCompatibleStateImageBehavior = false;
             // 
@@ -40,7 +40,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.blueprintsList);
             this.Name = "ChooseBlueprintView";
-            this.Size = new System.Drawing.Size(516, 620);
+            this.Size = new System.Drawing.Size(884, 561);
             this.ResumeLayout(false);
 
         }

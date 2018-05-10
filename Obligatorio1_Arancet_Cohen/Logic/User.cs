@@ -56,6 +56,10 @@ namespace Logic
         {
             return base.GetHashCode();
         }
+
+        public void RemovePermission(Permission aPermission) {
+            Permissions.Remove(aPermission);
+        }
     }
 
 }
