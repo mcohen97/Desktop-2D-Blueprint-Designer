@@ -52,6 +52,13 @@ namespace SystemUsersTest {
         }
 
         [TestMethod]
+        public void AddUserUpdateLoginDateTest() {
+            intializerWithData();
+            Session session = conn.LogIn("client1UN", "client1P");
+            Assert.AreNotEqual(user1.LastLoginDate, Constants.NEVER);
+        }
+
+        [TestMethod]
         public void GetUserTest() {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
