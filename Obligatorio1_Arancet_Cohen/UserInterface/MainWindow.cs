@@ -17,6 +17,12 @@ namespace UserInterface {
 
         public MainWindow() {
             InitializeComponent();
+            Authenticate();
+            
+        }
+
+        public void Authenticate() {
+            mainPanel.Controls.Clear();
             currentPanel = new LoginView(this);
             mainPanel.Controls.Add(currentPanel);
         }

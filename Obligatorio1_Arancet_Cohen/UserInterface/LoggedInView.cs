@@ -33,7 +33,8 @@ namespace UserInterface {
          
 
         private void SetMenu() {
-            int buttonX = 50;
+            AddLogOutButton();
+            int buttonX = 170;
             int buttonY = 50;
             Button currentButton;
             foreach (IUserFeatureControl control in availableViews) {
@@ -43,12 +44,28 @@ namespace UserInterface {
                     currentButton.Top = buttonY;
                     AddDelegate(currentButton, (UserControl)control);
                     menuPanel.Controls.Add(currentButton);
-                    Console.Write("add button");
-                    buttonX += 150;
+                    buttonX += 120;
 
                 }
             }
             
+        }
+
+        private void AddLogOutButton() {
+            Button logOut = new Button();
+            logOut.Top = 50;
+            logOut.Left = 50;
+            logOut.Width = 100;
+            logOut.Height = 50;
+            logOut.Text = "Log Out";
+            menuPanel.Controls.Add(logOut);
+            logOut.Click += delegate (object sender, EventArgs e) {
+                LogOut();
+            };
+        }
+
+        private void LogOut() {
+            mother.Authenticate();
         }
 
         private void AddDelegate(Button currentButton, UserControl control) {
@@ -57,7 +74,6 @@ namespace UserInterface {
                 dynamicPanel.Controls.Add(control);
 
             };
-            //dynamicPanel.Controls.Add(control);
         }
     }
 }
