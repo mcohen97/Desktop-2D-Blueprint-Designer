@@ -22,8 +22,8 @@ namespace Logic
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
 
-            permissions = new List<Permission>();
-            permissions.Add(Permission.READ_BLUEPRINT);
+            Permissions = new List<Permission>();
+            Permissions.Add(Permission.READ_BLUEPRINT);
         }
     }
 

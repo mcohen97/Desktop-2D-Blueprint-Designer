@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
-{
-    interface IPermissible
-    {
-        bool HasPermission(Permission permissionAsked);
+namespace Logic {
+    interface IComponent2D {
+        float Length();
+        float Height();
     }
 }

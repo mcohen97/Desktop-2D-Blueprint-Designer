@@ -19,5 +19,10 @@ namespace Logic.Test
             float actualResult = instance.HeightAboveFloor;
             Assert.AreEqual(expectedResullt, actualResult);
         }
+
+        [TestMethod]
+        public void GetComponentTypeTest() {
+            Assert.AreEqual(ComponentType.WINDOW, instance.GetComponentType());
+        }
     }
 }

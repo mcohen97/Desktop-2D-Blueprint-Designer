@@ -15,13 +15,6 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void GetHeighTest() {
-            float expectedResult = 3;
-            float actualResult = instance.Height();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
         public void GetBeginningTest() {
             int expectedXResult = 3;
             int expectedYResult = 2;
@@ -48,5 +41,9 @@ namespace Logic.Test {
             Assert.AreNotEqual(instance, otherInstance);
         }
 
+        [TestMethod]
+        public void GetComponentTypeTest() {
+            Assert.AreEqual(ComponentType.BEAM, instance.GetComponentType());
+        }
     }
 }

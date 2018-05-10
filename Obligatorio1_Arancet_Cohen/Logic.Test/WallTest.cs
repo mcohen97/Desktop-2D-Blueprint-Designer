@@ -15,8 +15,16 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ZeroLengthWall() {
+        public void ConstructorSortedPointsTest() {
+            Wall testWall= new Wall(new Point(3, 2), new Point(1, 1));
+            bool beginningOk = testWall.Beginning().Equals(new Point(1, 1));
+            bool endOk = testWall.End().Equals(new Point(3, 2));
+            Assert.IsTrue(beginningOk && endOk);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ZeroLengthWallException))]
+        public void ZeroLengthWallTest() {
             instance = new Wall(new Point(0, 0), new Point(0, 0));
         }
 
@@ -118,10 +126,17 @@ namespace Logic.Test {
 
 
         }
+        [TestMethod]
+        public void GetIntersectionContinuousWalls() {
+            Wall testWall = new Wall(new Point(3,2), new Point(5,4));
+            Point expectedResult = new Point(3, 2);
+            Point actualResult=instance.GetIntersection(testWall);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
         [TestMethod]
-        [ExpectedException(typeof(WallsDoNotIntersectException))]
-        public void GetIntersectionColinearWallsTest() {
+        [ExpectedException(typeof(CollinearWallsException))]
+        public void GetIntersectionCollinearWallsTest() {
             Point intersection = instance.GetIntersection(instance);
         }
 
@@ -145,6 +160,19 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        public void OverlapsWallTest() {
+            Wall testWall = new Wall(new Point(1, 1), new Point(3, 3));
+            Wall otherTestWall = new Wall(new Point(2, 2), new Point(3, 3));
+            Assert.IsTrue(otherTestWall.Overlaps(testWall));
+        }
+
+        [TestMethod]
+        public void DoesNotOverlapWallTest() {
+            Wall testWall = new Wall(new Point(0, 1), new Point(0, 2));
+            Assert.IsFalse(instance.Overlaps(testWall));
+        }
+
+        [TestMethod]
         public void DoesNotBelongToWallTest() {
             Beam instance = new Beam(new Point(3, 2));
             Wall testWall = new Wall(new Point(2, 0), new Point(5, 0));
@@ -160,9 +188,9 @@ namespace Logic.Test {
 
         [TestMethod]
         public void BelongsToEdgeOfWallTest() {
-            Beam instance = new Beam(new Point(3, 2));
+            Beam instance = new Beam(new Point(3, 5));
             Wall testWall = new Wall(new Point(3, 0), new Point(3, 5));
-            Assert.IsTrue(testWall.DoesContainComponent(instance));
+            Assert.IsFalse(testWall.DoesContainComponent(instance));
         }
 
         [TestMethod]
@@ -185,6 +213,46 @@ namespace Logic.Test {
         [TestMethod]
         public void EqualsOtherTypeTest() {
             Assert.AreNotEqual(instance, new Window(new Point(0,0)));
+        }
+
+        [TestMethod]
+        public void AreContinuousTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(3,0), new Point(5,0));
+            Assert.IsTrue(testWall.IsContinuous(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreNotContinuousTest() {
+            Wall testWall = new Wall(new Point(1,0), new Point(3,0));
+            Wall otherTestWall = new Wall(new Point(4,0), new Point(5,0));
+            Assert.IsFalse(testWall.IsContinuous(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreConnectedContinuousTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
+            Assert.IsTrue(testWall.IsConnected(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreConnectedLShapeTest() {
+            Wall testWall = new Wall(new Point(0, 0), new Point(0, 2));
+            Wall otherTestWall = new Wall(new Point(2, 0), new Point(0, 0));
+            Assert.IsTrue(testWall.IsConnected(otherTestWall));
+        }
+
+        [TestMethod]
+        public void AreNotConnectedTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(4, 0), new Point(5, 0));
+            Assert.IsFalse(testWall.IsConnected(otherTestWall));
+        }
+
+        [TestMethod]
+        public void GetComponentTypeTest() {
+            Assert.AreEqual(ComponentType.WALL, instance.GetComponentType());
         }
 
     }
