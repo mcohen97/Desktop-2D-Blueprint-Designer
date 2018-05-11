@@ -70,5 +70,15 @@ namespace SystemUsersTest {
             IBlueprint blueprintGot = portfolio.GetBlueprint(blueprint1);
             Assert.AreEqual(blueprintGot, blueprint1);
         }
+
+        [TestMethod]
+        public void GetEnumeratorBlueprintOwnedByUserTest() {
+            User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
+            blueprint1.Owner = owner;
+            portfolio.Add(blueprint1);
+            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsOfUser(owner);
+            blueprints.MoveNext();
+            Assert.AreEqual(blueprints.Current, blueprint1);
+        }
     }
 }

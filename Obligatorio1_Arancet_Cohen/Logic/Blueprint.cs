@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logic;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Logic.Test")]
+
 
 namespace Logic {
     public class Blueprint:IBlueprint {
@@ -11,11 +15,13 @@ namespace Logic {
         private int Length;//Horizontal X Mesaure
         private int Width;//Vertical Y Mesaure
         private BuildingComponentContainer materials;
-
+        public User Owner { get; set; }
+        
         public Blueprint(int aLength, int aWidth) {
             Length = aLength;
             Width = aWidth;
             materials = new BuildingComponentContainer();
+            Owner = null;
         }
 
         public Blueprint(int aLength, int aWidth, BuildingComponentContainer container) {

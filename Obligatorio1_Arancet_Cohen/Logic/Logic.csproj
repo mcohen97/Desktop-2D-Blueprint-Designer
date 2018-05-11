@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Beam.cs" />
     <Compile Include="Blueprint.cs" />
+    <Compile Include="BlueprintController.cs" />
     <Compile Include="BlueprintPortfolio.cs" />
     <Compile Include="BuildingComponentContainer.cs" />
     <Compile Include="CollinearWallsException.cs" />

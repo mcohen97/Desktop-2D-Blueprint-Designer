@@ -61,5 +61,12 @@ namespace Logic {
             }
             return Blueprints.First(x => aBlueprint.Equals(x));
         }
+
+        public IEnumerator<IBlueprint> GetBlueprintsOfUser(User owner) {
+           if(owner == null) {
+                throw new ArgumentNullException();
+            }
+            return Blueprints.Where(x => owner.Equals(x.Owner)).GetEnumerator();
+        }
     }
 }

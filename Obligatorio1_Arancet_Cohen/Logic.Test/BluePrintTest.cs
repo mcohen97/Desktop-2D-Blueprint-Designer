@@ -268,6 +268,12 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void SetOwner() {
+            User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
+            instance.Owner = owner;
+            Assert.AreEqual(instance.Owner, owner);
+        }
 
 
     }

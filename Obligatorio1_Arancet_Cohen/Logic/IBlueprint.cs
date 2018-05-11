@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic {
-    interface IBlueprint {
+    public interface IBlueprint {
 
         void InsertWall(Point from, Point to);
 
@@ -13,6 +13,7 @@ namespace Logic {
 
         void InsertOpening(Opening newOpening);
 
-       
+        User Owner { get; set; }
+
     }
 }
