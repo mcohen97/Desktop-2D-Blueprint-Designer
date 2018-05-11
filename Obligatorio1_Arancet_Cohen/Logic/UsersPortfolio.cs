@@ -19,6 +19,7 @@ namespace Logic {
                     instance = new UsersPortfolio();
                     instance.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
                     instance.Add(new Client("user","user","user","user","user","user","user",DateTime.Now));
+                    instance.Add(new Designer("des", "des", "des", "des", DateTime.Now));
                 }
                 return instance;
             }

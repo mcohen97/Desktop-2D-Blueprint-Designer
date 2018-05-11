@@ -24,8 +24,7 @@ namespace UserInterface {
            new UserDataVerificationView(CurrentSession,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(),
-           new ManageUsers(),
-           new CreateBlueprint()
+           
 
         };
             SetMenu();
@@ -50,6 +49,10 @@ namespace UserInterface {
                 }
             }
             
+        }
+
+        internal void OpenBlueprintEditor(object selectedItem, Blueprint blueprint) {
+            throw new NotImplementedException();
         }
 
         private void AddLogOutButton() {

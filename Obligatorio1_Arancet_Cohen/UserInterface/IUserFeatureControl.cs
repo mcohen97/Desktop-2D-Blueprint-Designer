@@ -11,8 +11,6 @@ namespace UserInterface {
 
         Permission GetRequiredPermission();
 
-        void SetSession(Session aSession);
-
         Button OptionMenuButton();
     }
 }

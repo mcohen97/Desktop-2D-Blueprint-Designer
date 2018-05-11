@@ -99,18 +99,6 @@
     <Compile Include="ManageCostsView.Designer.cs">
       <DependentUpon>ManageCostsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChooseUserView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChooseUserView.Designer.cs">
-      <DependentUpon>ChooseUserView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ManageUsers.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManageUsers.Designer.cs">
-      <DependentUpon>ManageUsers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginView.cs">
@@ -137,6 +125,9 @@
     <EmbeddedResource Include="ComponentsInventory.resx">
       <DependentUpon>ComponentsInventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateBlueprint.resx">
+      <DependentUpon>CreateBlueprint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoggedInView.resx">
       <DependentUpon>LoggedInView.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,9 +136,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageCostsView.resx">
       <DependentUpon>ManageCostsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChooseUserView.resx">
-      <DependentUpon>ChooseUserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
