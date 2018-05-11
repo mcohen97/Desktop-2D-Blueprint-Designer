@@ -10,17 +10,19 @@ namespace Logic
     {
         public static readonly DateTime NEVER = DateTime.MinValue;
 
-        public static float WALL_METER_COST = 25;
-        public static float WALL_METER_PRICE = 50;
+        public static Dictionary<ComponentType, float> priceCatalogue = new Dictionary<ComponentType, float>() {
+            {ComponentType.WALL, 100 },
+            {ComponentType.BEAM, 100},
+            {ComponentType.WINDOW,75},
+            {ComponentType.DOOR,100 }
+        };
 
-        public static float BEAM_COST = 25;
-        public static float BEAM_PRICE = 50;
-
-        public static float DOOR_COST = 25;
-        public static float DOOR_PRICE = 50;
-
-        public static float WINDOW_COST = 25;
-        public static float WINDOW_PRICE = 50;
+        public static Dictionary<ComponentType, float> costCatalogue = new Dictionary<ComponentType, float>() {
+            {ComponentType.WALL, 50 },
+            {ComponentType.BEAM, 50},
+            {ComponentType.WINDOW,50},
+            {ComponentType.DOOR,50 }
+        };
 
     }
 }

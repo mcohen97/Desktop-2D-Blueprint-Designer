@@ -193,11 +193,11 @@ namespace Logic {
         }
 
         public float CalculatePrice() {
-            return Constants.WALL_METER_PRICE * Length();
+            return Constants.priceCatalogue[GetComponentType()] * Length();
         }
 
         public float CalculateCost() {
-            return Constants.WALL_METER_COST * Length();
+            return Constants.costCatalogue[GetComponentType()] * Length();
         }
     }
 }

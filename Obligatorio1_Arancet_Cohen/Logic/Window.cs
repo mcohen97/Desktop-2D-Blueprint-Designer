@@ -19,11 +19,11 @@ namespace Logic
         }
 
         public override float CalculatePrice() {
-            return Constants.WINDOW_PRICE;
+            return Constants.priceCatalogue[GetComponentType()];
         }
 
         public override float CalculateCost() {
-            return Constants.WINDOW_COST;
+            return Constants.costCatalogue[GetComponentType()];
         }
     }
 }

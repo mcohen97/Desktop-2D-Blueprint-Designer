@@ -38,11 +38,11 @@ namespace Logic {
         }
 
         public float CalculatePrice() {
-            return Constants.BEAM_PRICE;
+            return Constants.priceCatalogue[GetComponentType()];
         }
 
         public float CalculateCost() {
-            return Constants.BEAM_COST;
+            return Constants.costCatalogue[GetComponentType()];
         }
     }
 }
