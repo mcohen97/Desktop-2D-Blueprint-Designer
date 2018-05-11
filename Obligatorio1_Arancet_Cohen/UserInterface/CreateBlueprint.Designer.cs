@@ -1,5 +1,5 @@
 ﻿namespace UserInterface {
-    partial class ComponentsInventory {
+    partial class CreateBlueprint {
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -23,30 +23,10 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.componentsList = new System.Windows.Forms.ListBox();
-            this.SuspendLayout();
-            // 
-            // componentsList
-            // 
-            this.componentsList.FormattingEnabled = true;
-            this.componentsList.Location = new System.Drawing.Point(122, 62);
-            this.componentsList.Name = "componentsList";
-            this.componentsList.Size = new System.Drawing.Size(211, 277);
-            this.componentsList.TabIndex = 0;
-            // 
-            // ComponentsInventory
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.componentsList);
-            this.Name = "ComponentsInventory";
-            this.Size = new System.Drawing.Size(473, 461);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox componentsList;
     }
 }

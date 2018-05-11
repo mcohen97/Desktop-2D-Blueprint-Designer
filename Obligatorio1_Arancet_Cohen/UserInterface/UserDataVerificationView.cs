@@ -55,7 +55,6 @@ namespace UserInterface {
             return Permission.EDIT_USER;
         }
 
-
         public Button OptionMenuButton() {
             Button optionButton = new Button();
             optionButton.Width = 100;
@@ -69,10 +68,29 @@ namespace UserInterface {
         }
 
         private void finishButton_Click(object sender, EventArgs e) {
-            if (CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
-                CurrentSession.UserLogged.RemovePermission(Permission.FIRST_LOGIN);
+            User logged = CurrentSession.UserLogged;
+            if (logged.HasPermission(Permission.FIRST_LOGIN)) {
+                logged.RemovePermission(Permission.FIRST_LOGIN);
+            }
+            UpdateCommonInformation();
+            if (logged.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+                UpdateClientInformation();
             }
             parent.GoToMenu();
+        }
+
+        private void UpdateClientInformation() {
+            Client edited = (Client)CurrentSession.UserLogged;
+            edited.Id = idText.Text;
+            edited.Address = addressText.Text;
+            edited.Phone = telNumberText.Text;
+        }
+
+        private void UpdateCommonInformation() {
+            User edited = CurrentSession.UserLogged;
+            edited.Name = nameTxt.Text;
+            edited.Surname = surnameText.Text;
+            edited.Password = passwordText.Text;
         }
     }
 }

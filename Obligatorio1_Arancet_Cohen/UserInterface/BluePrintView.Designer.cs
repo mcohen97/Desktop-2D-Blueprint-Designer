@@ -33,15 +33,15 @@
             this.inventoryPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.inventoryPanel.Location = new System.Drawing.Point(0, 0);
             this.inventoryPanel.Name = "inventoryPanel";
-            this.inventoryPanel.Size = new System.Drawing.Size(288, 646);
+            this.inventoryPanel.Size = new System.Drawing.Size(288, 461);
             this.inventoryPanel.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(759, 0);
+            this.panel2.Location = new System.Drawing.Point(585, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(299, 646);
+            this.panel2.Size = new System.Drawing.Size(299, 461);
             this.panel2.TabIndex = 1;
             // 
             // panel3
@@ -49,7 +49,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(288, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(471, 646);
+            this.panel3.Size = new System.Drawing.Size(297, 461);
             this.panel3.TabIndex = 2;
             // 
             // BluePrintView
@@ -60,7 +60,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.inventoryPanel);
             this.Name = "BluePrintView";
-            this.Size = new System.Drawing.Size(1058, 646);
+            this.Size = new System.Drawing.Size(884, 461);
             this.ResumeLayout(false);
 
         }

@@ -1,5 +1,5 @@
 ﻿namespace UserInterface {
-    partial class ManageUsersView {
+    partial class ChooseUserView {
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -23,32 +23,42 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.label1 = new System.Windows.Forms.Label();
+            this.createButton = new System.Windows.Forms.Button();
+            this.usersList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // label1
+            // createButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(128, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "MANAGE USERS";
+            this.createButton.Location = new System.Drawing.Point(710, 381);
+            this.createButton.Name = "createButton";
+            this.createButton.Size = new System.Drawing.Size(136, 58);
+            this.createButton.TabIndex = 1;
+            this.createButton.Text = "Start";
+            this.createButton.UseVisualStyleBackColor = true;
             // 
-            // ManageUsersView
+            // usersList
+            // 
+            this.usersList.FormattingEnabled = true;
+            this.usersList.Location = new System.Drawing.Point(235, 34);
+            this.usersList.Name = "usersList";
+            this.usersList.Size = new System.Drawing.Size(405, 355);
+            this.usersList.TabIndex = 2;
+            // 
+            // ChooseUserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
-            this.Name = "ManageUsersView";
-            this.Size = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.usersList);
+            this.Controls.Add(this.createButton);
+            this.Name = "ChooseUserView";
+            this.Size = new System.Drawing.Size(884, 461);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Button createButton;
+        protected System.Windows.Forms.ListBox usersList;
     }
 }

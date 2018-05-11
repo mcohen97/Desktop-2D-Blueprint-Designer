@@ -75,13 +75,13 @@
             this.radioButtonGroup.TabStop = false;
             this.radioButtonGroup.Text = "Current component:";
             // 
-            // BluePrintEditView
+            // BlueprintCommandsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radioButtonGroup);
-            this.Name = "BluePrintEditView";
-            this.Size = new System.Drawing.Size(376, 571);
+            this.Name = "BlueprintCommandsView";
+            this.Size = new System.Drawing.Size(376, 461);
             this.radioButtonGroup.ResumeLayout(false);
             this.radioButtonGroup.PerformLayout();
             this.ResumeLayout(false);

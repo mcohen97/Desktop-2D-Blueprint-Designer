@@ -10,26 +10,30 @@ using System.Windows.Forms;
 using Logic;
 
 namespace UserInterface {
-    public partial class ManageUsersView : UserControl, IUserFeatureControl {
+    public abstract partial class ChooseUserView : UserControl, IUserFeatureControl {
 
-        public ManageUsersView() {
+        protected string optionName;
+
+        public ChooseUserView() {
             InitializeComponent();
+            FillList();
         }
 
-        public Permission GetRequiredPermission() {
-            return Permission.ALL_PERMISSIONS;
-        }
+        public abstract void FillList();
+
+        public abstract Permission GetRequiredPermission();
 
         public Button OptionMenuButton() {
             Button option = new Button();
             option.Width = 100;
             option.Height = 50;
-            option.Text = "Manage users";
+            option.Text = optionName;
             return option;
         }
 
         public void SetSession(Session aSession) {
             throw new NotImplementedException();
         }
+
     }
 }

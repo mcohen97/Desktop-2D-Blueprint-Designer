@@ -18,6 +18,7 @@ namespace Logic
         CREATE_USER,
         READ_USER,
         HOLD_EXTRA_DATA,
-        FIRST_LOGIN
+        FIRST_LOGIN,
+        MANAGE_COSTS
     }
 }

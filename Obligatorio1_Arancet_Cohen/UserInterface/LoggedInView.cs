@@ -24,7 +24,8 @@ namespace UserInterface {
            new UserDataVerificationView(CurrentSession,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(),
-           new ManageUsersView()
+           new ManageUsers(),
+           new CreateBlueprint()
 
         };
             SetMenu();

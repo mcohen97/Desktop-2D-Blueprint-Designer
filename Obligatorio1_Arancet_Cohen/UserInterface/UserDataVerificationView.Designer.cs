@@ -47,7 +47,7 @@
             // 
             this.UsernameTitle.AutoSize = true;
             this.UsernameTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTitle.Location = new System.Drawing.Point(239, 121);
+            this.UsernameTitle.Location = new System.Drawing.Point(234, 71);
             this.UsernameTitle.Name = "UsernameTitle";
             this.UsernameTitle.Size = new System.Drawing.Size(111, 22);
             this.UsernameTitle.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.nameTitle.AutoSize = true;
             this.nameTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTitle.Location = new System.Drawing.Point(239, 166);
+            this.nameTitle.Location = new System.Drawing.Point(234, 116);
             this.nameTitle.Name = "nameTitle";
             this.nameTitle.Size = new System.Drawing.Size(71, 22);
             this.nameTitle.TabIndex = 8;
@@ -68,7 +68,7 @@
             // 
             this.surnameTitle.AutoSize = true;
             this.surnameTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameTitle.Location = new System.Drawing.Point(239, 211);
+            this.surnameTitle.Location = new System.Drawing.Point(234, 161);
             this.surnameTitle.Name = "surnameTitle";
             this.surnameTitle.Size = new System.Drawing.Size(96, 22);
             this.surnameTitle.TabIndex = 9;
@@ -108,7 +108,7 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(496, 126);
+            this.UsernameLabel.Location = new System.Drawing.Point(491, 76);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(0, 22);
             this.UsernameLabel.TabIndex = 1;
@@ -116,7 +116,7 @@
             // surnameText
             // 
             this.surnameText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameText.Location = new System.Drawing.Point(473, 208);
+            this.surnameText.Location = new System.Drawing.Point(468, 158);
             this.surnameText.Name = "surnameText";
             this.surnameText.Size = new System.Drawing.Size(187, 31);
             this.surnameText.TabIndex = 2;
@@ -148,7 +148,7 @@
             // nameTxt
             // 
             this.nameTxt.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTxt.Location = new System.Drawing.Point(473, 163);
+            this.nameTxt.Location = new System.Drawing.Point(468, 113);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(187, 31);
             this.nameTxt.TabIndex = 13;
@@ -157,7 +157,7 @@
             // 
             this.viewTitle.AutoSize = true;
             this.viewTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewTitle.Location = new System.Drawing.Point(312, 69);
+            this.viewTitle.Location = new System.Drawing.Point(307, 19);
             this.viewTitle.Name = "viewTitle";
             this.viewTitle.Size = new System.Drawing.Size(266, 22);
             this.viewTitle.TabIndex = 14;
@@ -165,7 +165,7 @@
             // 
             // finishButton
             // 
-            this.finishButton.Location = new System.Drawing.Point(521, 463);
+            this.finishButton.Location = new System.Drawing.Point(516, 413);
             this.finishButton.Name = "finishButton";
             this.finishButton.Size = new System.Drawing.Size(139, 33);
             this.finishButton.TabIndex = 15;
@@ -181,7 +181,7 @@
             this.onlyUserFields.Controls.Add(this.addressText);
             this.onlyUserFields.Controls.Add(this.addressTitle);
             this.onlyUserFields.Controls.Add(this.telNumberTitle);
-            this.onlyUserFields.Location = new System.Drawing.Point(206, 293);
+            this.onlyUserFields.Location = new System.Drawing.Point(201, 243);
             this.onlyUserFields.Name = "onlyUserFields";
             this.onlyUserFields.Size = new System.Drawing.Size(478, 155);
             this.onlyUserFields.TabIndex = 16;
@@ -190,7 +190,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordLabel.Location = new System.Drawing.Point(239, 259);
+            this.passwordLabel.Location = new System.Drawing.Point(234, 209);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(100, 22);
             this.passwordLabel.TabIndex = 17;
@@ -199,7 +199,7 @@
             // passwordText
             // 
             this.passwordText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordText.Location = new System.Drawing.Point(473, 256);
+            this.passwordText.Location = new System.Drawing.Point(468, 206);
             this.passwordText.Name = "passwordText";
             this.passwordText.Size = new System.Drawing.Size(187, 31);
             this.passwordText.TabIndex = 18;
@@ -220,7 +220,7 @@
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.UsernameTitle);
             this.Name = "UserDataVerificationView";
-            this.Size = new System.Drawing.Size(884, 561);
+            this.Size = new System.Drawing.Size(884, 461);
             this.onlyUserFields.ResumeLayout(false);
             this.onlyUserFields.PerformLayout();
             this.ResumeLayout(false);
