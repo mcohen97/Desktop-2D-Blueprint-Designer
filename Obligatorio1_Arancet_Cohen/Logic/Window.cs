@@ -17,5 +17,13 @@ namespace Logic
         public ComponentType GetComponentType() {
             return ComponentType.WINDOW;
         }
+
+        public override float CalculatePrice() {
+            return Constants.WINDOW_PRICE;
+        }
+
+        public override float CalculateCost() {
+            return Constants.WINDOW_COST;
+        }
     }
 }

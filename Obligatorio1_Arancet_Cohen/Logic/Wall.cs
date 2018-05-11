@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Wall:IComponent3D, IDrawable {
+    public class Wall:IComponent3D, IDrawable, IPriceable {
 
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {
@@ -21,14 +21,12 @@ namespace Logic {
                 BeginningPoint = to;
                 EndPoint = from;
             }
-            UnitPriceValue = 50;
         }
 
         private float HeightValue { set; get; }
         private float WidthValue { set; get; }
         private Point BeginningPoint { set; get; }
         private Point EndPoint { set; get; }
-        private float UnitPriceValue { set; get; }
 
         public float Height() {
             return HeightValue;
@@ -48,10 +46,6 @@ namespace Logic {
 
         public Point End() {
             return EndPoint;
-        }
-
-        public float Price() {
-            return UnitPriceValue;
         }
 
         public bool IsHorizontal() {
@@ -196,6 +190,14 @@ namespace Logic {
 
         public ComponentType GetComponentType() {
             return ComponentType.WALL;
+        }
+
+        public float CalculatePrice() {
+            return Constants.WALL_METER_PRICE * Length();
+        }
+
+        public float CalculateCost() {
+            return Constants.WALL_METER_COST * Length();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Logic {
                 if(instance == null) {
                     instance = new UsersPortfolio();
                     instance.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
+                    instance.Add(new Client("user","user","user","user","user","user","user",DateTime.Now));
                 }
                 return instance;
             }
@@ -88,7 +89,11 @@ namespace Logic {
         }
 
         public User GetUserByUserName(string userName) {
-            return Users.First(x => x.UserName == userName);
+            try {
+                return Users.First(x => x.UserName == userName);
+            } catch (Exception) {
+                throw new UserNotFoundException();
+            } 
         }
     }
 }

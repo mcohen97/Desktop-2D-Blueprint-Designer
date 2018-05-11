@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public abstract class Opening : ISinglePointComponent, IComponent2D {
+    public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable {
 
         protected float HeightValue { get; set; }
         protected float LengthValue { get; set; }
         protected Point Position { get; set; }
-        protected float UnitPrice { get; set; }
 
         public Opening(Point aPlace) {
             Position = aPlace;
@@ -29,10 +28,6 @@ namespace Logic {
             return Position;
         }
 
-        public float Price() {
-            return UnitPrice;
-        }
-
         public override bool Equals(object obj) {
 
             bool areEqual;
@@ -48,5 +43,9 @@ namespace Logic {
         public override int GetHashCode() {
             return Position.GetHashCode();
         }
+
+        public abstract float CalculatePrice();
+
+        public abstract float CalculateCost();
     }
 }

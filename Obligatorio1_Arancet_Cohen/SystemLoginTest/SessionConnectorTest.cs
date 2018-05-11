@@ -24,7 +24,7 @@ namespace SystemLoginTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof(UserNotFoundException))]
         public void LogInNonExistentUserTest() {
             SessionConnector conn = new SessionConnector();
             Session session = conn.LogIn("jorge", "");
