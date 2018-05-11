@@ -27,6 +27,7 @@ namespace Logic
             Permissions.Add(Permission.EDIT_USER);
             Permissions.Add(Permission.HOLD_EXTRA_DATA);
             Permissions.Add(Permission.FIRST_LOGIN);
+            Permissions.Add(Permission.HAVE_BLUEPRINT);
         }
     }
 
