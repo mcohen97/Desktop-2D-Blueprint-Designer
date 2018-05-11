@@ -13,39 +13,46 @@ using Logic;
 namespace UserInterface {
     public partial class UserDataVerificationView : UserControl, IUserFeatureControl {
 
-        private Session CurrentSession { get; set; }
+        private User edited;
         public MainWindow parent;
-        public UserDataVerificationView(Session aSession, MainWindow aWindow) {
+        public UserDataVerificationView(User aUser, MainWindow aWindow) {
             InitializeComponent();
             parent = aWindow;
-            CurrentSession = aSession;
+            edited = aUser;
             ShowData();
         }
 
         private void ShowData() {
             SetCommonData();
-            if (CurrentSession.UserLogged.HasPermission(Permission.HOLD_EXTRA_DATA)) {
-                onlyUserFields.Show();
+            if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+                onlyClientFields.Show();
+                userInfo.Show();
                 SetUserData();
             } else {
-                onlyUserFields.Hide();
+                onlyClientFields.Hide();
+                if (edited.HasPermission(Permission.CREATE_USER)) {
+                    userInfo.Show();//this would be the admin case
+                } else {
+                    userInfo.Hide(); //this would be the Designer case
+                }
             }
 
         }
 
         private void SetCommonData() {
-            if (CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
+            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
                 viewTitle.Text = "Verify and edit your information";
             } else {
                 viewTitle.Text = "Edit your information";
             }
-            nameTxt.Text = CurrentSession.UserLogged.Name;
-            surnameText.Text = CurrentSession.UserLogged.Surname;
-            passwordText.Text = CurrentSession.UserLogged.Password;
+            nameTxt.Text = edited.Name;
+            surnameText.Text = edited.Surname;
+            passwordText.Text = edited.Password;
+            UsernameLabel.Text = edited.UserName;
         }
 
         private void SetUserData() {
-            Client logged = (Client)CurrentSession.UserLogged;
+            Client logged = (Client)edited;
             idText.Text = logged.Id;
             telNumberText.Text = logged.Phone;
             addressText.Text = logged.Address;
@@ -63,31 +70,25 @@ namespace UserInterface {
             return optionButton;
         }
 
-        public void SetSession(Session aSession) {
-            CurrentSession = aSession;
-        }
-
         private void finishButton_Click(object sender, EventArgs e) {
-            User logged = CurrentSession.UserLogged;
-            if (logged.HasPermission(Permission.FIRST_LOGIN)) {
-                logged.RemovePermission(Permission.FIRST_LOGIN);
+            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
+                edited.RemovePermission(Permission.FIRST_LOGIN);
             }
             UpdateCommonInformation();
-            if (logged.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+            if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
                 UpdateClientInformation();
             }
             parent.GoToMenu();
         }
 
         private void UpdateClientInformation() {
-            Client edited = (Client)CurrentSession.UserLogged;
-            edited.Id = idText.Text;
-            edited.Address = addressText.Text;
-            edited.Phone = telNumberText.Text;
+            Client updated = (Client)edited;
+            updated.Id = idText.Text;
+            updated.Address = addressText.Text;
+            updated.Phone = telNumberText.Text;
         }
 
         private void UpdateCommonInformation() {
-            User edited = CurrentSession.UserLogged;
             edited.Name = nameTxt.Text;
             edited.Surname = surnameText.Text;
             edited.Password = passwordText.Text;

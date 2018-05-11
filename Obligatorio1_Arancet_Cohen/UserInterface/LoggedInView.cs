@@ -21,7 +21,7 @@ namespace UserInterface {
             CurrentSession = aSession;
             mother = aWindow;
             availableViews = new List<IUserFeatureControl>() {
-           new UserDataVerificationView(CurrentSession,mother),
+           new UserDataVerificationView(CurrentSession.UserLogged,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(),
            new CreateBlueprint(CurrentSession,this)

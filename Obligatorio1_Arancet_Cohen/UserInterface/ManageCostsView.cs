@@ -30,5 +30,6 @@ namespace UserInterface {
         public void SetSession(Session aSession) {
             throw new NotImplementedException();
         }
+
     }
 }

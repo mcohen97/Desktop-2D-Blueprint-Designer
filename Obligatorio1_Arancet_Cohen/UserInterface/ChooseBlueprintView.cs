@@ -19,6 +19,15 @@ namespace UserInterface {
             InitializeComponent();
             mother = loginView;
             CurrentSession = aSession;
+            FillList();
+        }
+
+        private void FillList() {
+            if (CurrentSession.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {
+
+            } else {
+
+            }
         }
 
         public Permission GetRequiredPermission() {
