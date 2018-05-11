@@ -28,10 +28,6 @@ namespace Logic {
             return Position;
         }
 
-        public float Price() {
-            return UnitPrice;
-        }
-
         public override bool Equals(object obj) {
 
             bool areEqual;
