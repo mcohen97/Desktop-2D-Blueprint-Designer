@@ -23,7 +23,7 @@ namespace UserInterface {
             availableViews = new List<IUserFeatureControl>() {
            new UserDataVerificationView(CurrentSession.UserLogged,mother),
            new ChooseBlueprintView(CurrentSession, this),
-           new ManageCostsView(),
+           new ManageCostsView(this),
            new CreateBlueprint(CurrentSession,this)
         };
             SetMenu();
@@ -70,6 +70,10 @@ namespace UserInterface {
 
         private void LogOut() {
             mother.Authenticate();
+        }
+
+        public void RestartMenu() {
+            mother.GoToMenu();//should be changed for a home screen if we have time
         }
 
         private void AddDelegate(Button currentButton, UserControl control) {
