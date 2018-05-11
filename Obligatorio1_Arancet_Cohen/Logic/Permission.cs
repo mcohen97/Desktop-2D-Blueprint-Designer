@@ -19,6 +19,7 @@ namespace Logic
         READ_USER,
         HOLD_EXTRA_DATA,
         FIRST_LOGIN,
-        MANAGE_COSTS
+        MANAGE_COSTS,
+        HAVE_BLUEPRINT
     }
 }
