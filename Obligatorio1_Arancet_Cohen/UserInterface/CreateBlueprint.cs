@@ -19,6 +19,7 @@ namespace UserInterface {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
+            FillList();
         }
 
 
@@ -37,7 +38,7 @@ namespace UserInterface {
                 int _height = 0;
                 Int32.TryParse(width, out _height);
                 string name = nameText.Text;
-                parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint());
+                parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint(_width,_height,name));
             }
         }
 
@@ -53,6 +54,5 @@ namespace UserInterface {
             return optionButton;
         }
 
-      
     }
 }

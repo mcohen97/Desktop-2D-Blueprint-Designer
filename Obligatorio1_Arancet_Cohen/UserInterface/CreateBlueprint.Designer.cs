@@ -50,6 +50,7 @@
             this.createButton.TabIndex = 1;
             this.createButton.Text = "Create blueprint";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // label1
             // 

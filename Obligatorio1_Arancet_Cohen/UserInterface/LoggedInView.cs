@@ -24,8 +24,7 @@ namespace UserInterface {
            new UserDataVerificationView(CurrentSession,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(),
-           
-
+           new CreateBlueprint(CurrentSession,this)
         };
             SetMenu();
         }
@@ -52,7 +51,8 @@ namespace UserInterface {
         }
 
         internal void OpenBlueprintEditor(object selectedItem, Blueprint blueprint) {
-            throw new NotImplementedException();
+            dynamicPanel.Controls.Clear();
+            dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
         }
 
         private void AddLogOutButton() {

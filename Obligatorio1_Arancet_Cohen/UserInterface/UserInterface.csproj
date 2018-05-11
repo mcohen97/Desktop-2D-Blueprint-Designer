@@ -49,35 +49,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlueprintCommandsView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BlueprintCommandsView.Designer.cs">
-      <DependentUpon>BlueprintCommandsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BluePrintView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BluePrintView.Designer.cs">
-      <DependentUpon>BluePrintView.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChooseBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ChooseBlueprintView.Designer.cs">
       <DependentUpon>ChooseBlueprintView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComponentsInventory.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ComponentsInventory.Designer.cs">
-      <DependentUpon>ComponentsInventory.cs</DependentUpon>
-    </Compile>
     <Compile Include="CreateBlueprint.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CreateBlueprint.Designer.cs">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditBlueprintView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditBlueprintView.Designer.cs">
+      <DependentUpon>EditBlueprintView.cs</DependentUpon>
     </Compile>
     <Compile Include="FieldMessages.cs" />
     <Compile Include="IUserFeatureControl.cs" />
@@ -113,20 +101,14 @@
     <Compile Include="UserDataVerificationView.Designer.cs">
       <DependentUpon>UserDataVerificationView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BlueprintCommandsView.resx">
-      <DependentUpon>BlueprintCommandsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BluePrintView.resx">
-      <DependentUpon>BluePrintView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChooseBlueprintView.resx">
       <DependentUpon>ChooseBlueprintView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComponentsInventory.resx">
-      <DependentUpon>ComponentsInventory.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CreateBlueprint.resx">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBlueprintView.resx">
+      <DependentUpon>EditBlueprintView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoggedInView.resx">
       <DependentUpon>LoggedInView.cs</DependentUpon>
