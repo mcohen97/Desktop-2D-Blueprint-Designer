@@ -50,6 +50,7 @@
     <Compile Include="IComponent2D.cs" />
     <Compile Include="IComponent3D.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="IPriceable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="NoPermissionsException.cs" />
     <Compile Include="OutOfRangeComponentException.cs" />

@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 
 namespace Logic {
 
-    public class Beam : ISinglePointComponent, IDrawable {
+    public class Beam : ISinglePointComponent, IDrawable, IPriceable {
 
         private Point Position { get; set; }
-        private float UnitPrice { get; set; }
 
         public Beam(Point aPlace) {
             Position = aPlace;
-            UnitPrice = 50;
         }
 
         public Point GetPosition() {
             return Position;
-        }
-
-        public float Price() {
-            return UnitPrice;
         }
 
         public override bool Equals(object obj) {
@@ -41,6 +35,14 @@ namespace Logic {
 
         public ComponentType GetComponentType() {
             return ComponentType.BEAM;
+        }
+
+        public float CalculatePrice() {
+            return Constants.BEAM_PRICE;
+        }
+
+        public float CalculateCost() {
+            return Constants.BEAM_COST;
         }
     }
 }

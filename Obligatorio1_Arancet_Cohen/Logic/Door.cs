@@ -11,7 +11,14 @@ namespace Logic {
         public Door(Point aPlace) : base(aPlace) {
             HeightValue = 2.20F;
             LengthValue = 0.85F;
-            UnitPrice = 50;
+        }
+
+        public override float CalculateCost() {
+            return Constants.DOOR_COST;
+        }
+
+        public override float CalculatePrice() {
+            return Constants.DOOR_PRICE;
         }
 
         public ComponentType GetComponentType() {
