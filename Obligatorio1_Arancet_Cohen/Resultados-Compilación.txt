@@ -1,0 +1,3 @@
+﻿1>------ Operación Compilar iniciada: proyecto: SystemUsersTest, configuración: Debug Any CPU ------
+1>  SystemUsersTest -> C:\Users\USER\Dropbox\olbligatorio-1-dis-1\Obligatorio1_Arancet_Cohen\SystemUsersTest\bin\Debug\SystemUsersTest.dll
+========== Compilar: 1 correctos, 0 incorrectos, 3 actualizados, 0 omitidos ==========
