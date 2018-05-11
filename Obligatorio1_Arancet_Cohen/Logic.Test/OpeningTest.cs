@@ -38,8 +38,15 @@ namespace Logic.Test {
 
         [TestMethod]
         public void GetPriceTest() {
-            float expectedResult = 50;
+            float expectedResult = 100;
             float actualResult = instance.CalculatePrice();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void GetCostTest() {
+            float expectedResult = 50;
+            float actualResult = instance.CalculateCost();
             Assert.AreEqual(expectedResult, actualResult);
         }
 
