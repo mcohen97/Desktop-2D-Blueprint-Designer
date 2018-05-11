@@ -34,9 +34,9 @@ namespace SystemUsersTest {
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
             user4 = new Designer("designer2N", "designer2S", "designer2UN", "designer2P", DateTime.Now);
 
-            blueprint1 = new Blueprint(12, 12);
-            blueprint2 = new Blueprint(10, 10);
-            blueprint3 = new Blueprint(11, 11);
+            blueprint1 = new Blueprint(12, 12, "Blueprint1");
+            blueprint2 = new Blueprint(10, 10, "Blueprint2");
+            blueprint3 = new Blueprint(11, 11, "Blueprint2");
 
             blueprint1.Owner = user1;
             blueprint2.Owner = user2;

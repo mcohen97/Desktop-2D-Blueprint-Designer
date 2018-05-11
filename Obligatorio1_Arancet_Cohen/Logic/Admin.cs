@@ -20,6 +20,7 @@ namespace Logic
             Permissions.Add(Permission.READ_USER);
             Permissions.Add(Permission.REMOVE_USER);
             Permissions.Add(Permission.MANAGE_COSTS);
+            Permissions.Add(Permission.EDIT_OWN_DATA);
         }
     }
 }

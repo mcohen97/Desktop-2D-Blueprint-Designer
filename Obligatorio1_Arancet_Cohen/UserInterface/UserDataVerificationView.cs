@@ -59,7 +59,7 @@ namespace UserInterface {
         }
 
         public Permission GetRequiredPermission() {
-            return Permission.EDIT_USER;
+            return Permission.EDIT_OWN_DATA;
         }
 
         public Button OptionMenuButton() {

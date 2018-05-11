@@ -12,30 +12,23 @@ using System.Runtime.CompilerServices;
 namespace Logic {
     public class Blueprint:IBlueprint {
 
-        private int length;//Horizontal X Mesaure
-        private int width;//Vertical Y Mesaure
+        public int Length { get; set; }//Horizontal X Mesaure
+        public int Width { get; set; }//Vertical Y Mesaure
         private BuildingComponentContainer materials;
-<<<<<<< HEAD
         public User Owner { get; set; }
-        
-        public Blueprint(int aLength, int aWidth) {
-            Length = aLength;
-            Width = aWidth;
-=======
         private string name;
 
+
         public Blueprint(int aLength, int aWidth,string aName) {
-            length = aLength;
-            width = aWidth;
+            Length = aLength;
+            Width = aWidth;
             name = aName;
->>>>>>> feature_UserInterfaceLogin
             materials = new BuildingComponentContainer();
-            Owner = null;
         }
 
         public Blueprint(int aLength, int aWidth, BuildingComponentContainer container) {
-            length = aLength;
-            width = aWidth;
+            Length = aLength;
+            Width = aWidth;
             materials = container;
         }
 
@@ -187,7 +180,7 @@ namespace Logic {
         }
 
         private bool PointInRange(Point aPoint) {
-            return aPoint.IsInRange(length,width);
+            return aPoint.IsInRange(Length,Width);
         }
 
         private bool TakesOtherWallsPlace(Wall newWall) {

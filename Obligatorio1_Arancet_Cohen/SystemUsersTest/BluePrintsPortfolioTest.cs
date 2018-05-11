@@ -18,9 +18,9 @@ namespace SystemUsersTest {
             portfolio = BlueprintPortfolio.Instance;
             portfolio.Empty();
 
-            blueprint1 = new Blueprint(12, 12);
-            blueprint2 = new Blueprint(12, 12);
-            blueprint3 = new Blueprint(12, 12);
+            blueprint1 = new Blueprint(12, 12, "Blueprint1");
+            blueprint2 = new Blueprint(12, 12, "Blueprint2");
+            blueprint3 = new Blueprint(12, 12, "Blueprint3");
         }
 
         [TestMethod]
