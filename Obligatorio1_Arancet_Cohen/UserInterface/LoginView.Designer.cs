@@ -36,7 +36,7 @@
             // 
             // LogInButton
             // 
-            this.LogInButton.Location = new System.Drawing.Point(121, 261);
+            this.LogInButton.Location = new System.Drawing.Point(333, 328);
             this.LogInButton.Name = "LogInButton";
             this.LogInButton.Size = new System.Drawing.Size(180, 50);
             this.LogInButton.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             this.WelcomeMessageLabel.AutoSize = true;
             this.WelcomeMessageLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WelcomeMessageLabel.Location = new System.Drawing.Point(100, 48);
+            this.WelcomeMessageLabel.Location = new System.Drawing.Point(312, 115);
             this.WelcomeMessageLabel.Name = "WelcomeMessageLabel";
             this.WelcomeMessageLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.WelcomeMessageLabel.Size = new System.Drawing.Size(235, 22);
@@ -58,7 +58,7 @@
             // UsernameText
             // 
             this.UsernameText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameText.Location = new System.Drawing.Point(98, 132);
+            this.UsernameText.Location = new System.Drawing.Point(310, 199);
             this.UsernameText.Name = "UsernameText";
             this.UsernameText.Size = new System.Drawing.Size(236, 31);
             this.UsernameText.TabIndex = 2;
@@ -67,7 +67,7 @@
             // PasswordText
             // 
             this.PasswordText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordText.Location = new System.Drawing.Point(98, 206);
+            this.PasswordText.Location = new System.Drawing.Point(310, 273);
             this.PasswordText.Name = "PasswordText";
             this.PasswordText.Size = new System.Drawing.Size(236, 31);
             this.PasswordText.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(94, 107);
+            this.UsernameLabel.Location = new System.Drawing.Point(306, 174);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(106, 22);
             this.UsernameLabel.TabIndex = 4;
@@ -87,7 +87,7 @@
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(94, 181);
+            this.PasswordLabel.Location = new System.Drawing.Point(306, 248);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(95, 22);
             this.PasswordLabel.TabIndex = 5;
@@ -95,7 +95,7 @@
             // 
             // testDataButton
             // 
-            this.testDataButton.Location = new System.Drawing.Point(22, 351);
+            this.testDataButton.Location = new System.Drawing.Point(41, 480);
             this.testDataButton.Name = "testDataButton";
             this.testDataButton.Size = new System.Drawing.Size(127, 41);
             this.testDataButton.TabIndex = 6;
@@ -106,7 +106,7 @@
             // UserNameMsg
             // 
             this.UserNameMsg.AutoSize = true;
-            this.UserNameMsg.Location = new System.Drawing.Point(363, 132);
+            this.UserNameMsg.Location = new System.Drawing.Point(575, 199);
             this.UserNameMsg.Name = "UserNameMsg";
             this.UserNameMsg.Size = new System.Drawing.Size(0, 13);
             this.UserNameMsg.TabIndex = 7;
@@ -114,7 +114,7 @@
             // PasswordMsg
             // 
             this.PasswordMsg.AutoSize = true;
-            this.PasswordMsg.Location = new System.Drawing.Point(363, 206);
+            this.PasswordMsg.Location = new System.Drawing.Point(575, 273);
             this.PasswordMsg.Name = "PasswordMsg";
             this.PasswordMsg.Size = new System.Drawing.Size(0, 13);
             this.PasswordMsg.TabIndex = 8;
@@ -133,7 +133,7 @@
             this.Controls.Add(this.WelcomeMessageLabel);
             this.Controls.Add(this.LogInButton);
             this.Name = "LoginView";
-            this.Size = new System.Drawing.Size(559, 409);
+            this.Size = new System.Drawing.Size(884, 561);
             this.ResumeLayout(false);
             this.PerformLayout();
 

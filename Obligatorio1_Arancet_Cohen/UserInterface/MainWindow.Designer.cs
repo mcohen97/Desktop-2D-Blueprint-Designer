@@ -31,14 +31,14 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(689, 526);
+            this.mainPanel.Size = new System.Drawing.Size(884, 561);
             this.mainPanel.TabIndex = 0;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 526);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.mainPanel);
             this.Name = "MainWindow";
             this.Text = "Form1";

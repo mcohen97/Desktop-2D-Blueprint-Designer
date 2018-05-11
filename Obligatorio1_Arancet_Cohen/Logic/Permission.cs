@@ -17,6 +17,13 @@ namespace Logic
         REMOVE_USER,
         CREATE_USER,
         READ_USER,
+<<<<<<< HEAD
         READ_OWNEDBLUEPRINT
+=======
+        HOLD_EXTRA_DATA,
+        FIRST_LOGIN,
+        MANAGE_COSTS,
+        HAVE_BLUEPRINT
+>>>>>>> feature_UserInterfaceLogin
     }
 }

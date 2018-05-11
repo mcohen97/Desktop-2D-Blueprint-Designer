@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 [assembly: InternalsVisibleTo("SystemLoginTest")]
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
 namespace Logic {
-    internal class UsersPortfolio {
+    public class UsersPortfolio {
 
         private static UsersPortfolio instance;
         private ICollection<User> Users;
@@ -18,6 +19,7 @@ namespace Logic {
                     instance = new UsersPortfolio();
                     instance.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
                     instance.Add(new Client("user","user","user","user","user","user","user",DateTime.Now));
+                    instance.Add(new Designer("des", "des", "des", "des", DateTime.Now));
                 }
                 return instance;
             }
@@ -58,6 +60,10 @@ namespace Logic {
 
         public IEnumerator<User> GetEnumerator() {
             return Users.GetEnumerator();
+        }
+
+        public ICollection<User> GetUsers() {
+            return (ICollection<User>)(new List<User>(Users));
         }
 
         public Client GetClient(User userAsked) {

@@ -21,11 +21,10 @@ namespace UserInterface {
             CurrentSession = aSession;
             mother = aWindow;
             availableViews = new List<IUserFeatureControl>() {
-           new UserDataVerificationView(CurrentSession),
+           new UserDataVerificationView(CurrentSession.UserLogged,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(),
-           new ManageUsersView()
-
+           new CreateBlueprint(CurrentSession,this)
         };
             SetMenu();
         }
@@ -49,6 +48,11 @@ namespace UserInterface {
                 }
             }
             
+        }
+
+        internal void OpenBlueprintEditor(object selectedItem, Blueprint blueprint) {
+            dynamicPanel.Controls.Clear();
+            dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
         }
 
         private void AddLogOutButton() {
@@ -75,5 +79,7 @@ namespace UserInterface {
 
             };
         }
+
+        
     }
 }

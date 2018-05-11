@@ -32,7 +32,7 @@
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.menuPanel.Location = new System.Drawing.Point(0, 0);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(839, 100);
+            this.menuPanel.Size = new System.Drawing.Size(884, 100);
             this.menuPanel.TabIndex = 0;
             // 
             // dynamicPanel
@@ -40,7 +40,7 @@
             this.dynamicPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dynamicPanel.Location = new System.Drawing.Point(0, 100);
             this.dynamicPanel.Name = "dynamicPanel";
-            this.dynamicPanel.Size = new System.Drawing.Size(839, 444);
+            this.dynamicPanel.Size = new System.Drawing.Size(884, 461);
             this.dynamicPanel.TabIndex = 1;
             // 
             // LoggedInView
@@ -50,7 +50,7 @@
             this.Controls.Add(this.dynamicPanel);
             this.Controls.Add(this.menuPanel);
             this.Name = "LoggedInView";
-            this.Size = new System.Drawing.Size(839, 544);
+            this.Size = new System.Drawing.Size(884, 561);
             this.ResumeLayout(false);
 
         }

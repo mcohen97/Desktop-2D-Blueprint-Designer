@@ -16,7 +16,7 @@ namespace UserInterface {
         }
 
         public Permission GetRequiredPermission() {
-            return Permission.ALL_PERMISSIONS;
+            return Permission.MANAGE_COSTS;
         }
 
         public Button OptionMenuButton() {
@@ -30,5 +30,6 @@ namespace UserInterface {
         public void SetSession(Session aSession) {
             throw new NotImplementedException();
         }
+
     }
 }
