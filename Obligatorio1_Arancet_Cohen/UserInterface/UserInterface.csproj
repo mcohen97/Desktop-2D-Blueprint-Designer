@@ -49,6 +49,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminUserManagement.Designer.cs">
+      <DependentUpon>AdminUserManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonCreator.cs" />
     <Compile Include="ChooseBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,13 +68,19 @@
     <Compile Include="CreateBlueprint.Designer.cs">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EditBlueprintView.Designer.cs">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FieldMessages.cs" />
+    <Compile Include="InputValidations.cs" />
     <Compile Include="IUserFeatureControl.cs" />
     <Compile Include="LoggedInView.cs">
       <SubType>UserControl</SubType>
@@ -101,11 +114,17 @@
     <Compile Include="UserDataVerificationView.Designer.cs">
       <DependentUpon>UserDataVerificationView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminUserManagement.resx">
+      <DependentUpon>AdminUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChooseBlueprintView.resx">
       <DependentUpon>ChooseBlueprintView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBlueprint.resx">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditBlueprintView.resx">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>

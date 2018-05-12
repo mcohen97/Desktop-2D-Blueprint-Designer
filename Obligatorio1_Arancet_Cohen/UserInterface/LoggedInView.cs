@@ -24,7 +24,8 @@ namespace UserInterface {
            new UserDataVerificationView(CurrentSession.UserLogged,mother),
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(this),
-           new CreateBlueprint(CurrentSession,this)
+           new CreateBlueprint(CurrentSession,this),
+           new AdminUserManagement(CurrentSession,this)
         };
             SetMenu();
         }
@@ -50,9 +51,20 @@ namespace UserInterface {
             
         }
 
+        internal void OpenUserEditor(User selectedUser) {
+            dynamicPanel.Controls.Clear();
+            dynamicPanel.Controls.Add(new UserDataVerificationView(selectedUser, mother));
+
+        }
+
         internal void OpenBlueprintEditor(object selectedItem, Blueprint blueprint) {
             dynamicPanel.Controls.Clear();
             dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
+        }
+
+        internal void SetView(UserControl aControl) {
+            dynamicPanel.Controls.Clear();
+            dynamicPanel.Controls.Add(aControl);
         }
 
         private void AddLogOutButton() {

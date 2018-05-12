@@ -57,5 +57,15 @@ namespace UserInterface {
         private void doneButton_Click(object sender, EventArgs e) {
             parent.RestartMenu();
         }
+
+        private void createDesigner_Click(object sender, EventArgs e) { 
+            User created = new Designer();
+            parent.SetView(new CreateUser(parent,created));
+        }
+
+        private void createClient_Click(object sender, EventArgs e) {
+            User created = new Client();
+            parent.SetView(new CreateUser(parent, created));
+        }
     }
 }

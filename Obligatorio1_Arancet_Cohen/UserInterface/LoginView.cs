@@ -29,9 +29,9 @@ namespace UserInterface {
                 mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
                 mother.GoToMenu();
             } catch (WrongPasswordException) {
-                FieldMessages.ErrorMessage(PasswordMsg, "Wrong Password!");
+                InputValidations.ErrorMessage(PasswordMsg, "Wrong Password!");
             } catch(UserNotFoundException) {
-                FieldMessages.ErrorMessage(UserNameMsg, "User doesn't exist!");
+                InputValidations.ErrorMessage(UserNameMsg, "User doesn't exist!");
             }
             
         }
@@ -41,11 +41,11 @@ namespace UserInterface {
         }
 
         private void UsernameText_TextChanged(object sender, EventArgs e) {
-            FieldMessages.ClearField(UserNameMsg);
+            InputValidations.ClearField(UserNameMsg);
         }
 
         private void PasswordText_TextChanged(object sender, EventArgs e) {
-            FieldMessages.ClearField(PasswordMsg);
+            InputValidations.ClearField(PasswordMsg);
         }
     }
 }

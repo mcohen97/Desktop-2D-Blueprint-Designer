@@ -30,11 +30,7 @@ namespace UserInterface {
         }
 
         public Button OptionMenuButton() {
-            Button option = new Button();
-            option.Width = 100;
-            option.Height = 50;
-            option.Text = "Manage material prices and costs";
-            return option;
+           return ButtonCreator.GenerateButton("Manage material prices and costs");    
         }
 
         public void SetSession(Session aSession) {

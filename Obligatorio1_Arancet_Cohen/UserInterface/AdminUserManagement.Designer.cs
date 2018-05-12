@@ -28,6 +28,8 @@
             this.doneButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.createClient = new System.Windows.Forms.Button();
+            this.createDesigner = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // userList
@@ -76,10 +78,32 @@
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 7;
             // 
+            // createClient
+            // 
+            this.createClient.Location = new System.Drawing.Point(13, 320);
+            this.createClient.Name = "createClient";
+            this.createClient.Size = new System.Drawing.Size(121, 47);
+            this.createClient.TabIndex = 8;
+            this.createClient.Text = "Create new client";
+            this.createClient.UseVisualStyleBackColor = true;
+            this.createClient.Click += new System.EventHandler(this.createClient_Click);
+            // 
+            // createDesigner
+            // 
+            this.createDesigner.Location = new System.Drawing.Point(13, 383);
+            this.createDesigner.Name = "createDesigner";
+            this.createDesigner.Size = new System.Drawing.Size(121, 47);
+            this.createDesigner.TabIndex = 9;
+            this.createDesigner.Text = "Create new designer";
+            this.createDesigner.UseVisualStyleBackColor = true;
+            this.createDesigner.Click += new System.EventHandler(this.createDesigner_Click);
+            // 
             // AdminUserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.createDesigner);
+            this.Controls.Add(this.createClient);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.deleteButton);
@@ -99,5 +123,7 @@
         private System.Windows.Forms.Button doneButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Button createClient;
+        private System.Windows.Forms.Button createDesigner;
     }
 }

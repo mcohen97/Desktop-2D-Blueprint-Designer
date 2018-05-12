@@ -25,30 +25,38 @@ namespace UserInterface {
         private void ShowData() {
             SetCommonData();
             if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
-                onlyClientFields.Show();
+                onlyClientFields.Show();//this would be Client case
                 userInfo.Show();
                 SetUserData();
             } else {
                 onlyClientFields.Hide();
-                if (edited.HasPermission(Permission.CREATE_USER)) {
-                    userInfo.Show();//this would be the admin case
-                } else {
-                    userInfo.Hide(); //this would be the Designer case
-                }
+                ShowOrHideUserData();
             }
 
         }
 
-        private void SetCommonData() {
-            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
-                viewTitle.Text = "Verify and edit your information";
+        private void ShowOrHideUserData() {
+            if (edited.HasPermission(Permission.CREATE_USER)) {
+                userInfo.Show();//this would be the Admin case
             } else {
-                viewTitle.Text = "Edit your information";
+                userInfo.Hide(); //this would be the Designer case
             }
+        }
+
+        private void SetCommonData() {
+            SetControlTitle();
             nameTxt.Text = edited.Name;
             surnameText.Text = edited.Surname;
             passwordText.Text = edited.Password;
             UsernameLabel.Text = edited.UserName;
+        }
+
+        private void SetControlTitle() {
+            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
+                viewTitle.Text = "Verify and edit your information";
+            } else {
+                viewTitle.Text = "User information ";
+            }
         }
 
         private void SetUserData() {
@@ -63,22 +71,22 @@ namespace UserInterface {
         }
 
         public Button OptionMenuButton() {
-            Button optionButton = new Button();
-            optionButton.Width = 100;
-            optionButton.Height = 50;
-            optionButton.Text = "Edit Personal Info";
-            return optionButton;
+            return ButtonCreator.GenerateButton("Edit personal information");
         }
 
         private void finishButton_Click(object sender, EventArgs e) {
-            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
-                edited.RemovePermission(Permission.FIRST_LOGIN);
-            }
+            RemoveFirstLoginFeature();
             UpdateCommonInformation();
             if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
                 UpdateClientInformation();
             }
             parent.GoToMenu();
+        }
+
+        private void RemoveFirstLoginFeature() {
+            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
+                edited.RemovePermission(Permission.FIRST_LOGIN);
+            }
         }
 
         private void UpdateClientInformation() {
