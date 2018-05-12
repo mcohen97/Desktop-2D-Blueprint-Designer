@@ -300,6 +300,8 @@ namespace Logic {
             materials.RemoveBeam(toRemove);
         }
 
-        
+        public ICollection<Wall> GetWalls() {
+            return (ICollection<Wall>)materials.GetWalls();
+        }
     }
 }

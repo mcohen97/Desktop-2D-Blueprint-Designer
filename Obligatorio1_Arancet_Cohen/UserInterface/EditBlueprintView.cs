@@ -49,6 +49,7 @@ namespace UserInterface {
             CreateOrRecreateLayer(ref linesLayer);
             CreateOrRecreateLayer(ref currentLineLayer);
         }
+
         private void PaintGrid() {
 
             using (Graphics graphics = Graphics.FromImage(gridLayer)) {
@@ -93,7 +94,7 @@ namespace UserInterface {
             drawSurface.Size = new Size(drawSurfaceSizeX, drawSurfaceSizeY);
             drawSurface.TabIndex = 0;
             drawSurface.Paint += new PaintEventHandler(drawSurface_Paint);
-            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStart);        
+            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStart);
             this.BlueprintPanel.Controls.Add(drawSurface);
             ResumeLayout(false);
         }
@@ -118,8 +119,16 @@ namespace UserInterface {
 
         private void drawSurface_MouseClickEnd(object sender, MouseEventArgs e) {
 
-            System.Drawing.Point point = AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
-            points.Add(point);
+            System.Drawing.Point gridAjustedPoint = AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
+            System.Drawing.Point endPoint = adjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
+
+            try {
+                selectedBluePrint.InsertWall(new Logic.Point(start.X, start.Y), new Logic.Point(endPoint.X, endPoint.Y));
+
+            } catch (Exception) {
+
+            }
+
             PaintLines();
 
             CreateOrRecreateLayer(ref currentLineLayer);
@@ -127,6 +136,20 @@ namespace UserInterface {
             drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMove);
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStart);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickEnd);
+        }
+
+        private System.Drawing.Point adjustPointToHorizontalOrVerticalLine(System.Drawing.Point point) {
+            int xDifference = Math.Abs(point.X - start.X);
+            int yDifference = Math.Abs(point.Y - start.Y);
+            System.Drawing.Point returnedEndpoint;
+
+            if (xDifference < yDifference) {
+                returnedEndpoint = new System.Drawing.Point(start.X, point.Y);
+            } else {
+                returnedEndpoint = new System.Drawing.Point(point.X, start.Y);
+            }
+
+            return returnedEndpoint;
         }
 
         private System.Drawing.Point AdjustPointToGrid(System.Drawing.Point point) {
@@ -138,12 +161,16 @@ namespace UserInterface {
             return point;
         }
 
-
         private void PaintLines() {
             CreateOrRecreateLayer(ref linesLayer);
             using (Graphics graphics = Graphics.FromImage(linesLayer)) {
-                for (int i = 1; i < points.Count; i = i + 2) {
-                    graphics.DrawLine(wallPen, points[i - 1], points[i]);
+                ICollection<Wall> walls = selectedBluePrint.GetWalls();
+                foreach (Wall wall in walls) {
+                    int startX = Convert.ToInt32(wall.Beginning().CoordX);
+                    int startY = Convert.ToInt32(wall.Beginning().CoordY);
+                    int endX = Convert.ToInt32(wall.End().CoordX);
+                    int endY = Convert.ToInt32(wall.End().CoordY);
+                    graphics.DrawLine(wallPen, new System.Drawing.Point(startX, startY), new System.Drawing.Point(endX, endY));
                 }
             }
             drawSurface.Invalidate();

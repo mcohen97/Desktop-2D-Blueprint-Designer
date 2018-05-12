@@ -10,7 +10,8 @@ using System.Windows.Forms;
 
 namespace UserInterface {
     public partial class NoFlickerPanel : Control {
-        public NoFlickerPanel() {
+        public NoFlickerPanel() : base() {
+            DoubleBuffered = true;
             InitializeComponent();
         }
 
