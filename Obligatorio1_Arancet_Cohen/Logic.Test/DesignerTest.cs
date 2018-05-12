@@ -96,6 +96,7 @@ namespace DesignerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void setEmptySurnameTest() {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
@@ -104,6 +105,7 @@ namespace DesignerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void setNullSurnameTest() {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 

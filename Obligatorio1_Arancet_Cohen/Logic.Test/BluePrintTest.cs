@@ -8,8 +8,10 @@ namespace Logic.Test {
 
         private Blueprint instance;
         private BuildingComponentContainer materials;
+        Client owner;
         [TestInitialize]
         public void SetUp() {
+           owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
             materials = new BuildingComponentContainer();
             instance = new Blueprint(20,20,"TestBlueprint",materials);
         }
@@ -24,13 +26,13 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetEmptyNameTest() {
-            instance = new Blueprint(20, 20, "", materials);
+            instance = new Blueprint(20, 20, "" ,materials);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetNullNameTest() {
-            instance = new Blueprint(20, 20, null, materials);
+            instance = new Blueprint(20, 20, null,materials);
         }
 
         [TestMethod]
@@ -43,13 +45,13 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void SetZeroLengthTest() {
-            instance = new Blueprint(0, 20, "TestBlueprint", materials);
+            instance = new Blueprint(0, 20, "TestBlueprint" ,materials);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void SetNegativeLengthTest() {
-            instance = new Blueprint(-20, 20, "TestBlueprint", materials);
+            instance = new Blueprint(-20, 20, "TestBlueprint" ,materials);
         }
 
         [TestMethod]
@@ -62,13 +64,13 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void SetZeroWidthTest() {
-            instance = new Blueprint(20, 0, "TestBlueprint", materials);
+            instance = new Blueprint(20, 0, "TestBlueprint" ,materials);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void SetveNegativeWidthTest() {
-            instance = new Blueprint(20, -20, "TestBlueprint", materials);
+            instance = new Blueprint(20, -20, "TestBlueprint" ,materials);
         }
 
         [TestMethod]

@@ -12,13 +12,19 @@ using System.Runtime.CompilerServices;
 namespace Logic {
     public class Blueprint:IBlueprint {
 
-        public int Length { get; private set; }//Horizontal X Mesaure
-        public int Width { get; private set; }//Vertical Y Mesaure
-        private BuildingComponentContainer materials;
-        public User Owner { get; set; }
         private string name;
-        public string Name { get {return name; } private set {SetName(value); } }
+        public string Name { get { return name; } private set { SetName(value); } }
 
+        private int length;
+        public int Length { get {return length; } private set {SetLength(value); } }//Horizontal X Mesaure
+
+        private int width;
+        public int Width { get {return width; } private set {SetWidth(value); } }//Vertical Y Mesaure
+
+        private BuildingComponentContainer materials;
+
+        private User owner;
+        public User Owner { get {return owner; } set { SetOwner(value); } }
 
         public Blueprint(int aLength, int aWidth,string aName) {
             Length = aLength;
@@ -30,13 +36,36 @@ namespace Logic {
         public Blueprint(int aLength, int aWidth,string aName, BuildingComponentContainer container) {
             Length = aLength;
             Width = aWidth;
-            name = aName;
+            Name = aName;
             materials = container;
         }
 
-
         private void SetName(string aName) {
+            if (String.IsNullOrEmpty(aName)){
+                throw new ArgumentNullException();
+            }
             name = aName;
+        }
+
+        private void SetLength(int aLength) {
+            if (aLength <= 0) {
+                throw new ArgumentException();
+            }
+            length = aLength;
+        }
+
+        private void SetWidth(int aWidth) {
+            if (aWidth <= 0) {
+                throw new ArgumentException();
+            }
+            width = aWidth;
+        }
+
+        private void SetOwner(User aUser) {
+            if (aUser==null) {
+                throw new ArgumentNullException();
+            }
+            owner = aUser;
         }
 
         public void InsertWall(Point from, Point to) {

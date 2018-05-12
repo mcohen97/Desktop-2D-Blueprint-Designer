@@ -48,6 +48,7 @@
     <Compile Include="CollinearWallsException.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
     <Compile Include="ComponentType.cs" />
+    <Compile Include="DataValidations.cs" />
     <Compile Include="IBlueprint.cs" />
     <Compile Include="IComponent2D.cs" />
     <Compile Include="IComponent3D.cs" />
