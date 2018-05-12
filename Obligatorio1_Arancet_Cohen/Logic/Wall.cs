@@ -57,7 +57,22 @@ namespace Logic {
         }
 
         public bool DoesIntersect(Wall otherWall) {
-            bool intersects;
+
+            float[] equationVariables = AlfaNumerator_BetaNumerator_Denominator(otherWall);
+
+            float alphaNumerator = equationVariables[0];
+            float betaNumerator = equationVariables[1];
+            float denominator = equationVariables[2];
+
+            bool intersect = !CheckForParallelism(denominator);
+            intersect &= CompareNumeratorWithDenominator(alphaNumerator, denominator);
+            intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
+
+            return intersect;
+
+
+
+            /*bool intersects;
             try {
                 GetIntersection(otherWall);
                 intersects = true;
@@ -67,20 +82,26 @@ namespace Logic {
             } catch (WallsDoNotIntersectException) {
                 intersects = false;
             }
-            return intersects;
+            return intersects;*/
         }
 
         public Point GetIntersection(Wall otherWall) {
 
-            Point a = EndPoint - BeginningPoint;
-            Point b = otherWall.BeginningPoint - otherWall.EndPoint;
-            Point c = BeginningPoint - otherWall.BeginningPoint;
+            /* Point a = EndPoint - BeginningPoint;
+             Point b = otherWall.BeginningPoint - otherWall.EndPoint;
+             Point c = BeginningPoint - otherWall.BeginningPoint;
 
-            float alphaNumerator = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
-            float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
-            float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
+             float alphaNumerator = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
+             float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
+             float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;*/
 
-            bool parallel = CheckForParalelism(denominator);
+            float[] equationVariables = AlfaNumerator_BetaNumerator_Denominator(otherWall);
+
+            float alphaNumerator = equationVariables[0];
+            float betaNumerator = equationVariables[1];
+            float denominator = equationVariables[2];
+
+            bool parallel = CheckForParallelism(denominator);
             
             if (parallel && SharesSpace(otherWall)) { 
                 //if they are parallel and share points, they are collinear
@@ -95,6 +116,20 @@ namespace Logic {
             }
 
 
+        }
+
+        private float[] AlfaNumerator_BetaNumerator_Denominator(Wall aWall) {
+            float[] variables = new float[3];
+
+            Point a = EndPoint - BeginningPoint;
+            Point b = aWall.BeginningPoint - aWall.EndPoint;
+            Point c = BeginningPoint - aWall.BeginningPoint;
+
+            variables[0] = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
+            variables[1] = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
+            variables[2] = a.CoordY * b.CoordX - a.CoordX * b.CoordY;
+
+            return variables;
         }
 
         private bool SharesSpace(Wall otherWall) {
@@ -114,7 +149,7 @@ namespace Logic {
             return intersect;
         }
 
-        private bool CheckForParalelism(float denominator) {
+        private bool CheckForParallelism(float denominator) {
             return denominator == 0;
         }
 
