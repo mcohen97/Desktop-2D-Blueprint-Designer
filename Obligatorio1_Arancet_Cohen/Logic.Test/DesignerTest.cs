@@ -55,6 +55,28 @@ namespace DesignerTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyNameTest() {
+            DateTime registrationDate = DateTime.Now;
+
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            string newName = "";
+            designer.Name = newName;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullNameTest() {
+            DateTime registrationDate = DateTime.Now;
+
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            string newName = null;
+            designer.Name = newName;
+        }
+
+        [TestMethod]
         public void getSurnameTest()
         {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -71,6 +93,22 @@ namespace DesignerTest
             designer.Surname = newSurname;
 
             Assert.AreEqual(newSurname, designer.Surname);
+        }
+
+        [TestMethod]
+        public void setEmptySurnameTest() {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            string newSurname = "";
+            designer.Surname = newSurname;
+        }
+
+        [TestMethod]
+        public void setNullSurnameTest() {
+            Designer designer = new Designer(name, surname, userName, password, registrationDate);
+
+            string newSurname = null;
+            designer.Surname = newSurname;
         }
 
         [TestMethod]

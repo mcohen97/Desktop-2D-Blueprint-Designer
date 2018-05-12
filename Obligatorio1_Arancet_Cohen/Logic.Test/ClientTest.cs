@@ -57,6 +57,23 @@ namespace ClientTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyNameTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newName = "";
+            client.Name = newName;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullNameTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newName = null;
+            client.Name = newName;
+        }
+
+        [TestMethod]
         public void getSurnameTest()
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
@@ -73,6 +90,22 @@ namespace ClientTest
             client.Surname = newSurname;
 
             Assert.AreEqual(newSurname, client.Surname);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptySurnameTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newSurname = "";
+            client.Surname = newSurname;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullSurnameTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newSurname =null;
+            client.Surname = newSurname;
         }
 
         [TestMethod]
@@ -103,6 +136,27 @@ namespace ClientTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyPasswordTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newPassword = "";
+            client.Password = newPassword;
+
+            Assert.AreEqual(newPassword, client.Password);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullPasswordTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newPassword = null;
+            client.Password = newPassword;
+
+            Assert.AreEqual(newPassword, client.Password);
+        }
+
+        [TestMethod]
         public void getPhoneTest()
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
@@ -121,11 +175,28 @@ namespace ClientTest
             Assert.AreEqual(newPhoneNumber, client.Phone);
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyPhoneTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newPhoneNumber = "";
+            client.Phone = newPhoneNumber;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullPhoneTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newPhoneNumber = null;
+            client.Phone = newPhoneNumber;
+        }
+
         [TestMethod]
         public void getAddressTest()
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
-
             Assert.AreEqual(address, client.Address);
         }
 
@@ -141,10 +212,26 @@ namespace ClientTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyAddressTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newAddress = "";
+            client.Address = newAddress;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullAddressTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+            string newAddress = null;
+            client.Address = newAddress;
+        }
+
+        [TestMethod]
         public void getIdTest()
         {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
-
             Assert.AreEqual(id, client.Id);
         }
 
@@ -157,6 +244,25 @@ namespace ClientTest
             client.Id = newId;
 
             Assert.AreEqual(newId, client.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyIdTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newId = "";
+            client.Id = newId;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullIdTest() {
+            Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
+
+            string newId = null;
+            client.Id = newId;
+
         }
 
         [TestMethod]
