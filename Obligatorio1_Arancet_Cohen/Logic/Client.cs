@@ -10,10 +10,6 @@ namespace Logic
         public string Id { get; set; }
         public string Address { get; set; }
 
-        public Client() {
-            Permissions = GeneratePermissions();
-        }
-
         public Client(string name, string surname, string userName, string password, string phone, string address, string id, DateTime registrationDate)
         {
             Name = name;

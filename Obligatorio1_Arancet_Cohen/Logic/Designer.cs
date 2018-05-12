@@ -5,9 +5,6 @@ namespace Logic
 {
     public class Designer : User
     {
-        public Designer() {
-            Permissions = GeneratePermissions();
-        }
 
         public Designer(string name, string surname, string userName, string password, DateTime registrationDate) {
             Name = name;

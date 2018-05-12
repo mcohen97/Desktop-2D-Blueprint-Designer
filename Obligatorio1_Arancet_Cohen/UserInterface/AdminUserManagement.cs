@@ -59,13 +59,11 @@ namespace UserInterface {
         }
 
         private void createDesigner_Click(object sender, EventArgs e) { 
-            User created = new Designer();
-            parent.SetView(new CreateUser(parent,created));
+            parent.SetView(new CreateUser(parent,Permission.CREATE_BLUEPRINT));
         }
 
         private void createClient_Click(object sender, EventArgs e) {
-            User created = new Client();
-            parent.SetView(new CreateUser(parent, created));
+            parent.SetView(new CreateUser(parent, Permission.HOLD_EXTRA_DATA));
         }
     }
 }

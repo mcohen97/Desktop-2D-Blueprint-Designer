@@ -13,17 +13,18 @@ namespace UserInterface {
     public partial class CreateUser : UserControl {
 
         private LoggedInView parent;
+        private Permission particularFeature;
         private User created;
 
-        public CreateUser(LoggedInView aControl, User aUser) {
+        public CreateUser(LoggedInView aControl, Permission aFeature) {
             InitializeComponent();
             parent = aControl;
-            created = aUser;
+            particularFeature = aFeature;
             ShowExtraFields();
         }
 
         private void ShowExtraFields() {
-            if (created.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+            if (particularFeature.Equals(Permission.HOLD_EXTRA_DATA)) {
                 onlyClientFields.Show();
             } else {
                 onlyClientFields.Hide();
@@ -35,7 +36,7 @@ namespace UserInterface {
         }
 
         private void SetUserData() {
-            if (created.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+            if (particularFeature.Equals(Permission.HOLD_EXTRA_DATA)) {
                 CreateClient();
             } else {
                 CreateDesigner();
@@ -49,10 +50,8 @@ namespace UserInterface {
             string surname = surnameText.Text;
             string pass = passwordText.Text;
             created = new Designer(name, surname, userName, pass, DateTime.Now);
-            Registrar();
+            Register();
         }
-
-        
 
         private void CreateClient() {
             string userName = userNameText.Text;
@@ -63,10 +62,10 @@ namespace UserInterface {
             string tel = telNumberText.Text;
             string address = addressText.Text;
             created = new Client(name, surname, userName, pass, tel, address, id, DateTime.Now);
-            Registrar();
+            Register();
         }
 
-        private void Registrar() {
+        private void Register() {
             UsersPortfolio.Instance.Add(created);
             parent.RestartMenu();
         }
