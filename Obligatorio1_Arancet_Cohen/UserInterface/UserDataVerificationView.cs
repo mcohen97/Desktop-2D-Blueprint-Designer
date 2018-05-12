@@ -36,11 +36,17 @@ namespace UserInterface {
         }
 
         private void ShowOrHideUserData() {
-            if (edited.HasPermission(Permission.CREATE_USER)) {
+            if (AdminEditsItself() || AdminEditsOtherUser()) {
                 userInfo.Show();//this would be the Admin case
             } else {
                 userInfo.Hide(); //this would be the Designer case
             }
+        }
+        private bool AdminEditsItself() {
+            return edited.HasPermission(Permission.CREATE_USER);
+        }
+        private bool AdminEditsOtherUser() {
+            return parent.CurrentSession.UserLogged.HasPermission(Permission.CREATE_USER);
         }
 
         private void SetCommonData() {
