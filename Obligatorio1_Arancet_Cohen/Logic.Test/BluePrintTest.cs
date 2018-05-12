@@ -119,12 +119,22 @@ namespace Logic.Test {
         }
 
         [TestMethod]
+        public void InsertOversizedWallCountTest2() {
+            instance.InsertWall(new Point(0, 0), new Point(10, 0));
+            int expectedResult = 2;
+            int actualResult = materials.WallsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void InsertOversizedWallBeamsCountTest() {
             instance.InsertWall(new Point(0, 0), new Point(12, 0));
             int expectedResult = 4;
             int actualResult = materials.BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        
 
         [TestMethod]
         public void ContinuousWallsInsertedMergeTest() {

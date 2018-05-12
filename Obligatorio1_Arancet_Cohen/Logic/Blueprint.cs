@@ -119,8 +119,10 @@ namespace Logic {
                 CreateAndPlaceWall(from, to);
                 from = to;
             }
-            to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
-            CreateAndPlaceWall(from, to);
+            if (lengthOfRemainingWall > 0) {
+                to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
+                CreateAndPlaceWall(from, to);
+            }
 
         }
 
