@@ -5,10 +5,15 @@ namespace Logic
 {
     public class Client : User
     {
-      
-        public string Phone { get; set; }
-        public string Id { get; set; }
-        public string Address { get; set; }
+
+        private string phone;
+        public string Phone { get {return phone; } set {SetPhone(value); } }
+
+        private string id;
+        public string Id { get {return id; } set {SetId(value); } }
+
+        private string address;
+        public string Address { get {return address; } set {SetAddress(value); } }
 
         public Client(string name, string surname, string userName, string password, string phone, string address, string id, DateTime registrationDate)
         {
@@ -25,6 +30,27 @@ namespace Logic
             Permissions = GeneratePermissions();
         }
 
+        private void SetPhone(string aPhone) {
+            if (String.IsNullOrEmpty(aPhone)) {
+                throw new ArgumentNullException();
+            }
+            phone = aPhone;
+        }
+
+        private void SetId(string anId) {
+            if (String.IsNullOrEmpty(anId)) {
+                throw new ArgumentNullException();
+            }
+            id = anId;
+        }
+
+        private void SetAddress(string anAddress) {
+            if (String.IsNullOrEmpty(anAddress)) {
+                throw new ArgumentNullException();
+            }
+            address = anAddress;
+        }
+
         private List<Permission> GeneratePermissions() {
             List<Permission> perms=new List<Permission>();
             perms.Add(Permission.READ_BLUEPRINT);
@@ -34,6 +60,8 @@ namespace Logic
             perms.Add(Permission.EDIT_OWN_DATA);
             return perms;
         }
+
+
     }
 
     

@@ -9,14 +9,46 @@ namespace Logic
 {
     public abstract class User:IPermissible,IComparable
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string UserName { get; protected set; }
-        public string Password { get; set; }
+        private string name;
+        public string Name { get {return name; } set { SetName(value); } }
+        private string surname;
+        public string Surname { get { return surname; } set {SetSurname(value); } }
+        private string userName;
+        public string UserName { get {return userName; } protected set {SetUserName(value); } }
+        private string password;
+        public string Password { get { return password; } set { SetPassword(value); } }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
         protected List<Permission> Permissions;
         public static readonly User NULL_USER = new NullUser();
+
+        private void SetName(string aName) {
+            if (String.IsNullOrEmpty(aName)) {
+                throw new ArgumentNullException();
+            }
+            name = aName;
+        }
+
+        private void SetSurname(string aSurname) {
+            if (String.IsNullOrEmpty(aSurname)) {
+                throw new ArgumentNullException();
+            }
+            surname = aSurname;
+        }
+
+        private void SetUserName(string aUserName) {
+            if (String.IsNullOrEmpty(aUserName)) {
+                throw new ArgumentNullException();
+            }
+            userName = aUserName;
+        }
+
+        private void SetPassword(string aPassword) {
+            if (String.IsNullOrEmpty(aPassword)) {
+                throw new ArgumentNullException();
+            }
+            password = aPassword;
+        }
 
         public DateTime UpdateLastLoginDate()
         {
