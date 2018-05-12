@@ -15,6 +15,61 @@ namespace Logic.Test {
         }
 
 
+        [TestMethod]
+        public void SetNameTest() {
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetEmptyNameTest() {
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetNullNameTest() {
+
+        }
+
+        [TestMethod]
+        public void SetLengthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetZeroLengthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetveNegativeLengthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetWidthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetZeroWidthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetveNegativeWidthTest() {
+
+        }
+
+        [TestMethod]
+        public void SetOwner() {
+            User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
+            instance.Owner = owner;
+            Assert.AreEqual(instance.Owner, owner);
+        }
+
+
         //Tests for insertion of walls
         [TestMethod]
         [ExpectedException(typeof(OutOfRangeComponentException))]
@@ -266,13 +321,6 @@ namespace Logic.Test {
             int expectedResult = 0;
             int actualResult = materials.OpeningsCount();
             Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
-        public void SetOwner() {
-            User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
-            instance.Owner = owner;
-            Assert.AreEqual(instance.Owner, owner);
         }
 
 
