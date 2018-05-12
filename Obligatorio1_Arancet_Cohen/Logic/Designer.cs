@@ -5,22 +5,28 @@ namespace Logic
 {
     public class Designer : User
     {
-       
-        public Designer(string name, string surname, string userName, string password, DateTime registrationDate)
-        {
+        public Designer() {
+            Permissions = GeneratePermissions();
+        }
+
+        public Designer(string name, string surname, string userName, string password, DateTime registrationDate) {
             Name = name;
             Surname = surname;
             UserName = userName;
             Password = password;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
+            Permissions=GeneratePermissions();
+        }
 
-            Permissions = new List<Permission>();
-            Permissions.Add(Permission.CREATE_BLUEPRINT);
-            Permissions.Add(Permission.EDIT_BLUEPRINT);
-            Permissions.Add(Permission.DELETE_BLUEPRINT);
-            Permissions.Add(Permission.READ_BLUEPRINT);
-            Permissions.Add(Permission.EDIT_OWN_DATA);
+        private List<Permission> GeneratePermissions() {
+            List<Permission> perms = new List<Permission>();
+            perms.Add(Permission.CREATE_BLUEPRINT);
+            perms.Add(Permission.EDIT_BLUEPRINT);
+            perms.Add(Permission.DELETE_BLUEPRINT);
+            perms.Add(Permission.READ_BLUEPRINT);
+            perms.Add(Permission.EDIT_OWN_DATA);
+            return perms;
         }
     }
 }
