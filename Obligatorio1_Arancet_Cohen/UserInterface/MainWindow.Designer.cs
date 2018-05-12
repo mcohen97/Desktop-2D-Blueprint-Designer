@@ -40,6 +40,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.mainPanel);
+            this.DoubleBuffered = true;
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.ResumeLayout(false);
