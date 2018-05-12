@@ -303,5 +303,13 @@ namespace Logic {
         public ICollection<Wall> GetWalls() {
             return (ICollection<Wall>)materials.GetWalls();
         }
+
+        public ICollection<Beam> GetBeams() {
+            return (ICollection<Beam>)materials.GetBeams();
+        }
+
+        public ICollection<Opening> GetOpenings() {
+            return (ICollection<Opening>)materials.GetOpenings();
+        }
     }
 }
