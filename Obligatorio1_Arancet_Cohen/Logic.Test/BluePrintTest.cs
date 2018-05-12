@@ -11,62 +11,77 @@ namespace Logic.Test {
         [TestInitialize]
         public void SetUp() {
             materials = new BuildingComponentContainer();
-            instance = new Blueprint(20,20,materials);
+            instance = new Blueprint(20,20,"TestBlueprint",materials);
         }
-
 
         [TestMethod]
         public void SetNameTest() {
-
+            string expectedResult = "TestBlueprint";
+            string actualResult = instance.Name;
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetEmptyNameTest() {
-
+            instance = new Blueprint(20, 20, "", materials);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetNullNameTest() {
-
+            instance = new Blueprint(20, 20, null, materials);
         }
 
         [TestMethod]
         public void SetLengthTest() {
-
+            int expectedResult = 20;
+            int actualResult = instance.Length;
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void SetZeroLengthTest() {
-
+            instance = new Blueprint(0, 20, "TestBlueprint", materials);
         }
 
         [TestMethod]
-        public void SetveNegativeLengthTest() {
-
+        [ExpectedException(typeof(ArgumentException))]
+        public void SetNegativeLengthTest() {
+            instance = new Blueprint(-20, 20, "TestBlueprint", materials);
         }
 
         [TestMethod]
         public void SetWidthTest() {
-
+            int expectedResult = 20;
+            int actualResult = instance.Width;
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void SetZeroWidthTest() {
-
+            instance = new Blueprint(20, 0, "TestBlueprint", materials);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void SetveNegativeWidthTest() {
-
+            instance = new Blueprint(20, -20, "TestBlueprint", materials);
         }
 
         [TestMethod]
-        public void SetOwner() {
+        public void SetOwnerTest() {
             User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
             instance.Owner = owner;
             Assert.AreEqual(instance.Owner, owner);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SetNullOwnerTest() {
+            instance.Owner = null;
         }
 
 

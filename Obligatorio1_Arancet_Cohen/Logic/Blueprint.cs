@@ -12,24 +12,31 @@ using System.Runtime.CompilerServices;
 namespace Logic {
     public class Blueprint:IBlueprint {
 
-        public int Length { get; set; }//Horizontal X Mesaure
-        public int Width { get; set; }//Vertical Y Mesaure
+        public int Length { get; private set; }//Horizontal X Mesaure
+        public int Width { get; private set; }//Vertical Y Mesaure
         private BuildingComponentContainer materials;
         public User Owner { get; set; }
         private string name;
+        public string Name { get {return name; } private set {SetName(value); } }
 
 
         public Blueprint(int aLength, int aWidth,string aName) {
             Length = aLength;
             Width = aWidth;
-            name = aName;
+            Name = aName;
             materials = new BuildingComponentContainer();
         }
 
-        public Blueprint(int aLength, int aWidth, BuildingComponentContainer container) {
+        public Blueprint(int aLength, int aWidth,string aName, BuildingComponentContainer container) {
             Length = aLength;
             Width = aWidth;
+            name = aName;
             materials = container;
+        }
+
+
+        private void SetName(string aName) {
+            name = aName;
         }
 
         public void InsertWall(Point from, Point to) {
