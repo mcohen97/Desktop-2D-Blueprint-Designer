@@ -45,9 +45,9 @@
             // BlueprintPanel
             // 
             this.BlueprintPanel.BackColor = System.Drawing.Color.MidnightBlue;
-            this.BlueprintPanel.Location = new System.Drawing.Point(214, 3);
+            this.BlueprintPanel.Location = new System.Drawing.Point(220, 3);
             this.BlueprintPanel.Name = "BlueprintPanel";
-            this.BlueprintPanel.Size = new System.Drawing.Size(464, 555);
+            this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
             this.BlueprintPanel.TabIndex = 2;
             this.BlueprintPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.BlueprintPanel_Paint);
             // 

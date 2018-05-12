@@ -36,7 +36,7 @@ namespace UserInterface {
                 Int32.TryParse(width, out _width);
                 string height = heightText.Text;
                 int _height = 0;
-                Int32.TryParse(width, out _height);
+                Int32.TryParse(height, out _height);
                 string name = nameText.Text;
                 parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint(_width,_height,name));
             }

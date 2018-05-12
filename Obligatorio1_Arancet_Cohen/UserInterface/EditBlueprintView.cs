@@ -24,16 +24,30 @@ namespace UserInterface {
         private List<System.Drawing.Point> points;
         private Pen wallPen;
 
-        private const int gridCellCountX = 11;
-        private const int gridCellCountY = 11;
-        private const int cellSizeInPixels = 40;
-        private const int windowXBoundryInPixels = 20;
-        private const int windowYBoundryInPixels = 40;
-        private const int gridLinesMarginToLayerInPixels = 1;
-        private const int drawSurfaceMarginToWindowInPixels = 10;
+        private int gridCellCountX = 11;
+        private int gridCellCountY = 11;
+        private int cellSizeInPixels = 40;
+        private int windowXBoundryInPixels = 20;
+        private int windowYBoundryInPixels = 40;
+        private int gridLinesMarginToLayerInPixels = 1;
+        private int drawSurfaceMarginToWindowInPixels = 10;
 
         public EditBlueprintView(Session aSession, LoggedInView aParent, Blueprint aBlueprint) {
             InitializeComponent();
+            gridLinesMarginToLayerInPixels = 1;
+            drawSurfaceMarginToWindowInPixels = 10;
+            gridCellCountX = aBlueprint.Length;
+            gridCellCountY = aBlueprint.Width;
+            windowXBoundryInPixels = this.BlueprintPanel.Width;
+            windowYBoundryInPixels = this.BlueprintPanel.Height;
+            int cellSizeInPixelsX = (windowXBoundryInPixels - 2*drawSurfaceMarginToWindowInPixels) / gridCellCountX;
+            int cellSizeInPixelsY = (windowXBoundryInPixels - 2*drawSurfaceMarginToWindowInPixels) / gridCellCountY;
+            cellSizeInPixels = Math.Min(cellSizeInPixelsX, cellSizeInPixelsY);
+
+            int drawSurfaceSizeX = cellSizeInPixels * gridCellCountX;
+            int drawSurfaceSizeY = cellSizeInPixels * gridCellCountY;
+            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
+
             CurrentSession = aSession;
             parent = aParent;
             selectedBluePrint = aBlueprint;
@@ -41,9 +55,6 @@ namespace UserInterface {
 
             wallPen = new Pen(Brushes.Black, 5);
 
-            int drawSurfaceSizeX = cellSizeInPixels * gridCellCountX;
-            int drawSurfaceSizeY = cellSizeInPixels * gridCellCountY;
-            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
             CreateOrRecreateLayer(ref gridLayer);
             PaintGrid();
             CreateOrRecreateLayer(ref linesLayer);
