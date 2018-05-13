@@ -74,6 +74,17 @@ namespace UserInterface {
 
         }
 
+        //Auxiliar
+        private Logic.Point DrawablePointIntoLogicPoint(System.Drawing.Point point) {
+            float pointX = point.X;
+            float pointY = point.Y;
+            float cellSize = cellSizeInPixels;
+            return new Logic.Point(pointX/cellSize, pointY/cellSize);
+        }
+        private System.Drawing.Point LogicPointIntoDrawablePoint(Logic.Point point) {
+            return new System.Drawing.Point(Convert.ToInt32(point.CoordX * cellSizeInPixels), Convert.ToInt32(point.CoordY * cellSizeInPixels));
+        }
+
         private void PaintGrid() {
 
             using (Graphics graphics = Graphics.FromImage(gridLayer)) {
@@ -87,30 +98,24 @@ namespace UserInterface {
             }
             drawSurface.Invalidate();
         }
-
         private void DrawGridHorizontalLines(Graphics graphics, int axis) {
             DrawHorizontalLine(graphics, axis, 0);
         }
-
         private void DrawGridVerticalLines(Graphics graphics, int axis) {
             DrawVerticalLine(graphics, axis, 0);
         }
-
         private void DrawGridRightAndBottomLines(Graphics graphics) {
             DrawHorizontalLine(graphics, gridCellCountY, -gridLinesMarginToLayerInPixels);
             DrawVerticalLine(graphics, gridCellCountX, -gridLinesMarginToLayerInPixels);
         }
-
         private void DrawHorizontalLine(Graphics graphics, int axis, int offset) {
             int gridCellHeight = axis * gridLayer.Height / gridCellCountY + offset;
             graphics.DrawLine(Pens.White, 0, gridCellHeight, gridLayer.Width, gridCellHeight);
         }
-
         private void DrawVerticalLine(Graphics graphics, int axis, int offset) {
             int gridCellWidth = axis * gridLayer.Width / gridCellCountX + offset;
             graphics.DrawLine(Pens.White, gridCellWidth, 0, gridCellWidth, gridLayer.Height);
         }
-
         private void CreateDrawSurface(int drawSurfaceSizeX, int drawSurfaceSizeY) {
             drawSurface = new NoFlickerPanel();
             SuspendLayout();
@@ -122,7 +127,6 @@ namespace UserInterface {
             this.BlueprintPanel.Controls.Add(drawSurface);
             ResumeLayout(false);
         }
-
         private void drawSurface_Paint(object sender, PaintEventArgs e) {
             System.Drawing.Point zeroing = new System.Drawing.Point(0, 0);
             e.Graphics.DrawImage(gridLayer, zeroing);
@@ -149,7 +153,7 @@ namespace UserInterface {
             System.Drawing.Point endPoint = AdjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
 
             try {
-                selectedBluePrint.InsertWall(new Logic.Point(start.X / cellSizeInPixels, start.Y / cellSizeInPixels), new Logic.Point(endPoint.X / cellSizeInPixels, endPoint.Y / cellSizeInPixels));
+                selectedBluePrint.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
 
             } catch (Exception) {
 
@@ -174,7 +178,7 @@ namespace UserInterface {
         //Opening events
         private void drawSurface_MouseClickInsertDoor(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Logic.Point doorPoint = new Logic.Point(point.X / cellSizeInPixels, point.Y / cellSizeInPixels);
+            Logic.Point doorPoint = DrawablePointIntoLogicPoint(point);
             Opening newDoor = new Door(doorPoint);
 
             try {
@@ -187,7 +191,7 @@ namespace UserInterface {
         }
         private void drawSurface_MouseClickInsertWindow(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Logic.Point doorPoint = new Logic.Point(point.X / cellSizeInPixels, point.Y / cellSizeInPixels);
+            Logic.Point doorPoint = DrawablePointIntoLogicPoint(point);
             Opening newDoor = new Window(doorPoint);
 
             try {
@@ -202,15 +206,16 @@ namespace UserInterface {
         //Erase events
         private void drawSurface_MouseClickErase(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
-            Logic.Point deletionPoint = new Logic.Point(point.X / cellSizeInPixels, point.Y / cellSizeInPixels);
+            Logic.Point deletionPointPrecise = DrawablePointIntoLogicPoint(point);
+            Logic.Point closestDeletionPointToGridIntersection = DrawablePointIntoLogicPoint(AdjustPointToGridIntersection(point));
 
             try {
-                bool existOpeningInPoint = selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(deletionPoint));
-                bool existWallInPoint = selectedBluePrint.GetWalls().Any(x => x.DoesContainPoint(deletionPoint));
+                bool existOpeningInPoint = selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
+                bool existWallInPoint = selectedBluePrint.GetWalls().Any(x => x.DoesContainPoint(deletionPointPrecise));
                 if (existOpeningInPoint) {
-                    selectedBluePrint.RemoveOpeningIfExists(deletionPoint);
-                }else if(existWallInPoint){
-                    Wall wallToDelete = selectedBluePrint.GetWalls().First(x => x.DoesContainPoint(deletionPoint));
+                    selectedBluePrint.RemoveOpeningIfExists(closestDeletionPointToGridIntersection);
+                }else if(existWallInPoint && !existOpeningInPoint){
+                    Wall wallToDelete = selectedBluePrint.GetWalls().First(x => x.DoesContainPoint(deletionPointPrecise));
                     selectedBluePrint.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
                 }
             } catch (Exception) {
@@ -246,7 +251,7 @@ namespace UserInterface {
             int adjustedCoordX = Convert.ToInt32(Math.Round(gridCoordX));
             int adjustedCoordY = Convert.ToInt32(Math.Round(gridCoordY));
 
-            adjustedPoint = new System.Drawing.Point(adjustedCoordX * cellSizeInPixels, adjustedCoordY * cellSizeInPixels);
+            adjustedPoint = new System.Drawing.Point(adjustedCoordX*cellSizeInPixels, adjustedCoordY*cellSizeInPixels);
             return adjustedPoint;
               
             /*decimal gridCellWidth = gridLayer.Width / gridCellCountX;
@@ -286,19 +291,17 @@ namespace UserInterface {
             PaintSelectedPoint(Brushes.Red);
         }
 
-
-
         //Paint functions
         private void PaintWalls() {
             CreateOrRecreateLayer(ref wallsLayer);
             using (Graphics graphics = Graphics.FromImage(wallsLayer)) {
                 ICollection<Wall> walls = selectedBluePrint.GetWalls();
                 foreach (Wall wall in walls) {
-                    int startX = Convert.ToInt32(wall.Beginning().CoordX) * cellSizeInPixels;
+                    /*int startX = Convert.ToInt32(wall.Beginning().CoordX) * cellSizeInPixels;
                     int startY = Convert.ToInt32(wall.Beginning().CoordY) * cellSizeInPixels;
                     int endX = Convert.ToInt32(wall.End().CoordX) * cellSizeInPixels;
-                    int endY = Convert.ToInt32(wall.End().CoordY) * cellSizeInPixels;
-                    graphics.DrawLine(wallPen, new System.Drawing.Point(startX, startY), new System.Drawing.Point(endX, endY));
+                    int endY = Convert.ToInt32(wall.End().CoordY) * cellSizeInPixels;*/
+                    graphics.DrawLine(wallPen, LogicPointIntoDrawablePoint(wall.Beginning()), LogicPointIntoDrawablePoint(wall.End()));
                 }
             }
             drawSurface.Invalidate();
@@ -308,9 +311,10 @@ namespace UserInterface {
             using (Graphics graphics = Graphics.FromImage(beamsLayer)) {
                 ICollection<Beam> beams = selectedBluePrint.GetBeams();
                 foreach (Beam beam in beams) {
-                    int pointX = Convert.ToInt32(beam.GetPosition().CoordX) * cellSizeInPixels;
-                    int pointY = Convert.ToInt32(beam.GetPosition().CoordY) * cellSizeInPixels;
-                    graphics.DrawString("■", DefaultFont, beamPen.Brush, pointX - 7, pointY - 5);
+                    /*int pointX = Convert.ToInt32(beam.GetPosition().CoordX) * cellSizeInPixels;
+                    int pointY = Convert.ToInt32(beam.GetPosition().CoordY) * cellSizeInPixels;*/
+                    System.Drawing.Point drawPoint = LogicPointIntoDrawablePoint(beam.GetPosition());
+                    graphics.DrawString("■", DefaultFont, beamPen.Brush, drawPoint.X - 7, drawPoint.Y - 5);
 
                     //graphics.DrawLine(beamPen, point, point);
                     //graphics.DrawString("■", DefaultFont, Brushes.DarkRed, new System.Drawing.Point(pointX, pointY));
@@ -364,24 +368,22 @@ namespace UserInterface {
                 ICollection<Opening> openings = selectedBluePrint.GetOpenings();
                 foreach (Opening opening in openings) {
                     if (opening is Window) {
-                        int pointX = Convert.ToInt32(opening.GetPosition().CoordX) * cellSizeInPixels;
-                        int pointY = Convert.ToInt32(opening.GetPosition().CoordY) * cellSizeInPixels;
+                        System.Drawing.Point center = LogicPointIntoDrawablePoint(opening.GetPosition());
                         System.Drawing.Point[] points = {
-                            new System.Drawing.Point(pointX+5, pointY+5),
-                            new System.Drawing.Point(pointX-5, pointY+5),
-                            new System.Drawing.Point(pointX+5, pointY-5),
-                            new System.Drawing.Point(pointX-5, pointY-5)
+                            new System.Drawing.Point(center.X+5, center.Y+5),
+                            new System.Drawing.Point(center.X-5, center.Y+5),
+                            new System.Drawing.Point(center.X+5, center.Y-5),
+                            new System.Drawing.Point(center.X-5, center.Y-5)
                         };
                         graphics.DrawPolygon(windowPen, points);
                     }
 
                     if (opening is Door) {
-                        int pointX = Convert.ToInt32(opening.GetPosition().CoordX) * cellSizeInPixels;
-                        int pointY = Convert.ToInt32(opening.GetPosition().CoordY) * cellSizeInPixels;
+                        System.Drawing.Point center = LogicPointIntoDrawablePoint(opening.GetPosition());
                         System.Drawing.Point[] points = {
-                        new System.Drawing.Point(pointX+5, pointY),
-                        new System.Drawing.Point(pointX-5, pointY),
-                        new System.Drawing.Point(pointX+5, pointY+10),
+                        new System.Drawing.Point(center.X+5, center.Y),
+                        new System.Drawing.Point(center.X-5, center.Y),
+                        new System.Drawing.Point(center.X+5, center.Y+10),
                     };
                         graphics.DrawPolygon(doorPen, points);
                     }
@@ -397,14 +399,13 @@ namespace UserInterface {
             drawSurface.Invalidate();
         }
         private void PaintSelectedPoint(Brush pointerBrush) {
-            CreateOrRecreateLayer(ref currentLineLayer);
-            using (Graphics graphics = Graphics.FromImage(currentLineLayer)) {
+            CreateOrRecreateLayer(ref currentPointLayer);
+            using (Graphics graphics = Graphics.FromImage(currentPointLayer)) {
                 System.Drawing.Point actualPoint =AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
                 graphics.DrawString("♦", DefaultFont, pointerBrush, actualPoint.X - 5, actualPoint.Y - 5);
             }
             drawSurface.Invalidate();
         }
-
 
         private void CreateOrRecreateLayer(ref Bitmap layer) {
             try {
