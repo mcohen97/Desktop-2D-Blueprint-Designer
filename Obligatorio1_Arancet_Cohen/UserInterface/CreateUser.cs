@@ -15,10 +15,14 @@ namespace UserInterface {
         private LoggedInView parent;
         private Permission particularFeature;
         private User created;
+        private Session CurrentSession { get; set; }
+        private UserAdministrator permissionController;
 
-        public CreateUser(LoggedInView aControl, Permission aFeature) {
+        public CreateUser(LoggedInView aControl, Permission aFeature, Session aSession) {
             InitializeComponent();
             parent = aControl;
+            CurrentSession = aSession;
+            permissionController = new UserAdministrator(CurrentSession);
             particularFeature = aFeature;
             ShowExtraFields();
         }
@@ -66,7 +70,8 @@ namespace UserInterface {
         }
 
         private void Register() {
-            UsersPortfolio.Instance.Add(created);
+            permissionController.Add(created);
+            //UsersPortfolio.Instance.Add(created);
             parent.RestartMenu();
         }
     }

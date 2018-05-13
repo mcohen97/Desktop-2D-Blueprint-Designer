@@ -17,7 +17,6 @@ namespace UserInterface {
         public ManageCostsView(LoggedInView aControl) {
             InitializeComponent();
             parent = aControl;
-            FillList();
             costPriceInfo.Hide();
         }
 
@@ -53,6 +52,10 @@ namespace UserInterface {
 
         private void doneButton_Click(object sender, EventArgs e) {
             parent.RestartMenu();
+        }
+
+        public void SetUp() {
+            FillList();
         }
     }
 }

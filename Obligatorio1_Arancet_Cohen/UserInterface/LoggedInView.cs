@@ -39,6 +39,8 @@ namespace UserInterface {
             Button currentButton;
             foreach (IUserFeatureControl control in availableViews) {
                 if (CurrentSession.UserLogged.HasPermission(control.GetRequiredPermission())) {
+                    control.SetUp();
+
                     currentButton = control.OptionMenuButton();
                     currentButton.Left = buttonX;
                     currentButton.Top = buttonY;
@@ -79,6 +81,7 @@ namespace UserInterface {
                 LogOut();
             };
         }
+
 
         private void LogOut() {
             mother.Authenticate();

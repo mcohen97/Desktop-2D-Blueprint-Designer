@@ -14,19 +14,19 @@ namespace UserInterface {
 
         LoggedInView parent;
         Session CurrentSession { get; set; }
+        UserAdministrator permissionController;
 
         public CreateBlueprint(Session aSession, LoggedInView aControl) {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            FillList();
+            permissionController = new UserAdministrator(CurrentSession);
         }
 
 
         public void FillList() {
-            ICollection<User> allUsers = UsersPortfolio.Instance.GetUsers();
-            ICollection<User> elegibleUsers = allUsers.Where(u => u.HasPermission(Permission.HAVE_BLUEPRINT)).ToList();
-            usersList.DataSource = elegibleUsers;
+            ICollection<User> clients = permissionController.GetAllClients();
+            usersList.DataSource = clients;
         }
 
         private void createButton_Click(object sender, EventArgs e) {
@@ -54,5 +54,8 @@ namespace UserInterface {
             return optionButton;
         }
 
+        public void SetUp() {
+            FillList();
+        }
     }
 }

@@ -19,13 +19,11 @@ namespace UserInterface {
             InitializeComponent();
             mother = loginView;
             CurrentSession = aSession;
-            FillList();
         }
 
         private void FillList() {
-            if (CurrentSession.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {
-
-            } else {
+           // ICollection<Blueprint> allOfThem = BlueprintPortfolio.GetBlueprintsCopy();
+            if (IsDesigner()) {
 
             }
         }
@@ -35,16 +33,27 @@ namespace UserInterface {
         }
 
         public Button OptionMenuButton() {
-            Button option = new Button();
-            option.Width = 100;
-            option.Height = 50;
-            option.Text = "Open Blueprint";
+            Button option;
+            string optionTitle;
+            if (IsDesigner()) {
+                optionTitle = "Edit Blueprint";
+            } else {
+                optionTitle = "View Blueprint";
+            }
+            option = ButtonCreator.GenerateButton(optionTitle);
             return option;
+        }
 
+        private bool IsDesigner() {
+            return CurrentSession.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT);
         }
 
         public void SetSession(Session aSession) {
             CurrentSession = aSession;
+        }
+
+        public void SetUp() {
+            FillList();
         }
     }
 }

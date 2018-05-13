@@ -22,6 +22,7 @@ namespace Logic
             perms.Add(Permission.EDIT_BLUEPRINT);
             perms.Add(Permission.DELETE_BLUEPRINT);
             perms.Add(Permission.READ_BLUEPRINT);
+            perms.Add(Permission.READ_USER);
             perms.Add(Permission.EDIT_OWN_DATA);
             return perms;
         }

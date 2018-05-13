@@ -37,8 +37,8 @@
             this.UsernameTitle = new System.Windows.Forms.Label();
             this.userNameText = new System.Windows.Forms.TextBox();
             this.createButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.passwordText = new System.Windows.Forms.Label();
+            this.passwordText = new System.Windows.Forms.TextBox();
+            this.passwordLabel = new System.Windows.Forms.Label();
             this.onlyClientFields.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -174,31 +174,31 @@
             this.createButton.UseVisualStyleBackColor = true;
             this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(392, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 31);
-            this.textBox1.TabIndex = 28;
-            // 
             // passwordText
             // 
-            this.passwordText.AutoSize = true;
             this.passwordText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordText.Location = new System.Drawing.Point(158, 114);
+            this.passwordText.Location = new System.Drawing.Point(392, 111);
             this.passwordText.Name = "passwordText";
-            this.passwordText.Size = new System.Drawing.Size(100, 22);
-            this.passwordText.TabIndex = 27;
-            this.passwordText.Text = "Password:";
-            this.passwordText.UseMnemonic = false;
+            this.passwordText.Size = new System.Drawing.Size(187, 31);
+            this.passwordText.TabIndex = 28;
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLabel.Location = new System.Drawing.Point(158, 114);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(100, 22);
+            this.passwordLabel.TabIndex = 27;
+            this.passwordLabel.Text = "Password:";
+            this.passwordLabel.UseMnemonic = false;
             // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.passwordText);
+            this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.userNameText);
             this.Controls.Add(this.surnameText);
@@ -232,7 +232,7 @@
         private System.Windows.Forms.Label UsernameTitle;
         private System.Windows.Forms.TextBox userNameText;
         private System.Windows.Forms.Button createButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label passwordText;
+        private System.Windows.Forms.TextBox passwordText;
+        private System.Windows.Forms.Label passwordLabel;
     }
 }

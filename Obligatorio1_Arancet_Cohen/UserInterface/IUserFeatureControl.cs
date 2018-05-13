@@ -12,5 +12,7 @@ namespace UserInterface {
         Permission GetRequiredPermission();
 
         Button OptionMenuButton();
+
+        void SetUp();
     }
 }

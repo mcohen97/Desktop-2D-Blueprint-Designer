@@ -14,18 +14,20 @@ namespace UserInterface {
 
         private Session CurrentSession { get; set; }
         private LoggedInView parent;
+        private UserAdministrator controller;
 
         public AdminUserManagement(Session aSession, LoggedInView aControl) {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            FillList();
+            controller = new UserAdministrator(CurrentSession);
         }
 
         private void FillList() {
             userList.DataSource = null;
-            List<User> elegibleUsers = UsersPortfolio.Instance.GetUsers().ToList();
-            elegibleUsers.Remove(CurrentSession.UserLogged);
+            /* List<User> elegibleUsers = UsersPortfolio.Instance.GetUsers().ToList();
+             elegibleUsers.Remove(CurrentSession.UserLogged);*/
+            List<User> elegibleUsers = controller.GetAllUsersExceptMe().ToList();
             userList.DataSource = elegibleUsers;
         }
 
@@ -41,7 +43,8 @@ namespace UserInterface {
             bool selectedItem=InputValidations.IsListItemSelected(userList, errorLabel,
                 "Debe seleccionar un usuario primero");
             if (selectedItem) {
-                UsersPortfolio.Instance.Remove((User)userList.SelectedItem);
+                // UsersPortfolio.Instance.Remove((User)userList.SelectedItem);
+                controller.Remove((User)userList.SelectedItem);
                 FillList();
             }
         }
@@ -59,11 +62,15 @@ namespace UserInterface {
         }
 
         private void createDesigner_Click(object sender, EventArgs e) { 
-            parent.SetView(new CreateUser(parent,Permission.CREATE_BLUEPRINT));
+            parent.SetView(new CreateUser(parent,Permission.CREATE_BLUEPRINT,CurrentSession));
         }
 
         private void createClient_Click(object sender, EventArgs e) {
-            parent.SetView(new CreateUser(parent, Permission.HOLD_EXTRA_DATA));
+            parent.SetView(new CreateUser(parent, Permission.HOLD_EXTRA_DATA,CurrentSession));
+        }
+
+        public void SetUp() {
+            FillList();
         }
     }
 }

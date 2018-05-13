@@ -107,5 +107,9 @@ namespace UserInterface {
             edited.Surname = surnameText.Text;
             edited.Password = passwordText.Text;
         }
+
+        public void SetUp() {
+            ShowData();
+        }
     }
 }
