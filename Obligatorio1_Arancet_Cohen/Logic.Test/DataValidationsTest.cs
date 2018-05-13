@@ -48,6 +48,23 @@ namespace Logic.Test {
             string testID = "1-555-5555";
             Assert.IsFalse(DataValidations.IsValidID(testID));
         }
+        [TestMethod]
+        public void IsNumberTest() {
+
+        }
+
+        [TestMethod]
+        public void IsValidNumberZeroTest() {
+
+        }
+
+        [TestMethod]
+        public void IsValidNegativeNumberTest() {
+
+        }
+
+        //[TestMethod]
+
 
     }
 }
