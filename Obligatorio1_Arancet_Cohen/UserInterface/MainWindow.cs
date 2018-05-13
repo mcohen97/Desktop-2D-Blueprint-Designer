@@ -34,6 +34,7 @@ namespace UserInterface {
             } else {
                 currentPanel = new LoggedInView(this, CurrentSession);
             }
+
             mainPanel.Controls.Add(currentPanel);
         }
 

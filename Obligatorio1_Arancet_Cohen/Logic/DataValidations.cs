@@ -29,7 +29,7 @@ namespace Logic {
             return valid;
         }
 
-        internal static bool IsNumberGreaterThanZero(string aNumber) {
+        public static bool IsNumberGreaterThanZero(string aNumber) {
             bool valid;
             try {
                 int theNumber = Int32.Parse(aNumber);

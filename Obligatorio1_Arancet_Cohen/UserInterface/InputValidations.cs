@@ -21,11 +21,15 @@ namespace UserInterface {
             aMessageLabel.Text = okMessage;
         }
 
-        public static void ValidateIfEmpty(TextBox anInput, Label msgLabel) {
+        public static bool ValidateIfEmpty(TextBox anInput, Label msgLabel) {
+            bool valid = true;
             if (string.IsNullOrEmpty(anInput.Text)) {
                 ErrorMessage(msgLabel, "Empty field!");
-            } 
+                valid = false;
+            }
+            return valid;
         }
+
         public static void ClearField(Label msgLabel) {
             msgLabel.Text = "";
         }
@@ -40,7 +44,8 @@ namespace UserInterface {
             return valid;
         }
 
-        public static bool ValidatePhoneNumber(string aPhoneNumber, Label aMsgLabel) {
+        public static bool ValidatePhoneNumber(TextBox input, Label aMsgLabel) {
+            string aPhoneNumber = input.Text;
             bool valid = DataValidations.IsValidPhoneNumber(aPhoneNumber);
             if (valid) {
                 OkMessage(aMsgLabel, "OK");
@@ -50,8 +55,9 @@ namespace UserInterface {
             return valid;
         }
 
-        public static bool ValidateID(string anID, Label aMsgLabel) {
-            bool valid = DataValidations.IsValidPhoneNumber(anID);
+        public static bool ValidateID(TextBox input, Label aMsgLabel) {
+            string anID = input.Text;
+            bool valid = DataValidations.IsValidID(anID);
             if (valid) {
                 OkMessage(aMsgLabel, "OK");
             } else {
@@ -60,6 +66,12 @@ namespace UserInterface {
             return valid;
         }
 
-
+        public static bool ValidateGreaterThanZero(string aNumber,Label msgLabel ,string errorMsg) {
+            bool valid = DataValidations.IsNumberGreaterThanZero(aNumber);
+            if (!valid) {
+                msgLabel.Text = errorMsg;
+            } 
+            return valid;
+        }
     }
 }

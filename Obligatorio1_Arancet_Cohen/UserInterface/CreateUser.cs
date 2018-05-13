@@ -74,5 +74,9 @@ namespace UserInterface {
             //UsersPortfolio.Instance.Add(created);
             parent.RestartMenu();
         }
+
+        private void telNumberText_Leave(object sender, EventArgs e) {
+
+        }
     }
 }
