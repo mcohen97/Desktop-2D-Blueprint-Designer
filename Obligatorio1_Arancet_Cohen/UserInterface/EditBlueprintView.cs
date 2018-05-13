@@ -60,7 +60,7 @@ namespace UserInterface {
             parent = aParent;
             selectedBluePrint = aBlueprint;
             wallPen = new Pen(Brushes.Black, 5);
-            beamPen = new Pen(Brushes.DarkOrange, 8);
+            beamPen = new Pen(Brushes.DarkRed, 8);
             doorPen = new Pen(Brushes.DarkGoldenrod, 6);
             windowPen = new Pen(Brushes.Sienna, 5);
 
@@ -280,8 +280,12 @@ namespace UserInterface {
 
         //Selection point mouse move
         private void drawSurface_MouseMoveShowSelectedPoint(object sender, MouseEventArgs e) {
-            PaintSelectedPoint();
+            PaintSelectedPoint(Brushes.FloralWhite);
         }
+        private void drawSurface_MouseMoveDeleteSelectedPoint(object sender, MouseEventArgs e) {
+            PaintSelectedPoint(Brushes.Red);
+        }
+
 
 
         //Paint functions
@@ -306,7 +310,7 @@ namespace UserInterface {
                 foreach (Beam beam in beams) {
                     int pointX = Convert.ToInt32(beam.GetPosition().CoordX) * cellSizeInPixels;
                     int pointY = Convert.ToInt32(beam.GetPosition().CoordY) * cellSizeInPixels;
-                    graphics.DrawString("■", DefaultFont, Brushes.DarkRed, pointX - 7, pointY - 5);
+                    graphics.DrawString("■", DefaultFont, beamPen.Brush, pointX - 7, pointY - 5);
 
                     //graphics.DrawLine(beamPen, point, point);
                     //graphics.DrawString("■", DefaultFont, Brushes.DarkRed, new System.Drawing.Point(pointX, pointY));
@@ -392,11 +396,11 @@ namespace UserInterface {
             }
             drawSurface.Invalidate();
         }
-        private void PaintSelectedPoint() {
+        private void PaintSelectedPoint(Brush pointerBrush) {
             CreateOrRecreateLayer(ref currentLineLayer);
             using (Graphics graphics = Graphics.FromImage(currentLineLayer)) {
                 System.Drawing.Point actualPoint =AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
-                graphics.DrawString("♦", DefaultFont, Brushes.GhostWhite, actualPoint.X - 7, actualPoint.Y - 5);
+                graphics.DrawString("♦", DefaultFont, pointerBrush, actualPoint.X - 5, actualPoint.Y - 5);
             }
             drawSurface.Invalidate();
         }
@@ -412,44 +416,59 @@ namespace UserInterface {
         }
 
         private void EditBlueprintView_Load(object sender, EventArgs e) {
-
+            drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
         }
 
         //Tool selected buttons click
         private void btnPointerTool_Click(object sender, EventArgs e) {
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
-            drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            RemoveEveryHandler();
+            EnableEveryButton();
+            btnPointerTool.Enabled = false;
+
         }
         private void btnWallTool_Click(object sender, EventArgs e) {
+            RemoveEveryHandler();
+            EnableEveryButton();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStartWall);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
-            drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            btnWallTool.Enabled = false;
         }
         private void btnWindowTool_Click(object sender, EventArgs e) {
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertDoor);
+            RemoveEveryHandler();
+            EnableEveryButton();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
-            drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            btnWindowTool.Enabled = false;
+
         }
         private void btnDoorTool_Click(object sender, EventArgs e) {
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
+            RemoveEveryHandler();
+            EnableEveryButton();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
-            drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            btnDoorTool.Enabled = false;
+
         }
         private void btnEraserTool_Click(object sender, EventArgs e) {
+            RemoveEveryHandler();
+            EnableEveryButton();
+            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickErase);
+            drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
+            btnEraserTool.Enabled = false;
+        }
+
+        private void RemoveEveryHandler() {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertDoor);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickErase);
-            drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
+            drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
+        }
+
+        private void EnableEveryButton() {
+            btnPointerTool.Enabled = true;
+            btnWallTool.Enabled = true;
+            btnWindowTool.Enabled = true;
+            btnDoorTool.Enabled = true;
+            btnEraserTool.Enabled = true;
+
         }
     }
 }
