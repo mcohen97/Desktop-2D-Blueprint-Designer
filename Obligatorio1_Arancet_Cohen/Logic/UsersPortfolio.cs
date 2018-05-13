@@ -8,7 +8,7 @@ using System.Collections;
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
 namespace Logic {
-    public class UsersPortfolio {
+    internal class UsersPortfolio {
 
         private static UsersPortfolio instance;
         private ICollection<User> Users;
@@ -100,6 +100,10 @@ namespace Logic {
             } catch (Exception) {
                 throw new UserNotFoundException();
             } 
+        }
+
+        public ICollection<User> GetUsersByPermission(Permission aFeature) {
+            return (ICollection<User>)GetUsers().Where(u=>u.HasPermission(aFeature)).ToList();
         }
     }
 }

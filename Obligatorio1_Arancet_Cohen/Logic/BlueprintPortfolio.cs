@@ -48,6 +48,11 @@ namespace Logic {
             return Blueprints.GetEnumerator();
         }
 
+        public ICollection<IBlueprint> GetBlueprintsCopy() {
+            ICollection<IBlueprint> copy = new List<IBlueprint>(Blueprints);
+            return copy;
+        }
+
         public bool Remove(IBlueprint aBlueprint) {
             if(aBlueprint == null) {
                 throw new ArgumentNullException();

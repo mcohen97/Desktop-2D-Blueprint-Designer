@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Logic {
     public class UserAdministrator {
@@ -44,6 +45,23 @@ namespace Logic {
                 throw new NoPermissionsException();
             }
             UsersPortfolio.Instance.Remove(aUser);
+        }
+
+        public ICollection<User> GetAllClients() {
+            if (!Session.UserLogged.HasPermission(Permission.READ_USER)) {
+                throw new NoPermissionsException();
+            }
+            ICollection<User> allClients = UsersPortfolio.Instance.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
+            return allClients;
+        }
+
+        public ICollection<User> GetAllUsersExceptMe() {
+            if (!Session.UserLogged.HasPermission(Permission.READ_USER)) {
+                throw new NoPermissionsException();
+            }
+            ICollection<User> allUsers= UsersPortfolio.Instance.GetUsers();
+            allUsers.Remove(Session.UserLogged);
+            return allUsers;
         }
     }
 }
