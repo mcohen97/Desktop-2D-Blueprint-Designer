@@ -39,14 +39,14 @@ namespace Logic.Test {
 
         [TestMethod]
         public void ValidIDTest() {
-            string testPhone = "4.972.519-2";
-            Assert.IsFalse(DataValidations.IsValidID(testPhone));
+            string testID = "4.972.519-2";
+            Assert.IsTrue(DataValidations.IsValidID(testID));
         }
 
         [TestMethod]
         public void InvalidIDTest() {
-            string testPhone = "1-555-5555";
-            Assert.IsFalse(DataValidations.IsValidID(testPhone));
+            string testID = "1-555-5555";
+            Assert.IsFalse(DataValidations.IsValidID(testID));
         }
 
     }
