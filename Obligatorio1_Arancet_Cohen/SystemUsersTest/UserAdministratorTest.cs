@@ -138,6 +138,7 @@ namespace SystemUsersTest {
 
         [TestMethod]
         public void GetAllUsersExceptMeTest() {
+            intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
             ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
@@ -149,6 +150,7 @@ namespace SystemUsersTest {
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
         public void GetUsersExceptMeNoPermissionTest() {
+            intializerWithData();
             Session aSession = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(aSession);
             ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
