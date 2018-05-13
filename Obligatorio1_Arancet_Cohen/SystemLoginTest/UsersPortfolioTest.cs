@@ -112,7 +112,7 @@ namespace SystemLoginTest
         public void GetAllUsersTest() {
             portfolio.Add(user1);
             portfolio.Add(user2);
-            int expectedResult = 2;
+            int expectedResult = 3;
             int actualResult = portfolio.GetUsers().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -122,7 +122,7 @@ namespace SystemLoginTest
             portfolio.Add(user1);
             portfolio.Add(user3);
             ICollection<User> filtered = portfolio.GetUsersByPermission(Permission.READ_BLUEPRINT);
-            int expectedResult = 1;
+            int expectedResult = 2;
             int actualResult = filtered.Count;
             Assert.AreEqual(expectedResult,actualResult);
         }
