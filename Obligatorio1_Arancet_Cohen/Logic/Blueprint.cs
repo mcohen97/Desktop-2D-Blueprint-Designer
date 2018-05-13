@@ -137,7 +137,7 @@ namespace Logic {
             SplitWall(aWall, intersectionPoints);
         }
 
-        private void RemoveOpeningIfExists(Point actualIntersection) {
+        public void RemoveOpeningIfExists(Point actualIntersection) {
             Opening op = new Door(actualIntersection);
             if (materials.ContainsOpening(op)) {
                 materials.RemoveOpening(op);
@@ -155,8 +155,10 @@ namespace Logic {
                 CreateAndPlaceWall(from, to);
                 from = to;
             }
-            to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
-            CreateAndPlaceWall(from, to);
+            if (lengthOfRemainingWall > 0) {
+                to = from.PointInSameLineAtSomeDistance(vector, lengthOfRemainingWall);
+                CreateAndPlaceWall(from, to);
+            }
 
         }
 
@@ -242,7 +244,7 @@ namespace Logic {
             return intersectedWalls;
         }
 
-        private bool OccupiedPosition(ISinglePointComponent punctualComponent) {
+        public bool OccupiedPosition(ISinglePointComponent punctualComponent) {
             bool occupied = false;
             foreach (Opening existing in materials.GetOpenings()) {
                 occupied |= punctualComponent.GetPosition().Equals(existing.GetPosition());
@@ -255,7 +257,7 @@ namespace Logic {
             return occupied;
         }
 
-        private bool BelongsToAWall(Opening newOpening) {
+        public bool BelongsToAWall(Opening newOpening) {
             IEnumerator<Wall> itr = (IEnumerator<Wall>)materials.GetWalls().GetEnumerator();
             bool doesBelong = false;
             Wall existing;
@@ -266,7 +268,7 @@ namespace Logic {
             return doesBelong;
         }
 
-        private void RemoveOpeningsOfWall(Wall aWall) {
+        public void RemoveOpeningsOfWall(Wall aWall) {
             foreach (Opening existing in GetOpeningsFromWall(aWall)) {
                 materials.RemoveOpening(existing);
             }
@@ -336,6 +338,16 @@ namespace Logic {
             materials.RemoveBeam(toRemove);
         }
 
-        
+        public ICollection<Wall> GetWalls() {
+            return (ICollection<Wall>)materials.GetWalls();
+        }
+
+        public ICollection<Beam> GetBeams() {
+            return (ICollection<Beam>)materials.GetBeams();
+        }
+
+        public ICollection<Opening> GetOpenings() {
+            return (ICollection<Opening>)materials.GetOpenings();
+        }
     }
 }
