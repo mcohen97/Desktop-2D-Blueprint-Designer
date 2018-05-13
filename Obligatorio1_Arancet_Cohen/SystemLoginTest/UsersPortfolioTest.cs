@@ -117,5 +117,14 @@ namespace SystemLoginTest
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void GetUsersByPermissionTest() {
+            portfolio.Add(user1);
+            portfolio.Add(user3);
+            ICollection<User> filtered = portfolio.GetUsersByPermission(Permission.READ_BLUEPRINT);
+            int expectedResult = 1;
+            int actualResult = filtered.Count;
+            Assert.AreEqual(expectedResult,actualResult);
+        }
     }
 }
