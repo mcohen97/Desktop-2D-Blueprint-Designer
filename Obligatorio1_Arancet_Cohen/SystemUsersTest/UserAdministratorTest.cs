@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic;
+using System.Collections.Generic;
 
 namespace SystemUsersTest {
     [TestClass]
@@ -114,5 +115,44 @@ namespace SystemUsersTest {
             UserAdministrator administrator = new UserAdministrator(session);
             administrator.Remove(user2);
         }
+
+        [TestMethod]
+        public void GetClientsTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("admin", "admin");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> allClients = administrator.GetAllClients();
+            int expectedResult = 2;
+            int actualResult = allClients.Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void GetClientsNoPermissionTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("client1UN", "client1P");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> allClients = administrator.GetAllClients();
+        }
+
+        [TestMethod]
+        public void GetAllUsersExceptMeTest() {
+            Session aSession = conn.LogIn("admin", "admin");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
+            int expectedResult = 5;
+            int actualResult = usersMinus1.Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void GetUsersExceptMeNoPermissionTest() {
+            Session aSession = conn.LogIn("client1UN", "client1P");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
+        }
+
     }
 }

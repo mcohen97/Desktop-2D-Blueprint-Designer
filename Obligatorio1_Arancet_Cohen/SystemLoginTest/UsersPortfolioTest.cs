@@ -108,5 +108,14 @@ namespace SystemLoginTest
             Assert.AreEqual(user5, userInfo);
         }
 
+        [TestMethod]
+        public void GetAllUsersTest() {
+            portfolio.Add(user1);
+            portfolio.Add(user2);
+            int expectedResult = 2;
+            int actualResult = portfolio.GetUsers().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 }

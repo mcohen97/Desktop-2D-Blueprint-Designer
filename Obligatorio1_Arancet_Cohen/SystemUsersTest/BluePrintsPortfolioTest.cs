@@ -80,5 +80,14 @@ namespace SystemUsersTest {
             blueprints.MoveNext();
             Assert.AreEqual(blueprints.Current, blueprint1);
         }
+
+        [TestMethod]
+        public void GetBlueprintsCopyTest() {
+            portfolio.Add(blueprint1);
+            portfolio.Add(blueprint2);
+            ICollection<IBlueprint> copy = portfolio.GetBlueprintsCopy();
+            copy.Remove(blueprint1);
+            Assert.IsTrue(portfolio.Exist(blueprint1));
+        }
     }
 }
