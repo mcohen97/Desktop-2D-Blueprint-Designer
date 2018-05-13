@@ -56,6 +56,7 @@
             this.btnEraserTool.TabIndex = 4;
             this.btnEraserTool.Text = "Eraser";
             this.btnEraserTool.UseVisualStyleBackColor = true;
+            this.btnEraserTool.Click += new System.EventHandler(this.btnEraserTool_Click);
             // 
             // btnWindowTool
             // 

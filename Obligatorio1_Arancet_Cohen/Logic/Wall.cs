@@ -135,7 +135,7 @@ namespace Logic {
             return DoesContainPoint(component.GetPosition());
         }
 
-        private bool DoesContainPoint(Point aPoint) {
+        public bool DoesContainPoint(Point aPoint) {
             bool isContained;
             if (BelongsToEdge(aPoint)) {
                 isContained = false;
