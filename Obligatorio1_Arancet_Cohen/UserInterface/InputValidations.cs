@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Logic;
 
 
 namespace UserInterface {
@@ -14,6 +15,12 @@ namespace UserInterface {
             aMessageLabel.ForeColor = Color.Red;
             aMessageLabel.Text = errMessage;
         }
+
+        public static void OkMessage(Label aMessageLabel, string okMessage) {
+            aMessageLabel.ForeColor = Color.Green;
+            aMessageLabel.Text = okMessage;
+        }
+
         public static void ValidateIfEmpty(TextBox anInput, Label msgLabel) {
             if (string.IsNullOrEmpty(anInput.Text)) {
                 ErrorMessage(msgLabel, "Empty field!");
@@ -33,6 +40,25 @@ namespace UserInterface {
             return valid;
         }
 
+        public static bool ValidatePhoneNumber(string aPhoneNumber, Label aMsgLabel) {
+            bool valid = DataValidations.IsValidPhoneNumber(aPhoneNumber);
+            if (valid) {
+                OkMessage(aMsgLabel, "OK");
+            } else {
+                ErrorMessage(aMsgLabel, "Invalid phone number!!");
+            }
+            return valid;
+        }
+
+        public static bool ValidateID(string anID, Label aMsgLabel) {
+            bool valid = DataValidations.IsValidPhoneNumber(anID);
+            if (valid) {
+                OkMessage(aMsgLabel, "OK");
+            } else {
+                ErrorMessage(aMsgLabel, "Invalid ID number!!");
+            }
+            return valid;
+        }
 
 
     }

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Logic {
-    class DataValidations {
+    public class DataValidations {
 
         public static void AssignStringIfNotNull(out string instanceVariable,string value ) {
             if (String.IsNullOrEmpty(value)) {
@@ -15,18 +15,22 @@ namespace Logic {
             instanceVariable = value;
         }
 
-        internal static bool IsValidPhoneNumber(string phoneNumber) {
+        public static bool IsValidPhoneNumber(string phoneNumber) {
             Regex regex = new Regex(@"\d\d\d\d-\d\d-\d\d");
             Match match = regex.Match(phoneNumber);
             bool valid = match.Success;
             return valid;
         }
 
-        internal static bool IsValidID(string anID) {
+        public static bool IsValidID(string anID) {
             Regex regex = new Regex(@"\d\.\d\d\d\.\d\d\d-\d");
             Match match = regex.Match(anID);
             bool valid = match.Success;
             return valid;
+        }
+
+        public static bool IsValidPhoneNumber(object aPhoneNumber) {
+            throw new NotImplementedException();
         }
     }
 }
