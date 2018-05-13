@@ -48,23 +48,30 @@ namespace Logic.Test {
             string testID = "1-555-5555";
             Assert.IsFalse(DataValidations.IsValidID(testID));
         }
+
         [TestMethod]
         public void IsNumberTest() {
-
+            string testNumber = "99";
+            Assert.IsTrue(DataValidations.IsNumberGreaterThanZero(testNumber));
         }
 
         [TestMethod]
         public void IsValidNumberZeroTest() {
-
+            string testNumber = "0";
+            Assert.IsFalse(DataValidations.IsNumberGreaterThanZero(testNumber));
         }
 
         [TestMethod]
         public void IsValidNegativeNumberTest() {
-
+            string testNumber = "-5";
+            Assert.IsFalse(DataValidations.IsNumberGreaterThanZero(testNumber));
         }
 
-        //[TestMethod]
-
+        [TestMethod]
+        public void IsNaNTest() {
+            string testNumber = "0";
+            Assert.IsFalse(DataValidations.IsNumberGreaterThanZero(testNumber));
+        }
 
     }
 }

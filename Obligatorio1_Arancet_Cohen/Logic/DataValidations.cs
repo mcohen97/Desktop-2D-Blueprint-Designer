@@ -29,8 +29,15 @@ namespace Logic {
             return valid;
         }
 
-        public static bool IsValidPhoneNumber(object aPhoneNumber) {
-            throw new NotImplementedException();
+        internal static bool IsNumberGreaterThanZero(string aNumber) {
+            bool valid;
+            try {
+                int theNumber = Int32.Parse(aNumber);
+                valid = theNumber > 0;
+            } catch (Exception) {
+                valid = false;
+            }
+            return valid;
         }
     }
 }
