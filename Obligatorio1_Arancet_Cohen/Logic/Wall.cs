@@ -179,14 +179,31 @@ namespace Logic {
         }
 
         public bool IsContinuous(Wall otherWall) {
-            Wall auxWall = new Wall(Beginning(),otherWall.End());
-            //this wall should contain the other wall, if they are collinear
-            return IsConnected(otherWall) && auxWall.Overlaps(otherWall);
+            bool continuous = false;
+            if (IsConnected(otherWall)) {
+                Wall merge = MergeContinuousSegment(otherWall);
+                continuous = merge.Length() == (Length() + otherWall.Length());
+            }
+            return continuous;
         }
 
         public bool IsConnected(Wall otherWall) {
             return BelongsToEdge(otherWall.Beginning()) || BelongsToEdge(otherWall.End());
         }
+
+        internal Wall MergeContinuousSegment(Wall otherWall) {//as beginning is closer to origin than end, this logic always work
+            Point newBeginning;
+            Point newEnd;
+            if (Beginning().IsCloserToOriginThan(otherWall.Beginning())) {
+                newBeginning = Beginning();
+                newEnd = otherWall.End();
+            } else {
+                newBeginning = otherWall.Beginning();
+                newEnd = End();
+            }
+            return new Wall(newBeginning, newEnd);
+        }
+
 
         public ComponentType GetComponentType() {
             return ComponentType.WALL;
@@ -199,5 +216,6 @@ namespace Logic {
         public float CalculateCost() {
             return Constants.costCatalogue[GetComponentType()] * Length();
         }
+
     }
 }
