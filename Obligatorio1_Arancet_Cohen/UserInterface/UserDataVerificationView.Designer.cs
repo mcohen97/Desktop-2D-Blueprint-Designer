@@ -31,8 +31,6 @@
             this.addressTitle = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.surnameText = new System.Windows.Forms.TextBox();
-            this.idText = new System.Windows.Forms.TextBox();
-            this.telNumberText = new System.Windows.Forms.TextBox();
             this.addressText = new System.Windows.Forms.TextBox();
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.viewTitle = new System.Windows.Forms.Label();
@@ -47,6 +45,8 @@
             this.nameMsg = new System.Windows.Forms.Label();
             this.surnameMsg = new System.Windows.Forms.Label();
             this.passwordMsg = new System.Windows.Forms.Label();
+            this.idText = new System.Windows.Forms.MaskedTextBox();
+            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.onlyClientFields.SuspendLayout();
             this.userInfo.SuspendLayout();
             this.SuspendLayout();
@@ -131,26 +131,6 @@
             this.surnameText.Enter += new System.EventHandler(this.surnameText_Enter);
             this.surnameText.Leave += new System.EventHandler(this.surnameText_Leave);
             // 
-            // idText
-            // 
-            this.idText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idText.Location = new System.Drawing.Point(267, 14);
-            this.idText.Name = "idText";
-            this.idText.Size = new System.Drawing.Size(187, 31);
-            this.idText.TabIndex = 3;
-            this.idText.Enter += new System.EventHandler(this.idText_Enter);
-            this.idText.Leave += new System.EventHandler(this.idText_Leave);
-            // 
-            // telNumberText
-            // 
-            this.telNumberText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.telNumberText.Location = new System.Drawing.Point(267, 62);
-            this.telNumberText.Name = "telNumberText";
-            this.telNumberText.Size = new System.Drawing.Size(187, 31);
-            this.telNumberText.TabIndex = 4;
-            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
-            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
-            // 
             // addressText
             // 
             this.addressText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -192,12 +172,12 @@
             // 
             // onlyClientFields
             // 
+            this.onlyClientFields.Controls.Add(this.telNumberText);
             this.onlyClientFields.Controls.Add(this.addressMsg);
+            this.onlyClientFields.Controls.Add(this.idText);
             this.onlyClientFields.Controls.Add(this.telNumberMsg);
             this.onlyClientFields.Controls.Add(this.idMsg);
-            this.onlyClientFields.Controls.Add(this.idText);
             this.onlyClientFields.Controls.Add(this.IDTitle);
-            this.onlyClientFields.Controls.Add(this.telNumberText);
             this.onlyClientFields.Controls.Add(this.addressText);
             this.onlyClientFields.Controls.Add(this.addressTitle);
             this.onlyClientFields.Controls.Add(this.telNumberTitle);
@@ -287,6 +267,26 @@
             this.passwordMsg.Size = new System.Drawing.Size(0, 13);
             this.passwordMsg.TabIndex = 20;
             // 
+            // idText
+            // 
+            this.idText.Location = new System.Drawing.Point(267, 17);
+            this.idText.Mask = "0.000.000-0";
+            this.idText.Name = "idText";
+            this.idText.Size = new System.Drawing.Size(68, 20);
+            this.idText.TabIndex = 21;
+            this.idText.Enter += new System.EventHandler(this.idText_Enter);
+            this.idText.Leave += new System.EventHandler(this.idText_Leave);
+            // 
+            // telNumberText
+            // 
+            this.telNumberText.Location = new System.Drawing.Point(267, 59);
+            this.telNumberText.Mask = "0000-00-00";
+            this.telNumberText.Name = "telNumberText";
+            this.telNumberText.Size = new System.Drawing.Size(68, 20);
+            this.telNumberText.TabIndex = 22;
+            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
+            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
+            // 
             // UserDataVerificationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,8 +321,6 @@
         private System.Windows.Forms.Label addressTitle;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.TextBox surnameText;
-        private System.Windows.Forms.TextBox idText;
-        private System.Windows.Forms.TextBox telNumberText;
         private System.Windows.Forms.TextBox addressText;
         private System.Windows.Forms.TextBox nameTxt;
         private System.Windows.Forms.Label viewTitle;
@@ -337,5 +335,7 @@
         private System.Windows.Forms.Label nameMsg;
         private System.Windows.Forms.Label surnameMsg;
         private System.Windows.Forms.Label passwordMsg;
+        private System.Windows.Forms.MaskedTextBox idText;
+        private System.Windows.Forms.MaskedTextBox telNumberText;
     }
 }

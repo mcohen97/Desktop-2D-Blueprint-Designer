@@ -86,13 +86,6 @@ namespace UserInterface {
                 UpdateInfo();
                 parent.GoToMenu();
             }
-
-            /*RemoveFirstLoginFeature();
-            UpdateCommonInformation();
-            if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
-                UpdateClientInformation();
-            }*/
-           
         }
 
         private void UpdateInfo() {
@@ -118,8 +111,8 @@ namespace UserInterface {
         }
 
         private bool ClientDataOk() {
-            bool idOk = InputValidations.ValidateID(idText, idMsg);
-            bool phoneOk = InputValidations.ValidatePhoneNumber(telNumberText, telNumberMsg);
+            bool idOk = InputValidations.ValidateID(idText.Text, idMsg);
+            bool phoneOk = InputValidations.ValidatePhoneNumber(telNumberText.Text, telNumberMsg);
             bool addressOk = InputValidations.ValidateIfEmpty(addressText, addressMsg);
             return idOk && phoneOk && addressOk;
         }
@@ -160,11 +153,11 @@ namespace UserInterface {
         }
 
         private void idText_Leave(object sender, EventArgs e) {
-            InputValidations.ValidateID(idText, idMsg);
+            InputValidations.ValidateID(idText.Text, idMsg);
         }
 
         private void telNumberText_Leave(object sender, EventArgs e) {
-            InputValidations.ValidatePhoneNumber(telNumberText, telNumberMsg);
+            InputValidations.ValidatePhoneNumber(telNumberText.Text, telNumberMsg);
         }
 
         private void addressText_Leave(object sender, EventArgs e) {
@@ -190,5 +183,7 @@ namespace UserInterface {
         private void addressText_Enter(object sender, EventArgs e) {
             InputValidations.ClearField(addressMsg);
         }
+
+    
     }
 }
