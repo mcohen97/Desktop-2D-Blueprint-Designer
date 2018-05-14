@@ -285,6 +285,24 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void MultipleDeletionsTest() {
+            instance.InsertWall(new Point(2, 1), new Point(2, 4));
+            instance.InsertWall(new Point(1, 2), new Point(3, 2));
+            instance.InsertWall(new Point(1, 3), new Point(3, 3));
+
+            instance.RemoveWall(new Point(1, 2), new Point(2, 2));
+            instance.RemoveWall(new Point(2, 2), new Point(3, 2));
+
+            instance.RemoveWall(new Point(1, 3), new Point(2, 3));
+            instance.RemoveWall(new Point(2, 3), new Point(3, 3));
+
+            int expectedResult = 1;
+            int actualResult = materials.WallsCount();
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
         //tests for insertion of openings
         [TestMethod]
         [ExpectedException(typeof(OutOfRangeComponentException))]
