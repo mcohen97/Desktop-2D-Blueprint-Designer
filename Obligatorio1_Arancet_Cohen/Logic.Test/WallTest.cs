@@ -262,5 +262,22 @@ namespace Logic.Test {
             Assert.AreEqual(ComponentType.WALL, instance.GetComponentType());
         }
 
-    }
+        [TestMethod]
+        public void MergeContinuousCollinearWallsTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
+            Wall expectedResult = new Wall(new Point(1,0), new Point(5,0));
+            Wall actualResult = testWall.MergeContinuousSegment(otherTestWall);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotContinuousCollinearWallsException))]
+        public void MergeNotContinuousCollinearWallsTest() {
+            Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
+            Wall otherTestWall = new Wall(new Point(2, 0), new Point(2, 2));
+            Wall actualResult = testWall.MergeContinuousSegment(otherTestWall);
+        }
+
+        }
 }
