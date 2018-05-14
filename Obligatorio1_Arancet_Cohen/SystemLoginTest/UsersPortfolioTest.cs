@@ -48,6 +48,19 @@ namespace SystemLoginTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddNullUserTest() {
+            portfolio.Add(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UserAlreadyExistsException))]
+        public void AddExistingUser() {
+            portfolio.Add(user1);
+            portfolio.Add(user1);
+        }
+
+        [TestMethod]
         public void GetUsersTest()
         {
             portfolio.Add(user1);
