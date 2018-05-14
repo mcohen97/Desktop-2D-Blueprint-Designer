@@ -36,11 +36,6 @@ namespace UserInterface {
             
         }
 
-
-        private void button1_Click(object sender, EventArgs e) {
-
-        }
-
         private void UsernameText_TextChanged(object sender, EventArgs e) {
             InputValidations.ClearField(UserNameMsg);
         }
@@ -48,5 +43,15 @@ namespace UserInterface {
         private void PasswordText_TextChanged(object sender, EventArgs e) {
             InputValidations.ClearField(PasswordMsg);
         }
+
+        private void testDataButton_Click(object sender, EventArgs e) {
+            SessionConnector connector = new SessionConnector();
+            Session fakeSession= connector.LogIn("admin","admin");
+            UserAdministrator administrator = new UserAdministrator(fakeSession);
+            administrator.Add(new Client("user1", "user1", "user1", "user1", "1111-11-11", "user1", "1.111.111-1", DateTime.Now));
+            administrator.Add(new Client("user2", "user2", "user2", "user2", "1111-11-11", "user2", "1.111.111-1", DateTime.Now));
+            administrator.Add(new Designer("designer1","designer1","designer1","designer1",DateTime.Now));
+            testDataButton.Hide();
+       }
     }
 }

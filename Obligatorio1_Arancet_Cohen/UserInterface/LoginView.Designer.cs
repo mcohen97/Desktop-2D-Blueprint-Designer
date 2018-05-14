@@ -101,7 +101,7 @@
             this.testDataButton.TabIndex = 6;
             this.testDataButton.Text = "Generate data for testing";
             this.testDataButton.UseVisualStyleBackColor = true;
-            this.testDataButton.Click += new System.EventHandler(this.button1_Click);
+            this.testDataButton.Click += new System.EventHandler(this.testDataButton_Click);
             // 
             // UserNameMsg
             // 
