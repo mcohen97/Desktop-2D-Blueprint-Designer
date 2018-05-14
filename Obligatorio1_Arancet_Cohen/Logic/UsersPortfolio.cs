@@ -36,6 +36,9 @@ namespace Logic {
             if (userToAdd == null) {
                 throw new ArgumentNullException();
             }
+            if (Exist(userToAdd)) {
+                throw new UserAlreadyExistsException();
+            }
             Users.Add(userToAdd);
         }
 
