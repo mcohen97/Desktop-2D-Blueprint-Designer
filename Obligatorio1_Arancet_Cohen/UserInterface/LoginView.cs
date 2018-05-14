@@ -25,15 +25,22 @@ namespace UserInterface {
         }
 
         private void LogInButton_Click(object sender, EventArgs e) {
+            bool usernameNotEmpty = InputValidations.ValidateIfEmpty(UsernameText, UserNameMsg);
+            bool passwordNotEmpty= InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
+            if (usernameNotEmpty && passwordNotEmpty) {
+                TryToLogIn();
+            }  
+        }
+
+        private void TryToLogIn() {
             try {
                 mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
                 mother.GoToMenu();
             } catch (WrongPasswordException) {
                 InputValidations.ErrorMessage(PasswordMsg, "Wrong Password!");
-            } catch(UserNotFoundException) {
+            } catch (UserNotFoundException) {
                 InputValidations.ErrorMessage(UserNameMsg, "User doesn't exist!");
             }
-            
         }
 
         private void UsernameText_TextChanged(object sender, EventArgs e) {
@@ -42,6 +49,15 @@ namespace UserInterface {
 
         private void PasswordText_TextChanged(object sender, EventArgs e) {
             InputValidations.ClearField(PasswordMsg);
+        }
+
+
+        private void UsernameText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(UsernameText, UserNameMsg);
+        }
+
+        private void PasswordText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
         }
 
         private void testDataButton_Click(object sender, EventArgs e) {
@@ -53,5 +69,7 @@ namespace UserInterface {
             administrator.Add(new Designer("designer1","designer1","designer1","designer1",DateTime.Now));
             testDataButton.Hide();
        }
+
+
     }
 }

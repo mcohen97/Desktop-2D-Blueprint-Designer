@@ -116,6 +116,7 @@
             this.telNumberText.Name = "telNumberText";
             this.telNumberText.Size = new System.Drawing.Size(187, 31);
             this.telNumberText.TabIndex = 4;
+            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
             // 
             // addressText
             // 

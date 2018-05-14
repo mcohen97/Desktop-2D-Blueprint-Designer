@@ -81,12 +81,40 @@ namespace UserInterface {
         }
 
         private void finishButton_Click(object sender, EventArgs e) {
-            RemoveFirstLoginFeature();
+            if (AllFieldsOk()) {
+                RemoveFirstLoginFeature();
+                UpdateInfo();
+                parent.GoToMenu();
+            }
+        }
+
+        private void UpdateInfo() {
             UpdateCommonInformation();
             if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
                 UpdateClientInformation();
             }
-            parent.GoToMenu();
+        }
+
+        private bool AllFieldsOk() {
+            bool ok = CommonDataOk();
+            if (edited.HasPermission(Permission.HOLD_EXTRA_DATA)) {
+                ok &= ClientDataOk();
+            }
+            return ok;
+        }
+
+        private bool CommonDataOk() {
+            bool nameOk = InputValidations.ValidateIfEmpty(nameTxt, nameMsg);
+            bool surnameOk= InputValidations.ValidateIfEmpty(surnameText, surnameMsg);
+            bool passwordOk = InputValidations.ValidateIfEmpty(passwordText, passwordMsg);
+            return nameOk && surnameOk && passwordOk;
+        }
+
+        private bool ClientDataOk() {
+            bool idOk = InputValidations.ValidateID(idText.Text, idMsg);
+            bool phoneOk = InputValidations.ValidatePhoneNumber(telNumberText.Text, telNumberMsg);
+            bool addressOk = InputValidations.ValidateIfEmpty(addressText, addressMsg);
+            return idOk && phoneOk && addressOk;
         }
 
         private void RemoveFirstLoginFeature() {
@@ -111,5 +139,51 @@ namespace UserInterface {
         public void SetUp() {
             ShowData();
         }
+
+        private void passwordText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(passwordText, passwordMsg);
+        }
+
+        private void surnameText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(surnameText, surnameMsg);
+        }
+
+        private void nameTxt_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(nameTxt, nameMsg);
+        }
+
+        private void idText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateID(idText.Text, idMsg);
+        }
+
+        private void telNumberText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidatePhoneNumber(telNumberText.Text, telNumberMsg);
+        }
+
+        private void addressText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(addressText, addressMsg);
+        }
+
+        private void passwordText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(passwordMsg);
+        }
+
+        private void surnameText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(surnameMsg);
+        }
+
+        private void idText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(idMsg);
+        }
+
+        private void telNumberText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(telNumberMsg);
+        }
+
+        private void addressText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(addressMsg);
+        }
+
+    
     }
 }

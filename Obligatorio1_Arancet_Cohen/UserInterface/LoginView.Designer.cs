@@ -63,6 +63,7 @@
             this.UsernameText.Size = new System.Drawing.Size(236, 31);
             this.UsernameText.TabIndex = 2;
             this.UsernameText.TextChanged += new System.EventHandler(this.UsernameText_TextChanged);
+            this.UsernameText.Leave += new System.EventHandler(this.UsernameText_Leave);
             // 
             // PasswordText
             // 
@@ -72,6 +73,7 @@
             this.PasswordText.Size = new System.Drawing.Size(236, 31);
             this.PasswordText.TabIndex = 3;
             this.PasswordText.TextChanged += new System.EventHandler(this.PasswordText_TextChanged);
+            this.PasswordText.Leave += new System.EventHandler(this.PasswordText_Leave);
             // 
             // UsernameLabel
             // 

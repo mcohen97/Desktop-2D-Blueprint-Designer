@@ -30,16 +30,26 @@ namespace UserInterface {
         }
 
         private void createButton_Click(object sender, EventArgs e) {
-            if (usersList.SelectedIndex != -1) {
-                string width = widthText.Text;
-                int _width = 0;
-                Int32.TryParse(width, out _width);
-                string height = heightText.Text;
-                int _height = 0;
-                Int32.TryParse(width, out _height);
-                string name = nameText.Text;
-                parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint(_width,_height,name));
+            if (InputValidations.IsListItemSelected(usersList,listMsg,"You must choose a user first")) {
+
+                bool validWidth = InputValidations.ValidateGreaterThanZero(widthField.Text, widthMsg,
+                    "width must be greater than zero");
+                bool validLength= InputValidations.ValidateGreaterThanZero(widthField.Text, lengthMsg,
+                    "length must be greater than zero");
+                bool validName = InputValidations.ValidateIfEmpty(nameText, nameMsg);
+
+                if (validName && validWidth && validLength) {
+                    ProceedToBlueprintEdition();
+                }
+                
             }
+        }
+
+        private void ProceedToBlueprintEdition() {
+            int width = Int32.Parse(widthField.Text);
+            int length = Int32.Parse(lengthField.Text);
+            string name = nameText.Text;
+            parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint(length,width,name));
         }
 
         public Permission GetRequiredPermission() {
@@ -56,6 +66,30 @@ namespace UserInterface {
 
         public void SetUp() {
             FillList();
+        }
+
+        private void nameText_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(nameMsg);
+        }
+
+        private void nameText_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateIfEmpty(nameText, nameMsg);
+        }
+
+        private void widthField_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(widthMsg);
+        }
+
+        private void widthField_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateGreaterThanZero(widthField.Text, widthMsg, "width must be greater than zero");
+        }
+
+        private void lengthField_Enter(object sender, EventArgs e) {
+            InputValidations.ClearField(lengthMsg);
+        }
+
+        private void lengthField_Leave(object sender, EventArgs e) {
+            InputValidations.ValidateGreaterThanZero(lengthField.Text, lengthMsg, "length must be greater than zero");
         }
     }
 }

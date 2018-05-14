@@ -23,97 +23,134 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.btnEraserTool = new System.Windows.Forms.Button();
+            this.btnWindowTool = new System.Windows.Forms.Button();
+            this.btnDoorTool = new System.Windows.Forms.Button();
+            this.btnWallTool = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.btnPointerTool = new System.Windows.Forms.Button();
+            this.InventoryPanel = new System.Windows.Forms.Panel();
+            this.BlueprintPanel = new System.Windows.Forms.Panel();
+            this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // ButtonsPanel
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 561);
-            this.panel1.TabIndex = 0;
+            this.ButtonsPanel.Controls.Add(this.btnEraserTool);
+            this.ButtonsPanel.Controls.Add(this.btnWindowTool);
+            this.ButtonsPanel.Controls.Add(this.btnDoorTool);
+            this.ButtonsPanel.Controls.Add(this.btnWallTool);
+            this.ButtonsPanel.Controls.Add(this.label2);
+            this.ButtonsPanel.Controls.Add(this.btnPointerTool);
+            this.ButtonsPanel.Location = new System.Drawing.Point(3, 3);
+            this.ButtonsPanel.Name = "ButtonsPanel";
+            this.ButtonsPanel.Size = new System.Drawing.Size(211, 555);
+            this.ButtonsPanel.TabIndex = 0;
+            // 
+            // btnEraserTool
+            // 
+            this.btnEraserTool.Location = new System.Drawing.Point(32, 102);
+            this.btnEraserTool.Name = "btnEraserTool";
+            this.btnEraserTool.Size = new System.Drawing.Size(155, 51);
+            this.btnEraserTool.TabIndex = 4;
+            this.btnEraserTool.Text = "Eraser";
+            this.btnEraserTool.UseVisualStyleBackColor = true;
+            this.btnEraserTool.Click += new System.EventHandler(this.btnEraserTool_Click);
+            // 
+            // btnWindowTool
+            // 
+            this.btnWindowTool.Location = new System.Drawing.Point(32, 273);
+            this.btnWindowTool.Name = "btnWindowTool";
+            this.btnWindowTool.Size = new System.Drawing.Size(155, 51);
+            this.btnWindowTool.TabIndex = 3;
+            this.btnWindowTool.Text = "Window";
+            this.btnWindowTool.UseVisualStyleBackColor = true;
+            this.btnWindowTool.Click += new System.EventHandler(this.btnWindowTool_Click);
+            // 
+            // btnDoorTool
+            // 
+            this.btnDoorTool.Location = new System.Drawing.Point(32, 216);
+            this.btnDoorTool.Name = "btnDoorTool";
+            this.btnDoorTool.Size = new System.Drawing.Size(155, 51);
+            this.btnDoorTool.TabIndex = 2;
+            this.btnDoorTool.Text = "Door";
+            this.btnDoorTool.UseVisualStyleBackColor = true;
+            this.btnDoorTool.Click += new System.EventHandler(this.btnDoorTool_Click);
+            // 
+            // btnWallTool
+            // 
+            this.btnWallTool.Location = new System.Drawing.Point(32, 159);
+            this.btnWallTool.Name = "btnWallTool";
+            this.btnWallTool.Size = new System.Drawing.Size(155, 51);
+            this.btnWallTool.TabIndex = 1;
+            this.btnWallTool.Text = "Wall";
+            this.btnWallTool.UseVisualStyleBackColor = true;
+            this.btnWallTool.Click += new System.EventHandler(this.btnWallTool_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 120);
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(80, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 13);
+            this.label2.Size = new System.Drawing.Size(58, 21);
             this.label2.TabIndex = 0;
-            this.label2.Text = "ACA VAN LOS BOTONES";
+            this.label2.Text = "Tools";
             // 
-            // panel2
+            // btnPointerTool
             // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(684, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 561);
-            this.panel2.TabIndex = 1;
+            this.btnPointerTool.Location = new System.Drawing.Point(32, 45);
+            this.btnPointerTool.Name = "btnPointerTool";
+            this.btnPointerTool.Size = new System.Drawing.Size(155, 51);
+            this.btnPointerTool.TabIndex = 0;
+            this.btnPointerTool.Text = "Pointer";
+            this.btnPointerTool.UseVisualStyleBackColor = true;
+            this.btnPointerTool.Click += new System.EventHandler(this.btnPointerTool_Click);
             // 
-            // label1
+            // InventoryPanel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 131);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ACA UN INVENTARIO";
+            this.InventoryPanel.Location = new System.Drawing.Point(684, 3);
+            this.InventoryPanel.Name = "InventoryPanel";
+            this.InventoryPanel.Size = new System.Drawing.Size(197, 555);
+            this.InventoryPanel.TabIndex = 1;
             // 
-            // panel3
+            // BlueprintPanel
             // 
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(200, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(484, 561);
-            this.panel3.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(175, 187);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "ACA EL PLANO";
+            this.BlueprintPanel.AutoScroll = true;
+            this.BlueprintPanel.AutoScrollMargin = new System.Drawing.Size(10, 10);
+            this.BlueprintPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.BlueprintPanel.Location = new System.Drawing.Point(220, 3);
+            this.BlueprintPanel.Name = "BlueprintPanel";
+            this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
+            this.BlueprintPanel.TabIndex = 2;
             // 
             // EditBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BlueprintPanel);
+            this.Controls.Add(this.InventoryPanel);
+            this.Controls.Add(this.ButtonsPanel);
             this.Name = "EditBlueprintView";
             this.Size = new System.Drawing.Size(884, 561);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.Load += new System.EventHandler(this.EditBlueprintView_Load);
+            this.ButtonsPanel.ResumeLayout(false);
+            this.ButtonsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ButtonsPanel;
+        private System.Windows.Forms.Panel InventoryPanel;
+        private System.Windows.Forms.Panel BlueprintPanel;
+        private System.Windows.Forms.Button btnWindowTool;
+        private System.Windows.Forms.Button btnDoorTool;
+        private System.Windows.Forms.Button btnWallTool;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnPointerTool;
+        private System.Windows.Forms.Button btnEraserTool;
     }
 }
