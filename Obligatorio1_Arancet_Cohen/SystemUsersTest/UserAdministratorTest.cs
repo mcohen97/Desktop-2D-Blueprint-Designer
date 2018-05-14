@@ -161,7 +161,7 @@ namespace SystemUsersTest {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
-            Assert.IsTrue(administrator.ExistsUserName("client1N"));
+            Assert.IsTrue(administrator.ExistsUserName("client1UN"));
         }
 
         [TestMethod]
@@ -169,7 +169,7 @@ namespace SystemUsersTest {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
-            Assert.IsTrue(administrator.ExistsUserName("JamesHetfield63"));
+            Assert.IsFalse(administrator.ExistsUserName("JamesHetfield63"));
         }
 
         [TestMethod]
@@ -181,6 +181,6 @@ namespace SystemUsersTest {
             administrator.ExistsUserName("JamesHetfield63");
         }
 
-
+        
     }
 }

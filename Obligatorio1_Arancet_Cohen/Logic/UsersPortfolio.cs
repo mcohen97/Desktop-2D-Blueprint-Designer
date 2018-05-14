@@ -85,6 +85,10 @@ namespace Logic {
             return adminAsked;
         }
 
+        public bool ExistsUserName(string aUserName) {
+            return Users.Any(u => u.UserName.Equals(aUserName));
+        }
+
         public Designer GetDesigner(User userAsked) {
             if (!(userAsked is Designer)) {
                 throw new InvalidCastException();
