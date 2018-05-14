@@ -145,13 +145,13 @@ namespace Logic {
         }
 
         private void InsertOversizedWall(Wall newWall) {
-            int maxLengthWallsCount = (int)newWall.Length() / 5;
-            float lengthOfRemainingWall = newWall.Length() % 5;
+            int maxLengthWallsCount = (int)(newWall.Length() / Constants.MAX_WALL_LENGTH);
+            float lengthOfRemainingWall = newWall.Length() % Constants.MAX_WALL_LENGTH;
             Point vector = newWall.End() - newWall.Beginning();
             Point from = newWall.Beginning();
             Point to;
             for (int i = 0; i < maxLengthWallsCount; i++) {
-                to = from.PointInSameLineAtSomeDistance(vector, 5);
+                to = from.PointInSameLineAtSomeDistance(vector, Constants.MAX_WALL_LENGTH);
                 CreateAndPlaceWall(from, to);
                 from = to;
             }
@@ -206,7 +206,7 @@ namespace Logic {
         }
 
         private bool Oversized(Wall aWall) {
-            return aWall.Length() > 5;
+            return aWall.Length() > Constants.MAX_WALL_LENGTH;
         }
 
         private bool WallInRange(Wall newWall) {
@@ -307,8 +307,8 @@ namespace Logic {
 
         private void EvaluateMergingWalls(Wall wall1, Wall wall2) {
             bool theyAreContinuous = wall1.IsContinuous(wall2);
-            bool LengthsSumLessThanLimit = wall1.Length() + wall2.Length() < 5;
-            if (theyAreContinuous && LengthsSumLessThanLimit) {
+            bool LengthsSumTheLimitOrLess = wall1.Length() + wall2.Length() <= Constants.MAX_WALL_LENGTH;
+            if (theyAreContinuous && LengthsSumTheLimitOrLess) {
                 MergeWalls(wall1, wall2);
             }
         }
@@ -323,7 +323,7 @@ namespace Logic {
                 RemoveBeamInPoint(wall1.End());
             } else {
                 newBeginning = wall2.Beginning();
-                newEnd = wall2.End();
+                newEnd = wall1.End();
                 RemoveBeamInPoint(wall1.Beginning());
             }
             materials.RemoveWall(wall1);
