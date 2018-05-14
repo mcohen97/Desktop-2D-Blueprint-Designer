@@ -18,12 +18,12 @@ namespace SystemUsersTest {
 
         private SessionConnector conn;
         private UserAdministrator administrator;
-        private BlueprintPortfolio portfolio;
+        private BlueprintPortfolio blueprintPortfolio;
 
         [TestInitialize]
         public void TestInitialize() {
-            portfolio = BlueprintPortfolio.Instance;
-            portfolio.Empty();
+            blueprintPortfolio = BlueprintPortfolio.Instance;
+            
 
             conn = new SessionConnector();
             Session session = conn.LogIn("admin", "admin");
@@ -46,6 +46,12 @@ namespace SystemUsersTest {
             administrator.Add(user2);
             administrator.Add(user3);
             administrator.Add(user4);
+        }
+
+        [TestCleanup]
+        public void CleanUp() {
+            blueprintPortfolio.Empty();
+            UsersPortfolio.Instance.Empty();
         }
 
         private void initializerWithData() {
