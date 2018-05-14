@@ -89,8 +89,7 @@ namespace UserInterface {
         }
 
         private void lengthField_Leave(object sender, EventArgs e) {
-            InputValidations.ValidateGreaterThanZero(widthField.Text, widthMsg, "length must be greater than zero");
-
+            InputValidations.ValidateGreaterThanZero(lengthField.Text, lengthMsg, "length must be greater than zero");
         }
     }
 }

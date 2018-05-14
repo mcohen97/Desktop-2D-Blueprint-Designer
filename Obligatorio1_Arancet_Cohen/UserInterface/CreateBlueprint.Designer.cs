@@ -41,14 +41,14 @@
             // usersList
             // 
             this.usersList.FormattingEnabled = true;
-            this.usersList.Location = new System.Drawing.Point(326, 60);
+            this.usersList.Location = new System.Drawing.Point(361, 60);
             this.usersList.Name = "usersList";
             this.usersList.Size = new System.Drawing.Size(387, 316);
             this.usersList.TabIndex = 0;
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(596, 393);
+            this.createButton.Location = new System.Drawing.Point(631, 395);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(117, 52);
             this.createButton.TabIndex = 1;
