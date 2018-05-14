@@ -156,5 +156,31 @@ namespace SystemUsersTest {
             ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
         }
 
+        [TestMethod]
+        public void ExistsUserNameTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("admin", "admin");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            Assert.IsTrue(administrator.ExistsUserName("client1N"));
+        }
+
+        [TestMethod]
+        public void UserNameDoesNotTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("admin", "admin");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            Assert.IsTrue(administrator.ExistsUserName("JamesHetfield63"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void ExistsUserNameNoPermissionTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("client1UN", "client1P");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            administrator.ExistsUserName("JamesHetfield63");
+        }
+
+
     }
 }
