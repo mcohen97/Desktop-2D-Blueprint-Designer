@@ -95,10 +95,12 @@ namespace UserInterface {
             currentButton.Click += delegate (object sender, EventArgs e) {
                 dynamicPanel.Controls.Clear();
                 dynamicPanel.Controls.Add(control);
-
+                RestartPanel(control);
             };
         }
 
-        
+        private void RestartPanel(UserControl aControl) {
+            ((IUserFeatureControl)aControl).SetUp();
+        }
     }
 }
