@@ -259,7 +259,7 @@
             this.btnExportBlueprint.TabIndex = 17;
             this.btnExportBlueprint.Text = "Export Blueprint";
             this.btnExportBlueprint.UseVisualStyleBackColor = true;
-            this.btnExportBlueprint.Click += new System.EventHandler(this.button1_Click);
+            this.btnExportBlueprint.Click += new System.EventHandler(this.btnExportBlueprint_Click);
             // 
             // EditBlueprintView
             // 

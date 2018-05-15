@@ -364,12 +364,12 @@ namespace UserInterface {
             drawSurface.Invalidate();
         }
         private void PaintWall(Wall wall) {
-            using (Graphics graphics = Graphics.FromImage(openingLayer)) {
+            using (Graphics graphics = Graphics.FromImage(wallsLayer)) {
                 graphics.DrawLine(wallPen, LogicPointIntoDrawablePoint(wall.Beginning()), LogicPointIntoDrawablePoint(wall.End()));
             }
         }
         private void PaintBeam(Beam beam) {
-            using (Graphics graphics = Graphics.FromImage(openingLayer)) {
+            using (Graphics graphics = Graphics.FromImage(beamsLayer)) {
                 System.Drawing.Point drawPoint = LogicPointIntoDrawablePoint(beam.GetPosition());
                 graphics.DrawString("■", DefaultFont, beamPen.Brush, drawPoint.X - 7, drawPoint.Y - 5);
             }
@@ -469,11 +469,12 @@ namespace UserInterface {
 
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void btnExportBlueprint_Click(object sender, EventArgs e) {
             int width = drawSurface.Size.Width;
             int height = drawSurface.Size.Height;
 
             Bitmap bitmapToExport = new Bitmap(width, height);
+            CreateOrRecreateLayer(ref currentPointLayer);
             drawSurface.DrawToBitmap(bitmapToExport, new Rectangle(0, 0, width, height));
 
             SaveFileDialog saveFile = new SaveFileDialog();
