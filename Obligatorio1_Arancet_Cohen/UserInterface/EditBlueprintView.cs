@@ -72,6 +72,9 @@ namespace UserInterface {
             CreateOrRecreateLayer(ref currentLineLayer);
             CreateOrRecreateLayer(ref currentPointLayer);
 
+            PaintWalls();
+            PaintBeams();
+            PaintOpenings();
         }
 
         //Auxiliar
