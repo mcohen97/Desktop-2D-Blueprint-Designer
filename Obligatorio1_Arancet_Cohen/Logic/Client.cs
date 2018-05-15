@@ -58,6 +58,7 @@ namespace Logic
             perms.Add(Permission.FIRST_LOGIN);
             perms.Add(Permission.HAVE_BLUEPRINT);
             perms.Add(Permission.EDIT_OWN_DATA);
+            perms.Add(Permission.READ_OWNEDBLUEPRINT);
             return perms;
         }
 
