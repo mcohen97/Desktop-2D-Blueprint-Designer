@@ -36,11 +36,21 @@ namespace UserInterface {
         }
 
         private void ShowOrHideUserData() {
-            if (AdminEditsItself() || AdminEditsOtherUser()) {
-                userInfo.Show();//this would be the Admin case
+            /* if (AdminEditsItself() || AdminEditsOtherUser()) {
+                 userInfo.Show();//this would be the Admin case
+             } else {
+                 userInfo.Hide(); //this would be the Designer case
+             }*/
+
+            if (!AdminEditsItself() && !AdminEditsOtherUser()) {
+                //in this case it is a designer
+                nameTxt.ReadOnly = true;
+                surnameText.ReadOnly = true;
             } else {
-                userInfo.Hide(); //this would be the Designer case
+                nameTxt.ReadOnly = false;
+                surnameText.ReadOnly = false;
             }
+
         }
         private bool AdminEditsItself() {
             return edited.HasPermission(Permission.CREATE_USER);
@@ -55,6 +65,11 @@ namespace UserInterface {
             surnameText.Text = edited.Surname;
             passwordText.Text = edited.Password;
             UsernameLabel.Text = edited.UserName;
+            if (IsBeingEdited()) {
+                passwordText.PasswordChar = '*';
+            } else {
+                passwordText.PasswordChar = '\0';
+            }
         }
 
         private void SetControlTitle() {
@@ -138,6 +153,10 @@ namespace UserInterface {
 
         public void SetUp() {
             ShowData();
+        }
+
+        private bool IsBeingEdited() {
+            return parent.CurrentSession.UserLogged.HasPermission(Permission.CREATE_USER);
         }
 
         private void passwordText_Leave(object sender, EventArgs e) {
