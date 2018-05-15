@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Logic.Test {
     [TestClass]
@@ -98,8 +98,8 @@ namespace Logic.Test {
         public void InsertFirstWallTest() {
             Wall testWall = new Wall(new Point(5, 5), new Point(8, 5));
             instance.InsertWall(new Point(5, 5), new Point(8, 5));
-            ICollection actualWallCollection= materials.GetWalls();
-            IEnumerator itr = actualWallCollection.GetEnumerator();
+            ICollection<Wall> actualWallCollection= materials.GetWalls();
+            IEnumerator<Wall> itr = actualWallCollection.GetEnumerator();
             itr.MoveNext();
             Wall actualResultWall = (Wall)itr.Current;
             Assert.AreEqual(testWall, actualResultWall);
@@ -252,14 +252,14 @@ namespace Logic.Test {
         public void RemoveSingleWallCountTest() {
             instance.InsertWall(new Point(0, 0), new Point(5, 0));
             instance.RemoveWall(new Point(0, 0), new Point(5, 0));
-            Assert.IsTrue(materials.isWallsEmpty());
+            Assert.IsTrue(materials.IsWallsEmpty());
         }
 
         [TestMethod]
         public void RemoveSingleWallBeamsCountTest() {
             instance.InsertWall(new Point(0, 0), new Point(5, 0));
             instance.RemoveWall(new Point(0, 0), new Point(5, 0));
-            Assert.IsTrue(materials.isBeamsEmpty());
+            Assert.IsTrue(materials.IsBeamsEmpty());
         }
 
         [TestMethod]

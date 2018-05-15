@@ -16,23 +16,23 @@ namespace Logic.Test {
 
         [TestMethod]
         public void EmptyContainerNoWallsTest() {
-            Assert.IsTrue(instance.isWallsEmpty());
+            Assert.IsTrue(instance.IsWallsEmpty());
         }
 
         [TestMethod]
         public void EmptyContainerNoBeamsTest() {
-            Assert.IsTrue(instance.isBeamsEmpty());
+            Assert.IsTrue(instance.IsBeamsEmpty());
         }
 
         [TestMethod]
         public void EmptyContainerNoOpeningsTest() {
-            Assert.IsTrue(instance.isOpeningsEmpty());
+            Assert.IsTrue(instance.IsOpeningsEmpty());
         }
 
         [TestMethod]
         public void AddWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
-            instance.addWall(testWall);
+            instance.AddWall(testWall);
             int expectedResult = 1;
             int actualResult = instance.WallsCount();
             Assert.AreEqual(expectedResult, actualResult);
@@ -41,7 +41,7 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullWallTest() {
-            instance.addWall(null);
+            instance.AddWall(null);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Logic.Test {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullBeamTest() {
-            instance.addWall(null);
+            instance.AddWall(null);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace Logic.Test {
         [TestMethod]
         public void RemoveWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
-            instance.addWall(testWall);
+            instance.AddWall(testWall);
             instance.RemoveWall(testWall);
             int expectedResult = 0;
             int actualResult = instance.WallsCount();
@@ -125,11 +125,11 @@ namespace Logic.Test {
         [TestMethod]
         public void GetWallsCollectionTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
-            instance.addWall(testWall);
+            instance.AddWall(testWall);
             ICollection<Wall> expectedResult = new List<Wall>();
             expectedResult.Add(testWall);
-            ICollection actualResult = instance.GetWalls();
-            CollectionAssert.AreEquivalent((ICollection)expectedResult, actualResult);
+            ICollection<Wall> actualResult = instance.GetWalls();
+            CollectionAssert.AreEquivalent((ICollection)expectedResult, (ICollection)actualResult);
         }
 
         [TestMethod]
@@ -138,7 +138,7 @@ namespace Logic.Test {
             instance.AddBeam(testBeam);
             ICollection<Beam> expectedResult = new List<Beam>();
             expectedResult.Add(testBeam);
-            ICollection actualResult = instance.GetBeams();
+            ICollection actualResult = (ICollection)instance.GetBeams();
             CollectionAssert.AreEquivalent((ICollection)expectedResult, actualResult);
         }
 
@@ -148,14 +148,14 @@ namespace Logic.Test {
             instance.AddOpening(testOpening);
             ICollection<Opening> expectedResult = new List<Opening>();
             expectedResult.Add(testOpening);
-            ICollection actualResult = instance.GetOpenings();
+            ICollection actualResult = (ICollection)instance.GetOpenings();
             CollectionAssert.AreEquivalent((ICollection)expectedResult, actualResult);
         }
 
         [TestMethod]
         public void ContainsWallTest() {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
-            instance.addWall(testWall);
+            instance.AddWall(testWall);
             Wall otherTestWall = new Wall(new Point(3, 2), new Point(2, 2));
             Assert.IsTrue(instance.ContainsWall(otherTestWall));
         }

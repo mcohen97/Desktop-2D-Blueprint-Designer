@@ -16,19 +16,19 @@ namespace Logic {
             openingList = new List<Opening>();
         }
 
-        public bool isWallsEmpty() {
+        public bool IsWallsEmpty() {
             return wallList.Count == 0;//couln't find anything like isEmpty();
         }
 
-        public bool isBeamsEmpty() {
+        public bool IsBeamsEmpty() {
             return beamList.Count == 0;
         }
 
-        public bool isOpeningsEmpty() {
+        public bool IsOpeningsEmpty() {
             return openingList.Count == 0;
         }
 
-        public void addWall(Wall aWall) {
+        public void AddWall(Wall aWall) {
             if (aWall == null) {
                 throw new ArgumentNullException();
             }
@@ -83,17 +83,17 @@ namespace Logic {
             openingList.Remove(anOpening);
         }
 
-        public ICollection GetWalls() {
-            return (ICollection)(new List<Wall>(wallList));
+        public ICollection<Wall> GetWalls() {
+            return new List<Wall>(wallList);
         }
 
-        public ICollection GetBeams() {
-           return (ICollection)(new List<Beam>(beamList));
+        public ICollection<Beam> GetBeams() {
+           return new List<Beam>(beamList);
         }
 
-        public ICollection GetOpenings() {
+        public ICollection<Opening> GetOpenings() {
             
-            return (ICollection)(new List<Opening>(openingList));
+            return new List<Opening>(openingList);
             
         }
 
