@@ -93,15 +93,17 @@ namespace SystemUsersTest {
 
         [TestMethod]
         public void GetOriginalNotSameTest() {
-            Blueprint fake = (Blueprint)blueprint1.Clone();
-            Blueprint original = portfolio.GetOriginal(fake);
+            portfolio.Add(blueprint1);
+            IBlueprint fake = (IBlueprint)blueprint1.Clone();
+            IBlueprint original = portfolio.GetOriginal(fake);
             Assert.AreNotSame(original, fake);
         }
 
         [TestMethod]
         public void GetOriginalEqualsTest() {
-            Blueprint fake = (Blueprint)blueprint2.Clone();
-            Blueprint original = portfolio.GetOriginal(fake);
+            portfolio.Add(blueprint2);
+            IBlueprint fake = (IBlueprint)blueprint2.Clone();
+            IBlueprint original = portfolio.GetOriginal(fake);
             Assert.AreEqual(original, fake);
         }
     }

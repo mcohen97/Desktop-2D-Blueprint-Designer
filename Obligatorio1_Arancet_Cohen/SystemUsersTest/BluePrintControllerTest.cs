@@ -115,5 +115,23 @@ namespace SystemUsersTest {
             controller.Remove(blueprint1);
         }
 
+        [TestMethod]
+        public void GetOriginalBlueprintTest() {
+            initializerWithData();
+            Session session = conn.LogIn("designer1UN", "designer1P");
+            BlueprintController controller = new BlueprintController(session);
+            Blueprint searchAux = (Blueprint)blueprint1.Clone();
+            IBlueprint expectedResult = blueprint1;
+            IBlueprint actualResult = controller.GetOriginal(searchAux);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        public void GetOriginalNoPermissionTest() {
+            initializerWithData();
+            Session session = conn.LogIn("client1UN", "client1P");
+            BlueprintController controller = new BlueprintController(session);
+            Blueprint searchAux = (Blueprint)blueprint1.Clone();
+            controller.GetOriginal(searchAux);
+        }
     }
 }
