@@ -39,17 +39,22 @@ namespace UserInterface {
                 bool validName = InputValidations.ValidateIfEmpty(nameText, nameMsg);
 
                 if (validName && validWidth && validLength) {
-                    ProceedToBlueprintEdition();
+                    CreateAndEditBlueprint();
                 }
                 
             }
         }
 
-        private void ProceedToBlueprintEdition() {
+        private void CreateAndEditBlueprint() {
             int width = Int32.Parse(widthField.Text);
             int length = Int32.Parse(lengthField.Text);
             string name = nameText.Text;
-            parent.OpenBlueprintEditor(usersList.SelectedItem, new Blueprint(length,width,name));
+            Blueprint created = new Blueprint(length, width, name);
+
+            BlueprintController bpAdmin = new BlueprintController(CurrentSession);
+            bpAdmin.Add(created);
+
+            parent.OpenBlueprintEditor(usersList.SelectedItem,created );
         }
 
         public Permission GetRequiredPermission() {

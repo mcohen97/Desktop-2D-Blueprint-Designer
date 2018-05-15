@@ -23,19 +23,11 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.blueprintsList = new System.Windows.Forms.ListView();
             this.title = new System.Windows.Forms.Label();
             this.selectButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.blueprintList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // blueprintsList
-            // 
-            this.blueprintsList.Location = new System.Drawing.Point(87, 58);
-            this.blueprintsList.Name = "blueprintsList";
-            this.blueprintsList.Size = new System.Drawing.Size(453, 340);
-            this.blueprintsList.TabIndex = 0;
-            this.blueprintsList.UseCompatibleStateImageBehavior = false;
             // 
             // title
             // 
@@ -64,14 +56,22 @@
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             // 
+            // blueprintList
+            // 
+            this.blueprintList.FormattingEnabled = true;
+            this.blueprintList.Location = new System.Drawing.Point(87, 62);
+            this.blueprintList.Name = "blueprintList";
+            this.blueprintList.Size = new System.Drawing.Size(434, 316);
+            this.blueprintList.TabIndex = 4;
+            // 
             // ChooseBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.blueprintList);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.title);
-            this.Controls.Add(this.blueprintsList);
             this.Name = "ChooseBlueprintView";
             this.Size = new System.Drawing.Size(884, 461);
             this.ResumeLayout(false);
@@ -80,10 +80,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView blueprintsList;
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.ListBox blueprintList;
     }
 }

@@ -23,18 +23,18 @@ namespace Logic {
             return BlueprintPortfolio.Instance.Exist(aBlueprint);
         }
 
-        public IEnumerator<IBlueprint> GetBlueprints(User aUser) {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
+        public ICollection<IBlueprint> GetBlueprints(User aUser) {
+            if (!session.UserLogged.HasPermission(Permission.READ_OWNEDBLUEPRINT)) {
                 throw new NoPermissionsException();
             }
             return BlueprintPortfolio.Instance.GetBlueprintsOfUser(aUser);
         }
 
-        public IEnumerator<IBlueprint> GetBlueprints() {
-            if (!session.UserLogged.HasPermission(Permission.READ_OWNEDBLUEPRINT)) {
+        public ICollection<IBlueprint> GetBlueprints() {
+            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.GetEnumerator();
+            return BlueprintPortfolio.Instance.GetBlueprintsCopy();
         }
     }
 }

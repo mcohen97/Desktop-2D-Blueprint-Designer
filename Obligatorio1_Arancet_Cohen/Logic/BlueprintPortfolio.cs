@@ -44,13 +44,8 @@ namespace Logic {
             return Blueprints.Contains(aBlueprint);
         }
 
-        public IEnumerator<IBlueprint> GetEnumerator() {
-            return Blueprints.GetEnumerator();
-        }
-
         public ICollection<IBlueprint> GetBlueprintsCopy() {
-            ICollection<IBlueprint> copy = new List<IBlueprint>(Blueprints);
-            return copy;
+            return new List<IBlueprint>(Blueprints);
         }
 
         public bool Remove(IBlueprint aBlueprint) {
@@ -67,11 +62,12 @@ namespace Logic {
             return Blueprints.First(x => aBlueprint.Equals(x));
         }
 
-        public IEnumerator<IBlueprint> GetBlueprintsOfUser(User owner) {
+        public ICollection<IBlueprint> GetBlueprintsOfUser(User owner) {
            if(owner == null) {
                 throw new ArgumentNullException();
             }
-            return Blueprints.Where(x => owner.Equals(x.Owner)).GetEnumerator();
+            List<IBlueprint> elegible=Blueprints.Where(x => owner.Equals(x.Owner)).ToList();
+            return new List<IBlueprint>(elegible);
         }
     }
 }

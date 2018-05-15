@@ -44,7 +44,7 @@ namespace SystemUsersTest {
         [TestMethod]
         public void GetBlueprintTest() {
             portfolio.Add(blueprint1);
-            IEnumerator<IBlueprint> blueprints = portfolio.GetEnumerator();
+            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsCopy();
             blueprints.MoveNext();
             Assert.IsNotNull(blueprints.Current);
         }

@@ -14,18 +14,23 @@ namespace UserInterface {
 
         private Session CurrentSession { get; set; }
         private UserControl mother;
+        private BlueprintController permissionController;
 
         public ChooseBlueprintView(Session aSession, UserControl loginView) {
             InitializeComponent();
             mother = loginView;
             CurrentSession = aSession;
+            permissionController = new BlueprintController(CurrentSession);
         }
 
         private void FillList() {
-           // ICollection<Blueprint> allOfThem = BlueprintPortfolio.GetBlueprintsCopy();
+            ICollection<IBlueprint> selectedBlueprints;
             if (IsDesigner()) {
-
+                selectedBlueprints = permissionController.GetBlueprints();
+            } else {
+                selectedBlueprints = permissionController.GetBlueprints(CurrentSession.UserLogged);
             }
+            blueprintList.DataSource = selectedBlueprints;
         }
 
         public Permission GetRequiredPermission() {
@@ -54,6 +59,7 @@ namespace UserInterface {
 
         public void SetUp() {
             FillList();
+
         }
     }
 }
