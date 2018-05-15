@@ -313,5 +313,6 @@ namespace Logic {
         public ICollection<Opening> GetOpenings() {
             return (ICollection<Opening>)materials.GetOpenings();
         }
+
     }
 }

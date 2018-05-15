@@ -14,7 +14,7 @@ namespace Logic
             HeightAboveFloor = 1;
         }
 
-        public ComponentType GetComponentType() {
+        public override ComponentType GetComponentType() {
             return ComponentType.WINDOW;
         }
 

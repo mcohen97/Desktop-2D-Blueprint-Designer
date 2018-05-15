@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic {
     public class BuildingComponentContainer {
@@ -115,6 +116,14 @@ namespace Logic {
                 throw new ArgumentNullException();
             }
             return openingList.Contains(anOpening);
+        }
+
+        public ICollection GetPriceables() {
+            ICollection<IPriceable> wallsAsPriceables = new List<IPriceable>(wallList);
+            ICollection<IPriceable> doorsAsPriceables = new List<IPriceable>(wallList);
+            ICollection<IPriceable> openingsAsPriceables = new List<IPriceable>(wallList);
+
+            return (ICollection) wallsAsPriceables.Concat(doorsAsPriceables.Concat(openingList));
         }
     }
 }
