@@ -44,7 +44,7 @@ namespace SystemUsersTest {
         [TestMethod]
         public void GetBlueprintTest() {
             portfolio.Add(blueprint1);
-            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsCopy();
+            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsCopy().GetEnumerator();
             blueprints.MoveNext();
             Assert.IsNotNull(blueprints.Current);
         }
@@ -76,7 +76,7 @@ namespace SystemUsersTest {
             User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
             blueprint1.Owner = owner;
             portfolio.Add(blueprint1);
-            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsOfUser(owner);
+            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsOfUser(owner).GetEnumerator();
             blueprints.MoveNext();
             Assert.AreEqual(blueprints.Current, blueprint1);
         }

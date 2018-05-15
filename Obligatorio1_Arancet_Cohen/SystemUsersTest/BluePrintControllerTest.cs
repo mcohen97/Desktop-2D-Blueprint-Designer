@@ -88,10 +88,31 @@ namespace SystemUsersTest {
         [TestMethod]
         public void GetBlueprintAsDesignerTest() {
             initializerWithData();
+            Session session = conn.LogIn("client1UN", "client1P");
+            BlueprintController controller = new BlueprintController(session);
+            ICollection<IBlueprint> blueprints = controller.GetBlueprints(user1);
+            int expectedResult = 2;
+            int actualResult = blueprints.Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void DeleteBlueprintAsDesignerTest() {
+
+            initializerWithData();
             Session session = conn.LogIn("designer1UN", "designer1P");
             BlueprintController controller = new BlueprintController(session);
-            IEnumerator<IBlueprint> blueprints = controller.GetBlueprints(user1);
-            Assert.IsTrue(blueprints.MoveNext());
+            controller.Remove(blueprint1);
+            Assert.IsFalse(controller.Exist(blueprint1));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void DeleteBlueprintNoPermissionTest() {
+            initializerWithData();
+            Session session = conn.LogIn("client1UN", "client1P");
+            BlueprintController controller = new BlueprintController(session);
+            controller.Remove(blueprint1);
         }
 
     }
