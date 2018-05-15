@@ -17,10 +17,14 @@ namespace SystemUsersTest {
         public void TestInitialize() {
             portfolio = BlueprintPortfolio.Instance;
             portfolio.Empty();
-
+            Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             blueprint1 = new Blueprint(12, 12, "Blueprint1");
             blueprint2 = new Blueprint(12, 12, "Blueprint2");
             blueprint3 = new Blueprint(12, 12, "Blueprint3");
+
+            blueprint1.Owner = user1;
+            blueprint2.Owner = user1;
+            blueprint3.Owner = user1;
         }
 
         [TestMethod]
@@ -88,6 +92,15 @@ namespace SystemUsersTest {
             ICollection<IBlueprint> copy = portfolio.GetBlueprintsCopy();
             copy.Remove(blueprint1);
             Assert.IsTrue(portfolio.Exist(blueprint1));
+        }
+
+        [TestMethod]
+        public void DeleteUsersBlueprintsTest() {
+            Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
+            portfolio.DeleteUserBlueprints(user1);
+            int expectedResult = 1;
+            int actualResult=portfolio.GetBlueprintsCopy().Count;
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
