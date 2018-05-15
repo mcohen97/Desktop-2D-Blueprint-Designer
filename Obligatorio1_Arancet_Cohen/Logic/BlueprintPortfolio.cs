@@ -69,5 +69,13 @@ namespace Logic {
             List<IBlueprint> elegible=Blueprints.Where(x => owner.Equals(x.Owner)).ToList();
             return new List<IBlueprint>(elegible);
         }
+
+        internal void DeleteUserBlueprints(Client aUser) {
+            foreach (IBlueprint existent in GetBlueprintsCopy()) {
+                if (existent.Owner.Equals(aUser)) {
+                    Blueprints.Remove(existent);
+                }
+            }
+        }
     }
 }

@@ -44,7 +44,12 @@ namespace Logic {
             if (userToRemove == null) {
                 throw new ArgumentNullException();
             }
-            return Users.Remove(userToRemove);
+
+            bool wasRemoved= Users.Remove(userToRemove);
+            if (wasRemoved && userToRemove.HasPermission(Permission.HAVE_BLUEPRINT)) {
+                BlueprintPortfolio.Instance.DeleteUserBlueprints((Client)userToRemove);
+            }
+            return wasRemoved;
         }
 
         public bool Exist(User userAsked) {

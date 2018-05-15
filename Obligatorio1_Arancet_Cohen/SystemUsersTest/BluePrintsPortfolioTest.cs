@@ -96,9 +96,12 @@ namespace SystemUsersTest {
 
         [TestMethod]
         public void DeleteUsersBlueprintsTest() {
+            portfolio.Add(blueprint1);
+            portfolio.Add(blueprint2);
+            portfolio.Add(blueprint3);
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             portfolio.DeleteUserBlueprints(user1);
-            int expectedResult = 1;
+            int expectedResult = 0;
             int actualResult=portfolio.GetBlueprintsCopy().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
