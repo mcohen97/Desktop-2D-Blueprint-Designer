@@ -368,6 +368,16 @@ namespace Logic.Test {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void EqualsTest() {
+            Assert.IsTrue(instance.Equals(instance));
+        }
+
+        [TestMethod]
+        public void NotEqualsTest() {
+            Blueprint newInstance= new Blueprint(20, 20, "TestBlueprint", materials);
+            Assert.IsFalse(instance.Equals(newInstance));
+        }
 
     }
 
