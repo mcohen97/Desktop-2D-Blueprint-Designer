@@ -47,5 +47,8 @@ namespace Logic {
         public abstract float CalculatePrice();
 
         public abstract float CalculateCost();
+
+
+        public abstract ComponentType GetComponentType();
     }
 }

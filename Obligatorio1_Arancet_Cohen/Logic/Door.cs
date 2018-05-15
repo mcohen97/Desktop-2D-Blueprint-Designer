@@ -21,7 +21,7 @@ namespace Logic {
             return Constants.PRICE_CATALOGUE[GetComponentType()];
         }
 
-        public ComponentType GetComponentType() {
+        public override ComponentType GetComponentType() {
             return ComponentType.DOOR;
         }
     }
