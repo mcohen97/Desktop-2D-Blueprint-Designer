@@ -14,6 +14,7 @@ namespace UserInterface {
 
         internal Session CurrentSession { set; get; }
         internal UserControl currentPanel;
+        internal bool testDataAlreadyGenerated;
 
         public MainWindow() {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace UserInterface {
 
         internal void Authenticate() {
             mainPanel.Controls.Clear();
-            currentPanel = new LoginView(this);
+            currentPanel = new LoginView(this,testDataAlreadyGenerated);
             mainPanel.Controls.Add(currentPanel);
         }
 
