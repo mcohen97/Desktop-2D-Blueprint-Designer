@@ -393,15 +393,30 @@ namespace Logic.Test {
 
         [TestMethod]
         public void CloneNotSameTest() {
-            Blueprint clone = instance.Clone();
+            Blueprint clone = (Blueprint)instance.Clone();
             Assert.AreNotSame(clone,instance);
         }
 
         [TestMethod]
         public void CloneEqualsTest() {
-            Blueprint clone = instance.Clone();
+            Blueprint clone = (Blueprint)instance.Clone();
             Assert.AreEqual(instance,clone);
         }
+
+        [TestMethod]
+        public void GetOriginalNotSameTest() {
+            Blueprint fake = (Blueprint)instance.Clone();
+            Blueprint original = UsersPortfolio.Instance.GetOriginal(fake);
+            Assert.AreNotSame(original, fake);
+        }
+
+        [TestMethod]
+        public void GetOriginalEqualsTest() {
+            Blueprint fake = (Blueprint)instance.Clone();
+            Blueprint original = UsersPortfolio.Instance.GetOriginal(fake);
+            Assert.AreEqual(original, fake);
+        }
+
 
     }
 
