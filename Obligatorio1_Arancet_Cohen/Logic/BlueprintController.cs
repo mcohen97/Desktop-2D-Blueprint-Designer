@@ -37,7 +37,7 @@ namespace Logic {
             return BlueprintPortfolio.Instance.GetBlueprintsCopy();
         }
 
-        internal void Remove(IBlueprint aBlueprint) {
+        public void Remove(IBlueprint aBlueprint) {
             if (!session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {//you cant destroy what you did not create
                 throw new NoPermissionsException();
             }

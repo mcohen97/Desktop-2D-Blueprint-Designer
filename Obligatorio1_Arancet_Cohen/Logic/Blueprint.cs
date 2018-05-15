@@ -26,11 +26,14 @@ namespace Logic {
         private User owner;
         public User Owner { get {return owner; } set { SetOwner(value); } }
 
+        private Guid id;
+
         public Blueprint(int aLength, int aWidth,string aName) {
             Length = aLength;
             Width = aWidth;
             Name = aName;
             materials = new BuildingComponentContainer();
+            id = Guid.NewGuid();
         }
 
         public Blueprint(int aLength, int aWidth,string aName, BuildingComponentContainer container) {
@@ -38,6 +41,7 @@ namespace Logic {
             Width = aWidth;
             Name = aName;
             materials = container;
+            id = Guid.NewGuid();
         }
 
         private void SetName(string aName) {
@@ -348,6 +352,13 @@ namespace Logic {
 
         public ICollection<Opening> GetOpenings() {
             return (ICollection<Opening>)materials.GetOpenings();
+        }
+
+        public override string ToString() {
+            string strId = id.ToString();
+            return "Name: " + Name + " "
+                   + "Owner: " + Owner.UserName + " "
+                   + "Id: " + strId.Substring(strId.Length-5);
         }
     }
 }

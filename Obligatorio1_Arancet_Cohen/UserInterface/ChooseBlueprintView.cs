@@ -13,12 +13,12 @@ namespace UserInterface {
     public partial class ChooseBlueprintView : UserControl, IUserFeatureControl {
 
         private Session CurrentSession { get; set; }
-        private UserControl mother;
+        private LoggedInView parent;
         private BlueprintController permissionController;
 
-        public ChooseBlueprintView(Session aSession, UserControl loginView) {
+        public ChooseBlueprintView(Session aSession, LoggedInView aControl) {
             InitializeComponent();
-            mother = loginView;
+            parent = aControl;
             CurrentSession = aSession;
             permissionController = new BlueprintController(CurrentSession);
         }
@@ -60,6 +60,17 @@ namespace UserInterface {
         public void SetUp() {
             FillList();
 
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e) {
+            IBlueprint selected = (IBlueprint)blueprintList.SelectedItem;
+            permissionController.Remove(selected);
+        }
+
+        private void selectButton_Click(object sender, EventArgs e) {
+            Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
+            //permissionController.
+            parent.OpenBlueprintEditor(selectedCopy.Owner,selectedCopy);
         }
     }
 }

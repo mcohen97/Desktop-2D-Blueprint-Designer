@@ -50,6 +50,7 @@ namespace UserInterface {
             int length = Int32.Parse(lengthField.Text);
             string name = nameText.Text;
             Blueprint created = new Blueprint(length, width, name);
+            created.Owner = (Client)usersList.SelectedItem;
 
             BlueprintController bpAdmin = new BlueprintController(CurrentSession);
             bpAdmin.Add(created);
