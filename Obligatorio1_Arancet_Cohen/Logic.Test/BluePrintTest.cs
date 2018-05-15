@@ -391,6 +391,18 @@ namespace Logic.Test {
             instance.Equals(new Point(0,0));
         }
 
+        [TestMethod]
+        public void CloneNotSameTest() {
+            Blueprint clone = instance.Clone();
+            Assert.AreNotSame(clone,instance);
+        }
+
+        [TestMethod]
+        public void CloneEqualsTest() {
+            Blueprint clone = instance.Clone();
+            Assert.AreEqual(instance,clone);
+        }
+
     }
 
     
