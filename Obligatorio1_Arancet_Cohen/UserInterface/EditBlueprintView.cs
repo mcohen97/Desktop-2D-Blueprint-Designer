@@ -42,21 +42,6 @@ namespace UserInterface {
         public EditBlueprintView(Session aSession, LoggedInView aParent, Blueprint aBlueprint) {
             InitializeComponent();
 
-            gridLinesMarginToLayerInPixels = 1;
-            drawSurfaceMarginToWindowInPixels = 10;
-            gridCellCountX = aBlueprint.Length;
-            gridCellCountY = aBlueprint.Width;
-            windowXBoundryInPixels = this.BlueprintPanel.Width;
-            windowYBoundryInPixels = this.BlueprintPanel.Height;
-            int cellSizeInPixelsX = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountX;
-            int cellSizeInPixelsY = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountY;
-            //cellSizeInPixels = Math.Min(cellSizeInPixelsX, cellSizeInPixelsY);
-            cellSizeInPixels = 40;
-
-            int drawSurfaceSizeX = cellSizeInPixels * gridCellCountX;
-            int drawSurfaceSizeY = cellSizeInPixels * gridCellCountY;
-            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
-
             CurrentSession = aSession;
             parent = aParent;
             selectedBluePrint = aBlueprint;
@@ -64,14 +49,15 @@ namespace UserInterface {
             beamPen = new Pen(Brushes.DarkRed, 8);
             doorPen = new Pen(Brushes.DarkGoldenrod, 6);
             windowPen = new Pen(Brushes.Sienna, 5);
+            BlueprintPanel.Cursor = Cursors.Cross;
 
-            CreateOrRecreateLayer(ref gridLayer);
-            PaintGrid();
-            CreateOrRecreateLayer(ref wallsLayer);
-            CreateOrRecreateLayer(ref beamsLayer);
-            CreateOrRecreateLayer(ref openingLayer);
-            CreateOrRecreateLayer(ref currentLineLayer);
-            CreateOrRecreateLayer(ref currentPointLayer);
+            gridLinesMarginToLayerInPixels = 1;
+            drawSurfaceMarginToWindowInPixels = 10;
+            gridCellCountX = aBlueprint.Length;
+            gridCellCountY = aBlueprint.Width;
+            windowXBoundryInPixels = this.BlueprintPanel.Width;
+            windowYBoundryInPixels = this.BlueprintPanel.Height;
+            setUpDrawSurface(40);
 
         }
 
@@ -85,23 +71,31 @@ namespace UserInterface {
         private System.Drawing.Point LogicPointIntoDrawablePoint(Logic.Point point) {
             return new System.Drawing.Point(Convert.ToInt32(point.CoordX * cellSizeInPixels), Convert.ToInt32(point.CoordY * cellSizeInPixels));
         }
-        private void calulateCostsAndShow() {
+        private void calulateCostsAndPrices() {
             float wallsCost = 0;
             float beamsCost = 0;
             float doorsCost = 0;
             float windowsCost = 0;
+            float wallsPrice = 0;
+            float beamsPrice = 0;
+            float doorsPrice = 0;
+            float windowsPrice = 0;
 
             foreach (Wall wall in selectedBluePrint.GetWalls()) {
                 wallsCost += wall.CalculateCost();
+                wallsPrice += wall.CalculatePrice();
             }
             foreach (Beam beam in selectedBluePrint.GetBeams()) {
                 beamsCost += beam.CalculateCost();
+                beamsPrice += beam.CalculatePrice();
             }
             foreach (Door door in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.DOOR)) {
                 doorsCost += door.CalculateCost();
+                doorsPrice += door.CalculatePrice();
             }
             foreach (Window window in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.WINDOW)) {
                 windowsCost += window.CalculateCost();
+                windowsPrice += window.CalculatePrice();
             }
 
             lblWallsTotalCost.Text = wallsCost + "";
@@ -109,6 +103,12 @@ namespace UserInterface {
             lblDoorsTotalCost.Text = doorsCost + "";
             lblWindowsTotalCost.Text = windowsCost + "";
             lblTotalCostSum.Text = (wallsCost + beamsCost + doorsCost + windowsCost) + "";
+
+            lblWallsPrice.Text = wallsPrice + "";
+            lblBeamsPrice.Text = beamsPrice + "";
+            lblDoorsPrice.Text = doorsPrice + "";
+            lblWindowsPrice.Text = windowsPrice + "";
+            lblTotalPriceSum.Text = (wallsPrice + beamsPrice + doorsPrice + windowsPrice) + "";
         }
 
 
@@ -190,7 +190,7 @@ namespace UserInterface {
             PaintWalls();
             PaintBeams();
             PaintOpenings();
-            calulateCostsAndShow();
+            calulateCostsAndPrices();
 
             CreateOrRecreateLayer(ref currentLineLayer);
             CreateOrRecreateLayer(ref currentPointLayer);
@@ -226,7 +226,7 @@ namespace UserInterface {
             }
 
             PaintOpenings();
-            calulateCostsAndShow();
+            calulateCostsAndPrices();
         }
 
         //Erase events
@@ -251,7 +251,7 @@ namespace UserInterface {
             PaintWalls();
             PaintBeams();
             PaintOpenings();
-            calulateCostsAndShow();
+            calulateCostsAndPrices();
         }
 
         //Point adjustment functions
@@ -413,33 +413,33 @@ namespace UserInterface {
         //Tool selected buttons click
         private void btnPointerTool_Click(object sender, EventArgs e) {
             RemoveEveryHandler();
-            EnableEveryButton();
+            EnableEveryTool();
             btnPointerTool.Enabled = false;
 
         }
         private void btnWallTool_Click(object sender, EventArgs e) {
             RemoveEveryHandler();
-            EnableEveryButton();
+            EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStartWall);
             btnWallTool.Enabled = false;
         }
         private void btnWindowTool_Click(object sender, EventArgs e) {
             RemoveEveryHandler();
-            EnableEveryButton();
+            EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertWindow);
             btnWindowTool.Enabled = false;
 
         }
         private void btnDoorTool_Click(object sender, EventArgs e) {
             RemoveEveryHandler();
-            EnableEveryButton();
+            EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertDoor);
             btnDoorTool.Enabled = false;
 
         }
         private void btnEraserTool_Click(object sender, EventArgs e) {
             RemoveEveryHandler();
-            EnableEveryButton();
+            EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickErase);
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
             btnEraserTool.Enabled = false;
@@ -452,7 +452,7 @@ namespace UserInterface {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
             drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
         }
-        private void EnableEveryButton() {
+        private void EnableEveryTool() {
             btnPointerTool.Enabled = true;
             btnWallTool.Enabled = true;
             btnWindowTool.Enabled = true;
@@ -464,11 +464,6 @@ namespace UserInterface {
         private void label3_Click(object sender, EventArgs e) {
 
         }
-
-        private void ButtonsPanel_Paint(object sender, PaintEventArgs e) {
-
-        }
-
         private void btnExportBlueprint_Click(object sender, EventArgs e) {
             int width = drawSurface.Size.Width;
             int height = drawSurface.Size.Height;
@@ -483,6 +478,49 @@ namespace UserInterface {
             var path = saveFile.FileName;
 
             bitmapToExport.Save(path, ImageFormat.Png);
+        }
+
+        private void btnZoomIn_Click(object sender, EventArgs e) {
+            setUpDrawSurface(cellSizeInPixels + 10);
+        }
+
+        private void btnZoomOut_Click(object sender, EventArgs e) {
+            setUpDrawSurface(cellSizeInPixels - 10);
+        }
+
+        private void setUpDrawSurface(int cellSize) {
+            if (BlueprintPanel.Controls.Contains(drawSurface)) {
+                BlueprintPanel.Controls.Remove(drawSurface);
+            }
+
+            if (cellSize < 10) {
+                cellSizeInPixels = 10;
+            }else {
+                cellSizeInPixels = cellSize;
+            }
+
+            int cellSizeInPixelsX = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountX;
+            int cellSizeInPixelsY = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountY;
+            int drawSurfaceSizeX = cellSizeInPixels * gridCellCountX;
+            int drawSurfaceSizeY = cellSizeInPixels * gridCellCountY;
+
+            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
+            CreateOrRecreateLayer(ref gridLayer);
+            PaintGrid();
+            CreateOrRecreateLayer(ref wallsLayer);
+            CreateOrRecreateLayer(ref beamsLayer);
+            CreateOrRecreateLayer(ref openingLayer);
+            CreateOrRecreateLayer(ref currentLineLayer);
+            CreateOrRecreateLayer(ref currentPointLayer);
+
+            BlueprintPanel.Refresh();
+
+            PaintWalls();
+            PaintBeams();
+            PaintOpenings();
+            drawSurface.Refresh();
+            drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
+            EnableEveryTool();
         }
     }
 }
