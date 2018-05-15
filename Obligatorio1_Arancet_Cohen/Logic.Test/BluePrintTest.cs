@@ -379,6 +379,18 @@ namespace Logic.Test {
             Assert.IsFalse(instance.Equals(newInstance));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EqualsNullTest() {
+            instance.Equals(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EqualsOtherTypeTest() {
+            instance.Equals(new Point(0,0));
+        }
+
     }
 
     
