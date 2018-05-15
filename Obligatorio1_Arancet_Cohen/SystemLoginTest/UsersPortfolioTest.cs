@@ -150,5 +150,27 @@ namespace SystemLoginTest
             int actualResult = filtered.Count;
             Assert.AreEqual(expectedResult,actualResult);
         }
+
+        [TestMethod]
+        public void RecursiveBlueprintDeletionTest() {
+            portfolio.Add(user1);
+            portfolio.Add(user2);
+            portfolio.Add(user3);
+
+            Blueprint blueprint1 = new Blueprint(12, 12, "Blueprint1");
+            blueprint1.Owner = user1;
+            Blueprint blueprint2 = new Blueprint(12, 12, "Blueprint2");
+            blueprint2.Owner=user2;
+            Blueprint blueprint3 = new Blueprint(12, 12, "Blueprint3");
+            blueprint3.Owner = user1;
+            BlueprintPortfolio.Instance.Add(blueprint1);
+            BlueprintPortfolio.Instance.Add(blueprint2);
+            BlueprintPortfolio.Instance.Add(blueprint3);
+
+            portfolio.Remove(user1);
+            int expectedResult = 1;
+            int actualResult = BlueprintPortfolio.Instance.GetBlueprintsCopy().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
