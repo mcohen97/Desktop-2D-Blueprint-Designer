@@ -59,7 +59,19 @@ namespace UserInterface {
 
         public void SetUp() {
             FillList();
+            SetButons();
 
+        }
+
+        private void SetButons() {
+            if (IsDesigner()) {
+                selectButton.Text = "Edit Blueprint";
+                deleteButton.Show();
+
+            } else {
+                selectButton.Text = "View Blueprint";
+                deleteButton.Hide();
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
@@ -67,10 +79,14 @@ namespace UserInterface {
             permissionController.Remove(selected);
         }
 
-        private void selectButton_Click(object sender, EventArgs e) {
+        private void selectButton_ClickEdit(object sender, EventArgs e) {
             Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
             //permissionController.
             parent.OpenBlueprintEditor(selectedCopy.Owner,selectedCopy);
+        }
+
+        private void selectButton_ClickView(object sender, EventArgs e) {
+            //CANTU, HACE TU MAGIA
         }
     }
 }
