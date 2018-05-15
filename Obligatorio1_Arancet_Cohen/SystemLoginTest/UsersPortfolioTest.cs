@@ -70,6 +70,17 @@ namespace SystemLoginTest
         }
 
         [TestMethod]
+        public void UserNameExistsTest() {
+            portfolio.Add(user1);
+            Assert.IsTrue(portfolio.ExistsUserName("client1UN"));
+        }
+
+        [TestMethod]
+        public void UserNameDoesNotExist() {
+            Assert.IsFalse(portfolio.ExistsUserName("client1UN"));
+        }
+
+        [TestMethod]
         public void RemoveExistentUserTest()
         {
             portfolio.Add(user1);

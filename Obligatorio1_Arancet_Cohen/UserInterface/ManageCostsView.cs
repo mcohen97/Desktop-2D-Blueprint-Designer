@@ -38,15 +38,15 @@ namespace UserInterface {
 
         private void materialsList_SelectedIndexChanged(object sender, EventArgs e) {
             ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
-            costSpinner.Value = (decimal)Constants.costCatalogue[selectedMaterial];
-            priceSpinner.Value = (decimal)Constants.priceCatalogue[selectedMaterial];
+            costSpinner.Value = (decimal)Constants.COST_CATALOGUE[selectedMaterial];
+            priceSpinner.Value = (decimal)Constants.PRICE_CATALOGUE[selectedMaterial];
             costPriceInfo.Show();
         }
 
         private void changePriceButton_Click(object sender, EventArgs e) {
             ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
-            Constants.costCatalogue[selectedMaterial] = (float)costSpinner.Value;
-            Constants.priceCatalogue[selectedMaterial] = (float)priceSpinner.Value;
+            Constants.COST_CATALOGUE[selectedMaterial] = (float)costSpinner.Value;
+            Constants.PRICE_CATALOGUE[selectedMaterial] = (float)priceSpinner.Value;
             costPriceInfo.Hide();
         }
 

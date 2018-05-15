@@ -245,11 +245,11 @@ namespace Logic {
         }
 
         public float CalculatePrice() {
-            return Constants.priceCatalogue[GetComponentType()] * Length();
+            return Constants.PRICE_CATALOGUE[GetComponentType()] * Length();
         }
 
         public float CalculateCost() {
-            return Constants.costCatalogue[GetComponentType()] * Length();
+            return Constants.COST_CATALOGUE[GetComponentType()] * Length();
         }
 
     }

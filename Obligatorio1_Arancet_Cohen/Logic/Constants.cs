@@ -10,14 +10,16 @@ namespace Logic
     {
         public static readonly DateTime NEVER = DateTime.MinValue;
 
-        public static Dictionary<ComponentType, float> priceCatalogue = new Dictionary<ComponentType, float>() {
+        public static readonly float MAX_WALL_LENGTH = 5;
+
+        public static Dictionary<ComponentType, float> PRICE_CATALOGUE = new Dictionary<ComponentType, float>() {
             {ComponentType.WALL, 100 },
             {ComponentType.BEAM, 100},
             {ComponentType.WINDOW,75},
             {ComponentType.DOOR,100 }
         };
 
-        public static Dictionary<ComponentType, float> costCatalogue = new Dictionary<ComponentType, float>() {
+        public static Dictionary<ComponentType, float> COST_CATALOGUE = new Dictionary<ComponentType, float>() {
             {ComponentType.WALL, 50 },
             {ComponentType.BEAM, 50},
             {ComponentType.WINDOW,50},

@@ -19,11 +19,11 @@ namespace Logic
         }
 
         public override float CalculatePrice() {
-            return Constants.priceCatalogue[GetComponentType()];
+            return Constants.PRICE_CATALOGUE[GetComponentType()];
         }
 
         public override float CalculateCost() {
-            return Constants.costCatalogue[GetComponentType()];
+            return Constants.COST_CATALOGUE[GetComponentType()];
         }
     }
 }

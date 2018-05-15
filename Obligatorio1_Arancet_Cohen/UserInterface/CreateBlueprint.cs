@@ -71,6 +71,9 @@ namespace UserInterface {
 
         public void SetUp() {
             FillList();
+            nameText.Text = "";
+            widthField.Text = "";
+            lengthField.Text = "";
         }
 
         private void nameText_Enter(object sender, EventArgs e) {

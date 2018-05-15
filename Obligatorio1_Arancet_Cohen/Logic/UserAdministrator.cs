@@ -23,6 +23,14 @@ namespace Logic {
             return UsersPortfolio.Instance.Exist(aUser);
         }
 
+
+        public bool ExistsUserName(string userName) {//if he needs to know this, he must be trying to create a user
+            if (!Session.UserLogged.HasPermission(Permission.CREATE_USER)) {
+                throw new NoPermissionsException();
+            }
+            return UsersPortfolio.Instance.ExistsUserName(userName);
+        }
+
         public User GetUser(string userName) {
             if (!Session.UserLogged.HasPermission(Permission.READ_USER)) {
                 throw new NoPermissionsException();
