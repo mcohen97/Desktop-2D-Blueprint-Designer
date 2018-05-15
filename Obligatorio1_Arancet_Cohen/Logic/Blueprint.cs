@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 
 namespace Logic {
-    public class Blueprint:IBlueprint {
+    public class Blueprint:IBlueprint, ICloneable {
 
         private string name;
         public string Name { get { return name; } private set { SetName(value); } }
@@ -34,6 +34,14 @@ namespace Logic {
             Name = aName;
             materials = new BuildingComponentContainer();
             Id = Guid.NewGuid();
+        }
+
+        public Blueprint(int aLength, int aWidth, string aName, Guid anId) {
+            Length = aLength;
+            Width = aWidth;
+            Name = aName;
+            materials = new BuildingComponentContainer();
+            Id = anId;
         }
 
         public Blueprint(int aLength, int aWidth,string aName, BuildingComponentContainer container) {
@@ -369,5 +377,8 @@ namespace Logic {
                    + "Id: " + strId.Substring(strId.Length-5);
         }
 
+        public object Clone() {
+            return new Blueprint(Length,Width,Name,Id);
+        }
     }
 }
