@@ -43,5 +43,12 @@ namespace Logic {
             }
             BlueprintPortfolio.Instance.Remove(aBlueprint);
         }
+
+        public IBlueprint GetOriginal(Blueprint aBlueprint) {
+            if (!session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {
+                throw new NoPermissionsException();
+            }
+            return BlueprintPortfolio.Instance.GetOriginal(aBlueprint);
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Logic {
-    public interface IBlueprint {
+    public interface IBlueprint:ICloneable {
 
         void InsertWall(Point from, Point to);
 

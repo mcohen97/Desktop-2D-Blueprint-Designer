@@ -45,7 +45,8 @@ namespace Logic {
         }
 
         public ICollection<IBlueprint> GetBlueprintsCopy() {
-            return new List<IBlueprint>(Blueprints);
+            List<IBlueprint> copy = ((List<IBlueprint>)Blueprints).ConvertAll(bp => (IBlueprint)bp.Clone());
+            return copy;
         }
 
         public bool Remove(IBlueprint aBlueprint) {
@@ -68,6 +69,11 @@ namespace Logic {
             }
             List<IBlueprint> elegible=Blueprints.Where(x => owner.Equals(x.Owner)).ToList();
             return new List<IBlueprint>(elegible);
+        }
+
+        public IBlueprint GetOriginal(IBlueprint aBlueprint) {
+            IBlueprint original =Blueprints.First(bp => bp.Equals(aBlueprint));
+            return original;
         }
     }
 }

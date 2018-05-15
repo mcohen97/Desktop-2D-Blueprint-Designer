@@ -126,6 +126,8 @@ namespace SystemUsersTest {
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
         public void GetOriginalNoPermissionTest() {
             initializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
