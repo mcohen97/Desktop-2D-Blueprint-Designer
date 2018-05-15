@@ -89,5 +89,20 @@ namespace SystemUsersTest {
             copy.Remove(blueprint1);
             Assert.IsTrue(portfolio.Exist(blueprint1));
         }
+
+
+        [TestMethod]
+        public void GetOriginalNotSameTest() {
+            Blueprint fake = (Blueprint)blueprint1.Clone();
+            Blueprint original = portfolio.GetOriginal(fake);
+            Assert.AreNotSame(original, fake);
+        }
+
+        [TestMethod]
+        public void GetOriginalEqualsTest() {
+            Blueprint fake = (Blueprint)blueprint2.Clone();
+            Blueprint original = portfolio.GetOriginal(fake);
+            Assert.AreEqual(original, fake);
+        }
     }
 }
