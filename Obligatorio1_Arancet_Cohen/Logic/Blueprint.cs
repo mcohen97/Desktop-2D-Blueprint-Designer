@@ -21,7 +21,7 @@ namespace Domain {
         private int width;
         public int Width { get {return width; } private set {SetWidth(value); } }//Vertical Y Mesaure
 
-        private BuildingComponentContainer materials;
+        private MaterialContainer materials;
 
         private User owner;
         public User Owner { get {return owner; } set { SetOwner(value); } }
@@ -32,11 +32,11 @@ namespace Domain {
             Length = aLength;
             Width = aWidth;
             Name = aName;
-            materials = new BuildingComponentContainer();
+            materials = new MaterialContainer();
             id = Guid.NewGuid();
         }
 
-        public Blueprint(int aLength, int aWidth,string aName, BuildingComponentContainer container) {
+        public Blueprint(int aLength, int aWidth,string aName, MaterialContainer container) {
             Length = aLength;
             Width = aWidth;
             Name = aName;

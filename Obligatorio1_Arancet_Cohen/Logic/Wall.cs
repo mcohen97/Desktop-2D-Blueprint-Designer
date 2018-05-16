@@ -7,7 +7,7 @@ using Exceptions;
 
 namespace Domain {
 
-    public class Wall:IComponent3D, IDrawable, IPriceable {
+    public class Wall:IComponent3D, IMaterialType, IPriceable {
 
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {

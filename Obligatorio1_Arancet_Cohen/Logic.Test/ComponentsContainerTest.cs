@@ -8,11 +8,11 @@ namespace Logic.Test {
     [TestClass]
     public class ComponentsContainerTest {
 
-        BuildingComponentContainer instance;
+        MaterialContainer instance;
 
         [TestInitialize]
         public void TestInitialize() {
-            instance = new BuildingComponentContainer();
+            instance = new MaterialContainer();
         }
 
         [TestMethod]

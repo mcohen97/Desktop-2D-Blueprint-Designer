@@ -9,12 +9,12 @@ namespace Logic.Test {
     public class BlueprintTest {
 
         private Blueprint instance;
-        private BuildingComponentContainer materials;
+        private MaterialContainer materials;
         Client owner;
         [TestInitialize]
         public void SetUp() {
            owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
-            materials = new BuildingComponentContainer();
+            materials = new MaterialContainer();
             instance = new Blueprint(20,20,"TestBlueprint",materials);
         }
 

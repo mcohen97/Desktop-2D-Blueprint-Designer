@@ -44,7 +44,7 @@
     <Compile Include="Blueprint.cs" />
     <Compile Include="BlueprintController.cs" />
     <Compile Include="BlueprintPortfolio.cs" />
-    <Compile Include="BuildingComponentContainer.cs" />
+    <Compile Include="MaterialContainer.cs" />
     <Compile Include="CollinearWallsException.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
     <Compile Include="ComponentType.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="IBlueprint.cs" />
     <Compile Include="IComponent2D.cs" />
     <Compile Include="IComponent3D.cs" />
-    <Compile Include="IDrawable.cs" />
+    <Compile Include="IMaterialType.cs" />
     <Compile Include="IPriceable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="NoPermissionsException.cs" />
@@ -62,7 +62,6 @@
     <Compile Include="UserAdministrator.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Door.cs" />
-    <Compile Include="IBuildingComponent.cs" />
     <Compile Include="NullUser.cs" />
     <Compile Include="Opening.cs" />
     <Compile Include="Point.cs" />

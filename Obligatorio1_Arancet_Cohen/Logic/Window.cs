@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Window : Opening, IDrawable {
+    public class Window : Opening, IMaterialType {
 
         public float HeightAboveFloor { get; private set; }
 

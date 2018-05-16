@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain {
 
-    public class Beam : ISinglePointComponent, IDrawable, IPriceable {
+    public class Beam : ISinglePointComponent, IMaterialType, IPriceable {
 
         private Point Position { get; set; }
 

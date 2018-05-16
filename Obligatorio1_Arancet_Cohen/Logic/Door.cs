@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain {
 
-    public class Door : Opening, IDrawable {
+    public class Door : Opening, IMaterialType {
 
         public Door(Point aPlace) : base(aPlace) {
             HeightValue = 2.20F;

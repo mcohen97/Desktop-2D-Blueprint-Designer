@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain {
-    public class BuildingComponentContainer {
+    public class MaterialContainer {
 
         private ICollection<Wall> wallList;
         private ICollection<Beam> beamList;
         private ICollection<Opening> openingList;
 
-        public BuildingComponentContainer() {
+        public MaterialContainer() {
             wallList = new List<Wall>();
             beamList = new List<Beam>();
             openingList = new List<Opening>();
