@@ -54,18 +54,31 @@ namespace AdminTest
         public void setNameTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             string newName = "Angelo";
             admin.Name = newName;
-
             Assert.AreEqual(newName, admin.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyNameTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newName = "";
+            admin.Name = newName;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullNameTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newName = null;
+            admin.Name = newName;
         }
 
         [TestMethod]
         public void getSurnameTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             Assert.AreEqual(surname, admin.Surname);
         }
 
@@ -73,18 +86,31 @@ namespace AdminTest
         public void setSurnameTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             string newSurname = "Panter";
             admin.Surname = newSurname;
-
             Assert.AreEqual(newSurname, admin.Surname);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptySurnameTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newSurname = "";
+            admin.Surname = newSurname;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullSurnameTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newSurname = null;
+            admin.Surname = newSurname;
         }
 
         [TestMethod]
         public void getUserNameTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             Assert.AreEqual(userName, admin.UserName);
         }
 
@@ -92,7 +118,6 @@ namespace AdminTest
         public void getPasswordTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             Assert.AreEqual(password, admin.Password);
         }
 
@@ -100,18 +125,32 @@ namespace AdminTest
         public void setPasswordTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             string newPassword = "iamthegreatjaguar";
             admin.Password = newPassword;
-
             Assert.AreEqual(newPassword, admin.Password);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setEmptyPasswordTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newPassword = "";
+            admin.Password = newPassword;
+            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void setNullPasswordTest() {
+            Admin admin = new Admin(name, surname, userName, password, registrationDate);
+            string newPassword = null;
+            admin.Password = newPassword;
         }
 
         [TestMethod]
         public void getRegistrationDateTest()
         {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
-
             Assert.AreEqual(registrationDate, admin.RegistrationDate);
         }
 
@@ -122,7 +161,6 @@ namespace AdminTest
 
             DateTime newRegistrationDate = DateTime.MinValue;
             admin.RegistrationDate = newRegistrationDate;
-
             Assert.AreEqual(newRegistrationDate, admin.RegistrationDate);
         }
 
