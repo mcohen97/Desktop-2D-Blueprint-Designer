@@ -52,10 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SessionConnectorTest.cs" />
-    <Compile Include="SessionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsersPortfolioTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj">
