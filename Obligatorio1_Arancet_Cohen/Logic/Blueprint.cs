@@ -344,7 +344,6 @@ namespace Logic {
             }
    
             Wall newWall = wall1.MergeContinuousSegment(wall2);
-            //Point intersection = wall1.GetIntersection(wall2);
             materials.RemoveWall(wall1);
             materials.RemoveWall(wall2);
             RemoveBeamInPoint(intersection);
