@@ -91,7 +91,13 @@ namespace UserInterface {
         }
 
         private void selectButton_ClickView(object sender, EventArgs e) {
-            //CANTU, HACE TU MAGIA
+            Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
+            //permissionController.
+            parent.OpenBlueprintViewer(selectedCopy.Owner, selectedCopy);
+        }
+
+        private void selectButton_Click(object sender, EventArgs e) {
+
         }
     }
 }
