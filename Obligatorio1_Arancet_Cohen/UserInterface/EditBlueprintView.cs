@@ -497,11 +497,7 @@ namespace UserInterface {
                 BlueprintPanel.Controls.Remove(drawSurface);
             }
 
-            if (cellSize < 10) {
-                cellSizeInPixels = 10;
-            }else {
-                cellSizeInPixels = cellSize;
-            }
+            cellSizeInPixels = ValidateCellSize(cellSize);
 
             int cellSizeInPixelsX = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountX;
             int cellSizeInPixelsY = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountY;
@@ -525,6 +521,16 @@ namespace UserInterface {
             drawSurface.Refresh();
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
             EnableEveryTool();
+        }
+
+        private int ValidateCellSize(int cellSize) {
+            int returnedCellSize = cellSize;
+            if (returnedCellSize < 10) {
+                returnedCellSize = 10;
+            } else if (returnedCellSize > 60){
+                returnedCellSize = 60;
+            }
+            return returnedCellSize;
         }
     }
 }

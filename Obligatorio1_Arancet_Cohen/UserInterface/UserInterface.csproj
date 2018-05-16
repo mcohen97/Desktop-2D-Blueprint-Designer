@@ -86,6 +86,12 @@
     <Compile Include="EditBlueprintView.Designer.cs">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenericHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GenericHome.Designer.cs">
+      <DependentUpon>GenericHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputValidations.cs" />
     <Compile Include="IUserFeatureControl.cs" />
     <Compile Include="LoggedInView.cs">
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditBlueprintView.resx">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenericHome.resx">
+      <DependentUpon>GenericHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoggedInView.resx">
       <DependentUpon>LoggedInView.cs</DependentUpon>
@@ -226,6 +235,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\clientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoGris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BBGris.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

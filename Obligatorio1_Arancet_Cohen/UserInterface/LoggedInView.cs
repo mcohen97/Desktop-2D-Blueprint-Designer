@@ -49,7 +49,7 @@ namespace UserInterface {
 
                 }
             }
-
+            dynamicPanel.Controls.Add(new GenericHome());
             AddLogOutButton(buttonX, buttonY);
 
         }

@@ -73,6 +73,16 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BBGris {
+            get {
+                object obj = ResourceManager.GetObject("BBGris", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BotonColor {
             get {
                 object obj = ResourceManager.GetObject("BotonColor", resourceCulture);
@@ -156,6 +166,16 @@ namespace UserInterface.Properties {
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoGris {
+            get {
+                object obj = ResourceManager.GetObject("logoGris", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

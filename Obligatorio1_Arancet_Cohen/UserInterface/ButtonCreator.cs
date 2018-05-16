@@ -21,7 +21,7 @@ namespace UserInterface {
             optionButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
             optionButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             optionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            optionButton.Font = new System.Drawing.Font("Century Schoolbook", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            optionButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             optionButton.ForeColor = System.Drawing.Color.White;
             optionButton.UseVisualStyleBackColor = false;
             optionButton.Top = 50;
