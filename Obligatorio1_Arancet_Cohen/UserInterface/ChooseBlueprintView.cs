@@ -23,6 +23,12 @@ namespace UserInterface {
             permissionController = new BlueprintController(CurrentSession);
         }
 
+        public void SetUp() {
+            FillList();
+            SetButons();
+
+        }
+
         private void FillList() {
             ICollection<IBlueprint> selectedBlueprints;
             if (IsDesigner()) {
@@ -57,20 +63,19 @@ namespace UserInterface {
             CurrentSession = aSession;
         }
 
-        public void SetUp() {
-            FillList();
-            SetButons();
-
-        }
+        
 
         private void SetButons() {
             if (IsDesigner()) {
                 selectButton.Text = "Edit Blueprint";
                 deleteButton.Show();
-
+                selectButton.Click += new System.EventHandler(this.selectButton_ClickEdit);
+                selectButton.Click -= new System.EventHandler(this.selectButton_ClickView);
             } else {
                 selectButton.Text = "View Blueprint";
                 deleteButton.Hide();
+                selectButton.Click -= new System.EventHandler(this.selectButton_ClickEdit);
+                selectButton.Click += new System.EventHandler(this.selectButton_ClickView);
             }
         }
 

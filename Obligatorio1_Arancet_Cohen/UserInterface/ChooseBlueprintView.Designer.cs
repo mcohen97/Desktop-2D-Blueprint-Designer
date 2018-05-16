@@ -46,7 +46,6 @@
             this.selectButton.TabIndex = 2;
             this.selectButton.Text = "Select";
             this.selectButton.UseVisualStyleBackColor = true;
-            this.selectButton.Click += new System.EventHandler(this.selectButton_ClickEdit);
             // 
             // deleteButton
             // 
