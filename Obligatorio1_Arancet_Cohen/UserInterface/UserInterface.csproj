@@ -161,6 +161,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -186,6 +187,45 @@
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotonColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hazemaster-gray-gradient-ui-background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\white-blurred-background_1034-249.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\candy_blur_abstract_hd_by_ivereor-d3jsglw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grid2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gridWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\75578ee00956c01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clientes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

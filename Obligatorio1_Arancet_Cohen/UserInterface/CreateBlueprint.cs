@@ -63,10 +63,7 @@ namespace UserInterface {
         }
 
         public Button OptionMenuButton() {
-            Button optionButton = new Button();
-            optionButton.Width = 100;
-            optionButton.Height = 50;
-            optionButton.Text = "Create blueprint";
+            Button optionButton = ButtonCreator.GenerateButton("Create Blueprint");
             return optionButton;
         }
 
