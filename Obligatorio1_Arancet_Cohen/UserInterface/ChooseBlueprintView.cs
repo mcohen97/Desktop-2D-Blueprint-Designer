@@ -82,6 +82,7 @@ namespace UserInterface {
         private void deleteButton_Click(object sender, EventArgs e) {
             IBlueprint selected = (IBlueprint)blueprintList.SelectedItem;
             permissionController.Remove(selected);
+            FillList();
         }
 
         private void selectButton_ClickEdit(object sender, EventArgs e) {
