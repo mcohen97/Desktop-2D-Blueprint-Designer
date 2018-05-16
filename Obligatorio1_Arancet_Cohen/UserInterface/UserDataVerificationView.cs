@@ -97,8 +97,8 @@ namespace UserInterface {
 
         private void finishButton_Click(object sender, EventArgs e) {
             if (AllFieldsOk()) {
-                RemoveFirstLoginFeature();
                 UpdateInfo();
+                parent.CurrentSession.FirstLogin = false;
                 parent.GoToMenu();
             }
         }
@@ -130,12 +130,6 @@ namespace UserInterface {
             bool phoneOk = InputValidations.ValidatePhoneNumber(telNumberText.Text, telNumberMsg);
             bool addressOk = InputValidations.ValidateIfEmpty(addressText, addressMsg);
             return idOk && phoneOk && addressOk;
-        }
-
-        private void RemoveFirstLoginFeature() {
-            if (edited.HasPermission(Permission.FIRST_LOGIN)) {
-                edited.RemovePermission(Permission.FIRST_LOGIN);
-            }
         }
 
         private void UpdateClientInformation() {

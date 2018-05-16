@@ -6,9 +6,7 @@ namespace Logic {
                 if (userLogging.Password != password) {
                     throw new WrongPasswordException();
                 }
-            userLogging.UpdateLastLoginDate();
             return new Session(userLogging);
         }
-
     }
 }
