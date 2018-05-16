@@ -74,6 +74,12 @@
     <Compile Include="CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="BlueprintView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BlueprintView.Designer.cs">
+      <DependentUpon>BlueprintView.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BlueprintView.resx">
+      <DependentUpon>BlueprintView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditBlueprintView.resx">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>

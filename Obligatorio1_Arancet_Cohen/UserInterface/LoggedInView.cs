@@ -64,6 +64,11 @@ namespace UserInterface {
             dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
         }
 
+        internal void OpenBlueprintViewer(object selectedItem, Blueprint blueprint) {
+            dynamicPanel.Controls.Clear();
+            dynamicPanel.Controls.Add(new BlueprintViewer(CurrentSession, this, blueprint));
+        }
+
         internal void SetView(UserControl aControl) {
             dynamicPanel.Controls.Clear();
             dynamicPanel.Controls.Add(aControl);
@@ -81,7 +86,6 @@ namespace UserInterface {
                 LogOut();
             };
         }
-
 
         private void LogOut() {
             mother.Authenticate();
