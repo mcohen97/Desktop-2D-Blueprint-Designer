@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using System.Collections.Generic;
 
-namespace SystemUsersTest {
+namespace Logic.Test {
     [TestClass]
     public class BluePrintPortfolioTest {
 

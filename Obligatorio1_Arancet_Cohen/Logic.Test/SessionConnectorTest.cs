@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Exceptions;
 
-namespace SystemLoginTest
+namespace Logic.Test
 {
     [TestClass]
     public class SessionConnectorTest

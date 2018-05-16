@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 
-namespace SystemLoginTest {
+namespace Logic.Test {
     [TestClass]
     public class SessionTest {
 

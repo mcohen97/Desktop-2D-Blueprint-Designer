@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 
-namespace ClientTest
+namespace Logic.Test
 {
     [TestClass]
     public class ClientTest

@@ -4,7 +4,7 @@ using Domain;
 using Exceptions;
 using System.Collections.Generic;
 
-namespace SystemUsersTest {
+namespace Logic.Test {
     [TestClass]
     public class UserAdministratorTest {
 
