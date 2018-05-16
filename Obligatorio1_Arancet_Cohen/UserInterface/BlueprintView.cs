@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Logic;
+using Domain;
+using Exceptions;
 using System.Drawing.Imaging;
 
 namespace UserInterface {
@@ -66,13 +67,13 @@ namespace UserInterface {
         }
 
         //Auxiliar
-        private Logic.Point DrawablePointIntoLogicPoint(System.Drawing.Point point) {
+        private Domain.Point DrawablePointIntoLogicPoint(System.Drawing.Point point) {
             float pointX = point.X;
             float pointY = point.Y;
             float cellSize = cellSizeInPixels;
-            return new Logic.Point(pointX / cellSize, pointY / cellSize);
+            return new Domain.Point(pointX / cellSize, pointY / cellSize);
         }
-        private System.Drawing.Point LogicPointIntoDrawablePoint(Logic.Point point) {
+        private System.Drawing.Point LogicPointIntoDrawablePoint(Domain.Point point) {
             return new System.Drawing.Point(Convert.ToInt32(point.CoordX * cellSizeInPixels), Convert.ToInt32(point.CoordY * cellSizeInPixels));
         }
         private void calulateCostsAndPrices() {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exceptions;
 
-namespace Logic {
+namespace Domain {
 
     public class Wall:IComponent3D, IDrawable, IPriceable {
 

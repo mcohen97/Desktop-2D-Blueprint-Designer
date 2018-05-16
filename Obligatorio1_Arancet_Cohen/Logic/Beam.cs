@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Domain {
 
     public class Beam : ISinglePointComponent, IDrawable, IPriceable {
 

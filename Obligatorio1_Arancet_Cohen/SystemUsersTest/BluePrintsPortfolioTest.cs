@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic;
+using Domain;
 using System.Collections.Generic;
 
 namespace SystemUsersTest {

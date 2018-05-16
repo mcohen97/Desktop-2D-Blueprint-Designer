@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Domain {
 
     public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable {
 

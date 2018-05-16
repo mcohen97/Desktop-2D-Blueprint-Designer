@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic {
+namespace Exceptions {
     public class CollinearWallsException:WallsDoNotIntersectException {
         public CollinearWallsException() {
         }

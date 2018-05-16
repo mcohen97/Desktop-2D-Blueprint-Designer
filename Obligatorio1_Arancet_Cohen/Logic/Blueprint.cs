@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Logic;
 using System.Runtime.CompilerServices;
+using Exceptions;
 
 [assembly: InternalsVisibleTo("Logic.Test")]
 
 
-namespace Logic {
+namespace Domain {
     public class Blueprint:IBlueprint {
 
         private string name;

@@ -5,7 +5,7 @@ using System.Linq;
 
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Logic {
+namespace Domain {
     internal class BlueprintPortfolio {
 
         private static BlueprintPortfolio instance;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logic {
+namespace Domain {
     public class Session {
         public User UserLogged { get;}
 

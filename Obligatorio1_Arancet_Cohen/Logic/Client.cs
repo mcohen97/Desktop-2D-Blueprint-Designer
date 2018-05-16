@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Logic
+namespace Domain
 {
     public class Client : User
     {

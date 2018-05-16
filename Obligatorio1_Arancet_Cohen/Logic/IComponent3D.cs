@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Domain {
     interface IComponent3D:IComponent2D {
         float Width();
     }

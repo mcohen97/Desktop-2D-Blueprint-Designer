@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Exceptions;
 
-namespace Logic {
+namespace Domain {
     public class UserAdministrator {
         public Session Session { get; }
 

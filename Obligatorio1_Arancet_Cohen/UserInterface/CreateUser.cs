@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Logic;
+using Domain;
 
 namespace UserInterface {
     public partial class CreateUser : UserControl {
