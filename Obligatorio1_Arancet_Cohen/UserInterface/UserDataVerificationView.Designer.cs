@@ -76,7 +76,7 @@
             // 
             this.surnameTitle.AutoSize = true;
             this.surnameTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameTitle.Location = new System.Drawing.Point(37, 22);
+            this.surnameTitle.Location = new System.Drawing.Point(33, 16);
             this.surnameTitle.Name = "surnameTitle";
             this.surnameTitle.Size = new System.Drawing.Size(96, 22);
             this.surnameTitle.TabIndex = 9;
@@ -106,7 +106,7 @@
             // 
             this.addressTitle.AutoSize = true;
             this.addressTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressTitle.Location = new System.Drawing.Point(33, 117);
+            this.addressTitle.Location = new System.Drawing.Point(33, 102);
             this.addressTitle.Name = "addressTitle";
             this.addressTitle.Size = new System.Drawing.Size(88, 22);
             this.addressTitle.TabIndex = 12;
@@ -116,7 +116,7 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(475, 57);
+            this.UsernameLabel.Location = new System.Drawing.Point(464, 57);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(0, 22);
             this.UsernameLabel.TabIndex = 1;
@@ -124,7 +124,7 @@
             // surnameText
             // 
             this.surnameText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameText.Location = new System.Drawing.Point(267, 19);
+            this.surnameText.Location = new System.Drawing.Point(267, 13);
             this.surnameText.Name = "surnameText";
             this.surnameText.Size = new System.Drawing.Size(187, 31);
             this.surnameText.TabIndex = 2;
@@ -134,7 +134,7 @@
             // addressText
             // 
             this.addressText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressText.Location = new System.Drawing.Point(267, 117);
+            this.addressText.Location = new System.Drawing.Point(267, 99);
             this.addressText.Name = "addressText";
             this.addressText.Size = new System.Drawing.Size(187, 31);
             this.addressText.TabIndex = 5;
@@ -154,18 +154,20 @@
             // viewTitle
             // 
             this.viewTitle.AutoSize = true;
-            this.viewTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewTitle.Location = new System.Drawing.Point(234, 10);
+            this.viewTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.viewTitle.Location = new System.Drawing.Point(234, 13);
             this.viewTitle.Name = "viewTitle";
-            this.viewTitle.Size = new System.Drawing.Size(266, 22);
+            this.viewTitle.Size = new System.Drawing.Size(265, 23);
             this.viewTitle.TabIndex = 14;
             this.viewTitle.Text = "Verify your registration data";
             // 
             // finishButton
             // 
-            this.finishButton.Location = new System.Drawing.Point(516, 413);
+            this.finishButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finishButton.Location = new System.Drawing.Point(371, 404);
             this.finishButton.Name = "finishButton";
-            this.finishButton.Size = new System.Drawing.Size(139, 33);
+            this.finishButton.Size = new System.Drawing.Size(139, 40);
             this.finishButton.TabIndex = 15;
             this.finishButton.Text = "Done";
             this.finishButton.UseVisualStyleBackColor = true;
@@ -292,6 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.passwordMsg);
             this.Controls.Add(this.userInfo);
             this.Controls.Add(this.passwordText);

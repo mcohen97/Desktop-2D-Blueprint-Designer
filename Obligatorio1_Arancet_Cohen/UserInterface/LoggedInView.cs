@@ -30,12 +30,11 @@ namespace UserInterface {
             SetMenu();
         }
 
-         
+
 
         private void SetMenu() {
-            AddLogOutButton();
             int buttonX = 170;
-            int buttonY = 50;
+            int buttonY = 20;
             Button currentButton;
             foreach (IUserFeatureControl control in availableViews) {
                 if (CurrentSession.UserLogged.HasPermission(control.GetRequiredPermission())) {
@@ -46,11 +45,13 @@ namespace UserInterface {
                     currentButton.Top = buttonY;
                     AddDelegate(currentButton, (UserControl)control);
                     menuPanel.Controls.Add(currentButton);
-                    buttonX += 120;
+                    buttonX += 170;
 
                 }
             }
-            
+            dynamicPanel.Controls.Add(new GenericHome());
+            AddLogOutButton(buttonX, buttonY);
+
         }
 
         internal void OpenUserEditor(User selectedUser) {
@@ -74,13 +75,10 @@ namespace UserInterface {
             dynamicPanel.Controls.Add(aControl);
         }
 
-        private void AddLogOutButton() {
-            Button logOut = new Button();
-            logOut.Top = 50;
-            logOut.Left = 50;
-            logOut.Width = 100;
-            logOut.Height = 50;
-            logOut.Text = "Log Out";
+        private void AddLogOutButton(int positionX, int positionY) {
+            Button logOut = ButtonCreator.GenerateButton("Log Out");
+            logOut.Name = "LogOutButton";
+            logOut.Location = new System.Drawing.Point(positionX, positionY);
             menuPanel.Controls.Add(logOut);
             logOut.Click += delegate (object sender, EventArgs e) {
                 LogOut();

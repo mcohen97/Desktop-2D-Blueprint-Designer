@@ -30,21 +30,25 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.createClient = new System.Windows.Forms.Button();
             this.createDesigner = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userList
             // 
+            this.userList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userList.FormattingEnabled = true;
-            this.userList.Location = new System.Drawing.Point(206, 29);
+            this.userList.ItemHeight = 16;
+            this.userList.Location = new System.Drawing.Point(276, 89);
             this.userList.Name = "userList";
-            this.userList.Size = new System.Drawing.Size(348, 316);
+            this.userList.Size = new System.Drawing.Size(348, 308);
             this.userList.TabIndex = 0;
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(373, 383);
+            this.deleteButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(523, 403);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(142, 47);
+            this.deleteButton.Size = new System.Drawing.Size(101, 39);
             this.deleteButton.TabIndex = 5;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -52,9 +56,10 @@
             // 
             // doneButton
             // 
-            this.doneButton.Location = new System.Drawing.Point(716, 383);
+            this.doneButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doneButton.Location = new System.Drawing.Point(795, 414);
             this.doneButton.Name = "doneButton";
-            this.doneButton.Size = new System.Drawing.Size(142, 47);
+            this.doneButton.Size = new System.Drawing.Size(76, 36);
             this.doneButton.TabIndex = 4;
             this.doneButton.Text = "Done";
             this.doneButton.UseVisualStyleBackColor = true;
@@ -62,9 +67,10 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(206, 383);
+            this.editButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editButton.Location = new System.Drawing.Point(276, 403);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(142, 47);
+            this.editButton.Size = new System.Drawing.Size(107, 39);
             this.editButton.TabIndex = 6;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
@@ -73,16 +79,17 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(539, 400);
+            this.errorLabel.Location = new System.Drawing.Point(542, 453);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 7;
             // 
             // createClient
             // 
-            this.createClient.Location = new System.Drawing.Point(13, 320);
+            this.createClient.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createClient.Location = new System.Drawing.Point(276, 43);
             this.createClient.Name = "createClient";
-            this.createClient.Size = new System.Drawing.Size(121, 47);
+            this.createClient.Size = new System.Drawing.Size(143, 40);
             this.createClient.TabIndex = 8;
             this.createClient.Text = "Create new client";
             this.createClient.UseVisualStyleBackColor = true;
@@ -90,18 +97,32 @@
             // 
             // createDesigner
             // 
-            this.createDesigner.Location = new System.Drawing.Point(13, 383);
+            this.createDesigner.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createDesigner.Location = new System.Drawing.Point(481, 43);
             this.createDesigner.Name = "createDesigner";
-            this.createDesigner.Size = new System.Drawing.Size(121, 47);
+            this.createDesigner.Size = new System.Drawing.Size(143, 40);
             this.createDesigner.TabIndex = 9;
             this.createDesigner.Text = "Create new designer";
             this.createDesigner.UseVisualStyleBackColor = true;
             this.createDesigner.Click += new System.EventHandler(this.createDesigner_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.label1.Location = new System.Drawing.Point(360, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(187, 23);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "User Administration";
+            // 
             // AdminUserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.createDesigner);
             this.Controls.Add(this.createClient);
             this.Controls.Add(this.errorLabel);
@@ -125,5 +146,6 @@
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Button createClient;
         private System.Windows.Forms.Button createDesigner;
+        private System.Windows.Forms.Label label1;
     }
 }
