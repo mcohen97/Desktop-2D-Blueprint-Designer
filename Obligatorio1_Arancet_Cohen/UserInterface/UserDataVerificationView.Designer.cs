@@ -36,7 +36,9 @@
             this.viewTitle = new System.Windows.Forms.Label();
             this.finishButton = new System.Windows.Forms.Button();
             this.onlyClientFields = new System.Windows.Forms.Panel();
+            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.addressMsg = new System.Windows.Forms.Label();
+            this.idText = new System.Windows.Forms.MaskedTextBox();
             this.telNumberMsg = new System.Windows.Forms.Label();
             this.idMsg = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.nameMsg = new System.Windows.Forms.Label();
             this.surnameMsg = new System.Windows.Forms.Label();
             this.passwordMsg = new System.Windows.Forms.Label();
-            this.idText = new System.Windows.Forms.MaskedTextBox();
-            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.onlyClientFields.SuspendLayout();
             this.userInfo.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             // 
             this.surnameTitle.AutoSize = true;
             this.surnameTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameTitle.Location = new System.Drawing.Point(37, 22);
+            this.surnameTitle.Location = new System.Drawing.Point(33, 16);
             this.surnameTitle.Name = "surnameTitle";
             this.surnameTitle.Size = new System.Drawing.Size(96, 22);
             this.surnameTitle.TabIndex = 9;
@@ -106,7 +106,7 @@
             // 
             this.addressTitle.AutoSize = true;
             this.addressTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressTitle.Location = new System.Drawing.Point(33, 117);
+            this.addressTitle.Location = new System.Drawing.Point(33, 102);
             this.addressTitle.Name = "addressTitle";
             this.addressTitle.Size = new System.Drawing.Size(88, 22);
             this.addressTitle.TabIndex = 12;
@@ -116,7 +116,7 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(475, 57);
+            this.UsernameLabel.Location = new System.Drawing.Point(464, 57);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(0, 22);
             this.UsernameLabel.TabIndex = 1;
@@ -124,7 +124,7 @@
             // surnameText
             // 
             this.surnameText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surnameText.Location = new System.Drawing.Point(267, 19);
+            this.surnameText.Location = new System.Drawing.Point(267, 13);
             this.surnameText.Name = "surnameText";
             this.surnameText.Size = new System.Drawing.Size(187, 31);
             this.surnameText.TabIndex = 2;
@@ -134,7 +134,7 @@
             // addressText
             // 
             this.addressText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressText.Location = new System.Drawing.Point(267, 117);
+            this.addressText.Location = new System.Drawing.Point(267, 99);
             this.addressText.Name = "addressText";
             this.addressText.Size = new System.Drawing.Size(187, 31);
             this.addressText.TabIndex = 5;
@@ -153,18 +153,20 @@
             // viewTitle
             // 
             this.viewTitle.AutoSize = true;
-            this.viewTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewTitle.Location = new System.Drawing.Point(234, 10);
+            this.viewTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.viewTitle.Location = new System.Drawing.Point(234, 13);
             this.viewTitle.Name = "viewTitle";
-            this.viewTitle.Size = new System.Drawing.Size(266, 22);
+            this.viewTitle.Size = new System.Drawing.Size(265, 23);
             this.viewTitle.TabIndex = 14;
             this.viewTitle.Text = "Verify your registration data";
             // 
             // finishButton
             // 
-            this.finishButton.Location = new System.Drawing.Point(516, 413);
+            this.finishButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finishButton.Location = new System.Drawing.Point(371, 404);
             this.finishButton.Name = "finishButton";
-            this.finishButton.Size = new System.Drawing.Size(139, 33);
+            this.finishButton.Size = new System.Drawing.Size(139, 40);
             this.finishButton.TabIndex = 15;
             this.finishButton.Text = "Done";
             this.finishButton.UseVisualStyleBackColor = true;
@@ -186,6 +188,16 @@
             this.onlyClientFields.Size = new System.Drawing.Size(664, 155);
             this.onlyClientFields.TabIndex = 16;
             // 
+            // telNumberText
+            // 
+            this.telNumberText.Location = new System.Drawing.Point(267, 59);
+            this.telNumberText.Mask = "0000-00-00";
+            this.telNumberText.Name = "telNumberText";
+            this.telNumberText.Size = new System.Drawing.Size(68, 20);
+            this.telNumberText.TabIndex = 22;
+            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
+            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
+            // 
             // addressMsg
             // 
             this.addressMsg.AutoSize = true;
@@ -193,6 +205,16 @@
             this.addressMsg.Name = "addressMsg";
             this.addressMsg.Size = new System.Drawing.Size(0, 13);
             this.addressMsg.TabIndex = 25;
+            // 
+            // idText
+            // 
+            this.idText.Location = new System.Drawing.Point(267, 17);
+            this.idText.Mask = "0.000.000-0";
+            this.idText.Name = "idText";
+            this.idText.Size = new System.Drawing.Size(68, 20);
+            this.idText.TabIndex = 21;
+            this.idText.Enter += new System.EventHandler(this.idText_Enter);
+            this.idText.Leave += new System.EventHandler(this.idText_Leave);
             // 
             // telNumberMsg
             // 
@@ -267,30 +289,11 @@
             this.passwordMsg.Size = new System.Drawing.Size(0, 13);
             this.passwordMsg.TabIndex = 20;
             // 
-            // idText
-            // 
-            this.idText.Location = new System.Drawing.Point(267, 17);
-            this.idText.Mask = "0.000.000-0";
-            this.idText.Name = "idText";
-            this.idText.Size = new System.Drawing.Size(68, 20);
-            this.idText.TabIndex = 21;
-            this.idText.Enter += new System.EventHandler(this.idText_Enter);
-            this.idText.Leave += new System.EventHandler(this.idText_Leave);
-            // 
-            // telNumberText
-            // 
-            this.telNumberText.Location = new System.Drawing.Point(267, 59);
-            this.telNumberText.Mask = "0000-00-00";
-            this.telNumberText.Name = "telNumberText";
-            this.telNumberText.Size = new System.Drawing.Size(68, 20);
-            this.telNumberText.TabIndex = 22;
-            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
-            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
-            // 
             // UserDataVerificationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.passwordMsg);
             this.Controls.Add(this.userInfo);
             this.Controls.Add(this.passwordText);
