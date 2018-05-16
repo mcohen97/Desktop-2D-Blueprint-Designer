@@ -36,7 +36,9 @@
             this.viewTitle = new System.Windows.Forms.Label();
             this.finishButton = new System.Windows.Forms.Button();
             this.onlyClientFields = new System.Windows.Forms.Panel();
+            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.addressMsg = new System.Windows.Forms.Label();
+            this.idText = new System.Windows.Forms.MaskedTextBox();
             this.telNumberMsg = new System.Windows.Forms.Label();
             this.idMsg = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.nameMsg = new System.Windows.Forms.Label();
             this.surnameMsg = new System.Windows.Forms.Label();
             this.passwordMsg = new System.Windows.Forms.Label();
-            this.idText = new System.Windows.Forms.MaskedTextBox();
-            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.onlyClientFields.SuspendLayout();
             this.userInfo.SuspendLayout();
             this.SuspendLayout();
@@ -148,6 +148,7 @@
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(187, 31);
             this.nameTxt.TabIndex = 13;
+            this.nameTxt.Enter += new System.EventHandler(this.nameTxt_Enter);
             this.nameTxt.Leave += new System.EventHandler(this.nameTxt_Leave);
             // 
             // viewTitle
@@ -186,6 +187,16 @@
             this.onlyClientFields.Size = new System.Drawing.Size(664, 155);
             this.onlyClientFields.TabIndex = 16;
             // 
+            // telNumberText
+            // 
+            this.telNumberText.Location = new System.Drawing.Point(267, 59);
+            this.telNumberText.Mask = "0000-00-00";
+            this.telNumberText.Name = "telNumberText";
+            this.telNumberText.Size = new System.Drawing.Size(68, 20);
+            this.telNumberText.TabIndex = 22;
+            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
+            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
+            // 
             // addressMsg
             // 
             this.addressMsg.AutoSize = true;
@@ -193,6 +204,16 @@
             this.addressMsg.Name = "addressMsg";
             this.addressMsg.Size = new System.Drawing.Size(0, 13);
             this.addressMsg.TabIndex = 25;
+            // 
+            // idText
+            // 
+            this.idText.Location = new System.Drawing.Point(267, 17);
+            this.idText.Mask = "0.000.000-0";
+            this.idText.Name = "idText";
+            this.idText.Size = new System.Drawing.Size(68, 20);
+            this.idText.TabIndex = 21;
+            this.idText.Enter += new System.EventHandler(this.idText_Enter);
+            this.idText.Leave += new System.EventHandler(this.idText_Leave);
             // 
             // telNumberMsg
             // 
@@ -266,26 +287,6 @@
             this.passwordMsg.Name = "passwordMsg";
             this.passwordMsg.Size = new System.Drawing.Size(0, 13);
             this.passwordMsg.TabIndex = 20;
-            // 
-            // idText
-            // 
-            this.idText.Location = new System.Drawing.Point(267, 17);
-            this.idText.Mask = "0.000.000-0";
-            this.idText.Name = "idText";
-            this.idText.Size = new System.Drawing.Size(68, 20);
-            this.idText.TabIndex = 21;
-            this.idText.Enter += new System.EventHandler(this.idText_Enter);
-            this.idText.Leave += new System.EventHandler(this.idText_Leave);
-            // 
-            // telNumberText
-            // 
-            this.telNumberText.Location = new System.Drawing.Point(267, 59);
-            this.telNumberText.Mask = "0000-00-00";
-            this.telNumberText.Name = "telNumberText";
-            this.telNumberText.Size = new System.Drawing.Size(68, 20);
-            this.telNumberText.TabIndex = 22;
-            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
-            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
             // 
             // UserDataVerificationView
             // 

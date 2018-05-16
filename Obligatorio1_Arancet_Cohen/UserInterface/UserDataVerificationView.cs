@@ -203,6 +203,10 @@ namespace UserInterface {
             InputValidations.ClearField(addressMsg);
         }
 
-    
+        private void nameTxt_Enter(object sender, EventArgs e)
+        {
+            InputValidations.ClearField(nameMsg);
+
+        }
     }
 }
