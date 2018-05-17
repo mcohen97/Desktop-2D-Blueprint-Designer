@@ -6,94 +6,99 @@ using System.Linq;
 namespace Domain {
     public class MaterialContainer {
 
-        private ICollection<Wall> wallList;
-        private ICollection<Beam> beamList;
-        private ICollection<Opening> openingList;
+        private ICollection<Wall> walls;
+        private ICollection<Beam> beams;
+        private ICollection<Opening> openings;
 
         public MaterialContainer() {
-            wallList = new List<Wall>();
-            beamList = new List<Beam>();
-            openingList = new List<Opening>();
+            walls = new List<Wall>();
+            beams = new List<Beam>();
+            openings = new List<Opening>();
         }
 
         public bool IsWallsEmpty() {
-            return wallList.Count == 0;//couln't find anything like isEmpty();
+            return walls.Count == 0;//couln't find anything like isEmpty();
         }
 
         public bool IsBeamsEmpty() {
-            return beamList.Count == 0;
+            return beams.Count == 0;
         }
 
         public bool IsOpeningsEmpty() {
-            return openingList.Count == 0;
+            return openings.Count == 0;
         }
 
         public void AddWall(Wall aWall) {
             if (aWall == null) {
                 throw new ArgumentNullException();
             }
-            wallList.Add(aWall);
+            walls.Add(aWall);
             
         }
 
-        public int WallsCount() {
-            return wallList.Count;
-        }
 
         public void AddBeam(Beam aBeam) {
             if (aBeam == null) {
                 throw new ArgumentNullException();
             }
-            beamList.Add(aBeam);
+            beams.Add(aBeam);
+        }
+
+        public void AddOpening(Opening anOpening)
+        {
+            if (anOpening == null)
+            {
+                throw new ArgumentNullException();
+            }
+            openings.Add(anOpening);
+        }
+
+        public int WallsCount()
+        {
+            return walls.Count;
         }
 
         public int BeamsCount() {
-            return beamList.Count;
+            return beams.Count;
         }
 
-        public void AddOpening(Opening anOpening) {
-            if (anOpening == null) {
-                throw new ArgumentNullException();
-            }
-            openingList.Add(anOpening);
-        }
 
         public int OpeningsCount() {
-            return openingList.Count;
+            return openings.Count;
         }
 
         public void RemoveWall(Wall aWall) {
             if (aWall == null) {
                 throw new ArgumentNullException();
             }
-            wallList.Remove(aWall);
+            walls.Remove(aWall);
         }
 
         public void RemoveBeam(Beam aBeam) {
             if (aBeam == null) {
                 throw new ArgumentNullException();
             }
-            beamList.Remove(aBeam);
+            beams.Remove(aBeam);
         }
 
         public void RemoveOpening(Opening anOpening) {
             if (anOpening == null) {
                 throw new ArgumentNullException();
             }
-            openingList.Remove(anOpening);
+            openings.Remove(anOpening);
         }
 
         public ICollection<Wall> GetWalls() {
-            return new List<Wall>(wallList);
+            return new List<Wall>(walls);
         }
 
         public ICollection<Beam> GetBeams() {
-           return new List<Beam>(beamList);
+           return new List<Beam>(beams);
         }
 
         public ICollection<Opening> GetOpenings() {
             
-            return new List<Opening>(openingList);
+            return new List<Opening>(openings);
             
         }
 
@@ -101,29 +106,29 @@ namespace Domain {
             if (aWall == null) {
                 throw new ArgumentNullException();
             }
-            return wallList.Contains(aWall);
+            return walls.Contains(aWall);
         }
 
         public bool ContainsBeam(Beam aBeam) {
             if (aBeam == null) {
                 throw new ArgumentNullException();
             }
-            return beamList.Contains(aBeam);
+            return beams.Contains(aBeam);
         }
 
         public bool ContainsOpening(Opening anOpening) {
             if (anOpening == null) {
                 throw new ArgumentNullException();
             }
-            return openingList.Contains(anOpening);
+            return openings.Contains(anOpening);
         }
 
         public ICollection GetPriceables() {
-            ICollection<IPriceable> wallsAsPriceables = new List<IPriceable>(wallList);
-            ICollection<IPriceable> doorsAsPriceables = new List<IPriceable>(wallList);
-            ICollection<IPriceable> openingsAsPriceables = new List<IPriceable>(wallList);
+            ICollection<IPriceable> wallsAsPriceables = new List<IPriceable>(walls);
+            ICollection<IPriceable> doorsAsPriceables = new List<IPriceable>(walls);
+            ICollection<IPriceable> openingsAsPriceables = new List<IPriceable>(walls);
 
-            return (ICollection) wallsAsPriceables.Concat(doorsAsPriceables.Concat(openingList));
+            return (ICollection) wallsAsPriceables.Concat(doorsAsPriceables.Concat(openings));
         }
     }
 }

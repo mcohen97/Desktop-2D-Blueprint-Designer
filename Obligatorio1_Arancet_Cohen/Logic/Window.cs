@@ -8,10 +8,10 @@ namespace Domain
 {
     public class Window : Opening, IMaterialType {
 
-        private float heightAboveFloor;
+        public float HeightAboveFloor { get; private set; }
 
         public Window(Point aPlace) : base(aPlace) {
-            heightAboveFloor = 1;
+            HeightAboveFloor = 1;
         }
 
         public override ComponentType GetComponentType() {

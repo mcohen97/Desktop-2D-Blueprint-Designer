@@ -122,7 +122,7 @@ namespace Domain {
             return !DoesIntersect(aWall) && SharesSpace(aWall);
         }
 
-        public bool IntersectionPointExists(float alphaNumerator, float betaNumerator, float denominator) {
+        private bool IntersectionPointExists(float alphaNumerator, float betaNumerator, float denominator) {
             bool intersect = CompareNumeratorWithDenominator(alphaNumerator, denominator);
             intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
             return intersect;
@@ -165,37 +165,20 @@ namespace Domain {
 
         }
 
-        public bool BelongsToEdge(Point aPoint) {
-            return aPoint.Equals(Beginning()) || aPoint.Equals(End());
-        }
-
-        public bool BelongsToEdge(ISinglePointComponent punctualComponent) {
+        public bool BelongsToEdge(ISinglePointComponent punctualComponent)
+        {
             return BelongsToEdge(punctualComponent.GetPosition());
         }
 
-        public override bool Equals(object obj) {
-
-            bool areEqual;
-            if (obj == null || GetType() != obj.GetType()) {
-                areEqual = false;
-            } else {
-                Wall otherWall = (Wall)obj;
-
-                //they are equal if they have the same two points
-                areEqual = beginningPoint.Equals(otherWall.beginningPoint) && endPoint.Equals(otherWall.endPoint);
-                areEqual |= endPoint.Equals(otherWall.beginningPoint) && beginningPoint.Equals(otherWall.endPoint);
-            }
-            return areEqual;
+        private bool BelongsToEdge(Point aPoint) {
+            return aPoint.Equals(Beginning()) || aPoint.Equals(End());
         }
 
-        public override int GetHashCode() {
-            return beginningPoint.GetHashCode() * endPoint.GetHashCode();
-        }
 
-        public bool IsContinuous(Wall otherWall) {
+        public bool IsCollinearContinuous(Wall otherWall) {
             bool continuous = false;
             if (IsConnected(otherWall)) {
-                Wall merge = MergeContinuousSegment(otherWall);
+                Wall merge = MergeCollinearContinuous(otherWall);
                 continuous = merge.Length() == (Length() + otherWall.Length());
             }
             return continuous;
@@ -205,7 +188,7 @@ namespace Domain {
             return BelongsToEdge(otherWall.Beginning()) || BelongsToEdge(otherWall.End());
         }
 
-        internal Wall MergeContinuousSegment(Wall otherWall) {//as beginning is closer to origin than end, this logic always work
+        public Wall MergeCollinearContinuous(Wall otherWall) {//as beginning is closer to origin than end, this logic always work
             Point newBeginning;
             Point newEnd;
             if (Beginning().IsCloserToOriginThan(otherWall.Beginning())) {
@@ -229,6 +212,30 @@ namespace Domain {
 
         public float CalculateCost() {
             return Constants.COST_CATALOGUE[GetComponentType()] * Length();
+        }
+
+        public override bool Equals(object obj)
+        {
+
+            bool areEqual;
+            if (obj == null || GetType() != obj.GetType())
+            {
+                areEqual = false;
+            }
+            else
+            {
+                Wall otherWall = (Wall)obj;
+
+                //they are equal if they have the same two points
+                areEqual = beginningPoint.Equals(otherWall.beginningPoint) && endPoint.Equals(otherWall.endPoint);
+                areEqual |= endPoint.Equals(otherWall.beginningPoint) && beginningPoint.Equals(otherWall.endPoint);
+            }
+            return areEqual;
+        }
+
+        public override int GetHashCode()
+        {
+            return beginningPoint.GetHashCode() * endPoint.GetHashCode();
         }
 
     }
