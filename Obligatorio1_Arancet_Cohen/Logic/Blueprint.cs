@@ -227,11 +227,6 @@ namespace Domain {
 
         private bool TakesOtherWallsPlace(Wall newWall) {
            return materials.GetWalls().Any(wall => wall.Overlaps(newWall));
-           /* bool overlaps = false;
-            foreach (Wall existing in materials.GetWalls()) {
-                overlaps |= existing.Overlaps(newWall);
-            }
-            return overlaps;*/
         }
 
         private bool IntersectsOtherWalls(Wall aWall) {
@@ -240,40 +235,16 @@ namespace Domain {
 
         private ICollection<Wall> WallsIntersectedByThisOne(Wall newWall) {
            return materials.GetWalls().Where(wall => wall.DoesIntersect(newWall)).ToList();
-            /*List<Wall> intersectedWalls = new List<Wall>();
-            foreach (Wall existentWall in materials.GetWalls()) {
-                if (existentWall.DoesIntersect(newWall)) {
-                    intersectedWalls.Add(existentWall);
-                }
-            }
-            return intersectedWalls;*/
         }
 
         public bool OccupiedPosition(ISinglePointComponent punctualComponent) {
             return materials.GetOpenings().Any(op => op.GetPosition().Equals(punctualComponent.GetPosition()))
                 || materials.GetBeams().Any(bm => bm.GetPosition().Equals(punctualComponent.GetPosition()));
-            /*bool occupied = false;
-            foreach (Opening existing in materials.GetOpenings()) {
-                occupied |= punctualComponent.GetPosition().Equals(existing.GetPosition());
-            }
-            if (!occupied) {
-                foreach (Beam existing in materials.GetBeams()) {
-                    occupied |= punctualComponent.GetPosition().Equals(existing.GetPosition());
-                }
-            }
-            return occupied;*/
+       
         }
 
         public bool BelongsToAWall(Opening newOpening) {
             return materials.GetWalls().Any(wall=>wall.DoesContainComponent(newOpening));
-            /*IEnumerator<Wall> itr = (IEnumerator<Wall>)materials.GetWalls().GetEnumerator();
-            bool doesBelong = false;
-            Wall existing;
-            while (itr.MoveNext() && !doesBelong) {
-                existing = itr.Current;
-                doesBelong |= existing.DoesContainComponent(newOpening);
-            }
-            return doesBelong;*/
         }
 
         public void RemoveOpeningsOfWall(Wall aWall) {
@@ -284,24 +255,10 @@ namespace Domain {
 
         private List<Wall> GetWallsSharingBeam(Beam aBeam) {
            return materials.GetWalls().Where(wall => wall.BelongsToEdge(aBeam)).ToList();
-           /* List<Wall> sharingBeam = new List<Wall>();
-            foreach (Wall existing in materials.GetWalls()) {
-                if (existing.BelongsToEdge(aBeam)) {
-                    sharingBeam.Add(existing);
-                }
-            }
-            return sharingBeam;*/
         }
 
         private IEnumerable<Opening> GetOpeningsFromWall(Wall aWall) {
             return materials.GetOpenings().Where(opening=> aWall.DoesContainComponent(opening));
-            /*List<Opening> belonging = new List<Opening>();
-            foreach (Opening existing in materials.GetOpenings()) {
-                if (aWall.DoesContainComponent(existing)) {
-                    belonging.Add(existing);
-                }
-            }
-            return belonging.AsEnumerable<Opening>()*/;
         }
 
         private void AdjustIntersection(Point intersection) {
@@ -316,7 +273,7 @@ namespace Domain {
         }
 
         private void EvaluateMergingWalls(Wall wall1, Wall wall2) {
-            bool theyAreContinuous = wall1.IsContinuous(wall2);
+            bool theyAreContinuous = wall1.IsCollinearContinuous(wall2);
             bool LengthsSumTheLimitOrLess = wall1.Length() + wall2.Length() <= Constants.MAX_WALL_LENGTH;
             if (theyAreContinuous && LengthsSumTheLimitOrLess) {
                 MergeWalls(wall1, wall2);
@@ -324,18 +281,6 @@ namespace Domain {
         }
 
         private void MergeWalls(Wall wall1, Wall wall2) {
-            //create wall, beginning with the wall closest to origin
-            /*Point newBeginning;
-            Point newEnd;
-            if (wall1.Beginning().IsCloserToOriginThan(wall2.Beginning())) {
-                newBeginning = wall1.Beginning();
-                newEnd = wall2.End();
-                RemoveBeamInPoint(wall1.End());
-            } else {
-                newBeginning = wall2.Beginning();
-                newEnd = wall1.End();
-                RemoveBeamInPoint(wall1.Beginning());
-            }*/
             Point intersection;
             if (wall1.Beginning().Equals(wall2.Beginning()) || wall1.Beginning().Equals(wall2.End())) {
                 intersection = wall1.Beginning();
@@ -343,11 +288,10 @@ namespace Domain {
                 intersection = wall1.End();
             }
    
-            Wall newWall = wall1.MergeContinuousSegment(wall2);
+            Wall newWall = wall1.MergeCollinearContinuous(wall2);
             materials.RemoveWall(wall1);
             materials.RemoveWall(wall2);
             RemoveBeamInPoint(intersection);
-            //Wall newWall = new Wall(newBeginning, newEnd);
             materials.AddWall(newWall);
 
         }

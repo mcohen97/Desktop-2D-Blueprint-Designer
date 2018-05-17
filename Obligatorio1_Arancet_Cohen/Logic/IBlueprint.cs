@@ -13,6 +13,8 @@ namespace Domain {
 
         void InsertOpening(Opening newOpening);
 
+        void RemoveOpening(Opening toRemove);
+
         User Owner { get; set; }
 
     }
