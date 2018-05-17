@@ -477,11 +477,18 @@ namespace UserInterface {
             drawSurface.DrawToBitmap(bitmapToExport, new Rectangle(0, 0, width, height));
 
             SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Png Image (.png)|*.png";
+            saveFile.Filter = "JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png";
             saveFile.ShowDialog();
             var path = saveFile.FileName;
 
-            bitmapToExport.Save(path, ImageFormat.Png);
+            ImageFormat imageFormatSelected = ImageFormat.Png;
+            if(saveFile.Filter == ".jpeg") {
+                imageFormatSelected = ImageFormat.Jpeg;
+            } else if (saveFile.Filter == ".png") {
+                imageFormatSelected = ImageFormat.Png;
+            }
+
+            bitmapToExport.Save(path, imageFormatSelected);
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e) {
@@ -497,11 +504,7 @@ namespace UserInterface {
                 BlueprintPanel.Controls.Remove(drawSurface);
             }
 
-            if (cellSize < 10) {
-                cellSizeInPixels = 10;
-            }else {
-                cellSizeInPixels = cellSize;
-            }
+            cellSizeInPixels = ValidateCellSize(cellSize);
 
             int cellSizeInPixelsX = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountX;
             int cellSizeInPixelsY = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountY;
@@ -525,6 +528,16 @@ namespace UserInterface {
             drawSurface.Refresh();
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
             EnableEveryTool();
+        }
+
+        private int ValidateCellSize(int cellSize) {
+            int returnedCellSize = cellSize;
+            if (returnedCellSize < 10) {
+                returnedCellSize = 10;
+            } else if (returnedCellSize > 60){
+                returnedCellSize = 60;
+            }
+            return returnedCellSize;
         }
     }
 }

@@ -40,15 +40,18 @@
             // 
             // usersList
             // 
+            this.usersList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usersList.FormattingEnabled = true;
-            this.usersList.Location = new System.Drawing.Point(361, 60);
+            this.usersList.ItemHeight = 16;
+            this.usersList.Location = new System.Drawing.Point(178, 205);
             this.usersList.Name = "usersList";
-            this.usersList.Size = new System.Drawing.Size(387, 316);
+            this.usersList.Size = new System.Drawing.Size(525, 164);
             this.usersList.TabIndex = 0;
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(631, 395);
+            this.createButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createButton.Location = new System.Drawing.Point(379, 387);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(117, 52);
             this.createButton.TabIndex = 1;
@@ -59,33 +62,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 78);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(333, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(92, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Blueprint name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 124);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(333, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(91, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Blueprint width:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 170);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(333, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
+            this.label3.Size = new System.Drawing.Size(94, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Blueprint height:";
             // 
             // nameText
             // 
-            this.nameText.Location = new System.Drawing.Point(113, 78);
+            this.nameText.Location = new System.Drawing.Point(431, 72);
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(100, 20);
             this.nameText.TabIndex = 5;
@@ -95,15 +101,17 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(302, 22);
+            this.titleLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.titleLabel.Location = new System.Drawing.Point(332, 17);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(102, 13);
+            this.titleLabel.Size = new System.Drawing.Size(199, 23);
             this.titleLabel.TabIndex = 8;
             this.titleLabel.Text = "Blueprint information";
             // 
             // widthField
             // 
-            this.widthField.Location = new System.Drawing.Point(113, 121);
+            this.widthField.Location = new System.Drawing.Point(431, 115);
             this.widthField.Mask = "000";
             this.widthField.Name = "widthField";
             this.widthField.Size = new System.Drawing.Size(31, 20);
@@ -113,7 +121,7 @@
             // 
             // lengthField
             // 
-            this.lengthField.Location = new System.Drawing.Point(113, 167);
+            this.lengthField.Location = new System.Drawing.Point(431, 161);
             this.lengthField.Mask = "000";
             this.lengthField.Name = "lengthField";
             this.lengthField.Size = new System.Drawing.Size(31, 20);
@@ -124,7 +132,7 @@
             // widthMsg
             // 
             this.widthMsg.AutoSize = true;
-            this.widthMsg.Location = new System.Drawing.Point(178, 124);
+            this.widthMsg.Location = new System.Drawing.Point(496, 118);
             this.widthMsg.Name = "widthMsg";
             this.widthMsg.Size = new System.Drawing.Size(0, 13);
             this.widthMsg.TabIndex = 11;
@@ -132,7 +140,7 @@
             // lengthMsg
             // 
             this.lengthMsg.AutoSize = true;
-            this.lengthMsg.Location = new System.Drawing.Point(178, 170);
+            this.lengthMsg.Location = new System.Drawing.Point(496, 164);
             this.lengthMsg.Name = "lengthMsg";
             this.lengthMsg.Size = new System.Drawing.Size(0, 13);
             this.lengthMsg.TabIndex = 12;
@@ -140,7 +148,7 @@
             // nameMsg
             // 
             this.nameMsg.AutoSize = true;
-            this.nameMsg.Location = new System.Drawing.Point(231, 81);
+            this.nameMsg.Location = new System.Drawing.Point(549, 75);
             this.nameMsg.Name = "nameMsg";
             this.nameMsg.Size = new System.Drawing.Size(0, 13);
             this.nameMsg.TabIndex = 13;
@@ -157,6 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.listMsg);
             this.Controls.Add(this.nameMsg);
             this.Controls.Add(this.lengthMsg);

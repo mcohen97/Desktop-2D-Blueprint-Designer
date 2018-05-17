@@ -88,10 +88,6 @@ namespace Domain
             return base.GetHashCode();
         }
 
-        public void RemovePermission(Permission aPermission) {
-            Permissions.Remove(aPermission);
-        }
-
         public override string ToString() {
             return "User name: " + UserName
             +"  " + "Name: " + Name

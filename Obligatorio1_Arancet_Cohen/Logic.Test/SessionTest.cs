@@ -27,5 +27,18 @@ namespace Test{
             User userLogged = session.UserLogged;
             Assert.AreEqual(userLogged, user1);
         }
+
+        [TestMethod]
+        public void isFirstLoginTrueTest() {
+            Session session = new Session(user1);
+            Assert.IsTrue(session.FirstLogin);
+        }
+
+        [TestMethod]
+        public void isFirstLoginFalseTest() {
+            user1.UpdateLastLoginDate();
+            Session session = new Session(user1);
+            Assert.IsFalse(session.FirstLogin);
+        }
     }
 }

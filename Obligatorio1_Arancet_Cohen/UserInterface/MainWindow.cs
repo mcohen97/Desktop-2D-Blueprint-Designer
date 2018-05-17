@@ -30,7 +30,7 @@ namespace UserInterface {
 
         internal void GoToMenu() {
             mainPanel.Controls.Remove(currentPanel);
-            if (CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
+            if (CurrentSession.FirstLogin && CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
                 currentPanel = new UserDataVerificationView(CurrentSession.UserLogged, this);
             } else {
                 currentPanel = new LoggedInView(this, CurrentSession);
@@ -38,7 +38,6 @@ namespace UserInterface {
 
             mainPanel.Controls.Add(currentPanel);
         }
-
 
     }
 }

@@ -12,7 +12,8 @@ namespace UserInterface {
     class InputValidations {
 
         public static void ErrorMessage(Label aMessageLabel,string errMessage) {
-            aMessageLabel.ForeColor = Color.Red;
+            aMessageLabel.ForeColor = Color.DarkRed;
+            aMessageLabel.BackColor = Color.Transparent;
             aMessageLabel.Text = errMessage;
         }
 
@@ -24,7 +25,7 @@ namespace UserInterface {
         public static bool ValidateIfEmpty(TextBox anInput, Label msgLabel) {
             bool valid = true;
             if (string.IsNullOrEmpty(anInput.Text)) {
-                ErrorMessage(msgLabel, "Empty field!");
+                ErrorMessage(msgLabel, "Empty field");
                 valid = false;
             }
             return valid;
@@ -49,7 +50,7 @@ namespace UserInterface {
             if (valid) {
                 OkMessage(aMsgLabel, "OK");
             } else {
-                ErrorMessage(aMsgLabel, "Invalid phone number!!");
+                ErrorMessage(aMsgLabel, "Invalid phone number");
             }
             return valid;
         }
@@ -59,7 +60,7 @@ namespace UserInterface {
             if (valid) {
                 OkMessage(aMsgLabel, "OK");
             } else {
-                ErrorMessage(aMsgLabel, "Invalid ID number!!");
+                ErrorMessage(aMsgLabel, "Invalid ID number");
             }
             return valid;
         }

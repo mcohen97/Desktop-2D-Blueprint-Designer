@@ -4,42 +4,42 @@ using Exceptions;
 
 namespace Domain {
     public class BlueprintController {
-        private Session session;
+        public Session Session { get; }
 
         public BlueprintController(Session session) {
-            this.session = session;
+            this.Session = session;
         }
 
         public void Add(IBlueprint aBlueprint) {
-            if (!session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {
+            if (!Session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {
                 throw new NoPermissionsException();
             }
             BlueprintPortfolio.Instance.Add(aBlueprint);
         }
 
         public bool Exist(IBlueprint aBlueprint) {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
+            if (!Session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
                 throw new NoPermissionsException();
             }
             return BlueprintPortfolio.Instance.Exist(aBlueprint);
         }
 
         public ICollection<IBlueprint> GetBlueprints(User aUser) {
-            if (!session.UserLogged.HasPermission(Permission.READ_OWNEDBLUEPRINT)) {
+            if (!Session.UserLogged.HasPermission(Permission.READ_OWNEDBLUEPRINT)) {
                 throw new NoPermissionsException();
             }
             return BlueprintPortfolio.Instance.GetBlueprintsOfUser(aUser);
         }
 
         public ICollection<IBlueprint> GetBlueprints() {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
+            if (!Session.UserLogged.HasPermission(Permission.READ_BLUEPRINT)) {
                 throw new NoPermissionsException();
             }
             return BlueprintPortfolio.Instance.GetBlueprintsCopy();
         }
 
         public void Remove(IBlueprint aBlueprint) {
-            if (!session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {//you cant destroy what you did not create
+            if (!Session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT)) {//you cant destroy what you did not create
                 throw new NoPermissionsException();
             }
             BlueprintPortfolio.Instance.Remove(aBlueprint);
