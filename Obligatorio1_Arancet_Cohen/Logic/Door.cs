@@ -9,8 +9,8 @@ namespace Domain {
     public class Door : Opening, IMaterialType {
 
         public Door(Point aPlace) : base(aPlace) {
-            HeightValue = 2.20F;
-            LengthValue = 0.85F;
+            heightValue = 2.20F;
+            lengthValue = 0.85F;
         }
 
         public override float CalculateCost() {

@@ -9,32 +9,32 @@ namespace Domain {
 
     public class Wall:IComponent3D, IMaterialType, IPriceable {
 
+        private float heightValue;
+        private float widthValue;
+        private Point beginningPoint;
+        private Point endPoint;
+
         public Wall(Point from, Point to) {
             if (from.Equals(to)) {
                 throw new ZeroLengthWallException();
             }
-            HeightValue = 3;
-            WidthValue = 0.20F;
+            heightValue = 3;
+            widthValue = 0.20F;
             if (from.IsCloserToOriginThan(to)) {
-                BeginningPoint = from;
-                EndPoint = to;
+                beginningPoint = from;
+                endPoint = to;
             } else {
-                BeginningPoint = to;
-                EndPoint = from;
+                beginningPoint = to;
+                endPoint = from;
             }
         }
 
-        private float HeightValue { set; get; }
-        private float WidthValue { set; get; }
-        private Point BeginningPoint { set; get; }
-        private Point EndPoint { set; get; }
-
         public float Height() {
-            return HeightValue;
+            return heightValue;
         }
 
         public float Width() {
-            return WidthValue;
+            return widthValue;
         }
 
         public float Length() {
@@ -42,19 +42,19 @@ namespace Domain {
         }
 
         public Point Beginning() {
-            return BeginningPoint;
+            return beginningPoint;
         }
 
         public Point End() {
-            return EndPoint;
+            return endPoint;
         }
 
         public bool IsHorizontal() {
-            return BeginningPoint.CoordY == EndPoint.CoordY;
+            return beginningPoint.CoordY == endPoint.CoordY;
         }
 
         public bool IsVertical() {
-            return BeginningPoint.CoordX == EndPoint.CoordX;
+            return beginningPoint.CoordX == endPoint.CoordX;
         }
 
         public bool DoesIntersect(Wall otherWall) {
@@ -70,31 +70,9 @@ namespace Domain {
             intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
 
             return intersect;
-
-
-
-            /*bool intersects;
-            try {
-                GetIntersection(otherWall);
-                intersects = true;
-            } catch(CollinearWallsException) {
-                intersects = false;
-
-            } catch (WallsDoNotIntersectException) {
-                intersects = false;
-            }
-            return intersects;*/
         }
 
         public Point GetIntersection(Wall otherWall) {
-
-            /* Point a = EndPoint - BeginningPoint;
-             Point b = otherWall.BeginningPoint - otherWall.EndPoint;
-             Point c = BeginningPoint - otherWall.BeginningPoint;
-
-             float alphaNumerator = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
-             float betaNumerator = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
-             float denominator = a.CoordY * b.CoordX - a.CoordX * b.CoordY;*/
 
             float[] equationVariables = AlfaNumerator_BetaNumerator_Denominator(otherWall);
 
@@ -122,9 +100,9 @@ namespace Domain {
         private float[] AlfaNumerator_BetaNumerator_Denominator(Wall aWall) {
             float[] variables = new float[3];
 
-            Point a = EndPoint - BeginningPoint;
-            Point b = aWall.BeginningPoint - aWall.EndPoint;
-            Point c = BeginningPoint - aWall.BeginningPoint;
+            Point a = endPoint - beginningPoint;
+            Point b = aWall.beginningPoint - aWall.endPoint;
+            Point c = beginningPoint - aWall.beginningPoint;
 
             variables[0] = b.CoordY * c.CoordX - b.CoordX * c.CoordY;
             variables[1] = a.CoordX * c.CoordY - a.CoordY * c.CoordX;
@@ -162,8 +140,8 @@ namespace Domain {
         private Point GetIntersectedPoint(float alphaNumerator, float denominator) {
 
             float alphaOfIntersection = alphaNumerator / denominator;
-            float x = BeginningPoint.CoordX + alphaOfIntersection * (EndPoint.CoordX - BeginningPoint.CoordX);
-            float y = BeginningPoint.CoordY + alphaOfIntersection * (EndPoint.CoordY - BeginningPoint.CoordY);
+            float x = beginningPoint.CoordX + alphaOfIntersection * (endPoint.CoordX - beginningPoint.CoordX);
+            float y = beginningPoint.CoordY + alphaOfIntersection * (endPoint.CoordY - beginningPoint.CoordY);
             return new Point(x, y);
         }
 
@@ -204,14 +182,14 @@ namespace Domain {
                 Wall otherWall = (Wall)obj;
 
                 //they are equal if they have the same two points
-                areEqual = BeginningPoint.Equals(otherWall.BeginningPoint) && EndPoint.Equals(otherWall.EndPoint);
-                areEqual |= EndPoint.Equals(otherWall.BeginningPoint) && BeginningPoint.Equals(otherWall.EndPoint);
+                areEqual = beginningPoint.Equals(otherWall.beginningPoint) && endPoint.Equals(otherWall.endPoint);
+                areEqual |= endPoint.Equals(otherWall.beginningPoint) && beginningPoint.Equals(otherWall.endPoint);
             }
             return areEqual;
         }
 
         public override int GetHashCode() {
-            return BeginningPoint.GetHashCode() * EndPoint.GetHashCode();
+            return beginningPoint.GetHashCode() * endPoint.GetHashCode();
         }
 
         public bool IsContinuous(Wall otherWall) {

@@ -8,24 +8,24 @@ namespace Domain {
 
     public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable {
 
-        protected float HeightValue { get; set; }
-        protected float LengthValue { get; set; }
-        protected Point Position { get; set; }
+        protected float heightValue;
+        protected float lengthValue;
+        protected Point position;
 
         public Opening(Point aPlace) {
-            Position = aPlace;
+            position = aPlace;
         }
 
         public float Height() {
-            return HeightValue;
+            return heightValue;
         }
 
         public float Length() {
-            return LengthValue;
+            return lengthValue;
         }
 
         public Point GetPosition() {
-            return Position;
+            return position;
         }
 
         public override bool Equals(object obj) {
@@ -35,13 +35,13 @@ namespace Domain {
                 areEqual = false;
             } else {
                 Opening otherOpening = (Opening)obj;
-                areEqual = Position.Equals(otherOpening.GetPosition());
+                areEqual = position.Equals(otherOpening.GetPosition());
             }
             return areEqual;
         }
 
         public override int GetHashCode() {
-            return Position.GetHashCode();
+            return position.GetHashCode();
         }
 
         public abstract float CalculatePrice();

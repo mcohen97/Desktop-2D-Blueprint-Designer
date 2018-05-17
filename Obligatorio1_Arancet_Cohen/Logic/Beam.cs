@@ -8,14 +8,14 @@ namespace Domain {
 
     public class Beam : ISinglePointComponent, IMaterialType, IPriceable {
 
-        private Point Position { get; set; }
+        private Point position;
 
         public Beam(Point aPlace) {
-            Position = aPlace;
+            position = aPlace;
         }
 
         public Point GetPosition() {
-            return Position;
+            return position;
         }
 
         public override bool Equals(object obj) {
@@ -24,13 +24,13 @@ namespace Domain {
                 areEqual = false;
             } else {
                 Beam otherBeam = (Beam)obj;
-                areEqual = Position.Equals(otherBeam.Position);
+                areEqual = position.Equals(otherBeam.position);
             }
             return areEqual;
         }
 
         public override int GetHashCode() {
-            return Position.GetHashCode();
+            return position.GetHashCode();
         }
 
         public ComponentType GetComponentType() {
