@@ -327,11 +327,18 @@ namespace UserInterface {
             drawSurface.DrawToBitmap(bitmapToExport, new Rectangle(0, 0, width, height));
 
             SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Png Image (.png)|*.png";
+            saveFile.Filter = "JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png";
             saveFile.ShowDialog();
             var path = saveFile.FileName;
 
-            bitmapToExport.Save(path, ImageFormat.Png);
+            ImageFormat imageFormatSelected = ImageFormat.Png;
+            if (saveFile.Filter == ".jpeg") {
+                imageFormatSelected = ImageFormat.Jpeg;
+            } else if (saveFile.Filter == ".png") {
+                imageFormatSelected = ImageFormat.Png;
+            }
+
+            bitmapToExport.Save(path, imageFormatSelected);
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e) {
