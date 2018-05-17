@@ -63,8 +63,8 @@ namespace Logic.Domain {
            return CompareTo(otherPoint) < 0;
         }
 
-        public float DistanceToPoint(Point testPoint) {
-            float distance = (float)Math.Sqrt(Math.Pow(CoordX-testPoint.CoordX,2)+Math.Pow(CoordY-testPoint.CoordY,2));
+        public float DistanceToPoint(Point otherPoint) {
+            float distance = (float)Math.Sqrt(Math.Pow(CoordX-otherPoint.CoordX,2)+Math.Pow(CoordY-otherPoint.CoordY,2));
             return distance;
         }
 

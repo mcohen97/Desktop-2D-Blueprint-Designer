@@ -146,13 +146,13 @@ namespace Logic.Domain {
         private void PartWall(Wall aWall, Point splitPoint) {
             // we are replacing the old walls with two halves
             materials.RemoveWall(aWall);
-            RemoveOpeningIfExists(splitPoint);
+            RemoveOpening(splitPoint);
             CreateAndPlaceWall(aWall.Beginning(), splitPoint);
             CreateAndPlaceWall(splitPoint, aWall.End());
         }
 
-        public void RemoveOpeningIfExists(Point actualIntersection) {
-            Opening op = new Door(actualIntersection);
+        public void RemoveOpening(Point position) {
+            Opening op = new Door(position);
             if (materials.ContainsOpening(op)) {
                 materials.RemoveOpening(op);
             }
@@ -247,17 +247,17 @@ namespace Logic.Domain {
            return materials.GetWalls().Where(wall => wall.DoesIntersect(newWall)).ToList();
         }
 
-        public bool OccupiedPosition(ISinglePointComponent punctualComponent) {
+        private bool OccupiedPosition(ISinglePointComponent punctualComponent) {
             return materials.GetOpenings().Any(op => op.GetPosition().Equals(punctualComponent.GetPosition()))
                 || materials.GetBeams().Any(bm => bm.GetPosition().Equals(punctualComponent.GetPosition()));
        
         }
 
-        public bool BelongsToAWall(Opening newOpening) {
+        private bool BelongsToAWall(Opening newOpening) {
             return materials.GetWalls().Any(wall=>wall.DoesContainComponent(newOpening));
         }
 
-        public void RemoveOpeningsOfWall(Wall aWall) {
+        private void RemoveOpeningsOfWall(Wall aWall) {
             foreach (Opening existing in GetOpeningsFromWall(aWall)) {
                 materials.RemoveOpening(existing);
             }

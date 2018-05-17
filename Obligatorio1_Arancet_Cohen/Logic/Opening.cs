@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain {
 
-    public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable {
+    public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable, IMaterialType {
 
         protected float heightValue;
         protected float lengthValue;

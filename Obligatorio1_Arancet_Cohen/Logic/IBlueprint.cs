@@ -15,6 +15,8 @@ namespace Logic.Domain {
 
         void RemoveOpening(Opening toRemove);
 
+        void RemoveOpening(Point position);
+
         User Owner { get; set; }
 
     }
