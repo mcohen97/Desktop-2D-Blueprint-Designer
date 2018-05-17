@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Domain;
 using Exceptions;
 
-namespace Logic.Test {
+namespace Test {
     [TestClass]
     public class BlueprintTest {
 

@@ -4,7 +4,7 @@ using Domain;
 using Exceptions;
 using System.Collections.Generic;
 
-namespace Logic.Test
+namespace Test
 {
     [TestClass]
     public class UsersPortfolioTest

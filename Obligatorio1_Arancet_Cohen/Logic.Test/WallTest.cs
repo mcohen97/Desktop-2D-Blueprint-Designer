@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 using Exceptions;
 
-namespace Logic.Test {
+namespace Test {
 
     [TestClass]
     public class WallTest {
@@ -227,14 +227,14 @@ namespace Logic.Test {
         public void AreContinuousTest() {
             Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
             Wall otherTestWall = new Wall(new Point(3,0), new Point(5,0));
-            Assert.IsTrue(testWall.IsContinuous(otherTestWall));
+            Assert.IsTrue(testWall.IsCollinearContinuous(otherTestWall));
         }
 
         [TestMethod]
         public void AreNotContinuousTest() {
             Wall testWall = new Wall(new Point(1,0), new Point(3,0));
             Wall otherTestWall = new Wall(new Point(4,0), new Point(5,0));
-            Assert.IsFalse(testWall.IsContinuous(otherTestWall));
+            Assert.IsFalse(testWall.IsCollinearContinuous(otherTestWall));
         }
 
         [TestMethod]
@@ -268,7 +268,7 @@ namespace Logic.Test {
             Wall testWall = new Wall(new Point(1, 0), new Point(3, 0));
             Wall otherTestWall = new Wall(new Point(3, 0), new Point(5, 0));
             Wall expectedResult = new Wall(new Point(1,0), new Point(5,0));
-            Wall actualResult = testWall.MergeContinuousSegment(otherTestWall);
+            Wall actualResult = testWall.MergeCollinearContinuous(otherTestWall);
             Assert.AreEqual(expectedResult, actualResult);
         }
 

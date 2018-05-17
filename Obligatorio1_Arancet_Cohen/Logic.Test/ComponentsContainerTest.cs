@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Domain;
 
-namespace Logic.Test {
+namespace Test {
     [TestClass]
     public class ComponentsContainerTest {
 
