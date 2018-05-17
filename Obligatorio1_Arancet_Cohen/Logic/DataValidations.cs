@@ -5,36 +5,46 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Logic.Domain {
-    public class DataValidations {
+namespace Logic.Domain
+{
+    public class DataValidations
+    {
 
-        public static void AssignStringIfNotNull(out string instanceVariable,string value ) {
-            if (String.IsNullOrEmpty(value)) {
+        public static void AssignStringIfNotNull(out string instanceVariable, string value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
                 throw new ArgumentNullException();
             }
             instanceVariable = value;
         }
 
-        public static bool IsValidPhoneNumber(string phoneNumber) {
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
             Regex regex = new Regex(@"\d\d\d\d-\d\d-\d\d");
             Match match = regex.Match(phoneNumber);
             bool valid = match.Success;
             return valid;
         }
 
-        public static bool IsValidID(string anID) {
+        public static bool IsValidID(string anID)
+        {
             Regex regex = new Regex(@"\d\.\d\d\d\.\d\d\d-\d");
             Match match = regex.Match(anID);
             bool valid = match.Success;
             return valid;
         }
 
-        public static bool IsNumberGreaterThanZero(string aNumber) {
+        public static bool IsNumberGreaterThanZero(string aNumber)
+        {
             bool valid;
-            try {
+            try
+            {
                 int theNumber = Int32.Parse(aNumber);
                 valid = theNumber > 0;
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 valid = false;
             }
             return valid;

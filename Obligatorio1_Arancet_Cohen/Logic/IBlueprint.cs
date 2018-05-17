@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Domain {
-    public interface IBlueprint {
+namespace Logic.Domain
+{
+    public interface IBlueprint
+    {
 
         void InsertWall(Point from, Point to);
 

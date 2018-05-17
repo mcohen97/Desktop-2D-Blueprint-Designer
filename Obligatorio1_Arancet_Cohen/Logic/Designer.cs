@@ -6,17 +6,19 @@ namespace Logic.Domain
     public class Designer : User
     {
 
-        public Designer(string name, string surname, string userName, string password, DateTime registrationDate) {
+        public Designer(string name, string surname, string userName, string password, DateTime registrationDate)
+        {
             Name = name;
             Surname = surname;
             UserName = userName;
             Password = password;
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
-            Permissions=GeneratePermissions();
+            Permissions = GeneratePermissions();
         }
 
-        private List<Permission> GeneratePermissions() {
+        private List<Permission> GeneratePermissions()
+        {
             List<Permission> perms = new List<Permission>();
             perms.Add(Permission.CREATE_BLUEPRINT);
             perms.Add(Permission.EDIT_BLUEPRINT);

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Domain {
-    interface IPriceable {
+namespace Logic.Domain
+{
+    interface IPriceable
+    {
         float CalculatePrice();
         float CalculateCost();
     }

@@ -6,23 +6,28 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    public class Window : Opening, IMaterialType {
+    public class Window : Opening, IMaterialType
+    {
 
         public float HeightAboveFloor { get; private set; }
 
-        public Window(Point aPlace) : base(aPlace) {
+        public Window(Point aPlace) : base(aPlace)
+        {
             HeightAboveFloor = 1;
         }
 
-        public override ComponentType GetComponentType() {
+        public override ComponentType GetComponentType()
+        {
             return ComponentType.WINDOW;
         }
 
-        public override float CalculatePrice() {
+        public override float CalculatePrice()
+        {
             return Constants.PRICE_CATALOGUE[GetComponentType()];
         }
 
-        public override float CalculateCost() {
+        public override float CalculateCost()
+        {
             return Constants.COST_CATALOGUE[GetComponentType()];
         }
     }

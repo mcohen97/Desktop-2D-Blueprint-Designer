@@ -5,15 +5,18 @@ using System.Linq;
 
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Logic.Domain {
-    internal class BlueprintPortfolio {
+namespace Logic.Domain
+{
+    internal class BlueprintPortfolio
+    {
 
         private static BlueprintPortfolio instance;
         private ICollection<IBlueprint> Blueprints;
 
         public static BlueprintPortfolio Instance {
             get {
-                if (instance == null) {
+                if (instance == null)
+                {
                     instance = new BlueprintPortfolio();
                 }
                 return instance;
@@ -21,58 +24,74 @@ namespace Logic.Domain {
         }
 
 
-        private BlueprintPortfolio() {
+        private BlueprintPortfolio()
+        {
             Blueprints = new List<IBlueprint>();
         }
 
-        public void Empty() {
+        public void Empty()
+        {
             Blueprints = new List<IBlueprint>();
         }
 
-        public bool IsEmpty() {
+        public bool IsEmpty()
+        {
             return Blueprints.Count() == 0;
         }
 
-        public void Add(IBlueprint aBlueprint) {
+        public void Add(IBlueprint aBlueprint)
+        {
             Blueprints.Add(aBlueprint);
         }
 
-        public bool Exist(IBlueprint aBlueprint) {
-            if(aBlueprint == null) {
+        public bool Exist(IBlueprint aBlueprint)
+        {
+            if (aBlueprint == null)
+            {
                 throw new ArgumentNullException();
             }
             return Blueprints.Contains(aBlueprint);
         }
 
-        public ICollection<IBlueprint> GetBlueprintsCopy() {
+        public ICollection<IBlueprint> GetBlueprintsCopy()
+        {
             return new List<IBlueprint>(Blueprints);
         }
 
-        public bool Remove(IBlueprint aBlueprint) {
-            if(aBlueprint == null) {
+        public bool Remove(IBlueprint aBlueprint)
+        {
+            if (aBlueprint == null)
+            {
                 throw new ArgumentNullException();
             }
             return Blueprints.Remove(aBlueprint);
         }
 
-        public IBlueprint GetBlueprint(IBlueprint aBlueprint) {
-            if(aBlueprint == null) {
+        public IBlueprint GetBlueprint(IBlueprint aBlueprint)
+        {
+            if (aBlueprint == null)
+            {
                 throw new ArgumentNullException();
             }
             return Blueprints.First(x => aBlueprint.Equals(x));
         }
 
-        public ICollection<IBlueprint> GetBlueprintsOfUser(User owner) {
-           if(owner == null) {
+        public ICollection<IBlueprint> GetBlueprintsOfUser(User owner)
+        {
+            if (owner == null)
+            {
                 throw new ArgumentNullException();
             }
-            List<IBlueprint> elegible=Blueprints.Where(x => owner.Equals(x.Owner)).ToList();
+            List<IBlueprint> elegible = Blueprints.Where(x => owner.Equals(x.Owner)).ToList();
             return new List<IBlueprint>(elegible);
         }
 
-        internal void DeleteUserBlueprints(Client aUser) {
-            foreach (IBlueprint existent in GetBlueprintsCopy()) {
-                if (existent.Owner.Equals(aUser)) {
+        internal void DeleteUserBlueprints(Client aUser)
+        {
+            foreach (IBlueprint existent in GetBlueprintsCopy())
+            {
+                if (existent.Owner.Equals(aUser))
+                {
                     Blueprints.Remove(existent);
                 }
             }

@@ -9,30 +9,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 
-namespace UserInterface {
-    public partial class MainWindow : Form {
+namespace UserInterface
+{
+    public partial class MainWindow : Form
+    {
 
         internal Session CurrentSession { set; get; }
         internal UserControl currentPanel;
         internal bool testDataAlreadyGenerated;
 
-        public MainWindow() {
+        public MainWindow()
+        {
             InitializeComponent();
             Authenticate();
         }
 
 
-        internal void Authenticate() {
+        internal void Authenticate()
+        {
             mainPanel.Controls.Clear();
-            currentPanel = new LoginView(this,testDataAlreadyGenerated);
+            currentPanel = new LoginView(this, testDataAlreadyGenerated);
             mainPanel.Controls.Add(currentPanel);
         }
 
-        internal void GoToMenu() {
+        internal void GoToMenu()
+        {
             mainPanel.Controls.Remove(currentPanel);
-            if (CurrentSession.FirstLogin && CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN)) {
+            if (CurrentSession.FirstLogin && CurrentSession.UserLogged.HasPermission(Permission.FIRST_LOGIN))
+            {
                 currentPanel = new UserDataVerificationView(CurrentSession.UserLogged, this);
-            } else {
+            }
+            else
+            {
                 currentPanel = new LoggedInView(this, CurrentSession);
             }
 

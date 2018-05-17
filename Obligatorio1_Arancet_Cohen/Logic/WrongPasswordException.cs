@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Exceptions {
+namespace Logic.Exceptions
+{
     [Serializable]
-    public class WrongPasswordException : Exception {
-        public WrongPasswordException() {
+    public class WrongPasswordException : Exception
+    {
+        public WrongPasswordException()
+        {
         }
 
-        public WrongPasswordException(string message) : base(message) {
+        public WrongPasswordException(string message) : base(message)
+        {
         }
 
-        public WrongPasswordException(string message, Exception innerException) : base(message, innerException) {
+        public WrongPasswordException(string message, Exception innerException) : base(message, innerException)
+        {
         }
 
-        protected WrongPasswordException(SerializationInfo info, StreamingContext context) : base(info, context) {
+        protected WrongPasswordException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

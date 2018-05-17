@@ -8,15 +8,18 @@ using Logic.Exceptions;
 [assembly: InternalsVisibleTo("SystemLoginTest")]
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Logic.Domain {
-    internal class UsersPortfolio {
+namespace Logic.Domain
+{
+    internal class UsersPortfolio
+    {
 
         private static UsersPortfolio instance;
         private ICollection<User> Users;
 
         public static UsersPortfolio Instance {
             get {
-                if(instance == null) {
+                if (instance == null)
+                {
                     instance = new UsersPortfolio();
                     instance.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
                 }
@@ -24,97 +27,123 @@ namespace Logic.Domain {
             }
         }
 
-        private UsersPortfolio() {
+        private UsersPortfolio()
+        {
             Users = new List<User>();
         }
-        public bool IsEmpty() {
+        public bool IsEmpty()
+        {
             return Users.Count() == 1;
         }
 
-        public void Add(User userToAdd) {
-            if (userToAdd == null) {
+        public void Add(User userToAdd)
+        {
+            if (userToAdd == null)
+            {
                 throw new ArgumentNullException();
             }
-            if (Exist(userToAdd)) {
+            if (Exist(userToAdd))
+            {
                 throw new UserAlreadyExistsException();
             }
             Users.Add(userToAdd);
         }
 
-        public bool Remove(User userToRemove) {
-            if (userToRemove == null) {
+        public bool Remove(User userToRemove)
+        {
+            if (userToRemove == null)
+            {
                 throw new ArgumentNullException();
             }
 
-            bool wasRemoved= Users.Remove(userToRemove);
-            if (wasRemoved && userToRemove.HasPermission(Permission.HAVE_BLUEPRINT)) {
+            bool wasRemoved = Users.Remove(userToRemove);
+            if (wasRemoved && userToRemove.HasPermission(Permission.HAVE_BLUEPRINT))
+            {
                 BlueprintPortfolio.Instance.DeleteUserBlueprints((Client)userToRemove);
             }
             return wasRemoved;
         }
 
-        public bool Exist(User userAsked) {
-            if (userAsked == null) {
+        public bool Exist(User userAsked)
+        {
+            if (userAsked == null)
+            {
                 throw new ArgumentNullException();
             }
             return Users.Contains(userAsked);
         }
 
-        public void Empty() {
+        public void Empty()
+        {
             Users = new List<User>();
             Users.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
         }
 
-        public IEnumerator<User> GetEnumerator() {
+        public IEnumerator<User> GetEnumerator()
+        {
             return Users.GetEnumerator();
         }
 
-        public ICollection<User> GetUsers() {
+        public ICollection<User> GetUsers()
+        {
             return (ICollection<User>)(new List<User>(Users));
         }
 
-        public Client GetClient(User userAsked) {
-            if (!(userAsked is Client)) {
+        public Client GetClient(User userAsked)
+        {
+            if (!(userAsked is Client))
+            {
                 throw new InvalidCastException();
             }
             Client clientAsked = (Client)Users.First(x => userAsked.Equals(x));
             return clientAsked;
         }
 
-        public Admin GetAdmin(User userAsked) {
-            if (!(userAsked is Admin)) {
+        public Admin GetAdmin(User userAsked)
+        {
+            if (!(userAsked is Admin))
+            {
                 throw new InvalidCastException();
             }
             Admin adminAsked = (Admin)Users.First(x => userAsked.Equals(x));
             return adminAsked;
         }
 
-        public bool ExistsUserName(string aUserName) {
+        public bool ExistsUserName(string aUserName)
+        {
             return Users.Any(u => u.UserName.Equals(aUserName));
         }
 
-        public Designer GetDesigner(User userAsked) {
-            if (!(userAsked is Designer)) {
+        public Designer GetDesigner(User userAsked)
+        {
+            if (!(userAsked is Designer))
+            {
                 throw new InvalidCastException();
             }
             Designer designerAsked = (Designer)Users.First(x => userAsked.Equals(x));
             return designerAsked;
         }
 
-        public User GetUser(User userAsked) {
+        public User GetUser(User userAsked)
+        {
             return Users.First(x => userAsked.Equals(x));
         }
 
-        public User GetUserByUserName(string userName) {
-            try {
+        public User GetUserByUserName(string userName)
+        {
+            try
+            {
                 return Users.First(x => x.UserName == userName);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 throw new UserNotFoundException();
-            } 
+            }
         }
 
-        public ICollection<User> GetUsersByPermission(Permission aFeature) {
-            return (ICollection<User>)GetUsers().Where(u=>u.HasPermission(aFeature)).ToList();
+        public ICollection<User> GetUsersByPermission(Permission aFeature)
+        {
+            return (ICollection<User>)GetUsers().Where(u => u.HasPermission(aFeature)).ToList();
         }
     }
 }

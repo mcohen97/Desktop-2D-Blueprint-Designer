@@ -4,44 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Domain {
+namespace Logic.Domain
+{
 
-    public class Beam : ISinglePointComponent, IMaterialType, IPriceable {
+    public class Beam : ISinglePointComponent, IMaterialType, IPriceable
+    {
 
         private Point position;
 
-        public Beam(Point aPlace) {
+        public Beam(Point aPlace)
+        {
             position = aPlace;
         }
 
-        public Point GetPosition() {
+        public Point GetPosition()
+        {
             return position;
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             bool areEqual;
-            if (obj == null || GetType() != obj.GetType()) {
+            if (obj == null || GetType() != obj.GetType())
+            {
                 areEqual = false;
-            } else {
+            }
+            else
+            {
                 Beam otherBeam = (Beam)obj;
                 areEqual = position.Equals(otherBeam.position);
             }
             return areEqual;
         }
 
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return position.GetHashCode();
         }
 
-        public ComponentType GetComponentType() {
+        public ComponentType GetComponentType()
+        {
             return ComponentType.BEAM;
         }
 
-        public float CalculatePrice() {
+        public float CalculatePrice()
+        {
             return Constants.PRICE_CATALOGUE[GetComponentType()];
         }
 
-        public float CalculateCost() {
+        public float CalculateCost()
+        {
             return Constants.COST_CATALOGUE[GetComponentType()];
         }
     }

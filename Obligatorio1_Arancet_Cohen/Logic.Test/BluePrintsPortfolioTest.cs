@@ -3,9 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using System.Collections.Generic;
 
-namespace Logic.Test{
+namespace Logic.Test
+{
     [TestClass]
-    public class BluePrintPortfolioTest {
+    public class BluePrintPortfolioTest
+    {
 
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
@@ -14,7 +16,8 @@ namespace Logic.Test{
 
 
         [TestInitialize]
-        public void TestInitialize() {
+        public void TestInitialize()
+        {
             portfolio = BlueprintPortfolio.Instance;
             portfolio.Empty();
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
@@ -28,25 +31,29 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void EmptyPorfolioTest() {
+        public void EmptyPorfolioTest()
+        {
             portfolio.Empty();
             Assert.IsTrue(portfolio.IsEmpty());
         }
 
         [TestMethod]
-        public void AddBlueprintTest() {
+        public void AddBlueprintTest()
+        {
             portfolio.Add(blueprint1);
             Assert.IsFalse(portfolio.IsEmpty());
         }
 
         [TestMethod]
-        public void AddedBlueprintTest() {
+        public void AddedBlueprintTest()
+        {
             portfolio.Add(blueprint1);
             Assert.IsTrue(portfolio.Exist(blueprint1));
         }
 
         [TestMethod]
-        public void GetBlueprintTest() {
+        public void GetBlueprintTest()
+        {
             portfolio.Add(blueprint1);
             IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsCopy().GetEnumerator();
             blueprints.MoveNext();
@@ -54,7 +61,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void RemoveExistentBlueprintTest() {
+        public void RemoveExistentBlueprintTest()
+        {
             portfolio.Add(blueprint1);
             portfolio.Add(blueprint2);
             portfolio.Remove(blueprint1);
@@ -62,21 +70,24 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void RemoveNonExistentBlueprintTest() {
+        public void RemoveNonExistentBlueprintTest()
+        {
             portfolio.Add(blueprint2);
             bool deletionExecuted = portfolio.Remove(blueprint1);
             Assert.IsFalse(deletionExecuted);
         }
 
         [TestMethod]
-        public void GetEnumeratorBlueprintTest() {
+        public void GetEnumeratorBlueprintTest()
+        {
             portfolio.Add(blueprint1);
             IBlueprint blueprintGot = portfolio.GetBlueprint(blueprint1);
             Assert.AreEqual(blueprintGot, blueprint1);
         }
 
         [TestMethod]
-        public void GetEnumeratorBlueprintOwnedByUserTest() {
+        public void GetEnumeratorBlueprintOwnedByUserTest()
+        {
             User owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
             blueprint1.Owner = owner;
             portfolio.Add(blueprint1);
@@ -86,7 +97,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void GetBlueprintsCopyTest() {
+        public void GetBlueprintsCopyTest()
+        {
             portfolio.Add(blueprint1);
             portfolio.Add(blueprint2);
             ICollection<IBlueprint> copy = portfolio.GetBlueprintsCopy();
@@ -95,14 +107,15 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void DeleteUsersBlueprintsTest() {
+        public void DeleteUsersBlueprintsTest()
+        {
             portfolio.Add(blueprint1);
             portfolio.Add(blueprint2);
             portfolio.Add(blueprint3);
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             portfolio.DeleteUserBlueprints(user1);
             int expectedResult = 0;
-            int actualResult=portfolio.GetBlueprintsCopy().Count;
+            int actualResult = portfolio.GetBlueprintsCopy().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }

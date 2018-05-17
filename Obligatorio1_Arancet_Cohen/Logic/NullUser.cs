@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    class NullUser:User
+    class NullUser : User
     {
         public NullUser()
         {
