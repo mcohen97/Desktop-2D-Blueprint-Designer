@@ -114,7 +114,7 @@ namespace Domain {
             }
         }
 
-        //we assume in this method that the wall an be added
+        //we assume in this method that the wall can be added
         private void InsertValidatedWall(Wall aWall) {
             if (IntersectsOtherWalls(aWall)) {
                 FractionNewIntersectedWall(aWall);
@@ -129,16 +129,26 @@ namespace Domain {
             List<Point> intersectionPoints = new List<Point>();
             Point actualIntersection;
             foreach (Wall intersected in WallsIntersectedByThisOne(aWall)) {
-                actualIntersection = intersected.GetIntersection(aWall);
-                // we are replacing the old walls with two halves
-                materials.RemoveWall(intersected);
-                RemoveOpeningIfExists(actualIntersection);
-                CreateAndPlaceWall(intersected.Beginning(), actualIntersection);
-                CreateAndPlaceWall(actualIntersection, intersected.End());
-                intersectionPoints.Add(actualIntersection);
+                if (!aWall.IsConnected(intersected))
+                {
+                    actualIntersection = intersected.GetIntersection(aWall);
+                    PartWall(intersected, actualIntersection);
+                    intersectionPoints.Add(actualIntersection);
+                }
+                else {
+                    PlaceNewWall(aWall);
+                }
             }
             intersectionPoints.Sort();
             SplitWall(aWall, intersectionPoints);
+        }
+
+        private void PartWall(Wall aWall, Point splitPoint) {
+            // we are replacing the old walls with two halves
+            materials.RemoveWall(aWall);
+            RemoveOpeningIfExists(splitPoint);
+            CreateAndPlaceWall(aWall.Beginning(), splitPoint);
+            CreateAndPlaceWall(splitPoint, aWall.End());
         }
 
         public void RemoveOpeningIfExists(Point actualIntersection) {
