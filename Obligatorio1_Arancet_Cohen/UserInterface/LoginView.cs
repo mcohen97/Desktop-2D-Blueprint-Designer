@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain;
-using Exceptions;
+using Logic.Domain;
+using Logic.Exceptions;
 
 namespace UserInterface {
     public partial class LoginView : UserControl {

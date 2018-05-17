@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+using Logic.Domain;
 
-namespace Test {
+namespace Logic.Test {
     [TestClass]
     public class DataValidationsTest {
         [TestMethod]

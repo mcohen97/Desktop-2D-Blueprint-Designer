@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Exceptions {
+namespace Logic.Exceptions {
     public class UserAlreadyExistsException:Exception {
 
         public UserAlreadyExistsException() {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain {
+namespace Logic.Domain {
     public class Session {
         public User UserLogged { get;}
         public bool FirstLogin { get; set; }

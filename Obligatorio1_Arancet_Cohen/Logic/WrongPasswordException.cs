@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Exceptions {
+namespace Logic.Exceptions {
     [Serializable]
     public class WrongPasswordException : Exception {
         public WrongPasswordException() {

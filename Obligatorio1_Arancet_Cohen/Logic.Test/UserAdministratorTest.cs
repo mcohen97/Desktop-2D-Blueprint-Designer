@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
-using Exceptions;
+using Logic.Domain;
+using Logic.Exceptions;
 using System.Collections.Generic;
 
-namespace Test{
+namespace Logic.Test{
     [TestClass]
     public class UserAdministratorTest {
 

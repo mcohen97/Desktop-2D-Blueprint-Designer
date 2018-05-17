@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
-using Exceptions;
+using Logic.Exceptions;
 
 [assembly: InternalsVisibleTo("SystemLoginTest")]
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Domain {
+namespace Logic.Domain {
     internal class UsersPortfolio {
 
         private static UsersPortfolio instance;

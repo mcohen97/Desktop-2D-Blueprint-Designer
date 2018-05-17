@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain
+namespace Logic.Domain
 {
     public class Admin : User
     {

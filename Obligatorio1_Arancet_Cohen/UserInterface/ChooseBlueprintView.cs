@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain;
+using Logic.Domain;
 
 namespace UserInterface {
     public partial class ChooseBlueprintView : UserControl, IUserFeatureControl {

@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Collections;
-using Domain;
+using Logic.Domain;
 
-namespace Test {
+namespace Logic.Test {
     [TestClass]
     public class ComponentsContainerTest {
 

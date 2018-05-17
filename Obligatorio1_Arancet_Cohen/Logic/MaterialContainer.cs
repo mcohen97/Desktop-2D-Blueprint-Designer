@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain {
+namespace Logic.Domain {
     public class MaterialContainer {
 
         private ICollection<Wall> walls;

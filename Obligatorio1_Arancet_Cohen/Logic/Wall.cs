@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Exceptions;
+using Logic.Exceptions;
 
-namespace Domain {
+namespace Logic.Domain {
 
     public class Wall:IComponent3D, IMaterialType, IPriceable {
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
+using Logic.Domain;
 using System.Collections.Generic;
 
-namespace Test{
+namespace Logic.Test{
     [TestClass]
     public class BluePrintPortfolioTest {
 

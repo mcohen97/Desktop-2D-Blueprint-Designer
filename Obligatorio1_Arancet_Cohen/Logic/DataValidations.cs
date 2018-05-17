@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Domain {
+namespace Logic.Domain {
     public class DataValidations {
 
         public static void AssignStringIfNotNull(out string instanceVariable,string value ) {

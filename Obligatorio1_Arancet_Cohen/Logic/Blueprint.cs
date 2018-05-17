@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
-using Exceptions;
+using Logic.Exceptions;
 
 [assembly: InternalsVisibleTo("Logic.Test")]
 
 
-namespace Domain {
+namespace Logic.Domain {
     public class Blueprint:IBlueprint {
 
         private string name;

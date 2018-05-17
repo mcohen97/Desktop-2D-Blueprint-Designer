@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Exceptions;
-using Domain;
+using Logic.Exceptions;
+using Logic.Domain;
 using System.Collections.Generic;
 
-namespace Test{
+namespace Logic.Test{
     [TestClass]
     public class BlueprintControllerTest {
 

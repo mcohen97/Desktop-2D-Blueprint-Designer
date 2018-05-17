@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain;
+using Logic.Domain;
 using System.Drawing.Imaging;
 
 namespace UserInterface {
@@ -66,13 +66,13 @@ namespace UserInterface {
         }
 
         //Auxiliar
-        private Domain.Point DrawablePointIntoLogicPoint(System.Drawing.Point point) {
+        private Logic.Domain.Point DrawablePointIntoLogicPoint(System.Drawing.Point point) {
             float pointX = point.X;
             float pointY = point.Y;
             float cellSize = cellSizeInPixels;
-            return new Domain.Point(pointX / cellSize, pointY / cellSize);
+            return new Logic.Domain.Point(pointX / cellSize, pointY / cellSize);
         }
-        private System.Drawing.Point LogicPointIntoDrawablePoint(Domain.Point point) {
+        private System.Drawing.Point LogicPointIntoDrawablePoint(Logic.Domain.Point point) {
             return new System.Drawing.Point(Convert.ToInt32(point.CoordX * cellSizeInPixels), Convert.ToInt32(point.CoordY * cellSizeInPixels));
         }
         private void calulateCostsAndPrices() {
@@ -211,14 +211,14 @@ namespace UserInterface {
         //Opening events
         private void drawSurface_MouseClickInsertDoor(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
+            Logic.Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
             Opening newDoor = new Door(doorPoint);
             InsertAndDrawOpening(newDoor);
 
         }
         private void drawSurface_MouseClickInsertWindow(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
+            Logic.Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
             Opening newWindow = new Window(doorPoint);
             InsertAndDrawOpening(newWindow);
         }
@@ -236,8 +236,8 @@ namespace UserInterface {
         //Erase events
         private void drawSurface_MouseClickErase(object sender, MouseEventArgs e) {
             System.Drawing.Point point = AdjustPointToGrid(drawSurface.PointToClient(Cursor.Position));
-            Domain.Point deletionPointPrecise = DrawablePointIntoLogicPoint(point);
-            Domain.Point closestDeletionPointToGridIntersection = DrawablePointIntoLogicPoint(AdjustPointToGridIntersection(point));
+            Logic.Domain.Point deletionPointPrecise = DrawablePointIntoLogicPoint(point);
+            Logic.Domain.Point closestDeletionPointToGridIntersection = DrawablePointIntoLogicPoint(AdjustPointToGridIntersection(point));
 
             try {
                 bool existOpeningInPoint = selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
