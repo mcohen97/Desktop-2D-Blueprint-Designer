@@ -58,7 +58,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyNameTest() {
+        public void setEmptyNameTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newName = "";
@@ -67,7 +68,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullNameTest() {
+        public void setNullNameTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
             string newName = null;
             client.Name = newName;
@@ -94,7 +96,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptySurnameTest() {
+        public void setEmptySurnameTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
             string newSurname = "";
             client.Surname = newSurname;
@@ -102,9 +105,10 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullSurnameTest() {
+        public void setNullSurnameTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
-            string newSurname =null;
+            string newSurname = null;
             client.Surname = newSurname;
         }
 
@@ -137,7 +141,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyPasswordTest() {
+        public void setEmptyPasswordTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newPassword = "";
@@ -148,7 +153,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullPasswordTest() {
+        public void setNullPasswordTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
             string newPassword = null;
             client.Password = newPassword;
@@ -178,7 +184,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyPhoneTest() {
+        public void setEmptyPhoneTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newPhoneNumber = "";
@@ -187,7 +194,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullPhoneTest() {
+        public void setNullPhoneTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
             string newPhoneNumber = null;
             client.Phone = newPhoneNumber;
@@ -213,7 +221,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyAddressTest() {
+        public void setEmptyAddressTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newAddress = "";
@@ -222,7 +231,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullAddressTest() {
+        public void setNullAddressTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
             string newAddress = null;
             client.Address = newAddress;
@@ -248,7 +258,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyIdTest() {
+        public void setEmptyIdTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newId = "";
@@ -257,7 +268,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullIdTest() {
+        public void setNullIdTest()
+        {
             Client client = new Client(name, surname, userName, password, phone, address, id, registrationDate);
 
             string newId = null;
@@ -326,5 +338,5 @@ namespace Logic.Test
 
     }
 
-    
+
 }

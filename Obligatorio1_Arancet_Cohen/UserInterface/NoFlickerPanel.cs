@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UserInterface {
-    public partial class NoFlickerPanel : Control {
-        public NoFlickerPanel() : base() {
+namespace UserInterface
+{
+    public partial class NoFlickerPanel : Control
+    {
+        public NoFlickerPanel() : base()
+        {
             DoubleBuffered = true;
             InitializeComponent();
         }
 
-        protected override void OnPaint(PaintEventArgs pe) {
+        protected override void OnPaint(PaintEventArgs pe)
+        {
             base.OnPaint(pe);
         }
     }

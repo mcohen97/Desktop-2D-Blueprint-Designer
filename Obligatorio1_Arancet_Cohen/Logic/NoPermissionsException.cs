@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Exceptions {
-    public class NoPermissionsException:Exception {
-        public NoPermissionsException() {
+namespace Logic.Exceptions
+{
+    public class NoPermissionsException : Exception
+    {
+        public NoPermissionsException()
+        {
         }
 
-        public NoPermissionsException(string message) : base(message) {
+        public NoPermissionsException(string message) : base(message)
+        {
         }
 
-        public NoPermissionsException(string message, Exception innerException) : base(message, innerException) {
+        public NoPermissionsException(string message, Exception innerException) : base(message, innerException)
+        {
         }
 
-        protected NoPermissionsException(SerializationInfo info, StreamingContext context) : base(info, context) {
+        protected NoPermissionsException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

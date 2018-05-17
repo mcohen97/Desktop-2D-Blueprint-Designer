@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    public abstract class User:IPermissible,IComparable
+    public abstract class User : IPermissible, IComparable
     {
         private string name;
-        public string Name { get {return name; } set { SetName(value); } }
+        public string Name { get { return name; } set { SetName(value); } }
         private string surname;
-        public string Surname { get { return surname; } set {SetSurname(value); } }
+        public string Surname { get { return surname; } set { SetSurname(value); } }
         private string userName;
-        public string UserName { get {return userName; } protected set {SetUserName(value); } }
+        public string UserName { get { return userName; } protected set { SetUserName(value); } }
         private string password;
         public string Password { get { return password; } set { SetPassword(value); } }
         public DateTime RegistrationDate { get; set; }
@@ -21,29 +21,37 @@ namespace Logic.Domain
         protected List<Permission> Permissions;
         public static readonly User NULL_USER = new NullUser();
 
-        private void SetName(string aName) {
-            if (String.IsNullOrEmpty(aName)) {
+        private void SetName(string aName)
+        {
+            if (String.IsNullOrEmpty(aName))
+            {
                 throw new ArgumentNullException();
             }
             name = aName;
         }
 
-        private void SetSurname(string aSurname) {
-            if (String.IsNullOrEmpty(aSurname)) {
+        private void SetSurname(string aSurname)
+        {
+            if (String.IsNullOrEmpty(aSurname))
+            {
                 throw new ArgumentNullException();
             }
             surname = aSurname;
         }
 
-        private void SetUserName(string aUserName) {
-            if (String.IsNullOrEmpty(aUserName)) {
+        private void SetUserName(string aUserName)
+        {
+            if (String.IsNullOrEmpty(aUserName))
+            {
                 throw new ArgumentNullException();
             }
             userName = aUserName;
         }
 
-        private void SetPassword(string aPassword) {
-            if (String.IsNullOrEmpty(aPassword)) {
+        private void SetPassword(string aPassword)
+        {
+            if (String.IsNullOrEmpty(aPassword))
+            {
                 throw new ArgumentNullException();
             }
             password = aPassword;
@@ -70,13 +78,14 @@ namespace Logic.Domain
         {
             User userParameter = (User)obj;
             int comparation = UserName.CompareTo(userParameter.UserName);
-            return comparation;     
+            return comparation;
         }
 
         public override bool Equals(object obj)
         {
             bool equal = false;
-            if (obj != null && obj is User)  {
+            if (obj != null && obj is User)
+            {
                 User userParameter = (User)obj;
                 equal = userParameter.UserName.Equals(UserName);
             }
@@ -88,11 +97,12 @@ namespace Logic.Domain
             return base.GetHashCode();
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return "User name: " + UserName
-            +"  " + "Name: " + Name
-            +"  " + "Surname: " + Surname;
-                       
+            + "  " + "Name: " + Name
+            + "  " + "Surname: " + Surname;
+
         }
     }
 

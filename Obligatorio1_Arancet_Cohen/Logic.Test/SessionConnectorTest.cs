@@ -19,14 +19,16 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(WrongPasswordException))]
-        public void LogInWrongPasswordTest() {
+        public void LogInWrongPasswordTest()
+        {
             SessionConnector conn = new SessionConnector();
             Session session = conn.LogIn("admin", "");
         }
 
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
-        public void LogInNonExistentUserTest() {
+        public void LogInNonExistentUserTest()
+        {
             SessionConnector conn = new SessionConnector();
             Session session = conn.LogIn("jorge", "");
         }

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Domain {
-    public enum ComponentType {
+namespace Logic.Domain
+{
+    public enum ComponentType
+    {
         WALL,
         BEAM,
         DOOR,

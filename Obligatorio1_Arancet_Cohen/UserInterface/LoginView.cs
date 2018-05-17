@@ -10,78 +10,97 @@ using System.Windows.Forms;
 using Logic.Domain;
 using Logic.Exceptions;
 
-namespace UserInterface {
-    public partial class LoginView : UserControl {
+namespace UserInterface
+{
+    public partial class LoginView : UserControl
+    {
 
         SessionConnector connector;
         MainWindow mother;
         bool dataGenerated;
 
-        public LoginView(MainWindow aWindow, bool dataAlreadyGenerated) {
+        public LoginView(MainWindow aWindow, bool dataAlreadyGenerated)
+        {
 
             InitializeComponent();
             mother = aWindow;
             connector = new SessionConnector();
             dataGenerated = dataAlreadyGenerated;
             PasswordText.PasswordChar = '*';
-            if (dataGenerated) {
+            if (dataGenerated)
+            {
                 testDataButton.Hide();
             }
 
         }
 
-        private void LogInButton_Click(object sender, EventArgs e) {
+        private void LogInButton_Click(object sender, EventArgs e)
+        {
             bool usernameNotEmpty = InputValidations.ValidateIfEmpty(UsernameText, UserNameMsg);
-            bool passwordNotEmpty= InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
-            if (usernameNotEmpty && passwordNotEmpty) {
+            bool passwordNotEmpty = InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
+            if (usernameNotEmpty && passwordNotEmpty)
+            {
                 TryToLogIn();
-            }  
+            }
         }
 
-        private void TryToLogIn() {
-            try {
+        private void TryToLogIn()
+        {
+            try
+            {
                 mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
                 mother.GoToMenu();
-            } catch (WrongPasswordException) {
+            }
+            catch (WrongPasswordException)
+            {
                 InputValidations.ErrorMessage(PasswordMsg, "Wrong Password!");
-            } catch (UserNotFoundException) {
+            }
+            catch (UserNotFoundException)
+            {
                 InputValidations.ErrorMessage(UserNameMsg, "User doesn't exist!");
             }
         }
 
-        private void UsernameText_TextChanged(object sender, EventArgs e) {
+        private void UsernameText_TextChanged(object sender, EventArgs e)
+        {
             InputValidations.ClearField(UserNameMsg);
         }
 
-        private void PasswordText_TextChanged(object sender, EventArgs e) {
+        private void PasswordText_TextChanged(object sender, EventArgs e)
+        {
             InputValidations.ClearField(PasswordMsg);
         }
 
 
-        private void UsernameText_Leave(object sender, EventArgs e) {
+        private void UsernameText_Leave(object sender, EventArgs e)
+        {
             InputValidations.ValidateIfEmpty(UsernameText, UserNameMsg);
         }
 
-        private void PasswordText_Leave(object sender, EventArgs e) {
+        private void PasswordText_Leave(object sender, EventArgs e)
+        {
             InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
         }
 
-        private void testDataButton_Click(object sender, EventArgs e) {
-            if (!dataGenerated) {
+        private void testDataButton_Click(object sender, EventArgs e)
+        {
+            if (!dataGenerated)
+            {
                 GenerateTestData();
             }
             dataGenerated = true;
             mother.testDataAlreadyGenerated = true;
-       }
+        }
 
-        private void GenerateTestData() {
+        private void GenerateTestData()
+        {
             SessionConnector connector = new SessionConnector();
             Session fakeSession = connector.LogIn("admin", "admin");
             UserAdministrator uAdministrator = new UserAdministrator(fakeSession);
             Client c1 = new Client("Enzo", "Ferreira", "testClient1", "password", "9595-01-73", "Colonia Ofir 7763", "4.435.511-2", DateTime.Now);
             Client c2 = new Client("Camila", "Pinto", "testClient2", "password", "9780-93-03", "Florianapolis 7256", "2.817.601-3", DateTime.Now);
             Client c3 = new Client("Isabelle", "Gomes", "testClient3", "password", "9610-94-47", "Colombes 1092", "1.429.972-1", DateTime.Now);
-            Designer d1=new Designer("Fabrizio ", "Ferrari", "testDesigner1", "password", DateTime.Now);
+            Designer d1 = new Designer("Fabrizio ", "Ferrari", "testDesigner1", "password", DateTime.Now);
             Designer d2 = new Designer("Nazzareno ", "Iadanza", "testDesigner2", "password", DateTime.Now);
             uAdministrator.Add(c1);
             uAdministrator.Add(c2);

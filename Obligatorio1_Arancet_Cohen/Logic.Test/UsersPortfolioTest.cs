@@ -29,7 +29,8 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void EmptyPorfolioTest() {
+        public void EmptyPorfolioTest()
+        {
             portfolio.Empty();
             Assert.IsTrue(portfolio.IsEmpty());
         }
@@ -50,13 +51,15 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddNullUserTest() {
+        public void AddNullUserTest()
+        {
             portfolio.Add(null);
         }
 
-       [TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(UserAlreadyExistsException))]
-        public void AddExistingUser() {
+        public void AddExistingUser()
+        {
             portfolio.Add(user1);
             portfolio.Add(user1);
         }
@@ -71,13 +74,15 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void UserNameExistsTest() {
+        public void UserNameExistsTest()
+        {
             portfolio.Add(user1);
             Assert.IsTrue(portfolio.ExistsUserName("client1UN"));
         }
 
         [TestMethod]
-        public void UserNameDoesNotExist() {
+        public void UserNameDoesNotExist()
+        {
             Assert.IsFalse(portfolio.ExistsUserName("client1UN"));
         }
 
@@ -99,42 +104,48 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void GetClientTest() {
+        public void GetClientTest()
+        {
             portfolio.Add(user2);
             Client clientInfo = portfolio.GetClient(user2);
             Assert.AreEqual(user2, clientInfo);
         }
 
         [TestMethod]
-        public void GetDesignerTest() {
+        public void GetDesignerTest()
+        {
             portfolio.Add(user3);
             Designer designerInfo = portfolio.GetDesigner(user3);
             Assert.AreEqual(user3, designerInfo);
         }
 
         [TestMethod]
-        public void GetAdminTest() {
+        public void GetAdminTest()
+        {
             portfolio.Add(user5);
             Admin clientInfo = portfolio.GetAdmin(user5);
             Assert.AreEqual(user5, clientInfo);
         }
 
         [TestMethod]
-        public void GetUserTest() {
+        public void GetUserTest()
+        {
             portfolio.Add(user5);
             User userInfo = portfolio.GetUser(user5);
             Assert.AreEqual(user5, userInfo);
         }
 
         [TestMethod]
-        public void GetUserByUserNameTest() {
+        public void GetUserByUserNameTest()
+        {
             portfolio.Add(user5);
             User userInfo = portfolio.GetUserByUserName(user5.UserName);
             Assert.AreEqual(user5, userInfo);
         }
 
         [TestMethod]
-        public void GetAllUsersTest() {
+        public void GetAllUsersTest()
+        {
             portfolio.Add(user1);
             portfolio.Add(user2);
             int expectedResult = 3;
@@ -143,17 +154,19 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void GetUsersByPermissionTest() {
+        public void GetUsersByPermissionTest()
+        {
             portfolio.Add(user1);
             portfolio.Add(user3);
             ICollection<User> filtered = portfolio.GetUsersByPermission(Permission.READ_BLUEPRINT);
             int expectedResult = 2;
             int actualResult = filtered.Count;
-            Assert.AreEqual(expectedResult,actualResult);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void RecursiveBlueprintDeletionTest() {
+        public void RecursiveBlueprintDeletionTest()
+        {
             portfolio.Add(user1);
             portfolio.Add(user2);
             portfolio.Add(user3);
@@ -161,7 +174,7 @@ namespace Logic.Test
             Blueprint blueprint1 = new Blueprint(12, 12, "Blueprint1");
             blueprint1.Owner = user1;
             Blueprint blueprint2 = new Blueprint(12, 12, "Blueprint2");
-            blueprint2.Owner=user2;
+            blueprint2.Owner = user2;
             Blueprint blueprint3 = new Blueprint(12, 12, "Blueprint3");
             blueprint3.Owner = user1;
             BlueprintPortfolio.Instance.Add(blueprint1);

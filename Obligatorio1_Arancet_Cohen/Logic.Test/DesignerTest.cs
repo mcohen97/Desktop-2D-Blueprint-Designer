@@ -56,7 +56,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyNameTest() {
+        public void setEmptyNameTest()
+        {
             DateTime registrationDate = DateTime.Now;
 
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -67,7 +68,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullNameTest() {
+        public void setNullNameTest()
+        {
             DateTime registrationDate = DateTime.Now;
 
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
@@ -97,7 +99,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptySurnameTest() {
+        public void setEmptySurnameTest()
+        {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             string newSurname = "";
@@ -106,7 +109,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullSurnameTest() {
+        public void setNullSurnameTest()
+        {
             Designer designer = new Designer(name, surname, userName, password, registrationDate);
 
             string newSurname = null;

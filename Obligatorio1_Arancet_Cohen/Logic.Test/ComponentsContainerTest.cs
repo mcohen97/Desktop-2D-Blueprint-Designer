@@ -4,34 +4,41 @@ using System.Collections.Generic;
 using System.Collections;
 using Logic.Domain;
 
-namespace Logic.Test {
+namespace Logic.Test
+{
     [TestClass]
-    public class ComponentsContainerTest {
+    public class ComponentsContainerTest
+    {
 
         MaterialContainer instance;
 
         [TestInitialize]
-        public void TestInitialize() {
+        public void TestInitialize()
+        {
             instance = new MaterialContainer();
         }
 
         [TestMethod]
-        public void EmptyContainerNoWallsTest() {
+        public void EmptyContainerNoWallsTest()
+        {
             Assert.IsTrue(instance.IsWallsEmpty());
         }
 
         [TestMethod]
-        public void EmptyContainerNoBeamsTest() {
+        public void EmptyContainerNoBeamsTest()
+        {
             Assert.IsTrue(instance.IsBeamsEmpty());
         }
 
         [TestMethod]
-        public void EmptyContainerNoOpeningsTest() {
+        public void EmptyContainerNoOpeningsTest()
+        {
             Assert.IsTrue(instance.IsOpeningsEmpty());
         }
 
         [TestMethod]
-        public void AddWallTest() {
+        public void AddWallTest()
+        {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.AddWall(testWall);
             int expectedResult = 1;
@@ -41,12 +48,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddNullWallTest() {
+        public void AddNullWallTest()
+        {
             instance.AddWall(null);
         }
 
         [TestMethod]
-        public void AddBeamTest() {
+        public void AddBeamTest()
+        {
             Beam testBeam = new Beam(new Point(3, 2));
             instance.AddBeam(testBeam);
             int expectedResult = 1;
@@ -56,12 +65,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddNullBeamTest() {
+        public void AddNullBeamTest()
+        {
             instance.AddWall(null);
         }
 
         [TestMethod]
-        public void AddOpeningTest() {
+        public void AddOpeningTest()
+        {
             Opening testOpening = new Door(new Point(3, 2));
             instance.AddOpening(testOpening);
             int expectedResult = 1;
@@ -71,12 +82,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddNullOpeningTest() {
+        public void AddNullOpeningTest()
+        {
             instance.AddOpening(null);
         }
 
         [TestMethod]
-        public void RemoveWallTest() {
+        public void RemoveWallTest()
+        {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.AddWall(testWall);
             instance.RemoveWall(testWall);
@@ -87,12 +100,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RemoveNullWallTest() {
+        public void RemoveNullWallTest()
+        {
             instance.RemoveWall(null);
         }
 
         [TestMethod]
-        public void RemoveBeamTest() {
+        public void RemoveBeamTest()
+        {
             Beam testBeam = new Beam(new Point(3, 2));
             instance.AddBeam(testBeam);
             instance.RemoveBeam(testBeam);
@@ -103,12 +118,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RemoveNullBeamTest() {
+        public void RemoveNullBeamTest()
+        {
             instance.RemoveBeam(null);
         }
 
         [TestMethod]
-        public void RemoveOpeningTest() {
+        public void RemoveOpeningTest()
+        {
             Opening testOpening = new Door(new Point(3, 2));
             instance.AddOpening(testOpening);
             instance.RemoveOpening(testOpening);
@@ -119,12 +136,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void removeNullOpeningTest() {
+        public void removeNullOpeningTest()
+        {
             instance.RemoveOpening(null);
         }
 
         [TestMethod]
-        public void GetWallsCollectionTest() {
+        public void GetWallsCollectionTest()
+        {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.AddWall(testWall);
             ICollection<Wall> expectedResult = new List<Wall>();
@@ -134,7 +153,8 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void GetBeamsCollectionTest() {
+        public void GetBeamsCollectionTest()
+        {
             Beam testBeam = new Beam(new Point(2, 2));
             instance.AddBeam(testBeam);
             ICollection<Beam> expectedResult = new List<Beam>();
@@ -144,7 +164,8 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void GetOpeningsCollectionTest() {
+        public void GetOpeningsCollectionTest()
+        {
             Opening testOpening = new Door(new Point(2, 2));
             instance.AddOpening(testOpening);
             ICollection<Opening> expectedResult = new List<Opening>();
@@ -154,7 +175,8 @@ namespace Logic.Test {
         }
 
         [TestMethod]
-        public void ContainsWallTest() {
+        public void ContainsWallTest()
+        {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.AddWall(testWall);
             Wall otherTestWall = new Wall(new Point(3, 2), new Point(2, 2));
@@ -163,12 +185,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ContainsNullWallTest() {
+        public void ContainsNullWallTest()
+        {
             instance.ContainsWall(null);
         }
 
         [TestMethod]
-        public void containsBeamTest() {
+        public void containsBeamTest()
+        {
             Beam testBeam = new Beam(new Point(3, 2));
             instance.AddBeam(testBeam);
             Beam otherTestBeam = new Beam(new Point(3, 2));
@@ -177,12 +201,14 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void containsNullBeamTest() {
+        public void containsNullBeamTest()
+        {
             instance.ContainsBeam(null);
         }
 
         [TestMethod]
-        public void containsOpeningTest() {
+        public void containsOpeningTest()
+        {
             Opening testOpening = new Door(new Point(3, 2));
             instance.AddOpening(testOpening);
             Opening otherTestOpening = new Window(new Point(3, 2));
@@ -191,7 +217,8 @@ namespace Logic.Test {
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void containsNullOpeningTest() {
+        public void containsNullOpeningTest()
+        {
             instance.ContainsOpening(null);
         }
 

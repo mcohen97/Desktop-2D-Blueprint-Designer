@@ -4,9 +4,11 @@ using Logic.Domain;
 using Logic.Exceptions;
 using System.Collections.Generic;
 
-namespace Logic.Test{
+namespace Logic.Test
+{
     [TestClass]
-    public class UserAdministratorTest {
+    public class UserAdministratorTest
+    {
 
         private User user1;
         private User user2;
@@ -17,7 +19,8 @@ namespace Logic.Test{
         private SessionConnector conn;
 
         [TestInitialize]
-        public void TestInitialize() {
+        public void TestInitialize()
+        {
             portfolio = UsersPortfolio.Instance;
             portfolio.Empty();
             conn = new SessionConnector();
@@ -25,10 +28,11 @@ namespace Logic.Test{
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
             user4 = new Designer("designer2N", "designer2S", "designer2UN", "designer2P", DateTime.Now);
-            user5 = new Admin("Jorge", "Arais", "adminJorge", "adminJorge", DateTime.Now);            
+            user5 = new Admin("Jorge", "Arais", "adminJorge", "adminJorge", DateTime.Now);
         }
 
-        private void intializerWithData() {
+        private void intializerWithData()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administator = new UserAdministrator(session);
             administator.Add(user1);
@@ -39,14 +43,16 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void NewUsersAdministratorTest() {
+        public void NewUsersAdministratorTest()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
             Assert.IsNotNull(administrator);
         }
 
         [TestMethod]
-        public void AddUserTest() {
+        public void AddUserTest()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
             administrator.Add(user1);
@@ -54,14 +60,16 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void AddUserUpdateLoginDateTest() {
+        public void AddUserUpdateLoginDateTest()
+        {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             Assert.AreNotEqual(user1.LastLoginDate, Constants.NEVER);
         }
 
         [TestMethod]
-        public void GetUserTest() {
+        public void GetUserTest()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
             administrator.Add(user1);
@@ -70,7 +78,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void UpdateUserTest() {
+        public void UpdateUserTest()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
             administrator.Add(user1);
@@ -81,7 +90,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void RemoveUserTest() {
+        public void RemoveUserTest()
+        {
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(session);
             administrator.Add(user1);
@@ -92,7 +102,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void AddUserNoPermissionTest() {
+        public void AddUserNoPermissionTest()
+        {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(session);
@@ -101,7 +112,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void UpdateUserNoPermissionTest() {
+        public void UpdateUserNoPermissionTest()
+        {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(session);
@@ -110,7 +122,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void RemoveUserNoPermissionTest() {
+        public void RemoveUserNoPermissionTest()
+        {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(session);
@@ -118,7 +131,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void GetClientsTest() {
+        public void GetClientsTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -130,7 +144,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void GetClientsNoPermissionTest() {
+        public void GetClientsNoPermissionTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -138,7 +153,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void GetAllUsersExceptMeTest() {
+        public void GetAllUsersExceptMeTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -150,7 +166,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void GetUsersExceptMeNoPermissionTest() {
+        public void GetUsersExceptMeNoPermissionTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -158,7 +175,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void ExistsUserNameTest() {
+        public void ExistsUserNameTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -166,7 +184,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void UserNameDoesNotTest() {
+        public void UserNameDoesNotTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("admin", "admin");
             UserAdministrator administrator = new UserAdministrator(aSession);
@@ -175,13 +194,14 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void ExistsUserNameNoPermissionTest() {
+        public void ExistsUserNameNoPermissionTest()
+        {
             intializerWithData();
             Session aSession = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(aSession);
             administrator.ExistsUserName("JamesHetfield63");
         }
 
-        
+
     }
 }

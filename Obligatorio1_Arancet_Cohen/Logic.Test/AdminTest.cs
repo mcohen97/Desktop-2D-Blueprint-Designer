@@ -61,7 +61,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyNameTest() {
+        public void setEmptyNameTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newName = "";
             admin.Name = newName;
@@ -69,7 +70,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullNameTest() {
+        public void setNullNameTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newName = null;
             admin.Name = newName;
@@ -93,7 +95,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptySurnameTest() {
+        public void setEmptySurnameTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newSurname = "";
             admin.Surname = newSurname;
@@ -101,7 +104,8 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullSurnameTest() {
+        public void setNullSurnameTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newSurname = null;
             admin.Surname = newSurname;
@@ -132,16 +136,18 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyPasswordTest() {
+        public void setEmptyPasswordTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newPassword = "";
             admin.Password = newPassword;
-            
+
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullPasswordTest() {
+        public void setNullPasswordTest()
+        {
             Admin admin = new Admin(name, surname, userName, password, registrationDate);
             string newPassword = null;
             admin.Password = newPassword;

@@ -4,9 +4,11 @@ using Logic.Exceptions;
 using Logic.Domain;
 using System.Collections.Generic;
 
-namespace Logic.Test{
+namespace Logic.Test
+{
     [TestClass]
-    public class BlueprintControllerTest {
+    public class BlueprintControllerTest
+    {
 
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
@@ -22,15 +24,16 @@ namespace Logic.Test{
         private BlueprintPortfolio blueprintPortfolio;
 
         [TestInitialize]
-        public void TestInitialize() {
+        public void TestInitialize()
+        {
             UsersPortfolio.Instance.Empty();
             blueprintPortfolio = BlueprintPortfolio.Instance;
-            
-            
+
+
             conn = new SessionConnector();
             Session session = conn.LogIn("admin", "admin");
             administrator = new UserAdministrator(session);
-            
+
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
@@ -51,12 +54,14 @@ namespace Logic.Test{
         }
 
         [TestCleanup]
-        public void CleanUp() {
+        public void CleanUp()
+        {
             blueprintPortfolio.Empty();
             UsersPortfolio.Instance.Empty();
         }
 
-        private void initializerWithData() {
+        private void initializerWithData()
+        {
             Session session = conn.LogIn("designer1UN", "designer1P");
             BlueprintController controller = new BlueprintController(session);
             controller.Add(blueprint1);
@@ -65,14 +70,16 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void NewBlueprintControllerTest() {
+        public void NewBlueprintControllerTest()
+        {
             Session session = conn.LogIn("designer1UN", "designer1P");
             BlueprintController controller = new BlueprintController(session);
             Assert.IsNotNull(controller);
         }
 
         [TestMethod]
-        public void AddBlueprintTest() {
+        public void AddBlueprintTest()
+        {
             Session session = conn.LogIn("designer1UN", "designer1P");
             BlueprintController controller = new BlueprintController(session);
             controller.Add(blueprint1);
@@ -81,14 +88,16 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void AddBlueprintNoPermissionsTest() {
+        public void AddBlueprintNoPermissionsTest()
+        {
             Session session = conn.LogIn("client1UN", "client1P");
             BlueprintController controller = new BlueprintController(session);
             controller.Add(blueprint3);
         }
 
         [TestMethod]
-        public void GetBlueprintAsDesignerTest() {
+        public void GetBlueprintAsDesignerTest()
+        {
             initializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             BlueprintController controller = new BlueprintController(session);
@@ -99,7 +108,8 @@ namespace Logic.Test{
         }
 
         [TestMethod]
-        public void DeleteBlueprintAsDesignerTest() {
+        public void DeleteBlueprintAsDesignerTest()
+        {
 
             initializerWithData();
             Session session = conn.LogIn("designer1UN", "designer1P");
@@ -110,7 +120,8 @@ namespace Logic.Test{
 
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
-        public void DeleteBlueprintNoPermissionTest() {
+        public void DeleteBlueprintNoPermissionTest()
+        {
             initializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
             BlueprintController controller = new BlueprintController(session);
