@@ -9,14 +9,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccess
 {
-    class UserContext : DbContext
+    public class BlueBuilderDBContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
-        public UserContext() : base("name=UserContext")
+
+        public BlueBuilderDBContext() : base("name=BlueBuilderDBContext")
         {
 
         }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

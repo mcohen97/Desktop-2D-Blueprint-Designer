@@ -1,38 +1,58 @@
-﻿using System;
+﻿using Entities;
+using RepositoryInterface;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Logic.Domain;
-using RepositoryInterface;
+
 
 namespace DataAccess
 {
-    class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<UserEntity>
     {
-        public void Add(User entity)
+        public void Add(UserEntity entity)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                context.Users.Add(entity);
+                context.SaveChanges();
+            }
         }
 
-        public void Delete(User entity)
+        public void Delete(UserEntity entity)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                context.Users.Remove(entity);
+                context.SaveChanges();
+            }
         }
 
-        public User Get(Guid id)
+        public UserEntity Get(Guid id)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                return context.Users.FirstOrDefault(a => a.Id == id);
+            }
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserEntity> GetAll()
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                return context.Users;
+            }
         }
 
-        public void Modify(User entity)
+        public void Modify(UserEntity entity)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
