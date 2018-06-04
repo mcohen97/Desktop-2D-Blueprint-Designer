@@ -26,7 +26,7 @@ namespace Logic.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            UsersPortfolio.Instance.Empty();
+            UsersPortfolio.Instance.Clear();
             blueprintPortfolio = BlueprintPortfolio.Instance;
 
 
@@ -57,7 +57,7 @@ namespace Logic.Test
         public void CleanUp()
         {
             blueprintPortfolio.Empty();
-            UsersPortfolio.Instance.Empty();
+            UsersPortfolio.Instance.Clear();
         }
 
         private void initializerWithData()
