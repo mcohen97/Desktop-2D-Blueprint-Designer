@@ -20,7 +20,7 @@ namespace Logic.Test
         public void TestInitialize()
         {
             portfolio = UsersPortfolio.Instance;
-            portfolio.Empty();
+            portfolio.Clear();
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
@@ -31,7 +31,7 @@ namespace Logic.Test
         [TestMethod]
         public void EmptyPorfolioTest()
         {
-            portfolio.Empty();
+            portfolio.Clear();
             Assert.IsTrue(portfolio.IsEmpty());
         }
 

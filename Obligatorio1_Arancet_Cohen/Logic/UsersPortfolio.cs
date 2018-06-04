@@ -73,7 +73,7 @@ namespace Logic.Domain
             return Users.Contains(userAsked);
         }
 
-        public void Empty()
+        public void Clear()
         {
             Users = new List<User>();
             Users.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
@@ -89,39 +89,9 @@ namespace Logic.Domain
             return (ICollection<User>)(new List<User>(Users));
         }
 
-        public Client GetClient(User userAsked)
-        {
-            if (!(userAsked is Client))
-            {
-                throw new InvalidCastException();
-            }
-            Client clientAsked = (Client)Users.First(x => userAsked.Equals(x));
-            return clientAsked;
-        }
-
-        public Admin GetAdmin(User userAsked)
-        {
-            if (!(userAsked is Admin))
-            {
-                throw new InvalidCastException();
-            }
-            Admin adminAsked = (Admin)Users.First(x => userAsked.Equals(x));
-            return adminAsked;
-        }
-
         public bool ExistsUserName(string aUserName)
         {
             return Users.Any(u => u.UserName.Equals(aUserName));
-        }
-
-        public Designer GetDesigner(User userAsked)
-        {
-            if (!(userAsked is Designer))
-            {
-                throw new InvalidCastException();
-            }
-            Designer designerAsked = (Designer)Users.First(x => userAsked.Equals(x));
-            return designerAsked;
         }
 
         public User GetUser(User userAsked)
