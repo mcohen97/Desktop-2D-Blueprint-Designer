@@ -435,6 +435,20 @@ namespace Logic.Test
             instance.Sign(architect);
             Assert.IsTrue(instance.IsSigned());
         }
+
+        [TestMethod]
+        public void DateSignedTest()
+        {
+            Assert.AreEqual(instance.LastSignDate, Constants.NEVER);
+        }
+
+        [TestMethod]
+        public void DateSignedActualizationTest()
+        {
+            instance.Sign(architect);
+            Assert.AreNotEqual(instance.LastSignDate, Constants.NEVER);
+        }
+
     }
 
 

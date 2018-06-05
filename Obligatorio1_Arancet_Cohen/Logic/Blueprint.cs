@@ -33,6 +33,9 @@ namespace Logic.Domain
 
         private Guid id;
 
+        private DateTime lastSignDate;
+        public override DateTime LastSignDate { get; internal set; }
+
         public Blueprint(int aLength, int aWidth, string aName)
         {
             Length = aLength;
@@ -430,6 +433,7 @@ namespace Logic.Domain
         internal override void Sign(User sign)
         {
             Signer = sign;
+            LastSignDate = DateTime.Now;
         }
 
         internal override User GetSign()
