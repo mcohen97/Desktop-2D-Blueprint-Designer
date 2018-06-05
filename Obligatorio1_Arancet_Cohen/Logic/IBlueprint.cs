@@ -25,6 +25,8 @@ namespace Logic.Domain
 
         internal abstract User GetSign();
 
+        public virtual DateTime LastSignDate { get; internal set; }
+
         public bool IsSigned()
         {
             return GetSign() != null;
