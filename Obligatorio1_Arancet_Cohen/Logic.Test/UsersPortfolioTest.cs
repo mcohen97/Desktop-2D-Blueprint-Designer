@@ -104,30 +104,6 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void GetClientTest()
-        {
-            portfolio.Add(user2);
-            Client clientInfo = portfolio.GetClient(user2);
-            Assert.AreEqual(user2, clientInfo);
-        }
-
-        [TestMethod]
-        public void GetDesignerTest()
-        {
-            portfolio.Add(user3);
-            Designer designerInfo = portfolio.GetDesigner(user3);
-            Assert.AreEqual(user3, designerInfo);
-        }
-
-        [TestMethod]
-        public void GetAdminTest()
-        {
-            portfolio.Add(user5);
-            Admin clientInfo = portfolio.GetAdmin(user5);
-            Assert.AreEqual(user5, clientInfo);
-        }
-
-        [TestMethod]
         public void GetUserTest()
         {
             portfolio.Add(user5);

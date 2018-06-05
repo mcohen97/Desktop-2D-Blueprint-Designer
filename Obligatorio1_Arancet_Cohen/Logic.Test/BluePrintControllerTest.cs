@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Exceptions;
 using Logic.Domain;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.Test
 {
@@ -18,6 +19,7 @@ namespace Logic.Test
         private User user2;
         private User user3;
         private User user4;
+        private User architect;
 
         private SessionConnector conn;
         private UserAdministrator administrator;
@@ -38,6 +40,7 @@ namespace Logic.Test
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
             user4 = new Designer("designer2N", "designer2S", "designer2UN", "designer2P", DateTime.Now);
+            architect = new Architect("Archi", "Tect", "architect", "architect", DateTime.Now);
 
             blueprint1 = new Blueprint(12, 12, "Blueprint1");
             blueprint2 = new Blueprint(10, 10, "Blueprint2");
@@ -51,6 +54,7 @@ namespace Logic.Test
             administrator.Add(user2);
             administrator.Add(user3);
             administrator.Add(user4);
+            administrator.Add(architect);
         }
 
         [TestCleanup]
@@ -126,6 +130,28 @@ namespace Logic.Test
             Session session = conn.LogIn("client1UN", "client1P");
             BlueprintController controller = new BlueprintController(session);
             controller.Remove(blueprint1);
+        }
+
+        [TestMethod]
+        public void SignBlueprintTest()
+        {
+            initializerWithData();
+            Session session = conn.LogIn("architect", "architect");
+            BlueprintController controller = new BlueprintController(session);
+            IBlueprint aBlueprint = controller.GetBlueprints().First();
+            controller.Sign(aBlueprint);
+            Assert.IsTrue(aBlueprint.IsSigned());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void SignBlueprintNoPermissionTest()
+        {
+            initializerWithData();
+            Session session = conn.LogIn("designer1UN", "designer1P");
+            BlueprintController controller = new BlueprintController(session);
+            IBlueprint aBlueprint = controller.GetBlueprints().First();
+            controller.Sign(aBlueprint);
         }
 
     }

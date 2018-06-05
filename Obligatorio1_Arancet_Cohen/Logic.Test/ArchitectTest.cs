@@ -24,7 +24,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void constructorWithParametersTest()
+        public void ConstructorWithParametersTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -32,7 +32,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void getNameTest()
+        public void GetNameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -40,7 +40,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void setNameTest()
+        public void SetNameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -52,7 +52,7 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptyNameTest()
+        public void SetEmptyNameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -62,7 +62,7 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullNameTest()
+        public void SetNullNameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -71,7 +71,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void getSurnameTest()
+        public void GetSurnameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -79,7 +79,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void setSurnameTest()
+        public void SetSurnameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -91,7 +91,7 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setEmptySurnameTest()
+        public void SetEmptySurnameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -101,7 +101,7 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void setNullSurnameTest()
+        public void SetNullSurnameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -110,7 +110,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void getUserNameTest()
+        public void GetUserNameTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -118,7 +118,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void getPasswordTest()
+        public void GetPasswordTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -126,7 +126,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void setPasswordTest()
+        public void SetPasswordTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -137,7 +137,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void getRegistrationDateTest()
+        public void GetRegistrationDateTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -145,7 +145,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void setRegistrationDateTest()
+        public void SetRegistrationDateTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -156,7 +156,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void updateLastLoginDateTest()
+        public void UpdateLastLoginDateTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -166,7 +166,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void canCreateBlueprintTest()
+        public void CanCreateBlueprintTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -176,7 +176,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void canEditBlueprintTest()
+        public void CanEditBlueprintTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -186,7 +186,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void canDeleteBlueprintTest()
+        public void CanDeleteBlueprintTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -196,7 +196,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void canReadBlueprintTest()
+        public void CanReadBlueprintTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
@@ -206,7 +206,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void canSignBlueprintTest()
+        public void CanSignBlueprintTest()
         {
             Architect architect = new Architect(name, surname, userName, password, registrationDate);
 
