@@ -26,7 +26,10 @@ namespace Logic.Domain
         private MaterialContainer materials;
 
         private User owner;
-        public User Owner { get { return owner; } set { SetOwner(value); } }
+        public override User Owner { get { return owner; } set { SetOwner(value); } }
+
+        private User signer;
+        internal User Signer { get { return signer; } set { SetSign(value); } }
 
         private Guid id;
 
@@ -37,6 +40,7 @@ namespace Logic.Domain
             Name = aName;
             materials = new MaterialContainer();
             id = Guid.NewGuid();
+            signer = null;
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -46,6 +50,12 @@ namespace Logic.Domain
             Name = aName;
             materials = container;
             id = Guid.NewGuid();
+            signer = null;
+        }
+
+        private void SetSign(User aUser)
+        {
+            signer = aUser;
         }
 
         private void SetName(string aName)
@@ -84,7 +94,7 @@ namespace Logic.Domain
             owner = aUser;
         }
 
-        public void InsertWall(Point from, Point to)
+        public override void InsertWall(Point from, Point to)
         {
             Wall newWall = new Wall(from, to);
             if (!newWall.IsHorizontal() && !newWall.IsVertical())
@@ -105,7 +115,7 @@ namespace Logic.Domain
             }
         }
 
-        public void RemoveWall(Point from, Point to)
+        public override void RemoveWall(Point from, Point to)
         {
             Wall aWall = new Wall(from, to);
             if (materials.ContainsWall(aWall))
@@ -117,7 +127,7 @@ namespace Logic.Domain
             }
         }
 
-        public void InsertOpening(Opening newOpening)
+        public override void InsertOpening(Opening newOpening)
         {
             if (!PunctualComponentInRange(newOpening))
             {
@@ -137,7 +147,7 @@ namespace Logic.Domain
             }
         }
 
-        public void RemoveOpening(Opening anOpening)
+        public override void RemoveOpening(Opening anOpening)
         {
             if (materials.ContainsOpening(anOpening))
             {
@@ -192,7 +202,7 @@ namespace Logic.Domain
             CreateAndPlaceWall(splitPoint, aWall.End());
         }
 
-        public void RemoveOpening(Point actualIntersection)
+        public override void RemoveOpening(Point actualIntersection)
         {
             Opening op = new Door(actualIntersection);
             if (materials.ContainsOpening(op))
@@ -415,6 +425,16 @@ namespace Logic.Domain
             return "Name: " + Name + " "
                    + "Owner: " + Owner.UserName + " "
                    + "Id: " + strId.Substring(strId.Length - 5);
+        }
+
+        internal override void Sign(User sign)
+        {
+            Signer = sign;
+        }
+
+        internal override User GetSign()
+        {
+            return Signer;
         }
     }
 }

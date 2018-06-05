@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    public interface IBlueprint
+    public abstract class IBlueprint
     {
 
-        void InsertWall(Point from, Point to);
+        public abstract void InsertWall(Point from, Point to);
 
-        void RemoveWall(Point from, Point to);
+        public abstract void RemoveWall(Point from, Point to);
 
-        void InsertOpening(Opening newOpening);
+        public abstract void InsertOpening(Opening newOpening);
 
-        void RemoveOpening(Opening toRemove);
+        public abstract void RemoveOpening(Opening toRemove);
 
-        void RemoveOpening(Point position);
+        public abstract void RemoveOpening(Point position);
 
-        User Owner { get; set; }
+        public virtual User Owner { get; set; }
 
+        internal abstract void Sign(User sign);
+
+        internal abstract User GetSign();
+
+        public bool IsSigned()
+        {
+            return GetSign() != null;
+        }
     }
 }
