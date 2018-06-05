@@ -139,8 +139,19 @@ namespace Logic.Test
             Session session = conn.LogIn("architect", "architect");
             BlueprintController controller = new BlueprintController(session);
             IBlueprint aBlueprint = controller.GetBlueprints().First();
-            controller.Sign(aBlueprint, architect);
+            controller.Sign(aBlueprint);
             Assert.IsTrue(aBlueprint.IsSigned());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void SignBlueprintNoPermissionTest()
+        {
+            initializerWithData();
+            Session session = conn.LogIn("designer1UN", "designer1P");
+            BlueprintController controller = new BlueprintController(session);
+            IBlueprint aBlueprint = controller.GetBlueprints().First();
+            controller.Sign(aBlueprint);
         }
 
     }
