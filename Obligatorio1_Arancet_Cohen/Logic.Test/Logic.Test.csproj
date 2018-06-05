@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AdminTest.cs" />
+    <Compile Include="ArchitectTest.cs" />
     <Compile Include="BluePrintControllerTest.cs" />
     <Compile Include="BluePrintsPortfolioTest.cs" />
     <Compile Include="BluePrintTest.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="BeamTest.cs" />
     <Compile Include="SessionConnectorTest.cs" />
     <Compile Include="SessionTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="UserAdministratorTest.cs" />
     <Compile Include="UsersPortfolioTest.cs" />
     <Compile Include="WallTest.cs" />
