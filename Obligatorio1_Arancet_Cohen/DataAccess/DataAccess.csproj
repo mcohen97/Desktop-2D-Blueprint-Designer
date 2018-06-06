@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainAndEntityConverter.cs" />
     <Compile Include="Migrations\201806020315183_Initial.cs" />
     <Compile Include="Migrations\201806020315183_Initial.Designer.cs">
       <DependentUpon>201806020315183_Initial.cs</DependentUpon>
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\RepositoryInterface\RepositoryInterface.csproj">
       <Project>{636b5156-d57e-4d33-b0f9-272ab0c13ffd}</Project>
       <Name>RepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserRepositoryInterface\UserRepositoryInterface.csproj">
+      <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
+      <Name>UserRepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
