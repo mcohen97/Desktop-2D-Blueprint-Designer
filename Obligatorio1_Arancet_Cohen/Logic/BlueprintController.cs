@@ -64,7 +64,7 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            aBlueprint.Sign(Session.UserLogged);
+            aBlueprint.Signature = Session.UserLogged;
         }
     }
 }

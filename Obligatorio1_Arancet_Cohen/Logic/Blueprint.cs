@@ -28,13 +28,13 @@ namespace Logic.Domain
         private User owner;
         public override User Owner { get { return owner; } set { SetOwner(value); } }
 
-        private User signer;
-        internal User Signer { get { return signer; } set { SetSign(value); } }
+        private User signature;
+        public override User Signature { get { return signature; } internal set { SetSign(value); } }
 
         private Guid id;
 
         private DateTime lastSignDate;
-        public override DateTime LastSignDate { get; internal set; }
+        public override DateTime LastSignDate { get { return lastSignDate; } internal set { SetLastSignDate(value); } }
 
         public Blueprint(int aLength, int aWidth, string aName)
         {
@@ -43,7 +43,7 @@ namespace Logic.Domain
             Name = aName;
             materials = new MaterialContainer();
             id = Guid.NewGuid();
-            signer = null;
+            signature = null;
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -53,12 +53,17 @@ namespace Logic.Domain
             Name = aName;
             materials = container;
             id = Guid.NewGuid();
-            signer = null;
+            signature = null;
         }
 
         private void SetSign(User aUser)
         {
-            signer = aUser;
+            signature = aUser;
+            SetLastSignDate(DateTime.Now);
+        }
+
+        private void SetLastSignDate(DateTime date) {
+            lastSignDate = date;
         }
 
         private void SetName(string aName)
@@ -428,17 +433,6 @@ namespace Logic.Domain
             return "Name: " + Name + " "
                    + "Owner: " + Owner.UserName + " "
                    + "Id: " + strId.Substring(strId.Length - 5);
-        }
-
-        internal override void Sign(User sign)
-        {
-            Signer = sign;
-            LastSignDate = DateTime.Now;
-        }
-
-        internal override User GetSign()
-        {
-            return Signer;
         }
     }
 }
