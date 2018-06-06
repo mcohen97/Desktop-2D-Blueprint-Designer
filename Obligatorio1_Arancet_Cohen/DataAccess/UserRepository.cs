@@ -39,9 +39,8 @@ namespace DataAccess
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                DomainAndEntityConverter translator = new DomainAndEntityConverter();
-                UserEntity recordToDelete = translator.UserToEntity(toDelete);
-                context.Users.Remove(recordToDelete);
+                UserEntity entity = context.Users.FirstOrDefault(r => r.UserName .Equals(toDelete.UserName));
+                context.Users.Remove(entity);
                 context.SaveChanges();
             }
         }
@@ -51,9 +50,7 @@ namespace DataAccess
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                DomainAndEntityConverter translator = new DomainAndEntityConverter();
-                UserEntity record= translator.UserToEntity(toLookup);
-                doesExist =context.Users.Contains(record);
+                doesExist = context.Users.Any(u => u.UserName.Equals(toLookup));
             }
 
             return doesExist;
