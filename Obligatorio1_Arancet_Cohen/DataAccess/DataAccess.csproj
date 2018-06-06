@@ -73,6 +73,10 @@
       <Project>{56AE519E-FDC8-4555-980E-4C9541C19E31}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RepositoryInterface\RepositoryInterface.csproj">
       <Project>{636b5156-d57e-4d33-b0f9-272ab0c13ffd}</Project>
       <Name>RepositoryInterface</Name>

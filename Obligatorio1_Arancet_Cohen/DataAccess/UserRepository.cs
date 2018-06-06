@@ -6,11 +6,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Logic.Domain;
+using RepositoryInterface;
 
 
 namespace DataAccess
 {
-    public class UserRepository : IRepository<UserEntity>
+    public class UserRepository : IUserRepository
     {
 
         public bool IsEmpty() {
@@ -22,7 +24,7 @@ namespace DataAccess
             return esVacia;
         }
 
-        public void Add(UserEntity record)
+        public void Add(User record)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -31,7 +33,7 @@ namespace DataAccess
             }
         }
 
-        public void Delete(UserEntity record)
+        public void Delete(User record)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -40,7 +42,7 @@ namespace DataAccess
             }
         }
 
-        public bool Exists(UserEntity record) {
+        public bool Exists(User record) {
             bool doesExist;
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
@@ -73,7 +75,7 @@ namespace DataAccess
             return doesExist;
         }
 
-        public UserEntity Get(Guid id)
+        public User Get(Guid id)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -82,7 +84,7 @@ namespace DataAccess
         }
 
 
-        public UserEntity GetUserByUserName(string userName)
+        public User GetUserByUserName(string userName)
         {
             UserEntity record;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
@@ -93,9 +95,9 @@ namespace DataAccess
 
         }
 
-        public IEnumerable<UserEntity> GetUsersByPermission(int aFeature)
+        public IEnumerable<User> GetUsersByPermission(int aFeature)
         {
-            IQueryable<UserEntity> elegibleRecords;
+            IQueryable<User> elegibleRecords;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 elegibleRecords = context.Users.Where(ue => ue.Permissions.Contains(aFeature));
@@ -105,7 +107,7 @@ namespace DataAccess
         }
 
 
-        public IEnumerable<UserEntity> GetAll()
+        public IEnumerable<User> GetAll()
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -113,7 +115,7 @@ namespace DataAccess
             }
         }
 
-        public void Modify(UserEntity record)
+        public void Modify(User record)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
