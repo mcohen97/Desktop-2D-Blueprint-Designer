@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
@@ -23,16 +24,16 @@ namespace DataAccess
             return esVacia;
         }
 
-        public void AddUser(Admin anAdmin)
+
+        public void Add(User aUser)
         {
-        }
-
-        public void AddUser(Client aClient) {
-
-        }
-
-        public void AddUser(Designer aDesigner) {
-
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserEntity anEntity = translator.toEntity(aUser);
+                context.Users.Add(anEntity);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(User toDelete)
@@ -80,42 +81,70 @@ namespace DataAccess
 
         public User Get(Guid id)
         {
+            User queryUser;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                return context.Users.FirstOrDefault(a => a.Id == id);
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserEntity query = context.Users.FirstOrDefault(a => a.Id.Equals(id));
+                queryUser = translator.toUser(query);
             }
+            return queryUser;
         }
 
 
         public User GetUserByUserName(string userName)
         {
-            UserEntity record;
+            return SelectByCriteria(u => u.UserName.Equals(userName)).First();
+            /*User queryUser;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                record = context.Users.First(ue => ue.UserName.Equals(userName));
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserEntity query = context.Users.FirstOrDefault(a => a.UserName.Equals(userName));
+                queryUser = translator.toUser(query);
             }
-            return record;
+            return queryUser;*/
 
         }
 
         public IEnumerable<User> GetUsersByPermission(int aFeature)
         {
-            IQueryable<User> elegibleRecords;
+            return SelectByCriteria(ue => ue.Permissions.Contains(aFeature));
+            /*IEnumerable<User> elegibleUsers;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                elegibleRecords = context.Users.Where(ue => ue.Permissions.Contains(aFeature));
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                IQueryable<UserEntity> elegibleRecords = context.Users.Where(ue => ue.Permissions.Contains(aFeature));
+                elegibleUsers = elegibleRecords.Select(r => translator.toUser(r));
             }
 
-            return elegibleRecords;
+            return elegibleUsers;*/
         }
 
 
         public IEnumerable<User> GetAll()
         {
+            return SelectByCriteria(u=> true);
+            /*IEnumerable<User> elegibleUsers;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                return context.Users;
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                IQueryable<UserEntity> elegibleRecords = context.Users;
+                elegibleUsers = elegibleRecords.Select(r => translator.toUser(r));
             }
+
+            return elegibleUsers;*/
+        }
+
+        private IEnumerable<User> SelectByCriteria(Expression<Func<UserEntity, bool>> aCriteria) {
+            IEnumerable<User> elegibleUsers;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                IQueryable<UserEntity> elegibleRecords = context.Users.Where(aCriteria);
+                elegibleUsers = elegibleRecords.Select(r => translator.toUser(r));
+            }
+
+            return elegibleUsers;
         }
 
         public void Modify(User record)
@@ -126,5 +155,6 @@ namespace DataAccess
                 context.SaveChanges();
             }
         }
+
     }
 }
