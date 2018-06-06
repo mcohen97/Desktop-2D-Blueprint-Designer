@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Logic.Domain
 {
-    internal class BlueprintPortfolio
+    public class BlueprintPortfolio
     {
 
         private static BlueprintPortfolio instance;

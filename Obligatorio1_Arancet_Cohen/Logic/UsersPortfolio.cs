@@ -10,7 +10,7 @@ using Logic.Exceptions;
 
 namespace Logic.Domain
 {
-    internal class UsersPortfolio
+    public class UsersPortfolio
     {
 
         private static UsersPortfolio instance;
