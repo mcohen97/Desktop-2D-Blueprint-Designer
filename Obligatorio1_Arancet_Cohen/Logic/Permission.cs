@@ -22,6 +22,7 @@ namespace Logic.Domain
         FIRST_LOGIN,
         MANAGE_COSTS,
         HAVE_BLUEPRINT,
-        EDIT_OWN_DATA
+        EDIT_OWN_DATA,
+        CAN_SIGN_BLUEPRINT
     }
 }

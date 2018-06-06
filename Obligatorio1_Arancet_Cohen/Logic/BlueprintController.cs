@@ -57,5 +57,14 @@ namespace Logic.Domain
             }
             BlueprintPortfolio.Instance.Remove(aBlueprint);
         }
+
+        public void Sign(IBlueprint aBlueprint)
+        {
+            if (!Session.UserLogged.HasPermission(Permission.CAN_SIGN_BLUEPRINT))
+            {
+                throw new NoPermissionsException();
+            }
+            aBlueprint.Sign(Session.UserLogged);
+        }
     }
 }

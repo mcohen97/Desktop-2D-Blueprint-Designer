@@ -13,10 +13,12 @@ namespace Logic.Test
         private Blueprint instance;
         private MaterialContainer materials;
         Client owner;
+        User architect;
         [TestInitialize]
         public void SetUp()
         {
             owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
+            architect = new Architect("Manameeh", "Jefferson", "jeff", "12345", DateTime.Now);
             materials = new MaterialContainer();
             instance = new Blueprint(20, 20, "TestBlueprint", materials);
         }
@@ -414,6 +416,38 @@ namespace Logic.Test
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void SignBlueprint()
+        {
+            instance.Sign(architect);
+            Assert.AreEqual(instance.GetSign(), architect);
+        }
+
+        [TestMethod]
+        public void IsSignedFalseTest()
+        {
+            Assert.IsFalse(instance.IsSigned());
+        }
+
+        [TestMethod]
+        public void IsSignedTrueTest()
+        {
+            instance.Sign(architect);
+            Assert.IsTrue(instance.IsSigned());
+        }
+
+        [TestMethod]
+        public void DateSignedTest()
+        {
+            Assert.AreEqual(instance.LastSignDate, Constants.NEVER);
+        }
+
+        [TestMethod]
+        public void DateSignedActualizationTest()
+        {
+            instance.Sign(architect);
+            Assert.AreNotEqual(instance.LastSignDate, Constants.NEVER);
+        }
 
     }
 
