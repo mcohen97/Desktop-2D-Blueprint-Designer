@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
-using RepositoryInterface;
 
 
 namespace DataAccess
@@ -24,10 +23,12 @@ namespace DataAccess
             return esVacia;
         }
 
-        public void Add(User record)
+        public void Add(User toStore)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                translator.UserToEntity(record);
                 context.Users.Add(record);
                 context.SaveChanges();
             }
