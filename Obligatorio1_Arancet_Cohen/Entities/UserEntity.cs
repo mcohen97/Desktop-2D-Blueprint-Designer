@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class UserEntity
+    public abstract class UserEntity
     {
         public Guid Id { get; set; }
 
