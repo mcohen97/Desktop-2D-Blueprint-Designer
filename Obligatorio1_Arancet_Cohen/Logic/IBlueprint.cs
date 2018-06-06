@@ -21,15 +21,13 @@ namespace Logic.Domain
 
         public virtual User Owner { get; set; }
 
-        internal abstract void Sign(User sign);
-
-        internal abstract User GetSign();
+        public virtual User Signature { get; internal set; }
 
         public virtual DateTime LastSignDate { get; internal set; }
 
         public bool IsSigned()
         {
-            return GetSign() != null;
+            return Signature != null;
         }
     }
 }

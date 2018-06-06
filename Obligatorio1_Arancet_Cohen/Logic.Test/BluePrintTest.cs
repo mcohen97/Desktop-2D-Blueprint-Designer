@@ -419,8 +419,8 @@ namespace Logic.Test
         [TestMethod]
         public void SignBlueprint()
         {
-            instance.Sign(architect);
-            Assert.AreEqual(instance.GetSign(), architect);
+            instance.Signature = architect;
+            Assert.AreEqual(instance.Signature, architect);
         }
 
         [TestMethod]
@@ -432,7 +432,7 @@ namespace Logic.Test
         [TestMethod]
         public void IsSignedTrueTest()
         {
-            instance.Sign(architect);
+            instance.Signature = architect;
             Assert.IsTrue(instance.IsSigned());
         }
 
@@ -445,7 +445,7 @@ namespace Logic.Test
         [TestMethod]
         public void DateSignedActualizationTest()
         {
-            instance.Sign(architect);
+            instance.Signature = architect;
             Assert.AreNotEqual(instance.LastSignDate, Constants.NEVER);
         }
 
