@@ -9,7 +9,6 @@ namespace RepositoryInterface
     public interface IRepository<T>
     {
         bool IsEmpty();
-        void Add(T entity);
 
         void Delete(T entity);
 
