@@ -10,6 +10,8 @@ namespace RepositoryInterface
     {
         bool IsEmpty();
 
+        void Add(T entity);
+
         void Delete(T entity);
 
         bool Exists(T record);
