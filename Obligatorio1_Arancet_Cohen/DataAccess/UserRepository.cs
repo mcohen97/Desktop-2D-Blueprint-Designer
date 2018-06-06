@@ -11,7 +11,7 @@ using Logic.Domain;
 
 namespace DataAccess
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository, IRepository<User>
     {
 
         public bool IsEmpty() {
@@ -23,32 +23,37 @@ namespace DataAccess
             return esVacia;
         }
 
-        public void Add(User toStore)
+        public void AddUser(Admin anAdmin)
+        {
+        }
+
+        public void AddUser(Client aClient) {
+
+        }
+
+        public void AddUser(Designer aDesigner) {
+
+        }
+
+        public void Delete(User toDelete)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 DomainAndEntityConverter translator = new DomainAndEntityConverter();
-                translator.UserToEntity(record);
-                context.Users.Add(record);
+                UserEntity recordToDelete = translator.UserToEntity(toDelete);
+                context.Users.Remove(recordToDelete);
                 context.SaveChanges();
             }
         }
 
-        public void Delete(User record)
-        {
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
-            {
-                context.Users.Remove(record);
-                context.SaveChanges();
-            }
-        }
-
-        public bool Exists(User record) {
+        public bool Exists(User toLookup) {
             bool doesExist;
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                doesExist=context.Users.Contains(record);
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserEntity record= translator.UserToEntity(toLookup);
+                doesExist =context.Users.Contains(record);
             }
 
             return doesExist;
