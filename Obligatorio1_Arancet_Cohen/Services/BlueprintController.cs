@@ -30,7 +30,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.Exist(aBlueprint);
+            return BlueprintPortfolio.Instance.Exists(aBlueprint);
         }
 
         public ICollection<IBlueprint> GetBlueprints(User aUser)
@@ -57,7 +57,7 @@ namespace Services
             {//you cant destroy what you did not create
                 throw new NoPermissionsException();
             }
-            BlueprintPortfolio.Instance.Remove(aBlueprint);
+            BlueprintPortfolio.Instance.Delete(aBlueprint);
         }
 
         public void Sign(IBlueprint aBlueprint)

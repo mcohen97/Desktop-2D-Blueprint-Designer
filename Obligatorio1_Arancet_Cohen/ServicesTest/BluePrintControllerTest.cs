@@ -68,7 +68,7 @@ namespace ServicesTest
         [TestCleanup]
         public void CleanUp()
         {
-            blueprintPortfolio.Empty();
+            blueprintPortfolio.Clear();
             repository.Clear();
         }
 

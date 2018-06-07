@@ -19,7 +19,7 @@ namespace Logic.Test
         public void TestInitialize()
         {
             portfolio = BlueprintPortfolio.Instance;
-            portfolio.Empty();
+            portfolio.Clear();
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             blueprint1 = new Blueprint(12, 12, "Blueprint1");
             blueprint2 = new Blueprint(12, 12, "Blueprint2");
@@ -33,7 +33,7 @@ namespace Logic.Test
         [TestMethod]
         public void EmptyPorfolioTest()
         {
-            portfolio.Empty();
+            portfolio.Clear();
             Assert.IsTrue(portfolio.IsEmpty());
         }
 
@@ -48,7 +48,7 @@ namespace Logic.Test
         public void AddedBlueprintTest()
         {
             portfolio.Add(blueprint1);
-            Assert.IsTrue(portfolio.Exist(blueprint1));
+            Assert.IsTrue(portfolio.Exists(blueprint1));
         }
 
         [TestMethod]
@@ -65,15 +65,15 @@ namespace Logic.Test
         {
             portfolio.Add(blueprint1);
             portfolio.Add(blueprint2);
-            portfolio.Remove(blueprint1);
-            Assert.IsFalse(portfolio.Exist(blueprint1));
+            portfolio.Delete(blueprint1);
+            Assert.IsFalse(portfolio.Exists(blueprint1));
         }
 
         [TestMethod]
         public void RemoveNonExistentBlueprintTest()
         {
             portfolio.Add(blueprint2);
-            bool deletionExecuted = portfolio.Remove(blueprint1);
+            bool deletionExecuted = portfolio.Delete(blueprint1);
             Assert.IsFalse(deletionExecuted);
         }
 
@@ -81,7 +81,7 @@ namespace Logic.Test
         public void GetEnumeratorBlueprintTest()
         {
             portfolio.Add(blueprint1);
-            IBlueprint blueprintGot = portfolio.GetBlueprint(blueprint1);
+            IBlueprint blueprintGot = portfolio.Get(blueprint1);
             Assert.AreEqual(blueprintGot, blueprint1);
         }
 
@@ -103,7 +103,7 @@ namespace Logic.Test
             portfolio.Add(blueprint2);
             ICollection<IBlueprint> copy = portfolio.GetBlueprintsCopy();
             copy.Remove(blueprint1);
-            Assert.IsTrue(portfolio.Exist(blueprint1));
+            Assert.IsTrue(portfolio.Exists(blueprint1));
         }
 
         [TestMethod]
