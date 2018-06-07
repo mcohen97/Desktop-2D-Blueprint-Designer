@@ -45,6 +45,7 @@
     <Compile Include="Blueprint.cs" />
     <Compile Include="BlueprintController.cs" />
     <Compile Include="BlueprintPortfolio.cs" />
+    <Compile Include="Column.cs" />
     <Compile Include="MaterialContainer.cs" />
     <Compile Include="CollinearWallsException.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
