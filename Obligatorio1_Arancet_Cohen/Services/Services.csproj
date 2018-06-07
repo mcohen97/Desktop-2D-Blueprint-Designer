@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8917CE46-33B8-4F76-9643-7B2802357DB1}</ProjectGuid>
+    <ProjectGuid>{875D9FDD-57A1-468C-9C18-7596B5C67466}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Services</RootNamespace>
@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlueprintController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionConnector.cs" />
+    <Compile Include="UserAdministrator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj">

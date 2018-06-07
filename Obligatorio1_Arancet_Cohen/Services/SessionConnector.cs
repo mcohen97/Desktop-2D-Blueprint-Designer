@@ -1,5 +1,7 @@
 ﻿using Logic.Exceptions;
-namespace Logic.Domain
+using Logic.Domain;
+
+namespace Services
 {
     public class SessionConnector
     {

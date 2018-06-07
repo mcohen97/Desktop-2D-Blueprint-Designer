@@ -60,9 +60,9 @@
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
       <Name>Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\DomainServices.csproj">
-      <Project>{8917ce46-33b8-4f76-9643-7b2802357db1}</Project>
-      <Name>DomainServices</Name>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{875d9fdd-57a1-468c-9c18-7596b5c67466}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

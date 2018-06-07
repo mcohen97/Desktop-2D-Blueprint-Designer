@@ -206,6 +206,10 @@
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{875d9fdd-57a1-468c-9c18-7596b5c67466}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo.png" />

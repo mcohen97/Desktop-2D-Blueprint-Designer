@@ -3,8 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using Logic.Exceptions;
 using System.Collections.Generic;
+using Services;
 
-namespace Logic.Test
+namespace ServicesTest
 {
     [TestClass]
     public class UserAdministratorTest

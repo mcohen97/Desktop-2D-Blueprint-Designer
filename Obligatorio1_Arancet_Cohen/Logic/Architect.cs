@@ -2,7 +2,7 @@
 using Logic.Domain;
 using System.Collections.Generic;
 
-namespace Logic
+namespace Logic.Domain
 {
     public class Architect: User
     {

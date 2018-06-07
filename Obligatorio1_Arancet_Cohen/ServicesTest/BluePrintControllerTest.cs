@@ -4,8 +4,10 @@ using Logic.Exceptions;
 using Logic.Domain;
 using System.Collections.Generic;
 using System.Linq;
+using Services;
 
-namespace Logic.Test
+
+namespace ServicesTest
 {
     [TestClass]
     public class BlueprintControllerTest

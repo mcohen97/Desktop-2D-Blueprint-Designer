@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Logic.Exceptions;
+using Logic.Domain;
 
-namespace Logic.Domain
+
+namespace Services
 {
     public class BlueprintController
     {

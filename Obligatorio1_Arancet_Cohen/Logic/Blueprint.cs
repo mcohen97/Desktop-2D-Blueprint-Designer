@@ -29,12 +29,12 @@ namespace Logic.Domain
         public override User Owner { get { return owner; } set { SetOwner(value); } }
 
         private User signature;
-        public override User Signature { get { return signature; } internal set { SetSign(value); } }
+        public override User Signature { get { return signature; } set { SetSign(value); } }
 
         private Guid id;
 
         private DateTime lastSignDate;
-        public override DateTime LastSignDate { get { return lastSignDate; } internal set { SetLastSignDate(value); } }
+        public override DateTime LastSignDate { get { return lastSignDate; }  set { SetLastSignDate(value); } }
 
         public Blueprint(int aLength, int aWidth, string aName)
         {
