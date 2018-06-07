@@ -8,7 +8,7 @@ using Logic.Domain;
 
 namespace DataAccess
 {
-    class DomainAndEntityConverter
+    class UserAndEntityConverter
     {
         public UserEntity toEntity(User toConvert)
         {
@@ -142,6 +142,5 @@ namespace DataAccess
             Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate);
             return conversion;
         }
-
     }
 }
