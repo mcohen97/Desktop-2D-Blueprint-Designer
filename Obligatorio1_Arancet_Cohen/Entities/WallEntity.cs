@@ -8,9 +8,15 @@ namespace Entities
 {
     class WallEntity
     {
-        private float HeightValue;
+        public WallEntity() {
+        }
+        public float Height { get; set; }
 
-        private float widthValue;
+        public float Width { get; set; }
+
+        public PointEntity From { get; set; }
+
+        public PointEntity To { get; set; }
         
     }
 }
