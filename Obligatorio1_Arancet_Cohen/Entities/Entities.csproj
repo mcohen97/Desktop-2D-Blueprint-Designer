@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminEntity.cs" />
+    <Compile Include="BlueprintEntity.cs" />
     <Compile Include="ClientEntity.cs" />
     <Compile Include="DesignerEntity.cs" />
     <Compile Include="PointEntity.cs" />
