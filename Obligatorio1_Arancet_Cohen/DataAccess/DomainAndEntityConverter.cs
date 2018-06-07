@@ -10,7 +10,8 @@ namespace DataAccess
 {
     class DomainAndEntityConverter
     {
-        public UserEntity toEntity(User toConvert) {
+        public UserEntity toEntity(User toConvert)
+        {
             UserEntity conversion;
             if (toConvert is Admin)
             {
@@ -20,13 +21,15 @@ namespace DataAccess
             {
                 conversion = ClientToEntity((Client)toConvert);
             }
-            else {
+            else
+            {
                 conversion = DesignerToEntity((Designer)toConvert);
             }
             return conversion;
         }
 
-        public User toUser(UserEntity toConvert) {
+        public User toUser(UserEntity toConvert)
+        {
             User conversion;
             if (toConvert is ClientEntity)
             {
@@ -36,7 +39,8 @@ namespace DataAccess
             {
                 conversion = EntityToAdmin((AdminEntity)toConvert);
             }
-            else {
+            else
+            {
                 conversion = EntityToDesigner((DesignerEntity)toConvert);
             }
             return conversion;
@@ -45,6 +49,14 @@ namespace DataAccess
 
         private ClientEntity ClientToEntity(Client toConvert)
         {
+            List<int> clientTypePermissions = new List<int>() {
+            (int)Permission.READ_BLUEPRINT,
+            (int)Permission.HOLD_EXTRA_DATA,
+            (int)Permission.FIRST_LOGIN,
+            (int)Permission.HAVE_BLUEPRINT,
+            (int)Permission.EDIT_OWN_DATA,
+            (int)Permission.READ_OWNEDBLUEPRINT};
+
 
             ClientEntity conversion = new ClientEntity()
             {
@@ -53,9 +65,10 @@ namespace DataAccess
                 UserName = toConvert.UserName,
                 Password = toConvert.Password,
                 Phone = toConvert.Phone,
-                Address = toConvert.Address
-
+                Address = toConvert.Address,
+                Permissions = clientTypePermissions
             };
+        
             return conversion;
         }
 
@@ -71,6 +84,14 @@ namespace DataAccess
 
         private AdminEntity AdminToEntity(Admin toConvert)
         {
+            List<int> adminTypePermissions = new List<int>() {
+                (int)Permission.CREATE_USER,
+                (int)Permission.EDIT_USER,
+                (int)Permission.READ_USER,
+                (int)Permission.REMOVE_USER,
+                (int)Permission.MANAGE_COSTS,
+                (int)Permission.EDIT_OWN_DATA };
+
             AdminEntity conversion = new AdminEntity()
             {
                 Name = toConvert.Name,
@@ -85,13 +106,23 @@ namespace DataAccess
 
         }
 
-        private Admin EntityToAdmin(AdminEntity toConvert) {
+        private Admin EntityToAdmin(AdminEntity toConvert)
+        {
             Admin conversion = new Admin(toConvert.Name, toConvert.Surname, toConvert.UserName,
                                         toConvert.Password, toConvert.RegistrationDate);
             return conversion;
         }
 
-        private DesignerEntity DesignerToEntity(Designer toConvert) {
+        private DesignerEntity DesignerToEntity(Designer toConvert)
+        {
+            List<int> designerTypePermissions = new List<int>() {
+                                (int)Permission.CREATE_BLUEPRINT,
+                                (int)Permission.EDIT_BLUEPRINT,
+                                (int)Permission.DELETE_BLUEPRINT,
+                                (int)Permission.READ_BLUEPRINT,
+                                (int)Permission.READ_USER,
+                                (int)Permission.EDIT_OWN_DATA};
+
             DesignerEntity conversion = new DesignerEntity()
             {
                 Name = toConvert.Name,
@@ -100,11 +131,13 @@ namespace DataAccess
                 Password = toConvert.Password,
                 RegistrationDate = toConvert.RegistrationDate,
                 LastLoginDate = toConvert.LastLoginDate,
+                Permissions = designerTypePermissions
             };
             return conversion;
         }
 
-        private Designer EntityToDesigner(DesignerEntity toConvert) {
+        private Designer EntityToDesigner(DesignerEntity toConvert)
+        {
             Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate);
             return conversion;
         }
