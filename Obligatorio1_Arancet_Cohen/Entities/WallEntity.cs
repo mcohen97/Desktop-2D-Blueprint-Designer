@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class WallEntity
+    public class WallEntity
     {
         public WallEntity() {
         }

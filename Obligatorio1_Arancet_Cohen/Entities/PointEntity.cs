@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class PointEntity
+    public class PointEntity
     {
         public float CoordX { get; set; }
 
