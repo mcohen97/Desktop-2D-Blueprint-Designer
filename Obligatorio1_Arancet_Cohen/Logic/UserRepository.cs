@@ -42,14 +42,14 @@ namespace Logic.Domain
             {
                 throw new ArgumentNullException();
             }
-            if (Exist(userToAdd))
+            if (Exists(userToAdd))
             {
                 throw new UserAlreadyExistsException();
             }
             Users.Add(userToAdd);
         }
 
-        public bool Remove(User userToRemove)
+        public bool Delete(User userToRemove)
         {
             if (userToRemove == null)
             {
@@ -64,7 +64,7 @@ namespace Logic.Domain
             return wasRemoved;
         }
 
-        public bool Exist(User userAsked)
+        public bool Exists(User userAsked)
         {
             if (userAsked == null)
             {
@@ -79,25 +79,20 @@ namespace Logic.Domain
             Users.Add(new Admin("admin", "admin", "admin", "admin", DateTime.Now));
         }
 
-        public IEnumerator<User> GetEnumerator()
-        {
-            return Users.GetEnumerator();
-        }
-
-        public ICollection<User> GetUsers()
-        {
-            return (ICollection<User>)(new List<User>(Users));
-        }
-
         public bool ExistsUserName(string aUserName)
         {
             return Users.Any(u => u.UserName.Equals(aUserName));
         }
 
-        public User GetUser(User userAsked)
+        public User Get(User userAsked)
         {
             return Users.First(x => userAsked.Equals(x));
         }
+
+        public ICollection<User> GetAll()
+        {
+            return (ICollection<User>)(new List<User>(Users));
+        }   
 
         public User GetUserByUserName(string userName)
         {
@@ -113,7 +108,7 @@ namespace Logic.Domain
 
         public ICollection<User> GetUsersByPermission(Permission aFeature)
         {
-            return (ICollection<User>)GetUsers().Where(u => u.HasPermission(aFeature)).ToList();
+            return (ICollection<User>)GetAll().Where(u => u.HasPermission(aFeature)).ToList();
         }
     }
 }
