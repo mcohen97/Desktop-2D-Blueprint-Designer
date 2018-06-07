@@ -50,17 +50,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806020315183_Initial.cs" />
-    <Compile Include="Migrations\201806020315183_Initial.Designer.cs">
-      <DependentUpon>201806020315183_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201806070333379_Initial.cs" />
+    <Compile Include="Migrations\201806070333379_Initial.Designer.cs">
+      <DependentUpon>201806070333379_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserRepository.cs" />
-    <Compile Include="BlueBuilderDBContext.cs" />
-    <Compile Include="Migrations\201805240126458_InitialWithFluentApiGuidGen.cs" />
-    <Compile Include="Migrations\201805240126458_InitialWithFluentApiGuidGen.Designer.cs">
-      <DependentUpon>201805240126458_InitialWithFluentApiGuidGen.cs</DependentUpon>
+    <Compile Include="Migrations\201806071130338_FixedDateType.cs" />
+    <Compile Include="Migrations\201806071130338_FixedDateType.Designer.cs">
+      <DependentUpon>201806071130338_FixedDateType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071543491_Permissions.cs" />
+    <Compile Include="Migrations\201806071543491_Permissions.Designer.cs">
+      <DependentUpon>201806071543491_Permissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071555037_ChangeInPermissions.cs" />
+    <Compile Include="Migrations\201806071555037_ChangeInPermissions.Designer.cs">
+      <DependentUpon>201806071555037_ChangeInPermissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806071645154_RemovePermissions.cs" />
+    <Compile Include="Migrations\201806071645154_RemovePermissions.Designer.cs">
+      <DependentUpon>201806071645154_RemovePermissions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="BlueBuilderDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,11 +100,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805240126458_InitialWithFluentApiGuidGen.resx">
-      <DependentUpon>201805240126458_InitialWithFluentApiGuidGen.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806070333379_Initial.resx">
+      <DependentUpon>201806070333379_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806020315183_Initial.resx">
-      <DependentUpon>201806020315183_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806071130338_FixedDateType.resx">
+      <DependentUpon>201806071130338_FixedDateType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071543491_Permissions.resx">
+      <DependentUpon>201806071543491_Permissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071555037_ChangeInPermissions.resx">
+      <DependentUpon>201806071555037_ChangeInPermissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071645154_RemovePermissions.resx">
+      <DependentUpon>201806071645154_RemovePermissions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
