@@ -37,5 +37,29 @@ namespace Logic.Test
             float actualResult = instance.CalculateCost();
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void GetLengthTest()
+        {
+            float expectedResult = 0.5f;
+            float actualResult = instance.Length();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void GetWidthTest()
+        {
+            float expectedResult = 0.5f;
+            float actualResult = instance.Width();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void GetHeightTest()
+        {
+            float expectedResult = 3;
+            float actualResult = instance.Height();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
