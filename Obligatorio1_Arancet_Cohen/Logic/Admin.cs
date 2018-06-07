@@ -14,13 +14,15 @@ namespace Logic.Domain
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
 
-            Permissions = new List<Permission>();
-            Permissions.Add(Permission.CREATE_USER);
-            Permissions.Add(Permission.EDIT_USER);
-            Permissions.Add(Permission.READ_USER);
-            Permissions.Add(Permission.REMOVE_USER);
-            Permissions.Add(Permission.MANAGE_COSTS);
-            Permissions.Add(Permission.EDIT_OWN_DATA);
+            Permissions = new List<Permission>() {
+            Permission.CREATE_USER,
+            Permission.EDIT_USER,
+            Permission.READ_USER,
+            Permission.REMOVE_USER,
+            Permission.MANAGE_COSTS,
+            Permission.EDIT_OWN_DATA
+        };
+
         }
     }
 }

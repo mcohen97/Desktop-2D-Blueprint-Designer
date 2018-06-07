@@ -59,13 +59,13 @@ namespace Logic.Domain
 
         private List<Permission> GeneratePermissions()
         {
-            List<Permission> perms = new List<Permission>();
-            perms.Add(Permission.READ_BLUEPRINT);
-            perms.Add(Permission.HOLD_EXTRA_DATA);
-            perms.Add(Permission.FIRST_LOGIN);
-            perms.Add(Permission.HAVE_BLUEPRINT);
-            perms.Add(Permission.EDIT_OWN_DATA);
-            perms.Add(Permission.READ_OWNEDBLUEPRINT);
+            List<Permission> perms = new List<Permission>() {
+            Permission.READ_BLUEPRINT,
+            Permission.HOLD_EXTRA_DATA,
+            Permission.FIRST_LOGIN,
+            Permission.HAVE_BLUEPRINT,
+            Permission.EDIT_OWN_DATA,
+            Permission.READ_OWNEDBLUEPRINT};
             return perms;
         }
 

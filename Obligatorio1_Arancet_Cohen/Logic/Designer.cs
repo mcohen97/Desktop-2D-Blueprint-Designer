@@ -19,13 +19,13 @@ namespace Logic.Domain
 
         private List<Permission> GeneratePermissions()
         {
-            List<Permission> perms = new List<Permission>();
-            perms.Add(Permission.CREATE_BLUEPRINT);
-            perms.Add(Permission.EDIT_BLUEPRINT);
-            perms.Add(Permission.DELETE_BLUEPRINT);
-            perms.Add(Permission.READ_BLUEPRINT);
-            perms.Add(Permission.READ_USER);
-            perms.Add(Permission.EDIT_OWN_DATA);
+            List<Permission> perms = new List<Permission>() { 
+            Permission.CREATE_BLUEPRINT,
+            Permission.EDIT_BLUEPRINT,
+            Permission.DELETE_BLUEPRINT,
+            Permission.READ_BLUEPRINT,
+            Permission.READ_USER,
+            Permission.EDIT_OWN_DATA};
             return perms;
         }
     }
