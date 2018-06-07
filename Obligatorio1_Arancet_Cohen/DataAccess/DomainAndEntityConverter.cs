@@ -49,13 +49,13 @@ namespace DataAccess
 
         private ClientEntity ClientToEntity(Client toConvert)
         {
-            List<int> clientTypePermissions = new List<int>() {
+            /*List<int> clientTypePermissions = new List<int>() {
             (int)Permission.READ_BLUEPRINT,
             (int)Permission.HOLD_EXTRA_DATA,
             (int)Permission.FIRST_LOGIN,
             (int)Permission.HAVE_BLUEPRINT,
             (int)Permission.EDIT_OWN_DATA,
-            (int)Permission.READ_OWNEDBLUEPRINT};
+            (int)Permission.READ_OWNEDBLUEPRINT};*/
 
 
             ClientEntity conversion = new ClientEntity()
@@ -65,8 +65,9 @@ namespace DataAccess
                 UserName = toConvert.UserName,
                 Password = toConvert.Password,
                 Phone = toConvert.Phone,
+                IdCard = toConvert.Id,
                 Address = toConvert.Address,
-                Permissions = clientTypePermissions
+                //Permissions = clientTypePermissions
             };
         
             return conversion;
@@ -84,13 +85,13 @@ namespace DataAccess
 
         private AdminEntity AdminToEntity(Admin toConvert)
         {
-            List<int> adminTypePermissions = new List<int>() {
+            /*List<int> adminTypePermissions = new List<int>() {
                 (int)Permission.CREATE_USER,
                 (int)Permission.EDIT_USER,
                 (int)Permission.READ_USER,
                 (int)Permission.REMOVE_USER,
                 (int)Permission.MANAGE_COSTS,
-                (int)Permission.EDIT_OWN_DATA };
+                (int)Permission.EDIT_OWN_DATA };*/
 
             AdminEntity conversion = new AdminEntity()
             {
@@ -115,13 +116,13 @@ namespace DataAccess
 
         private DesignerEntity DesignerToEntity(Designer toConvert)
         {
-            List<int> designerTypePermissions = new List<int>() {
+            /*List<int> designerTypePermissions = new List<int>() {
                                 (int)Permission.CREATE_BLUEPRINT,
                                 (int)Permission.EDIT_BLUEPRINT,
                                 (int)Permission.DELETE_BLUEPRINT,
                                 (int)Permission.READ_BLUEPRINT,
                                 (int)Permission.READ_USER,
-                                (int)Permission.EDIT_OWN_DATA};
+                                (int)Permission.EDIT_OWN_DATA};*/
 
             DesignerEntity conversion = new DesignerEntity()
             {
@@ -131,7 +132,7 @@ namespace DataAccess
                 Password = toConvert.Password,
                 RegistrationDate = toConvert.RegistrationDate,
                 LastLoginDate = toConvert.LastLoginDate,
-                Permissions = designerTypePermissions
+                //Permissions = designerTypePermissions
             };
             return conversion;
         }

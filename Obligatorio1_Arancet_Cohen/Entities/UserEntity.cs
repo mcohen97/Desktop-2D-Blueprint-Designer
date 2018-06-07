@@ -8,6 +8,8 @@ namespace Entities
 {
     public abstract class UserEntity
     {
+        public UserEntity() {
+        }
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -22,6 +24,6 @@ namespace Entities
 
         public DateTime LastLoginDate { get; set; }
 
-        public virtual List<int> Permissions { get; set; }
+        //public List<int> Permissions { get; set; }
     }
 }

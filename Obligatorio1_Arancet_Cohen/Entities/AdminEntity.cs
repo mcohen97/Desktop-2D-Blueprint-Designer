@@ -8,5 +8,7 @@ namespace Entities
 {
     public class AdminEntity: UserEntity
     {
+        public AdminEntity() {
+        }
     }
 }

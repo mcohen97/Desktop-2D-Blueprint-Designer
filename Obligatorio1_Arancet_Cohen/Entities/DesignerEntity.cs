@@ -8,5 +8,7 @@ namespace Entities
 {
     public class DesignerEntity: UserEntity
     {
+        public DesignerEntity() {
+        }
     }
 }

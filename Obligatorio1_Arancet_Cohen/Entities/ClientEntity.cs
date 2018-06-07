@@ -8,6 +8,8 @@ namespace Entities
 {
     public class ClientEntity: UserEntity
     {
+        public ClientEntity() {
+        }
         public string Phone { get; set; }
 
         public string IdCard { get; set; }
