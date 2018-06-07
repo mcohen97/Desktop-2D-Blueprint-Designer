@@ -9,6 +9,7 @@ namespace UserRepositoryInterface
 {
     public interface IUserRepository
     {
+        User Get(User userAsked);
         bool ExistsUserName(string aUserName);
 
         User GetUserByUserName(string userName);

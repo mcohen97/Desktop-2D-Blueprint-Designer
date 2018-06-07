@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Services;
 using DataAccess;
+using UserRepositoryInterface;
+using RepositoryInterface;
+
 
 
 namespace ServicesTest
@@ -13,7 +16,7 @@ namespace ServicesTest
     [TestClass]
     public class BlueprintControllerTest
     {
-        private UserRepository repository;
+        private IRepository<User> repository;
 
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
@@ -32,7 +35,8 @@ namespace ServicesTest
         [TestInitialize]
         public void TestInitialize()
         {
-            repository.Clear();
+            repository = new UserRepository();
+            (repository).Clear();
             blueprintPortfolio = BlueprintPortfolio.Instance;
 
 

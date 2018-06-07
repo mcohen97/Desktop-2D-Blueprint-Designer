@@ -5,6 +5,7 @@ using Logic.Exceptions;
 using System.Collections.Generic;
 using Services;
 using DataAccess;
+using RepositoryInterface;
 
 namespace ServicesTest
 {
@@ -17,7 +18,7 @@ namespace ServicesTest
         private User user3;
         private User user4;
         private User user5;
-        private UserRepository portfolio;
+        private IRepository<User> portfolio;
         private SessionConnector conn;
 
         [TestInitialize]

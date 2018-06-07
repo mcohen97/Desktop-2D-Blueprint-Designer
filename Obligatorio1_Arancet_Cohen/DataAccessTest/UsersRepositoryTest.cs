@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using Logic.Exceptions;
 using DataAccess;
+using UserRepositoryInterface;
+using RepositoryInterface;
 using System.Collections.Generic;
 
 namespace Logic.Test
@@ -15,7 +17,7 @@ namespace Logic.Test
         private User user3;
         private User user4;
         private User user5;
-        private UserRepository repository;
+        private IRepository<User> repository;
 
         [TestInitialize]
         public void TestInitialize()
@@ -69,13 +71,13 @@ namespace Logic.Test
         public void UserNameExistsTest()
         {
             repository.Add(user1);
-            Assert.IsTrue(repository.ExistsUserName("client1UN"));
+            Assert.IsTrue(((IUserRepository)repository).ExistsUserName("client1UN"));
         }
 
         [TestMethod]
         public void UserNameDoesNotExist()
         {
-            Assert.IsFalse(repository.ExistsUserName("client1UN"));
+            Assert.IsFalse(((IUserRepository)repository).ExistsUserName("client1UN"));
         }
 
         [TestMethod]
@@ -98,7 +100,7 @@ namespace Logic.Test
         public void GetUserTest()
         {
             repository.Add(user5);
-            User userInfo = repository.Get(user5);
+            User userInfo = ((IUserRepository)repository).Get(user5);
             Assert.AreEqual(user5, userInfo);
         }
 
@@ -106,7 +108,7 @@ namespace Logic.Test
         public void GetUserByUserNameTest()
         {
             repository.Add(user5);
-            User userInfo = repository.GetUserByUserName(user5.UserName);
+            User userInfo = ((IUserRepository)repository).GetUserByUserName(user5.UserName);
             Assert.AreEqual(user5, userInfo);
         }
 
@@ -125,7 +127,7 @@ namespace Logic.Test
         {
             repository.Add(user1);
             repository.Add(user3);
-            ICollection<User> filtered = repository.GetUsersByPermission(Permission.READ_BLUEPRINT);
+            ICollection<User> filtered = ((IUserRepository)repository).GetUsersByPermission(Permission.READ_BLUEPRINT);
             int expectedResult = 2;
             int actualResult = filtered.Count;
             Assert.AreEqual(expectedResult, actualResult);

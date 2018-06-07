@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Logic.Exceptions;
 using Logic.Domain;
 using DataAccess;
+using RepositoryInterface;
+using UserRepositoryInterface;
 
 namespace Services
 {
@@ -21,7 +23,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IRepository<User> usersStorage = new UserRepository();
             usersStorage.Add(aUser);
         }
 
@@ -31,7 +33,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IRepository<User> usersStorage = new UserRepository();
             return usersStorage.Exists(aUser);
         }
 
@@ -42,7 +44,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IUserRepository usersStorage = new UserRepository();
             return usersStorage.ExistsUserName(userName);
         }
 
@@ -52,7 +54,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IUserRepository usersStorage = new UserRepository();
             return usersStorage.GetUserByUserName(userName);
         }
 
@@ -62,10 +64,8 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IRepository<User> usersStorage = new UserRepository();
             usersStorage.Modify(aUser);
-            /*UsersPortfolio.Instance.Delete(aUser);
-            UsersPortfolio.Instance.Add(aUser);*/
         }
 
         public void Remove(User aUser)
@@ -74,7 +74,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IRepository<User> usersStorage = new UserRepository();
             usersStorage.Delete(aUser);
         }
 
@@ -84,7 +84,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IUserRepository usersStorage = new UserRepository();
             ICollection<User> allClients = usersStorage.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
             return allClients;
         }
@@ -95,7 +95,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UserRepository usersStorage = new UserRepository();
+            IRepository<User> usersStorage = new UserRepository();
             ICollection<User> allUsers = usersStorage.GetAll();
             allUsers.Remove(Session.UserLogged);
             return allUsers;
