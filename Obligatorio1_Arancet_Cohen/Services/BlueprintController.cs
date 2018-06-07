@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Logic.Exceptions;
 using Logic.Domain;
-
+using DataAccess;
 
 namespace Services
 {

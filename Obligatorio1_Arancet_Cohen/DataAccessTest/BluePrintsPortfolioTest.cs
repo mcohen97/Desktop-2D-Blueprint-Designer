@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
+using DataAccess;
 using System.Collections.Generic;
 
 namespace Logic.Test

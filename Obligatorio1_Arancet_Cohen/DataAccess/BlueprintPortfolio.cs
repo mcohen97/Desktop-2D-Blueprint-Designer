@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Linq;
+using Logic.Domain;
 
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Logic.Domain
+namespace DataAccess
 {
     public class BlueprintPortfolio
     {
@@ -85,7 +86,7 @@ namespace Logic.Domain
             return new List<IBlueprint>(elegible);
         }
 
-        internal void DeleteUserBlueprints(Client aUser)
+        public void DeleteUserBlueprints(Client aUser)
         {
             foreach (IBlueprint existent in GetAll())
             {

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlueprintPortfolio.cs" />
     <Compile Include="DomainAndEntityConverter.cs" />
     <Compile Include="Migrations\201806070333379_Initial.cs" />
     <Compile Include="Migrations\201806070333379_Initial.Designer.cs">
