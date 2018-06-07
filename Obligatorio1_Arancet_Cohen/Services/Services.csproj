@@ -58,9 +58,9 @@
       <Project>{636b5156-d57e-4d33-b0f9-272ab0c13ffd}</Project>
       <Name>RepositoryInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UserRepositoryInterface\UserRepositoryInterface.csproj">
+    <ProjectReference Include="..\UserRepositoryInterface\DomainRepositoryInterface.csproj">
       <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
-      <Name>UserRepositoryInterface</Name>
+      <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

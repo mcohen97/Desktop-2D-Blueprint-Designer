@@ -10,18 +10,7 @@ namespace DataAccess
 {
     class MaterialAndEntityConverter
     {
-        public PointEntity PointToEntity(Point toConvert) {
-            PointEntity conversion = new PointEntity()
-            {
-                CoordX = toConvert.CoordX,
-                CoordY = toConvert.CoordY
-            };
-            return conversion;
-        }
-
-        public Point EntityToPoint(PointEntity toConvert) {
-            return new Point(toConvert.CoordX, toConvert.CoordY);
-        }
+        
 
         public WallEntity WallToEntity(Wall toConvert) {
             WallEntity conversion = new WallEntity()
@@ -40,6 +29,22 @@ namespace DataAccess
             Point end = EntityToPoint(toConvert.To);
             return new Wall(origin,end);
         }
+
+        private PointEntity PointToEntity(Point toConvert)
+        {
+            PointEntity conversion = new PointEntity()
+            {
+                CoordX = toConvert.CoordX,
+                CoordY = toConvert.CoordY
+            };
+            return conversion;
+        }
+
+        private Point EntityToPoint(PointEntity toConvert)
+        {
+            return new Point(toConvert.CoordX, toConvert.CoordY);
+        }
+
 
     }
 }

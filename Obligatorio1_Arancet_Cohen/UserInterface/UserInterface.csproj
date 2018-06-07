@@ -218,9 +218,9 @@
       <Project>{875d9fdd-57a1-468c-9c18-7596b5c67466}</Project>
       <Name>Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UserRepositoryInterface\UserRepositoryInterface.csproj">
+    <ProjectReference Include="..\UserRepositoryInterface\DomainRepositoryInterface.csproj">
       <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
-      <Name>UserRepositoryInterface</Name>
+      <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
