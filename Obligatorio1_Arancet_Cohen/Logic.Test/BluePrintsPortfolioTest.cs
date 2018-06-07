@@ -55,7 +55,7 @@ namespace Logic.Test
         public void GetBlueprintTest()
         {
             portfolio.Add(blueprint1);
-            IEnumerator<IBlueprint> blueprints = portfolio.GetBlueprintsCopy().GetEnumerator();
+            IEnumerator<IBlueprint> blueprints = portfolio.GetAll().GetEnumerator();
             blueprints.MoveNext();
             Assert.IsNotNull(blueprints.Current);
         }
@@ -101,7 +101,7 @@ namespace Logic.Test
         {
             portfolio.Add(blueprint1);
             portfolio.Add(blueprint2);
-            ICollection<IBlueprint> copy = portfolio.GetBlueprintsCopy();
+            ICollection<IBlueprint> copy = portfolio.GetAll();
             copy.Remove(blueprint1);
             Assert.IsTrue(portfolio.Exists(blueprint1));
         }
@@ -115,7 +115,7 @@ namespace Logic.Test
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             portfolio.DeleteUserBlueprints(user1);
             int expectedResult = 0;
-            int actualResult = portfolio.GetBlueprintsCopy().Count;
+            int actualResult = portfolio.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }

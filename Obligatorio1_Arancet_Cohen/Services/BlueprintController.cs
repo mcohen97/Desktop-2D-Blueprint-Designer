@@ -48,7 +48,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.GetBlueprintsCopy();
+            return BlueprintPortfolio.Instance.GetAll();
         }
 
         public void Remove(IBlueprint aBlueprint)

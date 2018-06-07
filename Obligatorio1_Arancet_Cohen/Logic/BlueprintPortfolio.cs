@@ -52,7 +52,7 @@ namespace Logic.Domain
             return Blueprints.Contains(aBlueprint);
         }
 
-        public ICollection<IBlueprint> GetBlueprintsCopy()
+        public ICollection<IBlueprint> GetAll()
         {
             return new List<IBlueprint>(Blueprints);
         }
@@ -87,7 +87,7 @@ namespace Logic.Domain
 
         internal void DeleteUserBlueprints(Client aUser)
         {
-            foreach (IBlueprint existent in GetBlueprintsCopy())
+            foreach (IBlueprint existent in GetAll())
             {
                 if (existent.Owner.Equals(aUser))
                 {

@@ -152,7 +152,7 @@ namespace Logic.Test
 
             repository.Delete(user1);
             int expectedResult = 1;
-            int actualResult = BlueprintPortfolio.Instance.GetBlueprintsCopy().Count;
+            int actualResult = BlueprintPortfolio.Instance.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
