@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueprintPortfolio.cs" />
+    <Compile Include="BlueprintRespository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\201806070333379_Initial.cs" />

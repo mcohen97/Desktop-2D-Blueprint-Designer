@@ -12,6 +12,7 @@ namespace DataAccess
     public class BlueBuilderDBContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
+        
 
         public BlueBuilderDBContext() : base("name=BlueBuilderDBContext")
         {
