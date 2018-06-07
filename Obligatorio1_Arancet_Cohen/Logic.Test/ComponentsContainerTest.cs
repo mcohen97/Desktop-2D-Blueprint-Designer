@@ -222,6 +222,15 @@ namespace Logic.Test
             instance.ContainsOpening(null);
         }
 
+        [TestMethod]
+        public void AddColumnTest()
+        {
+            Column testColumn = new Column(new Point(3, 2));
+            instance.AddOpening(testColumn);
+            Opening otherTestOpening = new Window(new Point(3, 2));
+            Assert.IsTrue(instance.ContainsOpening(otherTestOpening));
+        }
+
     }
 
 }
