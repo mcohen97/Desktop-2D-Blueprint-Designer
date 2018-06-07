@@ -4,6 +4,7 @@ using Logic.Domain;
 using Logic.Exceptions;
 using System.Collections.Generic;
 using Services;
+using DataAccess;
 
 namespace ServicesTest
 {
@@ -16,13 +17,13 @@ namespace ServicesTest
         private User user3;
         private User user4;
         private User user5;
-        private UsersPortfolio portfolio;
+        private UserRepository portfolio;
         private SessionConnector conn;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            portfolio = UsersPortfolio.Instance;
+            portfolio = new UserRepository();
             portfolio.Clear();
             conn = new SessionConnector();
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);

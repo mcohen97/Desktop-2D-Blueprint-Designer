@@ -5,6 +5,7 @@ using Logic.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Services;
+using DataAccess;
 
 
 namespace ServicesTest
@@ -12,6 +13,7 @@ namespace ServicesTest
     [TestClass]
     public class BlueprintControllerTest
     {
+        private UserRepository repository;
 
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
@@ -30,7 +32,7 @@ namespace ServicesTest
         [TestInitialize]
         public void TestInitialize()
         {
-            UsersPortfolio.Instance.Clear();
+            repository.Clear();
             blueprintPortfolio = BlueprintPortfolio.Instance;
 
 
@@ -63,7 +65,7 @@ namespace ServicesTest
         public void CleanUp()
         {
             blueprintPortfolio.Empty();
-            UsersPortfolio.Instance.Clear();
+            repository.Clear();
         }
 
         private void initializerWithData()

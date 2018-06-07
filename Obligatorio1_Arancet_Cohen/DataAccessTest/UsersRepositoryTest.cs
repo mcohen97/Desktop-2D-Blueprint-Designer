@@ -125,7 +125,7 @@ namespace Logic.Test
         {
             repository.Add(user1);
             repository.Add(user3);
-            ICollection<User> filtered = repository.GetUsersByPermission((int)Permission.READ_BLUEPRINT);
+            ICollection<User> filtered = repository.GetUsersByPermission(Permission.READ_BLUEPRINT);
             int expectedResult = 2;
             int actualResult = filtered.Count;
             Assert.AreEqual(expectedResult, actualResult);

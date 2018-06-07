@@ -1,5 +1,6 @@
 ﻿using Logic.Exceptions;
 using Logic.Domain;
+using DataAccess;
 
 namespace Services
 {
@@ -7,7 +8,8 @@ namespace Services
     {
         public Session LogIn(string userName, string password)
         {
-            User userLogging = UsersPortfolio.Instance.GetUserByUserName(userName);
+            UserRepository userStorage = new UserRepository();
+            User userLogging = userStorage.GetUserByUserName(userName);
             if (userLogging.Password != password)
             {
                 throw new WrongPasswordException();
