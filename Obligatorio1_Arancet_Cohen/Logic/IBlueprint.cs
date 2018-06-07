@@ -8,6 +8,28 @@ namespace Logic.Domain
 {
     public abstract class IBlueprint
     {
+        protected ICollection<Signature> signatures;
+
+        public virtual void Sign(User signer)
+        {
+            if (signer == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            Signature signature = new Signature(signer, DateTime.Now);
+            signatures.Add(signature);
+        }
+
+        public bool IsSigned()
+        {
+            return signatures.Count != 0;
+        }
+
+        public virtual ICollection<Signature> GetSignatures()
+        {
+            return signatures;
+        }
 
         public abstract void InsertWall(Point from, Point to);
 
@@ -21,13 +43,5 @@ namespace Logic.Domain
 
         public virtual User Owner { get; set; }
 
-        public virtual User Signature { get; internal set; }
-
-        public virtual DateTime LastSignDate { get; internal set; }
-
-        public bool IsSigned()
-        {
-            return Signature != null;
-        }
     }
 }

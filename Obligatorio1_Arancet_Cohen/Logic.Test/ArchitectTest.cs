@@ -214,5 +214,6 @@ namespace Logic.Test
 
             Assert.IsTrue(canSignBlueprint);
         }
+
     }
 }
