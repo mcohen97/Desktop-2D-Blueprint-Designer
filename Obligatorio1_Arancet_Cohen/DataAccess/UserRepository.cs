@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
-using UserRepositoryInterface;
+using DomainRepositoryInterface;
 using System.Data.Entity.Infrastructure;
 
 namespace DataAccess
@@ -29,7 +29,7 @@ namespace DataAccess
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                    DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                    UserAndEntityConverter translator = new UserAndEntityConverter();
                     UserEntity anEntity = translator.toEntity(aUser);
 
                     context.Users.Add(anEntity);
@@ -101,7 +101,7 @@ namespace DataAccess
             User firstToComply;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserAndEntityConverter translator = new UserAndEntityConverter();
                 UserEntity firstRecord = context.Users.FirstOrDefault(aCondition);
                 firstToComply = translator.toUser(firstRecord);
             }
@@ -126,7 +126,7 @@ namespace DataAccess
             ICollection<User> elegibleUsers = new List<User>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserAndEntityConverter translator = new UserAndEntityConverter();
                 IQueryable<UserEntity> elegibleRecords = context.Users.Where(aCriteria);
                 foreach (UserEntity record in elegibleRecords) {
                     elegibleUsers.Add(translator.toUser(record));

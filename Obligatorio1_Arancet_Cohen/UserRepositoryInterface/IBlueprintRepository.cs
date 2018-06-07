@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
 
-namespace UserRepositoryInterface
+namespace DomainRepositoryInterface
 {
     public interface IBlueprintRepository
     {

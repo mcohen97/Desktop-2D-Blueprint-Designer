@@ -4,7 +4,7 @@ using Logic.Exceptions;
 using Logic.Domain;
 using DataAccess;
 using RepositoryInterface;
-using UserRepositoryInterface;
+using DomainRepositoryInterface;
 
 namespace Services
 {

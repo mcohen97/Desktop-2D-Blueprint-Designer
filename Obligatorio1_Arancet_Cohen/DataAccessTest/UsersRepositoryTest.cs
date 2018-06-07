@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using Logic.Exceptions;
 using DataAccess;
-using UserRepositoryInterface;
+using DomainRepositoryInterface;
 using RepositoryInterface;
 using System.Collections.Generic;
 
