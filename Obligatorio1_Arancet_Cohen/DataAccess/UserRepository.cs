@@ -24,7 +24,6 @@ namespace DataAccess
             return esVacia;
         }
 
-
         public void Add(User aUser)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
@@ -81,20 +80,20 @@ namespace DataAccess
 
         public User Get(Guid id)
         {
-            User queryUser;
+            return SelectFirstOrDefault(a => a.Id.Equals(id));
+            /*User queryUser;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 DomainAndEntityConverter translator = new DomainAndEntityConverter();
                 UserEntity query = context.Users.FirstOrDefault(a => a.Id.Equals(id));
                 queryUser = translator.toUser(query);
             }
-            return queryUser;
+            return queryUser;*/
         }
-
 
         public User GetUserByUserName(string userName)
         {
-            return SelectByCriteria(u => u.UserName.Equals(userName)).First();
+            return SelectFirstOrDefault(u => u.UserName.Equals(userName));
             /*User queryUser;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -105,8 +104,24 @@ namespace DataAccess
             return queryUser;*/
 
         }
+        public User Get(User userAsked)
+        {
+            return GetUserByUserName(userAsked.UserName);
+        }
 
-        public IEnumerable<User> GetUsersByPermission(int aFeature)
+        private User SelectFirstOrDefault(Expression<Func<UserEntity, bool>> aCondition) {
+            User firstToComply;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                DomainAndEntityConverter translator = new DomainAndEntityConverter();
+                UserEntity firstRecord = context.Users.FirstOrDefault(aCondition);
+                firstToComply = translator.toUser(firstRecord);
+            }
+
+            return firstToComply;
+        }
+
+        public ICollection<User> GetUsersByPermission(int aFeature)
         {
             return SelectByCriteria(ue => ue.Permissions.Contains(aFeature));
             /*IEnumerable<User> elegibleUsers;
@@ -121,7 +136,7 @@ namespace DataAccess
         }
 
 
-        public IEnumerable<User> GetAll()
+        public ICollection<User> GetAll()
         {
             return SelectByCriteria(u=> true);
             /*IEnumerable<User> elegibleUsers;
@@ -135,13 +150,13 @@ namespace DataAccess
             return elegibleUsers;*/
         }
 
-        private IEnumerable<User> SelectByCriteria(Expression<Func<UserEntity, bool>> aCriteria) {
-            IEnumerable<User> elegibleUsers;
+        private ICollection<User> SelectByCriteria(Expression<Func<UserEntity, bool>> aCriteria) {
+            ICollection<User> elegibleUsers;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 DomainAndEntityConverter translator = new DomainAndEntityConverter();
                 IQueryable<UserEntity> elegibleRecords = context.Users.Where(aCriteria);
-                elegibleUsers = elegibleRecords.Select(r => translator.toUser(r));
+                elegibleUsers = elegibleRecords.Select(r => translator.toUser(r)).ToList();
             }
 
             return elegibleUsers;

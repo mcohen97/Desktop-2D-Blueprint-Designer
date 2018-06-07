@@ -13,7 +13,7 @@ namespace RepositoryInterface
 
         User GetUserByUserName(string userName);
 
-        IEnumerable<User> GetUsersByPermission(int aFeature);
+        ICollection<User> GetUsersByPermission(int aFeature);
 
 
 

@@ -21,6 +21,6 @@ namespace RepositoryInterface
 
         T Get(Guid id);
 
-        IEnumerable<T> GetAll();
+        ICollection<T> GetAll();
     }
 }

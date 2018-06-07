@@ -46,7 +46,7 @@ namespace Logic.Test
         public void AddedUserTest()
         {
             portfolio.Add(user1);
-            Assert.IsTrue(portfolio.Exist(user1));
+            Assert.IsTrue(portfolio.Exists(user1));
         }
 
         [TestMethod]
@@ -62,15 +62,6 @@ namespace Logic.Test
         {
             portfolio.Add(user1);
             portfolio.Add(user1);
-        }
-
-        [TestMethod]
-        public void GetUsersTest()
-        {
-            portfolio.Add(user1);
-            IEnumerator<User> users = portfolio.GetEnumerator();
-            users.MoveNext();
-            Assert.IsNotNull(users.Current);
         }
 
         [TestMethod]
@@ -91,15 +82,15 @@ namespace Logic.Test
         {
             portfolio.Add(user1);
             portfolio.Add(user2);
-            portfolio.Remove(user1);
-            Assert.IsFalse(portfolio.Exist(user1));
+            portfolio.Delete(user1);
+            Assert.IsFalse(portfolio.Exists(user1));
         }
 
         [TestMethod]
         public void RemoveNonExistentUserTest()
         {
             portfolio.Add(user2);
-            bool deletionExecuted = portfolio.Remove(user1);
+            bool deletionExecuted = portfolio.Delete(user1);
             Assert.IsFalse(deletionExecuted);
         }
 
@@ -107,7 +98,7 @@ namespace Logic.Test
         public void GetUserTest()
         {
             portfolio.Add(user5);
-            User userInfo = portfolio.GetUser(user5);
+            User userInfo = portfolio.Get(user5);
             Assert.AreEqual(user5, userInfo);
         }
 
@@ -125,7 +116,7 @@ namespace Logic.Test
             portfolio.Add(user1);
             portfolio.Add(user2);
             int expectedResult = 3;
-            int actualResult = portfolio.GetUsers().Count;
+            int actualResult = portfolio.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
 
@@ -157,7 +148,7 @@ namespace Logic.Test
             BlueprintPortfolio.Instance.Add(blueprint2);
             BlueprintPortfolio.Instance.Add(blueprint3);
 
-            portfolio.Remove(user1);
+            portfolio.Delete(user1);
             int expectedResult = 1;
             int actualResult = BlueprintPortfolio.Instance.GetBlueprintsCopy().Count;
             Assert.AreEqual(expectedResult, actualResult);

@@ -29,7 +29,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return UsersPortfolio.Instance.Exist(aUser);
+            return UsersPortfolio.Instance.Exists(aUser);
         }
 
 
@@ -59,7 +59,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UsersPortfolio.Instance.Remove(aUser);
+            UsersPortfolio.Instance.Delete(aUser);
             UsersPortfolio.Instance.Add(aUser);
         }
 
@@ -69,7 +69,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            UsersPortfolio.Instance.Remove(aUser);
+            UsersPortfolio.Instance.Delete(aUser);
         }
 
         public ICollection<User> GetAllClients()
@@ -88,7 +88,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            ICollection<User> allUsers = UsersPortfolio.Instance.GetUsers();
+            ICollection<User> allUsers = UsersPortfolio.Instance.GetAll();
             allUsers.Remove(Session.UserLogged);
             return allUsers;
         }
