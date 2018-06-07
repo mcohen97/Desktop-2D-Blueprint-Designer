@@ -60,6 +60,7 @@
     <Compile Include="OutOfRangeComponentException.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="SessionConnector.cs" />
+    <Compile Include="Signature.cs" />
     <Compile Include="UserAdministrator.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Door.cs" />

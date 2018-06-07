@@ -7,18 +7,18 @@ using Logic.Domain;
 
 namespace Logic
 {
-    class Signature
+    public class Signature
     {
-        private DateTime now;
+        private DateTime signatureDate;
         private User user;
 
         public Signature(User user, DateTime now)
         {
             this.user = user;
-            this.now = now;
+            this.signatureDate = now;
         }
 
-        public DateTime Date { get; internal set; }
-        public User User { get; internal set; }
+        public DateTime Date { get { return signatureDate; } internal set { } }
+        public User User { get { return user; } internal set { } }
     }
 }

@@ -28,13 +28,7 @@ namespace Logic.Domain
         private User owner;
         public override User Owner { get { return owner; } set { SetOwner(value); } }
 
-        private User signature;
-        public override User Signature { get { return signature; } internal set { SetSign(value); } }
-
         private Guid id;
-
-        private DateTime lastSignDate;
-        public override DateTime LastSignDate { get { return lastSignDate; } internal set { SetLastSignDate(value); } }
 
         public Blueprint(int aLength, int aWidth, string aName)
         {
@@ -43,7 +37,7 @@ namespace Logic.Domain
             Name = aName;
             materials = new MaterialContainer();
             id = Guid.NewGuid();
-            signature = null;
+            signatures = new List<Signature>();
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -53,17 +47,7 @@ namespace Logic.Domain
             Name = aName;
             materials = container;
             id = Guid.NewGuid();
-            signature = null;
-        }
-
-        private void SetSign(User aUser)
-        {
-            signature = aUser;
-            SetLastSignDate(DateTime.Now);
-        }
-
-        private void SetLastSignDate(DateTime date) {
-            lastSignDate = date;
+            signatures = new List<Signature>();
         }
 
         private void SetName(string aName)
@@ -434,5 +418,6 @@ namespace Logic.Domain
                    + "Owner: " + Owner.UserName + " "
                    + "Id: " + strId.Substring(strId.Length - 5);
         }
+
     }
 }

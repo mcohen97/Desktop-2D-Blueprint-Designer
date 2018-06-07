@@ -18,7 +18,7 @@ namespace Logic.Test
         [TestMethod]
         public void CreateSignatureTest()
         {
-            Signature signature = new Signature(user);
+            Signature signature = new Signature(user, DateTime.Now);
 
             Assert.IsNotNull(signature);
         }
@@ -26,19 +26,21 @@ namespace Logic.Test
         [TestMethod]
         public void GetUserTest()
         {
-            Signature signature = new Signature(user);
-            User architectGet = signature.User;
+            Signature signature = new Signature(user, DateTime.Now);
+            User userGet = signature.User;
 
-            Assert.AreEqual(user, architectGet);
+            Assert.AreEqual(user, userGet);
         }
 
         [TestMethod]
         public void GetDateTest()
         {
-            Signature signature = new Signature(user);
-            User architectGet = signature.User;
+            DateTime dateSignature = DateTime.Now;
+            Signature signature = new Signature(user, dateSignature);
 
-            Assert.AreEqual(user, architectGet);
+            DateTime dateSignatureGet = signature.Date;
+
+            Assert.AreEqual(dateSignature, dateSignatureGet);
         }
     }
 }

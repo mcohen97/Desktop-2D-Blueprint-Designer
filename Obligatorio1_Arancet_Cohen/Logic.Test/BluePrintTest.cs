@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Logic.Domain;
 using Logic.Exceptions;
+using System.Linq;
 
 namespace Logic.Test
 {
@@ -14,11 +15,17 @@ namespace Logic.Test
         private MaterialContainer materials;
         Client owner;
         User architect;
+        User architectA;
+        User architectB;
+
         [TestInitialize]
         public void SetUp()
         {
             owner = new Client("Carl", "Ownerhood", "owner", "owner", "12345", "addd", "1234455", DateTime.Now);
             architect = new Architect("Manameeh", "Jefferson", "jeff", "12345", DateTime.Now);
+            architectA = new Architect("A", "A", "jeffA", "12345", DateTime.Now);
+            architectB = new Architect("B", "B", "jeffB", "12345", DateTime.Now);
+
             materials = new MaterialContainer();
             instance = new Blueprint(20, 20, "TestBlueprint", materials);
         }
@@ -417,13 +424,6 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void SignBlueprint()
-        {
-            instance.Signature = architect;
-            Assert.AreEqual(instance.Signature, architect);
-        }
-
-        [TestMethod]
         public void IsSignedFalseTest()
         {
             Assert.IsFalse(instance.IsSigned());
@@ -432,21 +432,30 @@ namespace Logic.Test
         [TestMethod]
         public void IsSignedTrueTest()
         {
-            instance.Signature = architect;
+            instance.Sign(architect);
             Assert.IsTrue(instance.IsSigned());
         }
 
         [TestMethod]
-        public void DateSignedTest()
+        public void GetSignaturesTest()
         {
-            Assert.AreEqual(instance.LastSignDate, Constants.NEVER);
+            instance.Sign(architectA);
+            instance.Sign(architectB);
+            instance.Sign(architectA);
+            ICollection<Signature> signatures = instance.GetSignatures();
+
+            Assert.AreEqual(signatures.Count, 3);
         }
 
         [TestMethod]
-        public void DateSignedActualizationTest()
+        public void GetLastSignatureTest()
         {
-            instance.Signature = architect;
-            Assert.AreNotEqual(instance.LastSignDate, Constants.NEVER);
+            instance.Sign(architectA);
+            instance.Sign(architectB);
+            instance.Sign(architectA);
+            Signature lastSignature = instance.GetSignatures().Last();
+
+            Assert.AreEqual(lastSignature.User, architectA);
         }
 
     }
