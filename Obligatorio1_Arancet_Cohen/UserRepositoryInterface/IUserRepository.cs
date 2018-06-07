@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
 
-namespace RepositoryInterface
+namespace UserRepositoryInterface
 {
     public interface IUserRepository
     {
@@ -13,7 +13,7 @@ namespace RepositoryInterface
 
         User GetUserByUserName(string userName);
 
-        ICollection<User> GetUsersByPermission(int aFeature);
+        ICollection<User> GetUsersByPermission(Permission aFeature);
 
 
 
