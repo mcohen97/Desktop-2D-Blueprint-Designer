@@ -72,7 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAlreadyExistsException.cs" />
     <Compile Include="UserNotFoundException.cs" />
-    <Compile Include="UserRepository.cs" />
     <Compile Include="Wall.cs" />
     <Compile Include="WallsDoNotIntersectException.cs" />
     <Compile Include="Window.cs" />

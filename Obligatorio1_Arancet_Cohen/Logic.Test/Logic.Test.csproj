@@ -64,7 +64,6 @@
     <Compile Include="ComponentsContainerTest.cs" />
     <Compile Include="BeamTest.cs" />
     <Compile Include="SessionTest.cs" />
-    <Compile Include="UsersPortfolioTest.cs" />
     <Compile Include="WallTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowTest.cs" />

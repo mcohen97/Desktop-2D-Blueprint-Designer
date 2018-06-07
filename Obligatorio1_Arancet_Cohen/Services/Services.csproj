@@ -46,6 +46,10 @@
     <Compile Include="UserAdministrator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
       <Name>Logic</Name>
