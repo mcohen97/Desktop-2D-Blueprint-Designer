@@ -43,7 +43,10 @@
     <Compile Include="AdminEntity.cs" />
     <Compile Include="BlueprintEntity.cs" />
     <Compile Include="ClientEntity.cs" />
+    <Compile Include="CostPriceEntity.cs" />
     <Compile Include="DesignerEntity.cs" />
+    <Compile Include="OpeningEntity.cs" />
+    <Compile Include="OpeningTemplateEntity.cs" />
     <Compile Include="PointEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserEntity.cs" />

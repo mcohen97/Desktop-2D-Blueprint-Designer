@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class PointEntity
+    public class OpeningTemplateEntity
     {
         public Guid Id { get; set; }
-        public float CoordX { get; set; }
+        public float Height { get; set; }
 
-        public float CoordY { get; set; }
+        public float Length { get; set; }
+        
+        public int ComponentType { get; set; }
     }
 }

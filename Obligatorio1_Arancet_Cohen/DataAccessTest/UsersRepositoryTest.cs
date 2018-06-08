@@ -7,7 +7,7 @@ using DomainRepositoryInterface;
 using RepositoryInterface;
 using System.Collections.Generic;
 
-namespace Logic.Test
+namespace DataAccessTest
 {
     [TestClass]
     public class UsersRepositoryTest

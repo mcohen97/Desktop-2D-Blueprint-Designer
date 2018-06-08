@@ -8,6 +8,7 @@ namespace Entities
 {
     public class WallEntity
     {
+        public Guid Id { get; set; }
         public WallEntity() {
         }
         public float Height { get; set; }
@@ -18,5 +19,6 @@ namespace Entities
 
         public PointEntity To { get; set; }
         
+        public BlueprintEntity Blueprint { get; set; }
     }
 }

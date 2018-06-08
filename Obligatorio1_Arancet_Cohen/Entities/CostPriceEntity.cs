@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class PointEntity
+    public class CostPriceEntity
     {
         public Guid Id { get; set; }
-        public float CoordX { get; set; }
+        public float Price { get; set; }
 
-        public float CoordY { get; set; }
+        public float Cost { get; set; }
+
+        public int ComponentType { get; set; }
     }
 }
