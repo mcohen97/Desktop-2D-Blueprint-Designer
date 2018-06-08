@@ -4,7 +4,7 @@ using Logic.Domain;
 using DataAccess;
 using System.Collections.Generic;
 
-namespace Logic.Test
+namespace DataAccessTest
 {
     [TestClass]
     public class BluePrintPortfolioTest

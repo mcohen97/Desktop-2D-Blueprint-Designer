@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace Logic.Test
 {
     [TestClass]
-    public class UsersPortfolioTest
+    public class UsersRepositoryTest
     {
         private User user1;
         private User user2;
