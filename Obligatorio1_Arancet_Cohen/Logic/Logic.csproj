@@ -45,6 +45,9 @@
     <Compile Include="Blueprint.cs" />
     <Compile Include="BlueprintController.cs" />
     <Compile Include="BlueprintPortfolio.cs" />
+    <Compile Include="Column.cs" />
+    <Compile Include="ColumnInPlaceException.cs" />
+    <Compile Include="ComponentInWallException.cs" />
     <Compile Include="MaterialContainer.cs" />
     <Compile Include="CollinearWallsException.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
@@ -57,6 +60,7 @@
     <Compile Include="IPriceable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="NoPermissionsException.cs" />
+    <Compile Include="OccupiedPositionException.cs" />
     <Compile Include="OutOfRangeComponentException.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="SessionConnector.cs" />

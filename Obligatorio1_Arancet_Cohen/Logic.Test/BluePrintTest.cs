@@ -245,7 +245,21 @@ namespace Logic.Test
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ColumnInPlaceException))]
+        public void InsertWallInColumnPlaceTest()
+        {
+            instance.InsertColumn(new Point(2, 5));
+            instance.InsertWall(new Point(2,3), new Point(2,6));
+        }
 
+        [TestMethod]
+        public void InsertWallInColumnPlaceBorderTest()
+        {
+            instance.InsertColumn(new Point(2, 3));
+            instance.InsertWall(new Point(2, 3), new Point(2, 6));
+            Assert.AreEqual(1, instance.GetWalls().Count);
+        }
 
         [TestMethod]
         public void ContinuousWallsInsertedMergeTest()
@@ -457,6 +471,15 @@ namespace Logic.Test
 
             Assert.AreEqual(lastSignature.User, architectA);
         }
+
+        [TestMethod]
+        public void InsertColumnTest()
+        {
+            ISinglePointComponent column = new Column(new Point(2, 2));
+            instance.InsertColumn(column.GetPosition());
+            Assert.AreEqual(1, instance.GetColumns().Count);
+        }
+
 
     }
 

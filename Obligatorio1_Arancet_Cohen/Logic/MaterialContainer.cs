@@ -11,12 +11,14 @@ namespace Logic.Domain
         private ICollection<Wall> walls;
         private ICollection<Beam> beams;
         private ICollection<Opening> openings;
+        private ICollection<ISinglePointComponent> columns;
 
         public MaterialContainer()
         {
             walls = new List<Wall>();
             beams = new List<Beam>();
             openings = new List<Opening>();
+            columns = new List<ISinglePointComponent>();
         }
 
         public bool IsWallsEmpty()
@@ -44,6 +46,10 @@ namespace Logic.Domain
 
         }
 
+        public bool IsColumnsEmpty()
+        {
+            return columns.Count == 0;
+        }
 
         public void AddBeam(Beam aBeam)
         {
@@ -73,7 +79,6 @@ namespace Logic.Domain
             return beams.Count;
         }
 
-
         public int OpeningsCount()
         {
             return openings.Count;
@@ -86,6 +91,20 @@ namespace Logic.Domain
                 throw new ArgumentNullException();
             }
             walls.Remove(aWall);
+        }
+
+        public bool ContainsColumn(ISinglePointComponent aColumn)
+        {
+            return columns.Contains(aColumn);
+        }
+
+        public void AddColumn(ISinglePointComponent aColumn)
+        {
+            if(aColumn == null)
+            {
+                throw new ArgumentNullException();
+            }
+            columns.Add(aColumn);
         }
 
         public void RemoveBeam(Beam aBeam)
@@ -117,10 +136,13 @@ namespace Logic.Domain
         }
 
         public ICollection<Opening> GetOpenings()
-        {
-
+        { 
             return new List<Opening>(openings);
+        }
 
+        public ICollection<ISinglePointComponent> GetColumns()
+        {
+            return new List<ISinglePointComponent>(columns);
         }
 
         public bool ContainsWall(Wall aWall)
@@ -149,6 +171,17 @@ namespace Logic.Domain
             }
             return openings.Contains(anOpening);
         }
+
+        public void RemoveColumn(ISinglePointComponent aColumn)
+        {
+            if (aColumn == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            columns.Remove(aColumn);
+        }
+
 
         public ICollection GetPriceables()
         {

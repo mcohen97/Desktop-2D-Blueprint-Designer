@@ -37,6 +37,12 @@ namespace Logic.Test
         }
 
         [TestMethod]
+        public void EmptyContainerNoColumnsTest()
+        {
+            Assert.IsTrue(instance.IsColumnsEmpty());
+        }
+
+        [TestMethod]
         public void AddWallTest()
         {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
@@ -61,6 +67,21 @@ namespace Logic.Test
             int expectedResult = 1;
             int actualResult = instance.BeamsCount();
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void AddColumnTest()
+        {
+            Column testColumn = new Column(new Point(3, 2));
+            instance.AddColumn(testColumn);
+            Assert.IsTrue(instance.ContainsColumn(testColumn));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddNullColumnTest()
+        {
+            instance.AddColumn(null);
         }
 
         [TestMethod]
@@ -103,6 +124,23 @@ namespace Logic.Test
         public void RemoveNullWallTest()
         {
             instance.RemoveWall(null);
+        }
+
+        [TestMethod]
+        public void RemoveColumnTest()
+        {
+            Column testColumn = new Column(new Point(2, 3));
+            instance.AddColumn(testColumn);
+            instance.RemoveColumn(testColumn);
+
+            Assert.AreEqual(0, instance.GetColumns().Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RemoveNullColumnTest()
+        {
+            instance.RemoveColumn(null);
         }
 
         [TestMethod]
@@ -175,12 +213,31 @@ namespace Logic.Test
         }
 
         [TestMethod]
+        public void GetColumnsCollectionTest()
+        {
+            Column testColumn = new Column(new Point(2, 2));
+            instance.AddColumn(testColumn);
+            ICollection<Column> expectedResult = new List<Column>();
+            expectedResult.Add(testColumn);
+            ICollection actualResult = (ICollection)instance.GetColumns();
+            CollectionAssert.AreEquivalent((ICollection)expectedResult, actualResult);
+        }
+
+        [TestMethod]
         public void ContainsWallTest()
         {
             Wall testWall = new Wall(new Point(3, 2), new Point(2, 2));
             instance.AddWall(testWall);
             Wall otherTestWall = new Wall(new Point(3, 2), new Point(2, 2));
             Assert.IsTrue(instance.ContainsWall(otherTestWall));
+        }
+
+        [TestMethod]
+        public void ContainsColumnTest()
+        {
+            Column testColumn = new Column(new Point(3, 2));
+            instance.AddColumn(testColumn);
+            Assert.IsTrue(instance.ContainsColumn(testColumn));
         }
 
         [TestMethod]
@@ -191,7 +248,7 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void containsBeamTest()
+        public void ContainsBeamTest()
         {
             Beam testBeam = new Beam(new Point(3, 2));
             instance.AddBeam(testBeam);
@@ -201,13 +258,13 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void containsNullBeamTest()
+        public void ContainsNullBeamTest()
         {
             instance.ContainsBeam(null);
         }
 
         [TestMethod]
-        public void containsOpeningTest()
+        public void ContainsOpeningTest()
         {
             Opening testOpening = new Door(new Point(3, 2));
             instance.AddOpening(testOpening);
@@ -217,11 +274,10 @@ namespace Logic.Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void containsNullOpeningTest()
+        public void ContainsNullOpeningTest()
         {
             instance.ContainsOpening(null);
         }
-
 
     }
 

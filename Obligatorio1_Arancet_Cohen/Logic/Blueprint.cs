@@ -101,10 +101,26 @@ namespace Logic.Domain
             {
                 throw new CollinearWallsException();
             }
-            else
+            else if (TakesAColumnPlace(newWall))
             {
+                throw new ColumnInPlaceException();
+            }
+            else { 
                 InsertValidatedWall(newWall);
             }
+        }
+
+        private bool TakesAColumnPlace(Wall newWall)
+        {
+            bool existColumnInWallPlace = false;
+            foreach (ISinglePointComponent column in materials.GetColumns())
+            {
+                if (newWall.DoesContainComponent(column))
+                {
+                    existColumnInWallPlace = true;
+                }
+            }
+            return existColumnInWallPlace;
         }
 
         public override void RemoveWall(Point from, Point to)
@@ -137,6 +153,29 @@ namespace Logic.Domain
                     throw new ComponentOutOfWallException();
                 }
             }
+        }
+
+        public void InsertColumn(Point columnPosition)
+        {
+            ISinglePointComponent newColumn = new Column(columnPosition);
+
+            if (!PunctualComponentInRange(newColumn))
+            {
+                throw new OutOfRangeComponentException();
+            }
+
+            if (BelongsToAWall(newColumn))
+            {
+                throw new ComponentInWallException();
+            }
+
+            if (OccupiedPosition(newColumn))
+            {
+                throw new OccupiedPositionException();
+            }
+
+            materials.AddColumn(newColumn);
+
         }
 
         public override void RemoveOpening(Opening anOpening)
@@ -318,13 +357,14 @@ namespace Logic.Domain
         public bool OccupiedPosition(ISinglePointComponent punctualComponent)
         {
             return materials.GetOpenings().Any(op => op.GetPosition().Equals(punctualComponent.GetPosition()))
-                || materials.GetBeams().Any(bm => bm.GetPosition().Equals(punctualComponent.GetPosition()));
-
+                || materials.GetBeams().Any(bm => bm.GetPosition().Equals(punctualComponent.GetPosition()))
+                || materials.GetColumns().Any(cm => cm.GetPosition().Equals(punctualComponent.GetPosition()));
+                
         }
 
-        public bool BelongsToAWall(Opening newOpening)
+        public bool BelongsToAWall(ISinglePointComponent singlePointed)
         {
-            return materials.GetWalls().Any(wall => wall.DoesContainComponent(newOpening));
+            return materials.GetWalls().Any(wall => wall.DoesContainComponent(singlePointed));
         }
 
         public void RemoveOpeningsOfWall(Wall aWall)
@@ -411,6 +451,11 @@ namespace Logic.Domain
             return (ICollection<Opening>)materials.GetOpenings();
         }
 
+        public ICollection<ISinglePointComponent> GetColumns()
+        {
+            return (ICollection<ISinglePointComponent>)materials.GetColumns();
+        }
+
         public override string ToString()
         {
             string strId = id.ToString();
@@ -418,6 +463,8 @@ namespace Logic.Domain
                    + "Owner: " + Owner.UserName + " "
                    + "Id: " + strId.Substring(strId.Length - 5);
         }
+
+       
 
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="BluePrintsPortfolioTest.cs" />
     <Compile Include="BluePrintTest.cs" />
     <Compile Include="ClientTest.cs" />
+    <Compile Include="ColumnTest.cs" />
     <Compile Include="DataValidationsTest.cs" />
     <Compile Include="DesignerTest.cs" />
     <Compile Include="PointTest.cs" />

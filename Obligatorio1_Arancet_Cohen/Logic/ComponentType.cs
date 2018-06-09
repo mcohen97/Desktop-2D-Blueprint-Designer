@@ -11,6 +11,7 @@ namespace Logic.Domain
         WALL,
         BEAM,
         DOOR,
-        WINDOW
+        WINDOW,
+        COLUMN
     }
 }
