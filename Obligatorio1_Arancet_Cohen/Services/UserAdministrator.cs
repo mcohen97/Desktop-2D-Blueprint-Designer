@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Logic.Exceptions;
+using Logic.Domain;
+using DataAccess;
+using RepositoryInterface;
+using DomainRepositoryInterface;
 
-namespace Logic.Domain
+namespace Services
 {
     public class UserAdministrator
     {
@@ -19,7 +23,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            UsersPortfolio.Instance.Add(aUser);
+            IRepository<User> usersStorage = new UserRepository();
+            usersStorage.Add(aUser);
         }
 
         public bool Exist(User aUser)
@@ -28,7 +33,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            return UsersPortfolio.Instance.Exist(aUser);
+            IRepository<User> usersStorage = new UserRepository();
+            return usersStorage.Exists(aUser);
         }
 
 
@@ -38,7 +44,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            return UsersPortfolio.Instance.ExistsUserName(userName);
+            IUserRepository usersStorage = new UserRepository();
+            return usersStorage.ExistsUserName(userName);
         }
 
         public User GetUser(string userName)
@@ -47,9 +54,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-
-
-            return UsersPortfolio.Instance.GetUserByUserName(userName);
+            IUserRepository usersStorage = new UserRepository();
+            return usersStorage.GetUserByUserName(userName);
         }
 
         public void Update(User aUser)
@@ -58,8 +64,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            UsersPortfolio.Instance.Remove(aUser);
-            UsersPortfolio.Instance.Add(aUser);
+            IRepository<User> usersStorage = new UserRepository();
+            usersStorage.Modify(aUser);
         }
 
         public void Remove(User aUser)
@@ -68,7 +74,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            UsersPortfolio.Instance.Remove(aUser);
+            IRepository<User> usersStorage = new UserRepository();
+            usersStorage.Delete(aUser);
         }
 
         public ICollection<User> GetAllClients()
@@ -77,7 +84,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            ICollection<User> allClients = UsersPortfolio.Instance.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
+            IUserRepository usersStorage = new UserRepository();
+            ICollection<User> allClients = usersStorage.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
             return allClients;
         }
 
@@ -87,7 +95,8 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            ICollection<User> allUsers = UsersPortfolio.Instance.GetUsers();
+            IRepository<User> usersStorage = new UserRepository();
+            ICollection<User> allUsers = usersStorage.GetAll();
             allUsers.Remove(Session.UserLogged);
             return allUsers;
         }

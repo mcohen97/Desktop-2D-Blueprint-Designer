@@ -2,7 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 
-namespace Logic.Test
+
+
+
+namespace ServicesTest
 {
     [TestClass]
     public class SessionTest

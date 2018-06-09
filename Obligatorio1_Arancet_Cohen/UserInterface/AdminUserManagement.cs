@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
+using Services;
 
 namespace UserInterface {
     public partial class AdminUserManagement : UserControl, IUserFeatureControl {
@@ -25,8 +26,6 @@ namespace UserInterface {
 
         private void FillList() {
             userList.DataSource = null;
-            /* List<User> elegibleUsers = UsersPortfolio.Instance.GetUsers().ToList();
-             elegibleUsers.Remove(CurrentSession.UserLogged);*/
             List<User> elegibleUsers = controller.GetAllUsersExceptMe().ToList();
             userList.DataSource = elegibleUsers;
         }
@@ -43,7 +42,6 @@ namespace UserInterface {
             bool selectedItem=InputValidations.IsListItemSelected(userList, errorLabel,
                 "Debe seleccionar un usuario primero");
             if (selectedItem) {
-                // UsersPortfolio.Instance.Remove((User)userList.SelectedItem);
                 controller.Remove((User)userList.SelectedItem);
                 FillList();
             }

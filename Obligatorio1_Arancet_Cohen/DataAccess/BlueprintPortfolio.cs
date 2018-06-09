@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Linq;
+using Logic.Domain;
 
 [assembly: InternalsVisibleTo("SystemUsersTest")]
 
-namespace Logic.Domain
+namespace DataAccess
 {
-    internal class BlueprintPortfolio
+    public class BlueprintPortfolio
     {
 
         private static BlueprintPortfolio instance;
@@ -23,13 +24,12 @@ namespace Logic.Domain
             }
         }
 
-
         private BlueprintPortfolio()
         {
             Blueprints = new List<IBlueprint>();
         }
 
-        public void Empty()
+        public void Clear()
         {
             Blueprints = new List<IBlueprint>();
         }
@@ -44,7 +44,7 @@ namespace Logic.Domain
             Blueprints.Add(aBlueprint);
         }
 
-        public bool Exist(IBlueprint aBlueprint)
+        public bool Exists(IBlueprint aBlueprint)
         {
             if (aBlueprint == null)
             {
@@ -53,12 +53,12 @@ namespace Logic.Domain
             return Blueprints.Contains(aBlueprint);
         }
 
-        public ICollection<IBlueprint> GetBlueprintsCopy()
+        public ICollection<IBlueprint> GetAll()
         {
             return new List<IBlueprint>(Blueprints);
         }
 
-        public bool Remove(IBlueprint aBlueprint)
+        public bool Delete(IBlueprint aBlueprint)
         {
             if (aBlueprint == null)
             {
@@ -67,7 +67,7 @@ namespace Logic.Domain
             return Blueprints.Remove(aBlueprint);
         }
 
-        public IBlueprint GetBlueprint(IBlueprint aBlueprint)
+        public IBlueprint Get(IBlueprint aBlueprint)
         {
             if (aBlueprint == null)
             {
@@ -86,9 +86,9 @@ namespace Logic.Domain
             return new List<IBlueprint>(elegible);
         }
 
-        internal void DeleteUserBlueprints(Client aUser)
+        public void DeleteUserBlueprints(Client aUser)
         {
-            foreach (IBlueprint existent in GetBlueprintsCopy())
+            foreach (IBlueprint existent in GetAll())
             {
                 if (existent.Owner.Equals(aUser))
                 {

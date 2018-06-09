@@ -42,6 +42,5 @@ namespace Logic.Domain
         public abstract void RemoveOpening(Point position);
 
         public virtual User Owner { get; set; }
-
     }
 }

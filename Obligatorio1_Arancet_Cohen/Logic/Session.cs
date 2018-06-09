@@ -7,7 +7,7 @@ namespace Logic.Domain
         public User UserLogged { get; }
         public bool FirstLogin { get; set; }
 
-        internal Session(User aUser)
+        public Session(User aUser)
         {
             UserLogged = aUser;
             FirstLogin = aUser.LastLoginDate == Constants.NEVER;

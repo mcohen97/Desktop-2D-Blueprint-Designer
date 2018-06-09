@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class DesignerEntity: UserEntity
+    public class PointEntity
     {
-        public DesignerEntity() {
-        }
+        public Guid Id { get; set; }
+        public float CoordX { get; set; }
+
+        public float CoordY { get; set; }
     }
 }

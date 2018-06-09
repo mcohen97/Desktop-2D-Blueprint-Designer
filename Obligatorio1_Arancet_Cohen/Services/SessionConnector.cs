@@ -1,11 +1,17 @@
 ﻿using Logic.Exceptions;
-namespace Logic.Domain
+using Logic.Domain;
+using DataAccess;
+using RepositoryInterface;
+using DomainRepositoryInterface;
+
+namespace Services
 {
     public class SessionConnector
     {
         public Session LogIn(string userName, string password)
         {
-            User userLogging = UsersPortfolio.Instance.GetUserByUserName(userName);
+            IUserRepository userStorage = new UserRepository();
+            User userLogging = userStorage.GetUserByUserName(userName);
             if (userLogging.Password != password)
             {
                 throw new WrongPasswordException();

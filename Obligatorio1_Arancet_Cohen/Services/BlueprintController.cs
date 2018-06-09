@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Logic.Exceptions;
+using Logic.Domain;
+using DataAccess;
 
-namespace Logic.Domain
+namespace Services
 {
     public class BlueprintController
     {
@@ -28,7 +30,7 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.Exist(aBlueprint);
+            return BlueprintPortfolio.Instance.Exists(aBlueprint);
         }
 
         public ICollection<IBlueprint> GetBlueprints(User aUser)
@@ -46,7 +48,7 @@ namespace Logic.Domain
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.GetBlueprintsCopy();
+            return BlueprintPortfolio.Instance.GetAll();
         }
 
         public void Remove(IBlueprint aBlueprint)
@@ -55,7 +57,7 @@ namespace Logic.Domain
             {//you cant destroy what you did not create
                 throw new NoPermissionsException();
             }
-            BlueprintPortfolio.Instance.Remove(aBlueprint);
+            BlueprintPortfolio.Instance.Delete(aBlueprint);
         }
 
         public void Sign(IBlueprint aBlueprint)

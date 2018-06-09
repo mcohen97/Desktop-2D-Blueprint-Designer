@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class WallEntity
+    public class WallEntity
     {
-        private float HeightValue;
+        public Guid Id { get; set; }
+        public WallEntity() {
+        }
+        public float Height { get; set; }
 
-        private float widthValue;
+        public float Width { get; set; }
+
+        public PointEntity From { get; set; }
+
+        public PointEntity To { get; set; }
         
+        public BlueprintEntity Blueprint { get; set; }
     }
 }

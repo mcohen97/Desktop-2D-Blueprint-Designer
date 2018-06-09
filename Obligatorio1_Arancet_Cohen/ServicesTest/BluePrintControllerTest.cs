@@ -4,12 +4,19 @@ using Logic.Exceptions;
 using Logic.Domain;
 using System.Collections.Generic;
 using System.Linq;
+using Services;
+using DataAccess;
+using DomainRepositoryInterface;
+using RepositoryInterface;
 
-namespace Logic.Test
+
+
+namespace ServicesTest
 {
     [TestClass]
     public class BlueprintControllerTest
     {
+        private IRepository<User> repository;
 
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
@@ -28,7 +35,8 @@ namespace Logic.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            UsersPortfolio.Instance.Clear();
+            repository = new UserRepository();
+            (repository).Clear();
             blueprintPortfolio = BlueprintPortfolio.Instance;
 
 
@@ -60,8 +68,8 @@ namespace Logic.Test
         [TestCleanup]
         public void CleanUp()
         {
-            blueprintPortfolio.Empty();
-            UsersPortfolio.Instance.Clear();
+            blueprintPortfolio.Clear();
+            repository.Clear();
         }
 
         private void initializerWithData()

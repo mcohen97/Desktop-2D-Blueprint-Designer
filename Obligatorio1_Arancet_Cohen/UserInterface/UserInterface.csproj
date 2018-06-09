@@ -202,9 +202,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
       <Name>Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryInterface\RepositoryInterface.csproj">
+      <Project>{636b5156-d57e-4d33-b0f9-272ab0c13ffd}</Project>
+      <Name>RepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{875d9fdd-57a1-468c-9c18-7596b5c67466}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserRepositoryInterface\DomainRepositoryInterface.csproj">
+      <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
+      <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

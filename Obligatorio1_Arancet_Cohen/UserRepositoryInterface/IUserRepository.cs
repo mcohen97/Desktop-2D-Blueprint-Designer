@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
 
-namespace RepositoryInterface
+namespace DomainRepositoryInterface
 {
     public interface IUserRepository
     {
+        User Get(User userAsked);
         bool ExistsUserName(string aUserName);
 
         User GetUserByUserName(string userName);
 
-        IEnumerable<User> GetUsersByPermission(int aFeature);
+        ICollection<User> GetUsersByPermission(Permission aFeature);
 
 
 
