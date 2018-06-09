@@ -68,6 +68,7 @@
     <Compile Include="SessionConnectorTest.cs" />
     <Compile Include="SessionTest.cs" />
     <Compile Include="SignatureTest.cs" />
+    <Compile Include="TemplateTest.cs" />
     <Compile Include="UserAdministratorTest.cs" />
     <Compile Include="UsersPortfolioTest.cs" />
     <Compile Include="WallTest.cs" />
