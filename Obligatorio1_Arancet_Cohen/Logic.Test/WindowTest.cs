@@ -19,7 +19,7 @@ namespace Logic.Test
         public void GetHeightAboveFloorTest()
         {
             float expectedResullt = 1;
-            float actualResult = instance.HeightAboveFloor;
+            float actualResult = instance.HeightAboveFloor();
             Assert.AreEqual(expectedResullt, actualResult);
         }
 

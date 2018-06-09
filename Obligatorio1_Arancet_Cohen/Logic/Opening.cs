@@ -10,8 +10,7 @@ namespace Logic.Domain
     {
 
 
-        protected float heightValue;
-        protected float lengthValue;
+        protected Template dimensions;
         protected Point position;
 
         public Opening(Point aPlace)
@@ -19,14 +18,24 @@ namespace Logic.Domain
             position = aPlace;
         }
 
+        public Opening(Point aPlace, Template template)
+        {
+            dimensions = template;
+        }
+
         public float Height()
         {
-            return heightValue;
+            return dimensions.Height;
         }
 
         public float Length()
         {
-            return lengthValue;
+            return dimensions.Length;
+        }
+
+        public float HeightAboveFloor()
+        {
+            return dimensions.HeightAboveFloor;
         }
 
         public Point GetPosition()
@@ -58,7 +67,6 @@ namespace Logic.Domain
         public abstract float CalculatePrice();
 
         public abstract float CalculateCost();
-
 
         public abstract ComponentType GetComponentType();
     }

@@ -69,7 +69,7 @@ namespace Logic.Test
             ComponentType type = ComponentType.WINDOW;
             Template template = new Template(name, length, width, height, type);
 
-            Assert.AreEqual(width, template.Width);
+            Assert.AreEqual(width, template.HeightAboveFloor);
         }
 
         [TestMethod]
@@ -128,9 +128,9 @@ namespace Logic.Test
             Template template = new Template(name, length, width, height, type);
 
             float newWidth = 0.3f;
-            template.Width = newWidth;
+            template.HeightAboveFloor = newWidth;
 
-            Assert.AreEqual(newWidth, template.Width);
+            Assert.AreEqual(newWidth, template.HeightAboveFloor);
         }
 
         [TestMethod]

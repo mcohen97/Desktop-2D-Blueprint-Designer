@@ -66,6 +66,7 @@
     <Compile Include="SessionConnector.cs" />
     <Compile Include="Signature.cs" />
     <Compile Include="Template.cs" />
+    <Compile Include="TemplateNotMatchException.cs" />
     <Compile Include="UserAdministrator.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Door.cs" />

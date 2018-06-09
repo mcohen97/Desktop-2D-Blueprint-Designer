@@ -12,8 +12,22 @@ namespace Logic.Domain
 
         public Door(Point aPlace) : base(aPlace)
         {
-            heightValue = 2.20F;
-            lengthValue = 0.85F;
+            float DefaultHeightValue = 2.20F;
+            float DefaultLengthValue = 0.85F;
+            Template defaultTemplate = new Template("Default Door Template", DefaultLengthValue, 0, DefaultHeightValue, ComponentType.DOOR);
+            base.dimensions = defaultTemplate;
+        }
+
+        public Door(Point point, Template template) : base(point,template)
+        {            
+            if(template.Type != ComponentType.DOOR)
+            {
+                throw new TemplateTypeNotMatchException();
+            }
+
+            position = point;
+            dimensions = template;
+
         }
 
         public override float CalculateCost()
