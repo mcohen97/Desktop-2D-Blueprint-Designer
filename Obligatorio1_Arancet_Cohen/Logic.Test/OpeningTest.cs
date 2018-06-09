@@ -10,17 +10,19 @@ namespace Logic.Test
     {
 
         private Opening instance;
+        private Template template;
 
         [TestInitialize]
         public void SetUp()
         {
-            instance = new Door(new Point(3, 2));
+            template = new Template("My Test Template", 1, 0 , 1.12f, ComponentType.DOOR);
+            instance = new Door(new Point(3, 2), template);
         }
 
         [TestMethod]
         public void GetHeighTest()
         {
-            float expectedResult = 2.20F;
+            float expectedResult = 1.12f;
             float actualResult = instance.Height();
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -28,7 +30,7 @@ namespace Logic.Test
         [TestMethod]
         public void GetLengthTest()
         {
-            float expectedResult = 0.85F;
+            float expectedResult = 1;
             float actualResult = instance.Length();
             Assert.AreEqual(expectedResult, actualResult);
 
@@ -79,5 +81,13 @@ namespace Logic.Test
             Assert.AreNotEqual(instance, null);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(TemplateTypeNotMatchException))]
+        public void TypeNotMatchConstructorTest()
+        {
+            Opening opening = new Window(new Point(1, 1), new Template("Not match", 1, 1, 1, ComponentType.DOOR));
+        }
+
+        //Validaton tests goes down here
     }
 }
