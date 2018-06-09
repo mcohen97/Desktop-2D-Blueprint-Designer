@@ -8,11 +8,14 @@ namespace Logic.Test
     public class ColumnTest
     {
         Column instance;
+        Blueprint blueprint;
 
         [TestInitialize]
         public void SetUp()
         {
             instance = new Column(new Point(3, 2));
+            blueprint = new Blueprint(20, 20, "blueprint");
+            blueprint.InsertWall(new Point(5,5), new Point(5,9));
         }
 
 
