@@ -69,5 +69,9 @@ namespace Logic.Domain
         public abstract float CalculateCost();
 
         public abstract ComponentType GetComponentType();
+
+        public string getTemplateName() {
+            return dimensions.Name;
+        }
     }
 }
