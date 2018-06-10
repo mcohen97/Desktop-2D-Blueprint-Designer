@@ -33,6 +33,16 @@ namespace DataAccess
             return conversion;
         }
 
+        private MaterialContainer BuildUpContainer(ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts) {
+            MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
+
+            ICollection<Wall> walls = (ICollection<Wall>)wallEnts.Select(w => translator.EntityToWall(w));
+            ICollection<Opening> openings = (ICollection<Opening>)openEnts.Select(o => translator.EntityToOpening(o));
+
+            //MaterialContainer container = new MaterialContainer() 
+
+        }
+
         public SignatureEntity SignatureToEntity(Signature toConvert) {
 
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
