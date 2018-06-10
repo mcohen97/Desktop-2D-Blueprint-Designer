@@ -17,7 +17,7 @@ namespace Entities
 
         public UserEntity Owner { get; set; }
 
-        public UserEntity Signature { get; set; }
+        public ICollection<SignatureEntity> Signatures { get; set; }
 
         public DateTime LastSignDate { get; set; }
 

@@ -13,9 +13,12 @@ namespace DataAccess
     {
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<BlueprintEntity> Blueprints { get; set; }
-
+        public DbSet<OpeningEntity> Openings { get; set; }
+        public DbSet<OpeningTemplateEntity> OpeningTemplates { get; set; }
         public DbSet<WallEntity> Walls { get; set; }
-        
+        public DbSet<PointEntity> Points { get; set; }
+        public DbSet<SignatureEntity> Signatures { get; set; }
+        public DbSet<CostPriceEntity> CostsAndPrices { get; set; }
 
         public BlueBuilderDBContext() : base("name=BlueBuilderDBContext")
         {
