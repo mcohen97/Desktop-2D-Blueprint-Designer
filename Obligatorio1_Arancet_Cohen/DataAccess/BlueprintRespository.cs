@@ -6,14 +6,27 @@ using System.Threading.Tasks;
 using Logic.Domain;
 using DomainRepositoryInterface;
 using RepositoryInterface;
+using Entities;
 
 namespace DataAccess
 {
     class BlueprintRespository : IRepository<Blueprint>, IUserRepository
     {
-        public void Add(Blueprint entity)
+        public void Add(Blueprint toStore)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
+                MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
+
+                BlueprintEntity converted = blueprintTranslator.BlueprintToEntiy(toStore);
+                context.Blueprints.Add(converted);
+
+                IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,toStore));
+                context.Walls.AddRange(convertedWalls);
+
+                
+                context.SaveChanges();
+            }
         }
 
         public void Clear()
