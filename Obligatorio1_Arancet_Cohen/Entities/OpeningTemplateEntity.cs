@@ -13,7 +13,7 @@ namespace Entities
 
         public float Length { get; set; }
 
-        public float Width { get; set; }
+        public float HeightAboveFloor { get; set; }
 
         public string Name { get; set; }
               
