@@ -19,6 +19,6 @@ namespace Entities
 
         public PointEntity To { get; set; }
         
-        public BlueprintEntity Blueprint { get; set; }
+        public BlueprintEntity BearerBlueprint { get; set; }
     }
 }
