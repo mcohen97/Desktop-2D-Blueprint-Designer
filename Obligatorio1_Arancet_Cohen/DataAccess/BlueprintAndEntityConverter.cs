@@ -25,7 +25,7 @@ namespace DataAccess
             return conversion;
         }
 
-        public Blueprint BlueprintToEntity(BlueprintEntity toConvert) {
+        public Blueprint EntityToBlueprint(BlueprintEntity toConvert) {
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
             User convertedUser  = userEntityConverter.toUser(toConvert.Owner);
             ICollection<Signature> convertedSignatures = (ICollection<Signature>)toConvert.Signatures.Select(s => EntityToSignature(s));

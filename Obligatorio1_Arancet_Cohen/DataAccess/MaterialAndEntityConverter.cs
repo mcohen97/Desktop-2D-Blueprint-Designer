@@ -12,13 +12,16 @@ namespace DataAccess
     {
         
 
-        public WallEntity WallToEntity(Wall toConvert) {
+        public WallEntity WallToEntity(Wall toConvert, Blueprint bearer) {
+            BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
+
             WallEntity conversion = new WallEntity()
             {
                 From = PointToEntity(toConvert.Beginning()),
                 To = PointToEntity(toConvert.End()),
                 Height = toConvert.Height(),
-                Width = toConvert.Width()
+                Width = toConvert.Width(),
+                Blueprint = blueprintTranslator.BlueprintToEntiy(bearer)
             };
             return conversion;
         }
@@ -29,6 +32,16 @@ namespace DataAccess
             Point end = EntityToPoint(toConvert.To);
             return new Wall(origin,end);
         }
+
+        public OpeningEntity OpeningToEntity(Opening toConvert) {
+            OpeningEntity conversion = new OpeningEntity() {
+            
+
+            }
+
+        }
+
+
 
         private PointEntity PointToEntity(Point toConvert)
         {
