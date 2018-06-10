@@ -1,6 +1,5 @@
-﻿using Logic.Domain;
-
-namespace Logic
+﻿
+namespace Logic.Domain
 {
     public class Template
     {
