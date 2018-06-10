@@ -28,15 +28,12 @@ namespace Logic.Domain
         private User owner;
         public override User Owner { get { return owner; } set { SetOwner(value); } }
 
-        private Guid id;
-
         public Blueprint(int aLength, int aWidth, string aName)
         {
             Length = aLength;
             Width = aWidth;
             Name = aName;
             materials = new MaterialContainer();
-            id = Guid.NewGuid();
             signatures = new List<Signature>();
         }
 
@@ -46,8 +43,15 @@ namespace Logic.Domain
             Width = aWidth;
             Name = aName;
             materials = container;
-            id = Guid.NewGuid();
             signatures = new List<Signature>();
+        }
+
+        public Blueprint(int aLength, int aWidth, string aName,User anOwner,ICollection<Signature> someSignatures) {
+            Length = aLength;
+            Width = aWidth;
+            Name = aName;
+            Owner = anOwner;
+            signatures = someSignatures;
         }
 
         private void SetName(string aName)
@@ -458,10 +462,9 @@ namespace Logic.Domain
 
         public override string ToString()
         {
-            string strId = id.ToString();
+
             return "Name: " + Name + " "
-                   + "Owner: " + Owner.UserName + " "
-                   + "Id: " + strId.Substring(strId.Length - 5);
+                   + "Owner: " + Owner.UserName + " ";
         }
 
        
