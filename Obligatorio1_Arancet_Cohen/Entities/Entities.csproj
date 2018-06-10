@@ -44,6 +44,7 @@
     <Compile Include="ArchitectEntity.cs" />
     <Compile Include="BlueprintEntity.cs" />
     <Compile Include="ClientEntity.cs" />
+    <Compile Include="ColumnEntity.cs" />
     <Compile Include="CostPriceEntity.cs" />
     <Compile Include="DesignerEntity.cs" />
     <Compile Include="OpeningEntity.cs" />
