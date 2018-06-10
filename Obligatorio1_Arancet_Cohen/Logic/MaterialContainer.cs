@@ -21,6 +21,13 @@ namespace Logic.Domain
             columns = new List<ISinglePointComponent>();
         }
 
+        public MaterialContainer(ICollection<Wall> wallsSet,ICollection<Opening> openingsSet, ICollection<ISinglePointComponent> columnsSet) {
+            walls = wallsSet;
+            openings = openingsSet;
+            columns = columnsSet;
+            beams = new List<Beam>();
+        }
+
         public bool IsWallsEmpty()
         {
             return walls.Count == 0;//couln't find anything like isEmpty();
