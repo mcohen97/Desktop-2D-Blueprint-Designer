@@ -31,6 +31,8 @@ namespace Logic.Domain
             return signatures;
         }
 
+        public virtual User Owner { get; set; }
+
         public abstract void InsertWall(Point from, Point to);
 
         public abstract void RemoveWall(Point from, Point to);
@@ -41,6 +43,6 @@ namespace Logic.Domain
 
         public abstract void RemoveOpening(Point position);
 
-        public virtual User Owner { get; set; }
+        
     }
 }
