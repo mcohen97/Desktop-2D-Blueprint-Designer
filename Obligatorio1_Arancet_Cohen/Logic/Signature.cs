@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
 
-namespace Logic
+namespace Logic.Domain
 {
     public class Signature
     {
         private DateTime signatureDate;
-        private User user;
+        private User signer;
 
         public Signature(User user, DateTime now)
         {
-            this.user = user;
+            this.signer = user;
             this.signatureDate = now;
         }
 
         public DateTime Date { get { return signatureDate; } internal set { } }
-        public User User { get { return user; } internal set { } }
+        public User Signer { get { return signer; } internal set { } }
     }
 }

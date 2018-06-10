@@ -18,7 +18,7 @@ namespace Logic.Domain
         public string Name { get { return name; } private set { SetName(value); } }
 
         private int length;
-        public int Length { get { return length; } private set { SetLength(value); } }//Horizontal X Mesaure
+        public  int Length { get { return length; } private set { SetLength(value); } }//Horizontal X Mesaure
 
         private int width;
         public int Width { get { return width; } private set { SetWidth(value); } }//Vertical Y Mesaure

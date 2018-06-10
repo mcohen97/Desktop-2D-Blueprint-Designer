@@ -469,7 +469,7 @@ namespace Logic.Test
             instance.Sign(architectA);
             Signature lastSignature = instance.GetSignatures().Last();
 
-            Assert.AreEqual(lastSignature.User, architectA);
+            Assert.AreEqual(lastSignature.Signer, architectA);
         }
 
         [TestMethod]
