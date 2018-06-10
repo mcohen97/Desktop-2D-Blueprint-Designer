@@ -10,7 +10,7 @@ namespace DataAccess
 {
     class MaterialAndEntityConverter
     {
-        
+
 
         public WallEntity WallToEntity(Wall toConvert, Blueprint bearer) {
             BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
@@ -30,15 +30,55 @@ namespace DataAccess
 
             Point origin = EntityToPoint(toConvert.From);
             Point end = EntityToPoint(toConvert.To);
-            return new Wall(origin,end);
+            return new Wall(origin, end);
         }
 
-        public OpeningEntity OpeningToEntity(Opening toConvert) {
-            OpeningEntity conversion = new OpeningEntity() {
-            
+        public OpeningEntity OpeningToEntity(Opening toConvert, OpeningTemplateEntity itsTemplate) {
+            OpeningEntity conversion = new OpeningEntity()
+            {
+                Position = PointToEntity(toConvert.GetPosition()),
+                Template = itsTemplate,
+            };
+            return conversion;
+        }
 
+        public Opening EntityToOpening(OpeningEntity toConvert) {
+
+            Point pos = EntityToPoint(toConvert.Position);
+            Template temp = EntityToOpeningTemplate(toConvert.Template);
+
+            Opening conversion;
+            switch (toConvert.Template.ComponentType) {
+                case ((int)ComponentType.DOOR):
+                    conversion = new Door(pos, temp);
+                    break;
+                case ((int)ComponentType.WINDOW):
+                    conversion = new Window(pos, temp);
+                    break;
+                default:
+                    throw new Exception();
+                 break;
             }
+            return conversion;
+        }
 
+
+        public OpeningTemplateEntity OpeningTemplateToEntity(Template toConvert) {
+            OpeningTemplateEntity conversion = new OpeningTemplateEntity()
+            {
+                Height = toConvert.Height,
+                Length = toConvert.Length,
+                HeightAboveFloor = toConvert.HeightAboveFloor,
+            };
+            return conversion;
+        }
+
+        public Template EntityToOpeningTemplate(OpeningTemplateEntity toConvert) {
+            Template conversion = new Template(toConvert.Name,
+                toConvert.Length, toConvert.Height, toConvert.Height, 
+                (ComponentType)toConvert.ComponentType);
+
+            return conversion;
         }
 
 
