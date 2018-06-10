@@ -11,5 +11,7 @@ namespace Entities
         public Guid Id { get; set; }
         public OpeningTemplateEntity Template{get;set;}
         public PointEntity Position { get; set; }
+
+        public BlueprintEntity BearerBlueprint { get; set; }
     }
 }
