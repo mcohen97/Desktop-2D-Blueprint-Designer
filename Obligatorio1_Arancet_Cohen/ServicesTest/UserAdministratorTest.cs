@@ -68,7 +68,7 @@ namespace ServicesTest
         {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
-            Assert.AreNotEqual(user1.LastLoginDate, Constants.NEVER);
+            Assert.AreNotEqual(session.UserLogged.LastLoginDate, Constants.NEVER);
         }
 
         [TestMethod]
