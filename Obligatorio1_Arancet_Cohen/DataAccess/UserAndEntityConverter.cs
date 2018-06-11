@@ -73,6 +73,8 @@ namespace DataAccess
                 Phone = toConvert.Phone,
                 IdCard = toConvert.Id,
                 Address = toConvert.Address,
+                RegistrationDate = toConvert.RegistrationDate,
+                LastLoginDate = toConvert.LastLoginDate
             };
         
             return conversion;
@@ -86,7 +88,7 @@ namespace DataAccess
             }
             Client conversion = new Client(toConvert.Name, toConvert.Surname, toConvert.UserName,
                                            toConvert.Password, toConvert.Phone, toConvert.Address,
-                                           toConvert.IdCard, toConvert.RegistrationDate);
+                                           toConvert.IdCard, toConvert.RegistrationDate,toConvert.LastLoginDate);
 
 
             return conversion;
@@ -119,7 +121,7 @@ namespace DataAccess
                 throw new ArgumentNullException();
             }
             Admin conversion = new Admin(toConvert.Name, toConvert.Surname, toConvert.UserName,
-                                        toConvert.Password, toConvert.RegistrationDate);
+                                        toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
             return conversion;
         }
 
@@ -147,7 +149,8 @@ namespace DataAccess
             {
                 throw new ArgumentNullException();
             }
-            Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate);
+            Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, 
+                toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
             return conversion;
         }
     }
