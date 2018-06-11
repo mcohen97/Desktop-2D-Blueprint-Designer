@@ -19,7 +19,6 @@ namespace Entities
 
         public ICollection<SignatureEntity> Signatures { get; set; }
 
-        public DateTime LastSignDate { get; set; }
 
     }
 }

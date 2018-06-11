@@ -36,7 +36,7 @@ namespace ServicesTest
         public void TestInitialize()
         {
             repository = new UserRepository();
-            (repository).Clear();
+            repository.Clear();
             blueprintPortfolio = BlueprintPortfolio.Instance;
 
 

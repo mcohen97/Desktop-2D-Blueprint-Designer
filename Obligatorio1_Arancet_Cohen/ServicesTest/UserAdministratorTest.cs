@@ -36,6 +36,7 @@ namespace ServicesTest
 
         private void intializerWithData()
         {
+            portfolio.Clear();
             Session session = conn.LogIn("admin", "admin");
             UserAdministrator administator = new UserAdministrator(session);
             administator.Add(user1);
