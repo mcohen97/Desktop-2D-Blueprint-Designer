@@ -16,16 +16,16 @@ namespace DataAccess
         public void Add(Blueprint toStore)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                //instantiate the translators
+                //instantiate the translators.
                 BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
                 MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
-                //translate and add the blueprint
+                //translate and add the blueprint.
                 BlueprintEntity converted = blueprintTranslator.BlueprintToEntiy(toStore);
                 context.Blueprints.Add(converted);
-                //translate and add its walls
+                //translate and add its walls.
                 IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,converted));
                 context.Walls.AddRange(convertedWalls);
-                //translate and add its openings
+                //translate and add its openings.
                 IEnumerable<OpeningEntity> convertedOpenings = toStore.GetOpenings().Select(o => CreateOpeningEntity(o,materialTranslator,converted));
                 context.Openings.AddRange(convertedOpenings);
                 
@@ -54,6 +54,10 @@ namespace DataAccess
                 foreach (OpeningEntity oe in context.Openings) {
                     context.Openings.Remove(oe);
                 }
+                foreach (ColumnEntity ce in context.Columns)
+                {
+                    context.Columns.Remove(ce);
+                }
                 foreach (BlueprintEntity bpe in context.Blueprints) {
                     context.Blueprints.Remove(bpe);
                 }
@@ -75,6 +79,13 @@ namespace DataAccess
                 foreach (OpeningEntity oe in context.Openings) {
                     if (oe.BearerBlueprint.Equals(converted)) {
                         context.Openings.Remove(oe);
+                    }
+                }
+                foreach (ColumnEntity ce in context.Columns)
+                {
+                    if (ce.BearerBlueprint.Equals(converted))
+                    {
+                        context.Columns.Remove(ce);
                     }
                 }
                 context.Blueprints.Remove(converted);
