@@ -164,6 +164,7 @@ namespace DataAccess
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserEntity record = translator.toEntity(modified);
+                context.Users.Attach(record);
                 context.Entry(record).State = EntityState.Modified;
                 context.SaveChanges();
             }
