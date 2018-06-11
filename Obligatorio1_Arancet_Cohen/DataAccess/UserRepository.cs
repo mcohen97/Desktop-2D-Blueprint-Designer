@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Logic.Domain;
 using DomainRepositoryInterface;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
+using Logic.Exceptions;
 
 namespace DataAccess
 {
@@ -20,7 +22,7 @@ namespace DataAccess
             bool esVacia;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                esVacia=context.Users.Any();
+                esVacia=!context.Users.Any(u=> !u.UserName.Equals("admin"));
             }
             return esVacia;
         }
@@ -31,9 +33,14 @@ namespace DataAccess
             {
                     UserAndEntityConverter translator = new UserAndEntityConverter();
                     UserEntity anEntity = translator.toEntity(aUser);
-
+                try
+                {
                     context.Users.Add(anEntity);
                     context.SaveChanges();
+                }
+                catch (DbUpdateException) {
+                    throw new UserAlreadyExistsException();
+                }
                 
                 
             }
@@ -44,8 +51,11 @@ namespace DataAccess
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserEntity entity = context.Users.FirstOrDefault(r => r.UserName .Equals(toDelete.UserName));
-                context.Users.Remove(entity);
-                context.SaveChanges();
+                if (entity != null)
+                {
+                    context.Users.Remove(entity);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -54,7 +64,7 @@ namespace DataAccess
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                doesExist = context.Users.Any(u => u.UserName.Equals(toLookup));
+                doesExist = context.Users.Any(u => u.UserName.Equals(toLookup.UserName));
             }
 
             return doesExist;
@@ -63,10 +73,13 @@ namespace DataAccess
         public void Clear() {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                foreach (var userEnt in context.Users)
+                foreach (UserEntity userEnt in context.Users)
                 {
                     context.Users.Remove(userEnt);
                 }
+                AdminEntity putBackAdmin = new AdminEntity() { Name = "admin", Surname="admin", UserName= "admin", Password="admin"};
+
+                context.Users.Add(putBackAdmin);
                 context.SaveChanges();
             }
 
@@ -136,10 +149,13 @@ namespace DataAccess
             return elegibleUsers;
         }
 
-        public void Modify(User record)
+        public void Modify(User modified)
         {
+            UserAndEntityConverter translator = new UserAndEntityConverter();
+
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
+                UserEntity record = translator.toEntity(modified);
                 context.Entry(record).State = EntityState.Modified;
                 context.SaveChanges();
             }
