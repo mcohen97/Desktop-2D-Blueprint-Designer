@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Services;
 using DataAccess;
 using RepositoryInterface;
+using DomainRepositoryInterface;
 
 namespace ServicesTest
 {
@@ -68,7 +69,8 @@ namespace ServicesTest
         {
             intializerWithData();
             Session session = conn.LogIn("client1UN", "client1P");
-            Assert.AreNotEqual(session.UserLogged.LastLoginDate, Constants.NEVER);
+            User actualDBRecord = ((IUserRepository)portfolio).GetUserByUserName("client1UN");
+            Assert.AreNotEqual(actualDBRecord, Constants.NEVER);
         }
 
         [TestMethod]
