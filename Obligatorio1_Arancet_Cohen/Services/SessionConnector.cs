@@ -16,7 +16,9 @@ namespace Services
             {
                 throw new WrongPasswordException();
             }
-            return new Session(userLogging);
+            Session created = new Session(userLogging);
+            ((IRepository<User>)userStorage).Modify(userLogging);
+            return created;
         }
     }
 }
