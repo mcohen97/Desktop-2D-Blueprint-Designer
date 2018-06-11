@@ -53,10 +53,6 @@
     <Compile Include="BlueprintPortfolio.cs" />
     <Compile Include="BlueprintRespository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806102308156_Initial.cs" />
-    <Compile Include="Migrations\201806102308156_Initial.Designer.cs">
-      <DependentUpon>201806102308156_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
@@ -86,11 +82,6 @@
       <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
       <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806102308156_Initial.resx">
-      <DependentUpon>201806102308156_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
