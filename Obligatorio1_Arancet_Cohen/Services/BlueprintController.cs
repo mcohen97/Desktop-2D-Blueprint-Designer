@@ -9,6 +9,7 @@ namespace Services
     public class BlueprintController
     {
         public Session Session { get; }
+        
 
         public BlueprintController(Session session)
         {
@@ -21,7 +22,8 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            BlueprintPortfolio.Instance.Add(aBlueprint);
+            BlueprintRepository repository = new BlueprintRepository();
+            repository.Add(aBlueprint);
         }
 
         public bool Exist(IBlueprint aBlueprint)
@@ -30,7 +32,8 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.Exists(aBlueprint);
+            BlueprintRepository repository = new BlueprintRepository();
+            return repository.Exists(aBlueprint);
         }
 
         public ICollection<IBlueprint> GetBlueprints(User aUser)
@@ -39,7 +42,8 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.GetBlueprintsOfUser(aUser);
+            BlueprintRepository repository = new BlueprintRepository();
+            return repository.GetBlueprintsOfUser(aUser);
         }
 
         public ICollection<IBlueprint> GetBlueprints()
@@ -48,7 +52,8 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            return BlueprintPortfolio.Instance.GetAll();
+            BlueprintRepository repository = new BlueprintRepository();
+            return repository.GetAll();
         }
 
         public void Remove(IBlueprint aBlueprint)
@@ -57,7 +62,8 @@ namespace Services
             {//you cant destroy what you did not create
                 throw new NoPermissionsException();
             }
-            BlueprintPortfolio.Instance.Delete(aBlueprint);
+            BlueprintRepository repository = new BlueprintRepository();
+            repository.Delete(aBlueprint);
         }
 
         public void Sign(IBlueprint aBlueprint)

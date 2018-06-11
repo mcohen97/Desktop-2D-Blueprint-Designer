@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueprintAndEntityConverter.cs" />
-    <Compile Include="BlueprintPortfolio.cs" />
+    <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
     <Compile Include="Migrations\201806110409444_Initial.cs" />
     <Compile Include="Migrations\201806110409444_Initial.Designer.cs">

@@ -13,13 +13,13 @@ namespace DataAccessTest
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
         private IBlueprint blueprint3;
-        private BlueprintPortfolio portfolio;
+        private BlueprintRepository portfolio;
 
 
         [TestInitialize]
         public void TestInitialize()
         {
-            portfolio = BlueprintPortfolio.Instance;
+            portfolio = new BlueprintRepository();
             portfolio.Clear();
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             blueprint1 = new Blueprint(12, 12, "Blueprint1");
@@ -74,8 +74,8 @@ namespace DataAccessTest
         public void RemoveNonExistentBlueprintTest()
         {
             portfolio.Add(blueprint2);
-            bool deletionExecuted = portfolio.Delete(blueprint1);
-            Assert.IsFalse(deletionExecuted);
+            portfolio.Delete(blueprint1);
+            Assert.IsFalse(portfolio.IsEmpty());
         }
 
         [TestMethod]

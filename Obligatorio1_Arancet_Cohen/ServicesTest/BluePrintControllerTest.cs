@@ -30,14 +30,14 @@ namespace ServicesTest
 
         private SessionConnector conn;
         private UserAdministrator administrator;
-        private BlueprintPortfolio blueprintPortfolio;
+        private BlueprintRepository blueprintPortfolio;
 
         [TestInitialize]
         public void TestInitialize()
         {
             repository = new UserRepository();
             repository.Clear();
-            blueprintPortfolio = BlueprintPortfolio.Instance;
+            blueprintPortfolio = new BlueprintRepository();
 
 
             conn = new SessionConnector();

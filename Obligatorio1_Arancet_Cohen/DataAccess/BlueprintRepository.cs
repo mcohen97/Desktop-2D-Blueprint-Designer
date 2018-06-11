@@ -11,9 +11,9 @@ using System.Data.Entity;
 
 namespace DataAccess
 {
-    class BlueprintRespository : IRepository<Blueprint>, IBlueprintRepository
+    public class BlueprintRepository : IRepository<IBlueprint>, IBlueprintRepository
     {
-        public void Add(Blueprint toStore)
+        public void Add(IBlueprint toStore)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
                 //instantiate the translators.
@@ -65,7 +65,7 @@ namespace DataAccess
             }
         }
 
-        public void Delete(Blueprint toRemove)
+        public void Delete(IBlueprint toRemove)
         {
             BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
             BlueprintEntity converted = translator.BlueprintToEntiy(toRemove);
@@ -92,7 +92,7 @@ namespace DataAccess
             }
         }
 
-        public bool Exists(Blueprint asked)
+        public bool Exists(IBlueprint asked)
         {
             bool exists;
             BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
@@ -114,9 +114,9 @@ namespace DataAccess
         }
 
 
-        public ICollection<Blueprint> GetAll()
+        public ICollection<IBlueprint> GetAll()
         {
-            ICollection<Blueprint> converted;
+            ICollection<IBlueprint> converted;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
                 converted=(ICollection<Blueprint>)context.Blueprints.Select(be => BuildBlueprint(be, context));
             }
@@ -133,7 +133,7 @@ namespace DataAccess
             return isEmpty;
         }
 
-        public void Modify(Blueprint entity)
+        public void Modify(IBlueprint entity)
         {
             BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
             BlueprintEntity bpEnt = translator.BlueprintToEntiy(entity);

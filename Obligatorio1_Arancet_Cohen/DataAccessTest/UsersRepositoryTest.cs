@@ -151,13 +151,13 @@ namespace DataAccessTest
             blueprint2.Owner = user2;
             Blueprint blueprint3 = new Blueprint(12, 12, "Blueprint3");
             blueprint3.Owner = user1;
-            BlueprintPortfolio.Instance.Add(blueprint1);
-            BlueprintPortfolio.Instance.Add(blueprint2);
-            BlueprintPortfolio.Instance.Add(blueprint3);
+            repository.Add(blueprint1);
+            repository.Add(blueprint2);
+            repository.Add(blueprint3);
 
             repository.Delete(user1);
             int expectedResult = 1;
-            int actualResult = BlueprintPortfolio.Instance.GetAll().Count;
+            int actualResult =repository.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
