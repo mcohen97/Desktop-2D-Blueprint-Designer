@@ -15,18 +15,19 @@ namespace Logic.Domain
     {
 
         private string name;
-        public string Name { get { return name; } private set { SetName(value); } }
+        public override string Name { get { return name; } protected set { SetName(value); } }
 
         private int length;
-        public  int Length { get { return length; } private set { SetLength(value); } }//Horizontal X Mesaure
+
+        public override int Length { get { return length; } protected set { SetLength(value); } }//Horizontal X Mesaure
 
         private int width;
-        public int Width { get { return width; } private set { SetWidth(value); } }//Vertical Y Mesaure
+        public override int Width { get { return width; } protected set { SetWidth(value); } }//Vertical Y Mesaure
 
         private MaterialContainer materials;
 
         private User owner;
-        public override User Owner { get { return owner; } set { SetOwner(value); } }
+        public override  User Owner { get { return owner; } set { SetOwner(value); } }
 
         public Blueprint(int aLength, int aWidth, string aName)
         {
@@ -440,22 +441,22 @@ namespace Logic.Domain
             materials.RemoveBeam(toRemove);
         }
 
-        public ICollection<Wall> GetWalls()
+        public override ICollection<Wall> GetWalls()
         {
             return (ICollection<Wall>)materials.GetWalls();
         }
 
-        public ICollection<Beam> GetBeams()
+        public override ICollection<Beam> GetBeams()
         {
             return (ICollection<Beam>)materials.GetBeams();
         }
 
-        public ICollection<Opening> GetOpenings()
+        public override ICollection<Opening> GetOpenings()
         {
             return (ICollection<Opening>)materials.GetOpenings();
         }
 
-        public ICollection<ISinglePointComponent> GetColumns()
+        public override ICollection<ISinglePointComponent> GetColumns()
         {
             return (ICollection<ISinglePointComponent>)materials.GetColumns();
         }
