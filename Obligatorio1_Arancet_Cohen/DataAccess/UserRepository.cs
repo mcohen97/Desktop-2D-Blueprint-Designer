@@ -116,7 +116,15 @@ namespace DataAccess
             {
                 UserAndEntityConverter translator = new UserAndEntityConverter();
                 UserEntity firstRecord = context.Users.FirstOrDefault(aCondition);
-                firstToComply = translator.toUser(firstRecord);
+
+                if (firstRecord == null)
+                {
+                    throw new UserNotFoundException();
+                }
+                else
+                {
+                    firstToComply = translator.toUser(firstRecord);
+                }
             }
 
             return firstToComply;
