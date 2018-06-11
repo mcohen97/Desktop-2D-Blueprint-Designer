@@ -16,6 +16,7 @@ namespace DataAccess
         public DbSet<OpeningEntity> Openings { get; set; }
         public DbSet<OpeningTemplateEntity> OpeningTemplates { get; set; }
         public DbSet<WallEntity> Walls { get; set; }
+        public DbSet<ColumnEntity> Columns { get; set; }
         public DbSet<PointEntity> Points { get; set; }
         public DbSet<SignatureEntity> Signatures { get; set; }
         public DbSet<CostPriceEntity> CostsAndPrices { get; set; }
@@ -29,8 +30,21 @@ namespace DataAccess
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>().Property(u => u.RegistrationDate).HasColumnType("datetime2");
             modelBuilder.Entity<UserEntity>().Property(u => u.LastLoginDate).HasColumnType("datetime2");
-            modelBuilder.Entity<BlueprintEntity>().Property(u => u.LastSignDate).HasColumnType("datetime2");
+            modelBuilder.Entity<SignatureEntity>().Property(s => s.SignatureDate).HasColumnType("datetime2");
+
+
             modelBuilder.Entity<UserEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<WallEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<OpeningEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<OpeningTemplateEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<ColumnEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<SignatureEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<CostPriceEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasColumnType("VARCHAR");
+            modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasMaxLength(100);
+            modelBuilder.Entity<UserEntity>().HasIndex(ue => ue.UserName).IsUnique();
+
         }
     }
 }

@@ -23,6 +23,11 @@ namespace DataAccessTest
         public void TestInitialize()
         {
             repository = new UserRepository();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                Console.WriteLine(context.Database.Exists());
+            }
+
+
             repository.Clear();
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
