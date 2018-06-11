@@ -32,8 +32,7 @@ namespace DataAccess
             modelBuilder.Entity<UserEntity>().Property(u => u.LastLoginDate).HasColumnType("datetime2");
             modelBuilder.Entity<SignatureEntity>().Property(s => s.SignatureDate).HasColumnType("datetime2");
 
-
-            modelBuilder.Entity<UserEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<UserEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<WallEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<OpeningEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<OpeningTemplateEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
@@ -43,6 +42,7 @@ namespace DataAccess
 
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasColumnType("VARCHAR");
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasMaxLength(100);
+            modelBuilder.Entity<UserEntity>().HasKey<string>(x => x.UserName);
             modelBuilder.Entity<UserEntity>().HasIndex(ue => ue.UserName).IsUnique();
 
         }
