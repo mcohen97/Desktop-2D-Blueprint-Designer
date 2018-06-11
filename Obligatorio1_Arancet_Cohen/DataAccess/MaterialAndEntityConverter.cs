@@ -12,8 +12,7 @@ namespace DataAccess
     {
 
 
-        public WallEntity WallToEntity(Wall toConvert, Blueprint bearer) {
-            BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
+        public WallEntity WallToEntity(Wall toConvert, BlueprintEntity bearer) {
 
             WallEntity conversion = new WallEntity()
             {
@@ -21,7 +20,7 @@ namespace DataAccess
                 To = PointToEntity(toConvert.End()),
                 Height = toConvert.Height(),
                 Width = toConvert.Width(),
-                Blueprint = blueprintTranslator.BlueprintToEntiy(bearer)
+                BearerBlueprint = bearer
             };
             return conversion;
         }
@@ -33,11 +32,30 @@ namespace DataAccess
             return new Wall(origin, end);
         }
 
-        public OpeningEntity OpeningToEntity(Opening toConvert, OpeningTemplateEntity itsTemplate) {
+        public ColumnEntity ColumnToEntity(Column toConvert) {
+
+            ColumnEntity conversion = new ColumnEntity()
+            {
+                Width = toConvert.Width(),
+                Height = toConvert.Height(),
+                Length = toConvert.Length(),
+                Position = PointToEntity(toConvert.GetPosition())
+            };
+            return conversion;
+        }
+
+        public Column EntityToColumn(ColumnEntity toConvert) {
+            Point position = EntityToPoint(toConvert.Position);
+            Column conversion = new Column(position);
+            return conversion;
+        }
+
+        public OpeningEntity OpeningToEntity(Opening toConvert, OpeningTemplateEntity itsTemplate, BlueprintEntity bearer) {
             OpeningEntity conversion = new OpeningEntity()
             {
                 Position = PointToEntity(toConvert.GetPosition()),
                 Template = itsTemplate,
+                BearerBlueprint= bearer
             };
             return conversion;
         }
@@ -81,7 +99,7 @@ namespace DataAccess
             return conversion;
         }
 
-
+        
 
         private PointEntity PointToEntity(Point toConvert)
         {
