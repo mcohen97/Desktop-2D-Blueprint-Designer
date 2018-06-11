@@ -25,21 +25,25 @@ namespace DataAccess
             return conversion;
         }
 
-        public Blueprint EntityToBlueprint(BlueprintEntity toConvert) {
+        public Blueprint EntityToBlueprint(BlueprintEntity toConvert, ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts, ICollection<ColumnEntity> colEnts) {
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
+
             User convertedUser  = userEntityConverter.toUser(toConvert.Owner);
             ICollection<Signature> convertedSignatures = (ICollection<Signature>)toConvert.Signatures.Select(s => EntityToSignature(s));
-            Blueprint conversion = new Blueprint(toConvert.Length, toConvert.Width, toConvert.Name, convertedUser, convertedSignatures);
+            MaterialContainer materials = BuildUpContainer(wallEnts, openEnts, colEnts);
+
+            Blueprint conversion = new Blueprint(toConvert.Length, toConvert.Width, toConvert.Name, convertedUser,materials, convertedSignatures);
             return conversion;
         }
 
-        private MaterialContainer BuildUpContainer(ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts) {
+        private MaterialContainer BuildUpContainer(ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts, ICollection<ColumnEntity> colEnts) {
             MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
 
             ICollection<Wall> walls = (ICollection<Wall>)wallEnts.Select(w => translator.EntityToWall(w));
             ICollection<Opening> openings = (ICollection<Opening>)openEnts.Select(o => translator.EntityToOpening(o));
-
-            //MaterialContainer container = new MaterialContainer() 
+            ICollection<ISinglePointComponent> columns = (ICollection<ISinglePointComponent>)colEnts.Select(c => translator.EntityToColumn(c));
+            MaterialContainer container = new MaterialContainer(walls, openings, columns);
+            return container;
 
         }
 
