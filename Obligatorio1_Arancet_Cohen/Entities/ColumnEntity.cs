@@ -8,7 +8,7 @@ namespace Entities
 {
     public class ColumnEntity
     {
-        public Guid Id;
+        public Guid Id { get; set; }
         public float Width { get; set; }
 
         public float Length { get; set; }

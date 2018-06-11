@@ -46,7 +46,7 @@ namespace Logic.Domain
             signatures = new List<Signature>();
         }
 
-        public Blueprint(int aLength, int aWidth, string aName,User anOwner,ICollection<Signature> someSignatures) {
+        public Blueprint(int aLength, int aWidth, string aName,User anOwner,MaterialContainer container,ICollection<Signature> someSignatures) {
             Length = aLength;
             Width = aWidth;
             Name = aName;
