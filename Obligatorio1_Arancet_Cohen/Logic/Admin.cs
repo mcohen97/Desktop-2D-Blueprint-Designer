@@ -14,7 +14,25 @@ namespace Logic.Domain
             RegistrationDate = registrationDate;
             LastLoginDate = Constants.NEVER;
 
-            Permissions = new List<Permission>() {
+            Permissions = GeneratePermissions();
+
+        }
+
+        public Admin(string name, string surname, string userName, string password, DateTime registrationDate, DateTime lastLoginDate)
+        {
+            Name = name;
+            Surname = surname;
+            UserName = userName;
+            Password = password;
+            RegistrationDate = registrationDate;
+            LastLoginDate = lastLoginDate;
+
+            Permissions = GeneratePermissions();
+
+        }
+
+        private List<Permission> GeneratePermissions() {
+            return new List<Permission>() {
             Permission.CREATE_USER,
             Permission.EDIT_USER,
             Permission.READ_USER,
@@ -22,7 +40,8 @@ namespace Logic.Domain
             Permission.MANAGE_COSTS,
             Permission.EDIT_OWN_DATA
         };
-
         }
+
+
     }
 }

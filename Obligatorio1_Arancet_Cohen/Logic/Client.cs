@@ -30,6 +30,21 @@ namespace Logic.Domain
             Permissions = GeneratePermissions();
         }
 
+        public Client(string name, string surname, string userName, string password, string phone, string address, string id, DateTime registrationDate, DateTime lastLoginDate)
+        {
+            Name = name;
+            Surname = surname;
+            UserName = userName;
+            Password = password;
+            Phone = phone;
+            Address = address;
+            Id = id;
+            RegistrationDate = registrationDate;
+            LastLoginDate = lastLoginDate;
+
+            Permissions = GeneratePermissions();
+        }
+
         private void SetPhone(string aPhone)
         {
             if (String.IsNullOrEmpty(aPhone))
