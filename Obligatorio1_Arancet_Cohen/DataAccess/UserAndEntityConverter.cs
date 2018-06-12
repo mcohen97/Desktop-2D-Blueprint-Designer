@@ -26,9 +26,12 @@ namespace DataAccess
             {
                 conversion = ClientToEntity((Client)toConvert);
             }
-            else
+            else if (toConvert is Designer)
             {
                 conversion = DesignerToEntity((Designer)toConvert);
+            }
+            else {
+                conversion = ArhitectToEntiy((Architect)toConvert);
             }
             return conversion;
         }
@@ -49,9 +52,13 @@ namespace DataAccess
             {
                 conversion = EntityToAdmin((AdminEntity)toConvert);
             }
-            else
+            else if (toConvert is DesignerEntity)
             {
                 conversion = EntityToDesigner((DesignerEntity)toConvert);
+            }
+            else {
+                conversion = EntityToArchitect((ArchitectEntity)toConvert);
+
             }
             return conversion;
         }
@@ -151,6 +158,26 @@ namespace DataAccess
             }
             Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, 
                 toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            return conversion;
+        }
+
+        private ArchitectEntity ArhitectToEntiy(Architect toConvert) {
+            ArchitectEntity conversion = new ArchitectEntity()
+            {
+                Name = toConvert.Name,
+                Surname = toConvert.Surname,
+                UserName = toConvert.UserName,
+                Password = toConvert.Password,
+                RegistrationDate = toConvert.RegistrationDate,
+                LastLoginDate = toConvert.LastLoginDate
+
+            };
+            return conversion;
+
+        }
+
+        private Architect EntityToArchitect(ArchitectEntity toConvert) {
+            Architect conversion = new Architect(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
             return conversion;
         }
     }
