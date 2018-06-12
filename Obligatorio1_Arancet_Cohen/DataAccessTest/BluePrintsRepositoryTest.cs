@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using DataAccess;
 using System.Collections.Generic;
+using RepositoryInterface;
 
 namespace DataAccessTest
 {
@@ -82,7 +83,7 @@ namespace DataAccessTest
         public void GetEnumeratorBlueprintTest()
         {
             portfolio.Add(blueprint1);
-            IBlueprint blueprintGot = portfolio.Get(blueprint1);
+            IBlueprint blueprintGot = ((IRepository<IBlueprint>)portfolio).Get(blueprint1);
             Assert.AreEqual(blueprintGot, blueprint1);
         }
 
