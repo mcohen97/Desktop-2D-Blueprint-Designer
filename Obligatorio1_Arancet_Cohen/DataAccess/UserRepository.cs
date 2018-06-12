@@ -73,6 +73,9 @@ namespace DataAccess
         public void Clear() {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
+                foreach (BlueprintEntity bpEnt in context.Blueprints) {
+                    context.Blueprints.Remove(bpEnt);
+                }
                 foreach (UserEntity userEnt in context.Users)
                 {
                     context.Users.Remove(userEnt);
