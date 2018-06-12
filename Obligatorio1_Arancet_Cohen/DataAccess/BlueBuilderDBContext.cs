@@ -44,6 +44,7 @@ namespace DataAccess
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasMaxLength(100);
             modelBuilder.Entity<UserEntity>().HasKey<string>(x => x.UserName);
             modelBuilder.Entity<UserEntity>().HasIndex(ue => ue.UserName).IsUnique();
+            modelBuilder.Entity<BlueprintEntity>().HasIndex(be => be.Id).IsUnique();
 
         }
     }
