@@ -52,9 +52,9 @@
     <Compile Include="BlueprintAndEntityConverter.cs" />
     <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806110409444_Initial.cs" />
-    <Compile Include="Migrations\201806110409444_Initial.Designer.cs">
-      <DependentUpon>201806110409444_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201806112326485_NoGeneratedBlueprintId.cs" />
+    <Compile Include="Migrations\201806112326485_NoGeneratedBlueprintId.Designer.cs">
+      <DependentUpon>201806112326485_NoGeneratedBlueprintId.cs</DependentUpon>
     </Compile>
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -87,8 +87,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806110409444_Initial.resx">
-      <DependentUpon>201806110409444_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806112326485_NoGeneratedBlueprintId.resx">
+      <DependentUpon>201806112326485_NoGeneratedBlueprintId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
