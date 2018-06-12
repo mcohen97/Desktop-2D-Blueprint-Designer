@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Logic.Domain
 {
     [Serializable]
-    internal class ColumnInPlaceException : Exception
+    public class ColumnInPlaceException : Exception
     {
         public ColumnInPlaceException()
         {
