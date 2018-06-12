@@ -11,6 +11,6 @@ namespace DomainRepositoryInterface
     {
         ICollection<IBlueprint> GetBlueprintsOfUser(User owner);
 
-        void DeleteUserBlueprints(Client aUser);
+        void DeleteUserBlueprints(User aUser);
     }
 }
