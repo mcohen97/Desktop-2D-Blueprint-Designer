@@ -19,9 +19,20 @@ namespace DataAccess
                 //instantiate the translators.
                 BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
                 MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
+
                 //translate and add the blueprint.
                 BlueprintEntity converted = blueprintTranslator.BlueprintToEntiy(toStore);
                 context.Blueprints.Add(converted);
+                UserEntity owner = converted.Owner;
+
+                if (context.Users.Any(u=>u.UserName.Equals(owner.UserName)))
+                {
+                    context.Entry(converted.Owner).State = EntityState.Unchanged;
+                }
+                else {
+                    context.Entry(converted.Owner).State = EntityState.Added;
+                }
+
                 //translate and add its walls.
                 IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,converted));
                 context.Walls.AddRange(convertedWalls);
@@ -67,28 +78,38 @@ namespace DataAccess
 
         public void Delete(IBlueprint toRemove)
         {
-            BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
-            BlueprintEntity converted = translator.BlueprintToEntiy(toRemove);
+            if (Exists(toRemove))
+            {
+                BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
+                BlueprintEntity converted = translator.BlueprintToEntiy(toRemove);
 
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                foreach (WallEntity we in context.Walls) {
-                    if (we.BearerBlueprint.Equals(converted)) {
-                        context.Walls.Remove(we);
-                    }
-                }
-                foreach (OpeningEntity oe in context.Openings) {
-                    if (oe.BearerBlueprint.Equals(converted)) {
-                        context.Openings.Remove(oe);
-                    }
-                }
-                foreach (ColumnEntity ce in context.Columns)
+                using (BlueBuilderDBContext context = new BlueBuilderDBContext())
                 {
-                    if (ce.BearerBlueprint.Equals(converted))
+                    foreach (WallEntity we in context.Walls)
                     {
-                        context.Columns.Remove(ce);
+                        if (we.BearerBlueprint.Equals(converted))
+                        {
+                            context.Walls.Remove(we);
+                        }
                     }
+                    foreach (OpeningEntity oe in context.Openings)
+                    {
+                        if (oe.BearerBlueprint.Equals(converted))
+                        {
+                            context.Openings.Remove(oe);
+                        }
+                    }
+                    foreach (ColumnEntity ce in context.Columns)
+                    {
+                        if (ce.BearerBlueprint.Equals(converted))
+                        {
+                            context.Columns.Remove(ce);
+                        }
+                    }
+                    context.Blueprints.Attach(converted);
+                    context.Blueprints.Remove(converted);
+                    context.SaveChanges();
                 }
-                context.Blueprints.Remove(converted);
             }
         }
 
@@ -98,27 +119,36 @@ namespace DataAccess
             BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
             BlueprintEntity toAsk = translator.BlueprintToEntiy(asked);
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                exists = context.Blueprints.Contains(toAsk);
+                Guid askedId = asked.GetId();
+                exists = context.Blueprints.Any(bp => bp.Id==askedId);
             }
             return exists;
         }
 
-        public Blueprint Get(Guid id)
+        public IBlueprint Get(Guid id)
         {
-            Blueprint queried;
+            IBlueprint queried;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                BlueprintEntity record = context.Blueprints.FirstOrDefault(bp => bp.Id.Equals(id));
-                queried = BuildBlueprint(record, context);                 
+                BlueprintEntity record = context.Blueprints.Include(bp=>bp.Owner)
+                    .Include(bp=>bp.Signatures).FirstOrDefault(bp => bp.Id.Equals(id));
+
+                queried = BuildBlueprint(record);                 
             }
             return queried;
+        }
+
+        public IBlueprint Get(IBlueprint copy) {
+            return Get(copy.GetId());
         }
 
 
         public ICollection<IBlueprint> GetAll()
         {
-            ICollection<IBlueprint> converted;
+            ICollection<IBlueprint> converted = new List<IBlueprint>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                converted=(ICollection<Blueprint>)context.Blueprints.Select(be => BuildBlueprint(be, context));
+                foreach (BlueprintEntity be in context.Blueprints.Include(b=> b.Owner).Include(b=> b.Signatures)) {
+                    converted.Add(BuildBlueprint(be));
+                }
             }
             return converted;
         }
@@ -151,27 +181,36 @@ namespace DataAccess
 
         public ICollection<IBlueprint> GetBlueprintsOfUser(User owner)
         {
-            ICollection<IBlueprint> queriedBlueprints;
+            ICollection<IBlueprint> queriedBlueprints = new List<IBlueprint>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                IEnumerable<BlueprintEntity> query = context.Blueprints.Where(bp=> bp.Owner.Equals(owner));
-                queriedBlueprints = (ICollection<IBlueprint>)query.Select(bp => BuildBlueprint(bp, context));
+                ICollection<BlueprintEntity> query = context.Blueprints.Include(bp=> bp.Owner)
+                    .Include(bp=>bp.Signatures).Where(bp=> bp.Owner.UserName.Equals(owner.UserName)).ToList();
+
+                foreach (BlueprintEntity bpe in query) {
+                    queriedBlueprints.Add(BuildBlueprint(bpe));
+                }
             }
             return queriedBlueprints;
         }
 
-        private Blueprint BuildBlueprint(BlueprintEntity blueprint, BlueBuilderDBContext context) {
+        private IBlueprint BuildBlueprint(BlueprintEntity blueprint) {
             BlueprintAndEntityConverter converter = new BlueprintAndEntityConverter();
+            ICollection<WallEntity> wallEnts;
+            ICollection<OpeningEntity> openEnts;
+            ICollection<ColumnEntity> colEnts;
 
-            ICollection<WallEntity> wallEnts = (ICollection<WallEntity>)context.Walls.Where(we => we.BearerBlueprint.Equals(blueprint));
-            ICollection<OpeningEntity> openEnts = (ICollection<OpeningEntity>)context.Openings.Where(we => we.BearerBlueprint.Equals(blueprint));
-            ICollection<ColumnEntity> colEnts = (ICollection<ColumnEntity>)context.Columns.Where(ce => ce.BearerBlueprint.Equals(blueprint));
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
 
-            Blueprint builtBlueprint =converter.EntityToBlueprint(blueprint, wallEnts, openEnts, colEnts);
+                wallEnts = context.Walls.Where(we => we.BearerBlueprint.Id == blueprint.Id).ToList();
+                openEnts = context.Openings.Where(we => we.BearerBlueprint.Id== blueprint.Id).ToList();
+                colEnts = context.Columns.Where(ce => ce.BearerBlueprint.Id== blueprint.Id).ToList();
+            }
+            IBlueprint builtBlueprint =converter.EntityToBlueprint(blueprint, wallEnts, openEnts, colEnts);
             return builtBlueprint;
-
         }
 
-        public void DeleteUserBlueprints(Client aUser)
+        public void DeleteUserBlueprints(User aUser)
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
