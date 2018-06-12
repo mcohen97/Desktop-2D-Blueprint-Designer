@@ -160,7 +160,7 @@ namespace DataAccessTest
 
             usersStorage.Delete(user1);
             int expectedResult = 1;
-            int actualResult =usersStorage.GetAll().Count;
+            int actualResult =blueprintsStorage.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }

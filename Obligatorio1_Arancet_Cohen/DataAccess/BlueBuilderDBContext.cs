@@ -46,6 +46,9 @@ namespace DataAccess
             modelBuilder.Entity<UserEntity>().HasIndex(ue => ue.UserName).IsUnique();
             modelBuilder.Entity<BlueprintEntity>().HasIndex(be => be.Id).IsUnique();
 
+            modelBuilder.Entity<BlueprintEntity>().HasRequired<UserEntity>(bp => bp.Owner);
+            
+
         }
     }
 }

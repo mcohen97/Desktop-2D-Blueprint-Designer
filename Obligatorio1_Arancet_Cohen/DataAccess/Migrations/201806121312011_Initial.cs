@@ -3,7 +3,7 @@ namespace DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NoGeneratedBlueprintId : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -15,10 +15,10 @@ namespace DataAccess.Migrations
                         Name = c.String(),
                         Length = c.Int(nullable: false),
                         Width = c.Int(nullable: false),
-                        Owner_UserName = c.String(maxLength: 100, unicode: false),
+                        Owner_UserName = c.String(nullable: false, maxLength: 100, unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserEntities", t => t.Owner_UserName)
+                .ForeignKey("dbo.UserEntities", t => t.Owner_UserName, cascadeDelete: true)
                 .Index(t => t.Id, unique: true)
                 .Index(t => t.Owner_UserName);
             
