@@ -13,7 +13,7 @@ namespace Logic.Domain
         public virtual int Length { get; protected set; }
         public virtual int Width { get; protected set; }
         public virtual User Owner { get; set; }   
-        private Guid id;
+        protected Guid id;
         protected ICollection<Signature> signatures;
 
         public Guid GetId() {
@@ -39,6 +39,11 @@ namespace Logic.Domain
         public virtual ICollection<Signature> GetSignatures()
         {
             return signatures;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return false;
         }
 
         public abstract void InsertWall(Point from, Point to);
