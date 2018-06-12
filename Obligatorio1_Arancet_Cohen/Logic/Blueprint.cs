@@ -36,6 +36,7 @@ namespace Logic.Domain
             Name = aName;
             materials = new MaterialContainer();
             signatures = new List<Signature>();
+            id = Guid.NewGuid();
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -45,14 +46,16 @@ namespace Logic.Domain
             Name = aName;
             materials = container;
             signatures = new List<Signature>();
+            id = Guid.NewGuid();
         }
 
-        public Blueprint(int aLength, int aWidth, string aName,User anOwner,MaterialContainer container,ICollection<Signature> someSignatures) {
+        public Blueprint(int aLength, int aWidth, string aName,User anOwner,MaterialContainer container,ICollection<Signature> someSignatures,Guid anId) {
             Length = aLength;
             Width = aWidth;
             Name = aName;
             Owner = anOwner;
             signatures = someSignatures;
+            id = anId;
         }
 
         private void SetName(string aName)

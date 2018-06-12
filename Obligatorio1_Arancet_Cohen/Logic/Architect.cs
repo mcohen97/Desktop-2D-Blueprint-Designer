@@ -17,6 +17,17 @@ namespace Logic.Domain
             LastLoginDate = Constants.NEVER;
             Permissions = GeneratePermissions();
         }
+
+        public Architect(string name, string surname, string userName, string password, DateTime registrationDate,DateTime lastLoginDate)
+        {
+            Name = name;
+            Surname = surname;
+            UserName = userName;
+            Password = password;
+            RegistrationDate = registrationDate;
+            LastLoginDate = Constants.NEVER;
+            Permissions = GeneratePermissions();
+        }
         private List<Permission> GeneratePermissions()
         {
             List<Permission> perms = new List<Permission>();
