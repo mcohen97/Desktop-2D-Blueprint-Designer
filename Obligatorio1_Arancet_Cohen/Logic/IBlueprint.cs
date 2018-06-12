@@ -43,7 +43,17 @@ namespace Logic.Domain
 
         public override bool Equals(object obj)
         {
-            return false;
+            bool areEqual;
+            if (obj == null || !(obj is IBlueprint))
+            {
+                areEqual = false;
+            }
+            else
+            {
+                IBlueprint isABlueprint = (IBlueprint)obj;
+                areEqual = GetId().Equals(isABlueprint.GetId());
+            }
+            return areEqual;
         }
 
         public abstract void InsertWall(Point from, Point to);
