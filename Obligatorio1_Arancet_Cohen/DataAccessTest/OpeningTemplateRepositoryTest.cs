@@ -65,5 +65,48 @@ namespace DataAccessTest
             Assert.IsFalse(templatesStorage.Exists(template3));
         }
 
+        [TestMethod]
+        public void GetTest() {
+            AddTemplates();
+            Template retrieved =templatesStorage.Get(template1);
+            Assert.AreEqual(retrieved.Name, template1.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TemplateDoesNotExistException))]
+        public void GetNotExistentTest() {
+            templatesStorage.Get(template1);
+        }
+
+        [TestMethod]
+        public void GetByIdTest() {
+            AddTemplates();
+            Template retrieved = templatesStorage.Get(template1);
+            Guid IDtemp1 = retrieved.Id;
+            Assert.AreEqual(retrieved.Name, template1.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TemplateDoesNotExistException))]
+        public void GetByIdNotExistentTest()
+        {
+            templatesStorage.Get(Guid.NewGuid());
+        }
+
+        [TestMethod]
+        public void GetByNameTest() {
+            AddTemplates();
+            Template retrieved = templatesStorage.GetTemplateByName("Gate");
+            Assert.AreEqual(retrieved.Name,"Gate");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TemplateDoesNotExistException))]
+        public void GetByNameNotExistentTest()
+        {
+            templatesStorage.GetTemplateByName("Portal");
+        }
+
+
     }
 }
