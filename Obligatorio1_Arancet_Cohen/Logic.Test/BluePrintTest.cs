@@ -13,10 +13,10 @@ namespace Logic.Test
 
         private Blueprint instance;
         private MaterialContainer materials;
-        Client owner;
-        User architect;
-        User architectA;
-        User architectB;
+        private Client owner;
+        private User architect;
+        private User architectA;
+        private User architectB;
 
         [TestInitialize]
         public void SetUp()
@@ -483,14 +483,6 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void InsertColumnTest()
-        {
-            ISinglePointComponent column = new Column(new Point(2, 2));
-            instance.InsertColumn(column.GetPosition());
-            Assert.AreEqual(1, instance.GetColumns().Count);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(OutOfRangeComponentException))]
         public void InsertColumnOutOfRangeTest()
         {
@@ -519,6 +511,28 @@ namespace Logic.Test
 
         }
 
+        [TestMethod]
+        public void RemoveColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            instance.InsertColumn(columnPosition);
+            instance.RemoveColumn(columnPosition);
+            int expectedResult = 0;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void RemoveUnexistentColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            Point noColumnPosition = new Point(2, 3);
+            instance.InsertColumn(columnPosition);
+            instance.RemoveColumn(noColumnPosition);
+            int expectedResult = 1;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 
 

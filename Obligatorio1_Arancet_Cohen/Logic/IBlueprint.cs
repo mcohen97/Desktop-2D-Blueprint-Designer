@@ -9,7 +9,7 @@ namespace Logic.Domain
     public abstract class IBlueprint
     {
 
-        public virtual string Name { get; protected set; }
+        public virtual string Name { get; internal set; }
         public virtual int Length { get; protected set; }
         public virtual int Width { get; protected set; }
         public virtual User Owner { get; set; }   
@@ -45,7 +45,7 @@ namespace Logic.Domain
 
         public abstract void RemoveOpening(Opening toRemove);
 
-        public abstract void RemoveOpening(Point position);
+        public abstract void RemoveColumn(Point position);
 
         public abstract ICollection<Wall> GetWalls();
 
@@ -54,5 +54,7 @@ namespace Logic.Domain
         public abstract ICollection<Opening> GetOpenings();
 
         public abstract ICollection<ISinglePointComponent> GetColumns();
+
+        public abstract void InsertColumn(Point columnPosition);
     }
 }

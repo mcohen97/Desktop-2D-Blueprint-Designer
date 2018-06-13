@@ -5,6 +5,9 @@ using Logic.Domain;
 using Services;
 using DataAccess;
 using System.Collections.Generic;
+using Logic.Exceptions;
+using Logic;
+using System.Linq;
 
 namespace ServicesTest
 {
@@ -24,6 +27,8 @@ namespace ServicesTest
         private User user3;
         private User user4;
         private User architect;
+        private User architectA;
+        private User architectB;
 
         private SessionConnector conn;
         private UserAdministrator administrator;
@@ -100,9 +105,9 @@ namespace ServicesTest
         public void SetNameTest()
         {
             BlueprintEditor blueEditor = GetInstance();
-            string expectedResult = blueprintTest.Name;
-            string actualResult = blueEditor.GetName();
-            Assert.AreEqual(expectedResult, actualResult);
+            string newName = "New Name";
+            blueEditor.SetName(newName);
+            Assert.AreEqual(newName, blueprintTest.Name);
         }
 
         [TestMethod]
@@ -126,7 +131,7 @@ namespace ServicesTest
         {
             BlueprintEditor blueEditor = GetInstance();
             blueEditor.SetOwner(user3);
-            Assert.AreEqual(blueEditor.GetOwner(), user3);
+            Assert.AreEqual(blueprintTest.Owner, user3);
         }
 
         [TestMethod]
@@ -194,6 +199,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertIntersectedXShapeWallsBeamsCount()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(6, 3), new Point(6, 7));
             int expectedResult = 5;
@@ -204,6 +210,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertIntersectedTShapeWallsCount()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(8, 2), new Point(8, 7));
             int expectedResult = 3;
@@ -214,6 +221,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertIntersectedTShapeWallsBeamsCount()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(8, 2), new Point(8, 7));
             int expectedResult = 4;
@@ -225,6 +233,7 @@ namespace ServicesTest
         [ExpectedException(typeof(CollinearWallsException))]
         public void InsertCollinearWallTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(1, 0), new Point(5, 0));
             blueEditor.InsertWall(new Point(3, 0), new Point(7, 0));
         }
@@ -232,6 +241,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertNotIntersectedWallsCount()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(5, 3), new Point(8, 3));
             int expectedResult = 2;
@@ -242,6 +252,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertNotIntersectedWallsBeamsCount()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(5, 3), new Point(8, 3));
             int expectedResult = 4;
@@ -252,6 +263,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertOversizedWallCountTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(12, 0));
             int expectedResult = 3;
             int actualResult = materials.WallsCount();
@@ -261,6 +273,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertOversizedWallCountTest2()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(10, 0));
             int expectedResult = 2;
             int actualResult = materials.WallsCount();
@@ -270,6 +283,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertOversizedWallBeamsCountTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(12, 0));
             int expectedResult = 4;
             int actualResult = materials.BeamsCount();
@@ -280,6 +294,7 @@ namespace ServicesTest
         [ExpectedException(typeof(ColumnInPlaceException))]
         public void InsertWallInColumnPlaceTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertColumn(new Point(2, 5));
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 6));
         }
@@ -287,14 +302,16 @@ namespace ServicesTest
         [TestMethod]
         public void InsertWallInColumnPlaceBorderTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertColumn(new Point(2, 3));
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 6));
-            Assert.AreEqual(1, blueEditor.GetWalls().Count);
+            Assert.AreEqual(1, blueprintTest.GetWalls().Count);
         }
 
         [TestMethod]
         public void ContinuousWallsInsertedMergeTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             blueEditor.InsertWall(new Point(3, 0), new Point(4, 0));
             int expectedResult = 1;
@@ -305,6 +322,7 @@ namespace ServicesTest
         [TestMethod]
         public void ContinuousWallsInsertedNotMergeTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             blueEditor.InsertWall(new Point(3, 0), new Point(7, 0));
             int expectedResult = 2;
@@ -315,6 +333,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertOpeningsTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             blueEditor.InsertOpening(new Door(new Point(1, 0)));
             blueEditor.InsertOpening(new Door(new Point(2, 0)));
@@ -326,6 +345,7 @@ namespace ServicesTest
         [TestMethod]
         public void OpeningOnIntersectionRemovalTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             blueEditor.InsertOpening(new Door(new Point(1, 0)));
             blueEditor.InsertOpening(new Door(new Point(2, 0)));
@@ -339,6 +359,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveSingleWallCountTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(5, 0));
             blueEditor.RemoveWall(new Point(0, 0), new Point(5, 0));
             Assert.IsTrue(materials.IsWallsEmpty());
@@ -347,6 +368,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveSingleWallBeamsCountTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(5, 0));
             blueEditor.RemoveWall(new Point(0, 0), new Point(5, 0));
             Assert.IsTrue(materials.IsBeamsEmpty());
@@ -355,6 +377,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveFromTShapeWallLeavingLShapeTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(8, 2), new Point(8, 7));
             blueEditor.RemoveWall(new Point(8, 5), new Point(8, 7));
@@ -366,6 +389,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveFromTShapeWallMergeTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(5, 5), new Point(8, 5));
             blueEditor.InsertWall(new Point(8, 3), new Point(8, 7));
             blueEditor.RemoveWall(new Point(5, 5), new Point(8, 5));
@@ -377,6 +401,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveWallWithOpening()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             Opening testOpening = new Door(new Point(2, 0));
             blueEditor.InsertOpening(testOpening);
@@ -391,6 +416,7 @@ namespace ServicesTest
         [TestMethod]
         public void MultipleDeletionsTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(2, 1), new Point(2, 4));
             blueEditor.InsertWall(new Point(1, 2), new Point(3, 2));
             blueEditor.InsertWall(new Point(1, 3), new Point(3, 3));
@@ -412,6 +438,7 @@ namespace ServicesTest
         [ExpectedException(typeof(OutOfRangeComponentException))]
         public void InsertOpeningOutOfRangeTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             Opening testOpening = new Door(new Point(50, -3));
             blueEditor.InsertOpening(testOpening);
         }
@@ -419,6 +446,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertOpeningCorrectly()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(0, 0), new Point(3, 0));
             Opening testOpening = new Door(new Point(2, 0));
             blueEditor.InsertOpening(testOpening);
@@ -431,6 +459,7 @@ namespace ServicesTest
         [ExpectedException(typeof(ComponentOutOfWallException))]
         public void InsertOpeningInNoWall()
         {
+            BlueprintEditor blueEditor = GetInstance();
             Opening testOpening = new Door(new Point(2, 0));
             blueEditor.InsertOpening(testOpening);
         }
@@ -438,6 +467,7 @@ namespace ServicesTest
         [TestMethod]
         public void MultipleInsertionsTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 1));
             blueEditor.InsertWall(new Point(8, 1), new Point(8, 3));
             blueEditor.InsertWall(new Point(10, 1), new Point(10, 3));
@@ -450,6 +480,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveOpeningTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 1));
             blueEditor.InsertOpening(new Door(new Point(2, 2)));
             blueEditor.RemoveOpening(new Door(new Point(2, 2)));
@@ -461,6 +492,7 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveUnexistentOpening()
         {
+            BlueprintEditor blueEditor = GetInstance();
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 1));
             blueEditor.RemoveOpening(new Door(new Point(2, 2)));
             int expectedResult = 0;
@@ -469,46 +501,12 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void IsSignedFalseTest()
-        {
-            Assert.IsFalse(blueEditor.IsSigned());
-        }
-
-        [TestMethod]
-        public void IsSignedTrueTest()
-        {
-            blueEditor.Sign(architect);
-            Assert.IsTrue(blueEditor.IsSigned());
-        }
-
-        [TestMethod]
-        public void GetSignaturesTest()
-        {
-            blueEditor.Sign(architectA);
-            blueEditor.Sign(architectB);
-            blueEditor.Sign(architectA);
-            ICollection<Signature> signatures = blueEditor.GetSignatures();
-
-            Assert.AreEqual(signatures.Count, 3);
-        }
-
-        [TestMethod]
-        public void GetLastSignatureTest()
-        {
-            blueEditor.Sign(architectA);
-            blueEditor.Sign(architectB);
-            blueEditor.Sign(architectA);
-            Signature lastSignature = blueEditor.GetSignatures().Last();
-
-            Assert.AreEqual(lastSignature.User, architectA);
-        }
-
-        [TestMethod]
         public void InsertColumnTest()
         {
+            BlueprintEditor blueEditor = GetInstance();
             ISinglePointComponent column = new Column(new Point(2, 2));
             blueEditor.InsertColumn(column.GetPosition());
-            Assert.AreEqual(1, blueEditor.GetColumns().Count);
+            Assert.AreEqual(1, blueprintTest.GetColumns().Count);
         }
     }
 }

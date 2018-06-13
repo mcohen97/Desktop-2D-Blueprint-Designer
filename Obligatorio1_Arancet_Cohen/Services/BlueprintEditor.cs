@@ -2,6 +2,7 @@
 using Logic.Domain;
 using Logic.Exceptions;
 using System.Collections.Generic;
+using Logic;
 
 namespace Services
 {
@@ -16,100 +17,70 @@ namespace Services
             this.blueprint = blueprintTest;
         }
 
-        public string GetName()
-        {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
-
-            return blueprint.Name;
-        }
-
         public void SetOwner(User aUser)
         {
-            if (!session.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT) ||
-                !aUser.HasPermission(Permission.HAVE_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
+            CheckPermission(Permission.EDIT_BLUEPRINT);
+            CheckPermission(Permission.HAVE_BLUEPRINT);
 
             blueprint.Owner = aUser;
         }
 
-        public User GetOwner()
-        {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
-
-            return blueprint.Owner;
-        }
 
         public void InsertWall(Point from, Point to)
         {
-            if(!session.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
+            CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertWall(from, to);
         }
 
         public void InsertColumn(Point columnPosition)
         {
-            if(!session.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
+            CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertColumn(columnPosition);
         }
 
-        public ICollection<Wall> GetWalls()
-        {
-            if (!session.UserLogged.HasPermission(Permission.READ_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
 
-            return blueprint.GetWalls();
-        }
-
-        public void RemoveWall(Point point1, Point point2)
+        public void RemoveWall(Point from, Point to)
         {
-            throw new NotImplementedException();
+            CheckPermission(Permission.EDIT_BLUEPRINT);
+
+            blueprint.RemoveWall(from, to);
         }
 
         public void InsertOpening(Opening aOpening)
         {
-            if (!session.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
+            CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertOpening(aOpening);
         }
 
         public void RemoveOpening(Opening aOpening)
         {
-            if (!session.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT))
-            {
-                throw new NoPermissionsException();
-            }
+            CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.RemoveOpening(aOpening);
         }
 
-        public object GetColumns()
+
+        public void SetName(string name)
+        {
+            CheckPermission(Permission.EDIT_BLUEPRINT);
+
+            blueprint.Name = name;
+        }
+
+        public void Sign(User architect)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertWall(Wall aWall)
+        private void CheckPermission(Permission permission)
         {
-            throw new NotImplementedException();
+            if (!session.UserLogged.HasPermission(permission))
+            {
+                throw new NoPermissionsException();
+            }
         }
     }
 }

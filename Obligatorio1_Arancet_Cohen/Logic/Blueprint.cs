@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using Logic.Exceptions;
 
 [assembly: InternalsVisibleTo("Logic.Test")]
-
+[assembly: InternalsVisibleTo("Services")]
 
 namespace Logic.Domain
 {
@@ -15,7 +15,7 @@ namespace Logic.Domain
     {
 
         private string name;
-        public override string Name { get { return name; } protected set { SetName(value); } }
+        public override string Name { get { return name; } internal set { SetName(value); } }
 
         private int length;
         public override int Length { get { return length; } protected set { SetLength(value); } }//Horizontal X Mesaure
@@ -155,7 +155,7 @@ namespace Logic.Domain
             }
         }
 
-        public void InsertColumn(Point columnPosition)
+        public override void InsertColumn(Point columnPosition)
         {
             ISinglePointComponent newColumn = new Column(columnPosition);
 
@@ -228,17 +228,17 @@ namespace Logic.Domain
         {
             // we are replacing the old walls with two halves
             materials.RemoveWall(aWall);
-            RemoveOpening(splitPoint);
+            RemoveColumn(splitPoint);
             CreateAndPlaceWall(aWall.Beginning(), splitPoint);
             CreateAndPlaceWall(splitPoint, aWall.End());
         }
 
-        public override void RemoveOpening(Point actualIntersection)
+        public override void RemoveColumn(Point columnPosition)
         {
-            Opening op = new Door(actualIntersection);
-            if (materials.ContainsOpening(op))
+            ISinglePointComponent column = new Column(columnPosition);
+            if (materials.ContainsColumn(column))
             {
-                materials.RemoveOpening(op);
+                materials.RemoveColumn(column);
             }
         }
 

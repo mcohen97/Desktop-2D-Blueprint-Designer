@@ -242,7 +242,7 @@ namespace UserInterface {
                 bool existOpeningInPoint = selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
                 bool existWallInPoint = selectedBluePrint.GetWalls().Any(x => x.DoesContainPoint(deletionPointPrecise));
                 if (existOpeningInPoint) {
-                    selectedBluePrint.RemoveOpening(closestDeletionPointToGridIntersection);
+                    selectedBluePrint.RemoveColumn(closestDeletionPointToGridIntersection);
                 } else if (existWallInPoint && !existOpeningInPoint) {
                     Wall wallToDelete = selectedBluePrint.GetWalls().First(x => x.DoesContainPoint(deletionPointPrecise));
                     selectedBluePrint.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
