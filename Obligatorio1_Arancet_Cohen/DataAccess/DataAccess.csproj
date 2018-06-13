@@ -60,6 +60,7 @@
     <Compile Include="Migrations\201806131700360_RequiredBlueprintForMaterials.Designer.cs">
       <DependentUpon>201806131700360_RequiredBlueprintForMaterials.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpeningTemplateRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
