@@ -48,9 +48,18 @@ namespace DataAccess
 
         }
 
-        public void Delete(Template entity)
+        public void Delete(Template toDelete)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                OpeningTemplateEntity entity = context.OpeningTemplates.FirstOrDefault(ote => ote.Name.Equals(toDelete.Name));
+                if (entity != null)
+                {
+                    context.OpeningTemplates.Remove(entity);
+                    context.SaveChanges();
+                }
+
+            }
         }
 
         public bool Exists(Template record)
@@ -63,13 +72,11 @@ namespace DataAccess
             return doesExist;
         }
 
-
         public Template Get(Template asked)
         {
             return SelectFirstOrDefault(t => t.Name.Equals(asked.Name));
 
         }
-
 
         public Template Get(Guid id)
         {
@@ -102,7 +109,6 @@ namespace DataAccess
             return firstToComply;
         }
 
-
         public ICollection<Template> GetAll()
         {
             return SelectByCriteria(ote => true);
@@ -123,8 +129,6 @@ namespace DataAccess
 
             return elegibleUsers;
         }
-
-
 
         public bool IsEmpty()
         {
