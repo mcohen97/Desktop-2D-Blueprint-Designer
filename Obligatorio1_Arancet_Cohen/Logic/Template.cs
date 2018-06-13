@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Logic.Domain
 {
     public class Template
@@ -23,5 +25,6 @@ namespace Logic.Domain
         public string Name { get { return name; } internal set { name = value; } }
         public ComponentType Type { get { return type; } internal set { type = value; } }
         public float HeightAboveFloor { get { return heightAboveFloor; } internal set { heightAboveFloor = value; } }
+        public Guid Id { get; set; }
     }
 }
