@@ -142,7 +142,17 @@ namespace DataAccess
 
         public void Modify(Template entity)
         {
-            throw new NotImplementedException();
+            if (!Exists(entity))
+            {
+                throw new TemplateDoesNotExistException();
+            }
+            MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
+            OpeningTemplateEntity record = translator.OpeningTemplateToEntity(entity);
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                context.Entry(record).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
