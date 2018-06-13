@@ -57,7 +57,12 @@ namespace DataAccess
 
         public bool IsEmpty()
         {
-            throw new NotImplementedException();
+            bool isEmpty;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                isEmpty = !context.OpeningTemplates.Any();
+            }
+            return isEmpty;
         }
 
         public void Modify(Template entity)
