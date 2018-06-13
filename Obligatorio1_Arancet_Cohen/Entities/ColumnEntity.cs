@@ -15,7 +15,9 @@ namespace Entities
 
         public float Height { get; set; }
 
-        public PointEntity Position { get; set; }
+        public float CoordX { get; set; }
+
+        public float CoordY { get; set; }
 
         public BlueprintEntity BearerBlueprint { get; set; }
        

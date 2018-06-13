@@ -16,8 +16,10 @@ namespace DataAccess
 
             WallEntity conversion = new WallEntity()
             {
-                From = PointToEntity(toConvert.Beginning()),
-                To = PointToEntity(toConvert.End()),
+                BeginningX = toConvert.Beginning().CoordX,
+                BeginningY = toConvert.Beginning().CoordY,
+                EndX = toConvert.End().CoordX,
+                EndY = toConvert.End().CoordY,
                 Height = toConvert.Height(),
                 Width = toConvert.Width(),
                 BearerBlueprint = bearer
@@ -27,8 +29,8 @@ namespace DataAccess
 
         public Wall EntityToWall(WallEntity toConvert) {
 
-            Point origin = EntityToPoint(toConvert.From);
-            Point end = EntityToPoint(toConvert.To);
+            Point origin = new Point(toConvert.BeginningX, toConvert.BeginningY);
+            Point end = new Point(toConvert.EndX, toConvert.EndY);
             return new Wall(origin, end);
         }
 
@@ -39,13 +41,14 @@ namespace DataAccess
                 Width = toConvert.Width(),
                 Height = toConvert.Height(),
                 Length = toConvert.Length(),
-                Position = PointToEntity(toConvert.GetPosition())
+                CoordX = toConvert.GetPosition().CoordX,
+                CoordY = toConvert.GetPosition().CoordY
             };
             return conversion;
         }
 
         public Column EntityToColumn(ColumnEntity toConvert) {
-            Point position = EntityToPoint(toConvert.Position);
+            Point position = new Point(toConvert.CoordX, toConvert.CoordY);
             Column conversion = new Column(position);
             return conversion;
         }
@@ -53,7 +56,8 @@ namespace DataAccess
         public OpeningEntity OpeningToEntity(Opening toConvert, OpeningTemplateEntity itsTemplate, BlueprintEntity bearer) {
             OpeningEntity conversion = new OpeningEntity()
             {
-                Position = PointToEntity(toConvert.GetPosition()),
+                CoordX= toConvert.GetPosition().CoordX,
+                CoordY= toConvert.GetPosition().CoordY,
                 Template = itsTemplate,
                 BearerBlueprint= bearer
             };
@@ -62,7 +66,7 @@ namespace DataAccess
 
         public Opening EntityToOpening(OpeningEntity toConvert) {
 
-            Point pos = EntityToPoint(toConvert.Position);
+            Point pos = new Point(toConvert.CoordX,toConvert.CoordY);
             Template temp = EntityToOpeningTemplate(toConvert.Template);
 
             Opening conversion;
@@ -99,22 +103,6 @@ namespace DataAccess
             return conversion;
         }
 
-        
-
-        private PointEntity PointToEntity(Point toConvert)
-        {
-            PointEntity conversion = new PointEntity()
-            {
-                CoordX = toConvert.CoordX,
-                CoordY = toConvert.CoordY
-            };
-            return conversion;
-        }
-
-        private Point EntityToPoint(PointEntity toConvert)
-        {
-            return new Point(toConvert.CoordX, toConvert.CoordY);
-        }
 
 
     }

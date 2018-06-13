@@ -17,7 +17,6 @@ namespace DataAccess
         public DbSet<OpeningTemplateEntity> OpeningTemplates { get; set; }
         public DbSet<WallEntity> Walls { get; set; }
         public DbSet<ColumnEntity> Columns { get; set; }
-        public DbSet<PointEntity> Points { get; set; }
         public DbSet<SignatureEntity> Signatures { get; set; }
         public DbSet<CostPriceEntity> CostsAndPrices { get; set; }
 
@@ -47,7 +46,10 @@ namespace DataAccess
             modelBuilder.Entity<BlueprintEntity>().HasIndex(be => be.Id).IsUnique();
 
             modelBuilder.Entity<BlueprintEntity>().HasRequired<UserEntity>(bp => bp.Owner);
-            
+            modelBuilder.Entity<WallEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
+            modelBuilder.Entity<ColumnEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
+            modelBuilder.Entity<OpeningEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
+
 
         }
     }

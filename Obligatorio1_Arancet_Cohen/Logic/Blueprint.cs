@@ -55,6 +55,7 @@ namespace Logic.Domain
             Name = aName;
             Owner = anOwner;
             signatures = someSignatures;
+            materials = container;
             id = anId;
         }
 

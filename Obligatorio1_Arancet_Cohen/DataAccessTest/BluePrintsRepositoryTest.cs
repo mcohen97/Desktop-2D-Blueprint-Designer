@@ -125,7 +125,7 @@ namespace DataAccessTest
         public void WallsPersistenceCountTest()
         {
             blueprint1.InsertWall(new Point(2, 2), new Point(3, 2));
-            //blueprint1.InsertWall(new Point(2, 2), new Point(2, 4));
+            blueprint1.InsertWall(new Point(2, 2), new Point(2, 4));
             portfolio.Add(blueprint1);
             IBlueprint retrieved = portfolio.Get(blueprint1.GetId());
             int expectedResult = 2;
