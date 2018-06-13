@@ -125,5 +125,25 @@ namespace DataAccessTest
             int expectedResult = 2;
             Assert.AreEqual(actualResult, expectedResult);
         }
+
+        [TestMethod]
+        public void DeleteTest() {
+            AddTemplates();
+            templatesStorage.Delete(template1);
+            int expectedResult = 1;
+            int actualResult = templatesStorage.GetAll().Count;
+            Assert.AreEqual(actualResult, expectedResult);
+        }
+
+        [TestMethod]
+        public void DeleteNotExistentTest() {
+            AddTemplates();
+            Template template3 = new Template("Sliding-Glass", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            templatesStorage.Delete(template3);
+            int expectedResult = 2;
+            int actualResult = templatesStorage.GetAll().Count;
+            Assert.AreEqual(actualResult, expectedResult);
+
+        }
     }
 }
