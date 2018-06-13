@@ -37,7 +37,15 @@ namespace DataAccess
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                foreach (OpeningTemplateEntity template in context.OpeningTemplates)
+                {
+                    context.OpeningTemplates.Remove(template);
+                }
+                context.SaveChanges();
+            }
+
         }
 
         public void Delete(Template entity)
