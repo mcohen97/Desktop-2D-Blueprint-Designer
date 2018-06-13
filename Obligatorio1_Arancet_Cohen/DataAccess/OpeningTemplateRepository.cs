@@ -55,8 +55,14 @@ namespace DataAccess
 
         public bool Exists(Template record)
         {
-            throw new NotImplementedException();
+            bool doesExist;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                doesExist = context.OpeningTemplates.Any(ote => ote.Name.Equals(record.Name));
+            }
+            return doesExist;
         }
+
 
         public Template Get(Template asked)
         {
