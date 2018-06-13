@@ -17,7 +17,22 @@ namespace DataAccess
     {
         public void Add(Template entity)
         {
-            throw new NotImplementedException();
+            MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                try
+                {
+                    OpeningTemplateEntity converted = translator.OpeningTemplateToEntity(entity);
+                    context.OpeningTemplates.Add(converted);
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    throw new TemplateAlreadyExistsException();
+                }
+
+
+            }
         }
 
         public void Clear()
