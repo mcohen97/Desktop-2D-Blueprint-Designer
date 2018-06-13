@@ -145,5 +145,15 @@ namespace DataAccessTest
             Assert.AreEqual(actualResult, expectedResult);
 
         }
+
+        [TestMethod]
+        public void ModifyChangedTest() {
+            AddTemplates();
+            Template template3 = new Template("Gate", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            templatesStorage.Modify(template3);
+            float actualResult = templatesStorage.Get(template3).Height;
+            float expectedResult = 1.8F;
+            Assert.AreEqual(actualResult, expectedResult);
+        }
     }
 }
