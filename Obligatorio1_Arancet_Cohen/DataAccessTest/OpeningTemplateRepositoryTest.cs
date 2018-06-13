@@ -52,5 +52,18 @@ namespace DataAccessTest
             Assert.IsTrue(templatesStorage.IsEmpty());
         }
 
+        [TestMethod]
+        public void ExistsTest() {
+            AddTemplates();
+            Assert.IsTrue(templatesStorage.Exists(template1));
+        }
+
+        [TestMethod]
+        public void DoesNotExistTest() {
+            AddTemplates();
+            Template template3 = new Template("Sliding-Glass", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            Assert.IsFalse(templatesStorage.Exists(template3));
+        }
+
     }
 }
