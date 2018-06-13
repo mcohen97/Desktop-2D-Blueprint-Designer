@@ -437,6 +437,7 @@ namespace Logic.Test
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        //Signature tests
         [TestMethod]
         public void IsSignedFalseTest()
         {
@@ -472,6 +473,15 @@ namespace Logic.Test
             Assert.AreEqual(lastSignature.User, architectA);
         }
 
+        //Column tests
+        [TestMethod]
+        public void InsertColumnCorrectlyTest()
+        {
+            ISinglePointComponent column = new Column(new Point(2, 2));
+            instance.InsertColumn(column.GetPosition());
+            Assert.AreEqual(1, instance.GetColumns().Count);
+        }
+
         [TestMethod]
         public void InsertColumnTest()
         {
@@ -480,6 +490,34 @@ namespace Logic.Test
             Assert.AreEqual(1, instance.GetColumns().Count);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(OutOfRangeComponentException))]
+        public void InsertColumnOutOfRangeTest()
+        {
+            Point columnPosition = new Point(50, -3);
+            instance.InsertColumn(columnPosition);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ComponentInWallException))]
+        public void InsertColumnOverWallTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            Point wallStartPoint = new Point(1, 2);
+            Point wallEndPoint = new Point(3, 2);
+            instance.InsertWall(wallStartPoint, wallEndPoint);
+            instance.InsertColumn(columnPosition);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(OccupiedPositionException))]
+        public void InsertColumnOverColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            instance.InsertColumn(columnPosition);
+            instance.InsertColumn(columnPosition);
+
+        }
 
     }
 
