@@ -73,6 +73,7 @@
     <Compile Include="IPermissible.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Template.cs" />
+    <Compile Include="TemplateAlreadyExistsException.cs" />
     <Compile Include="TemplateNotMatchException.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

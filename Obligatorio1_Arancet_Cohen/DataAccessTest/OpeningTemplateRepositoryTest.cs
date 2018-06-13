@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataAccess;
 using Logic.Domain;
+using Logic.Exceptions;
 
 namespace DataAccessTest
 {
