@@ -45,6 +45,9 @@ namespace DataAccess
             modelBuilder.Entity<UserEntity>().HasIndex(ue => ue.UserName).IsUnique();
             modelBuilder.Entity<BlueprintEntity>().HasIndex(be => be.Id).IsUnique();
 
+            modelBuilder.Entity<OpeningTemplateEntity>().HasKey<string>(x => x.Name);
+            modelBuilder.Entity<OpeningTemplateEntity>().HasIndex(x => x.Name).IsUnique();
+
             modelBuilder.Entity<BlueprintEntity>().HasRequired<UserEntity>(bp => bp.Owner);
             modelBuilder.Entity<WallEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
             modelBuilder.Entity<ColumnEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);

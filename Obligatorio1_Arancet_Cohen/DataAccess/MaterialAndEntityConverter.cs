@@ -91,6 +91,9 @@ namespace DataAccess
                 Height = toConvert.Height,
                 Length = toConvert.Length,
                 HeightAboveFloor = toConvert.HeightAboveFloor,
+                Name = toConvert.Name,
+                ComponentType = (int)toConvert.Type
+                
             };
             return conversion;
         }
