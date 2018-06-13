@@ -74,6 +74,7 @@
     <Compile Include="Permission.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="TemplateAlreadyExistsException.cs" />
+    <Compile Include="TemplateDoesNotExistException.cs" />
     <Compile Include="TemplateNotMatchException.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

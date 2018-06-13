@@ -66,23 +66,48 @@ namespace DataAccess
 
         public Template Get(Template asked)
         {
-            throw new NotImplementedException();
+            return SelectFirstOrDefault(t => t.Name.Equals(asked.Name));
+
         }
+
 
         public Template Get(Guid id)
         {
-            throw new NotImplementedException();
+            return SelectFirstOrDefault(t => t.Id.Equals(id));
         }
+
+        public Template GetTemplateByName(string name)
+        {
+            return SelectFirstOrDefault(t => t.Name.Equals(name));
+        }
+
+        private Template SelectFirstOrDefault(Expression<Func<OpeningTemplateEntity, bool>> aCondition)
+        {
+            Template firstToComply;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
+                OpeningTemplateEntity firstRecord = context.OpeningTemplates.FirstOrDefault(aCondition);
+
+                if (firstRecord == null)
+                {
+                    throw new TemplateDoesNotExistException();
+                }
+                else
+                {
+                    firstToComply = translator.EntityToOpeningTemplate(firstRecord);
+                }
+            }
+
+            return firstToComply;
+        }
+
 
         public ICollection<Template> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Template GetTemplateByName(string name)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool IsEmpty()
         {
