@@ -214,22 +214,35 @@ namespace Logic.Domain
         private void FractionNewIntersectedWall(Wall aWall)
         {
             List<Point> intersectionPoints = new List<Point>();
-            Point actualIntersection;
             foreach (Wall intersected in WallsIntersectedByThisOne(aWall))
             {
-                if (!aWall.IsConnected(intersected))
-                {
-                    actualIntersection = intersected.GetIntersection(aWall);
-                    PartWall(intersected, actualIntersection);
-                    intersectionPoints.Add(actualIntersection);
-                }
-                else
-                {
-                    PlaceNewWall(aWall);
-                }
+                PartIfDoesNotFormCorner(aWall, intersected, intersectionPoints);
             }
-            intersectionPoints.Sort();
-            SplitWall(aWall, intersectionPoints);
+
+            if (IntersectionsExist(intersectionPoints))
+            {
+                intersectionPoints.Sort();
+                SplitWall(aWall, intersectionPoints);
+            }
+        }
+
+        private void PartIfDoesNotFormCorner(Wall aWall, Wall intersected,  List<Point>  intersectionPoints) {
+            if (!aWall.IsConnected(intersected))
+            {
+                Point actualIntersection;
+                actualIntersection = intersected.GetIntersection(aWall);
+                PartWall(intersected, actualIntersection);
+                intersectionPoints.Add(actualIntersection);
+            }
+            else
+            {
+                PlaceNewWall(aWall);
+            }
+
+        }
+
+        private bool IntersectionsExist(ICollection<Point> intersections) {
+            return intersections.Any();
         }
 
         private void PartWall(Wall aWall, Point splitPoint)
