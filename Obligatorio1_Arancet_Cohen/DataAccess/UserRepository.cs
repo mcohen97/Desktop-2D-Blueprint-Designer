@@ -19,12 +19,12 @@ namespace DataAccess
     {
 
         public bool IsEmpty() {
-            bool esVacia;
+            bool isEmpty;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                esVacia=!context.Users.Any(u=> !u.UserName.Equals("admin"));
+                isEmpty=!context.Users.Any(u=> !u.UserName.Equals("admin"));
             }
-            return esVacia;
+            return isEmpty;
         }
 
         public void Add(User aUser)
@@ -135,7 +135,6 @@ namespace DataAccess
 
         public ICollection<User> GetUsersByPermission(Permission aFeature)
         {
-            //return SelectByCriteria(ue => ue.Permissions.Contains(aFeature));
             return GetAll().Where(u => u.HasPermission(aFeature)).ToList();
 
         }
