@@ -16,6 +16,7 @@ namespace DataAccessTest
         [TestInitialize]
         public void SetUp() {
             templatesStorage = new OpeningTemplateRepository();
+            templatesStorage.Clear();
             template1 = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
             template2 = new Template("Hopper", 1, 1, 1, ComponentType.WINDOW);
         }
@@ -43,6 +44,12 @@ namespace DataAccessTest
         public void AddRepeatedTest() {
             AddTemplates();
             templatesStorage.Add(template1);
+        }
+
+        [TestMethod]
+        public void ClearTest() {
+            templatesStorage.Clear();
+            Assert.IsTrue(templatesStorage.IsEmpty());
         }
 
     }
