@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataAccess;
 using Logic.Domain;
 using Logic.Exceptions;
+using System.Collections.Generic;
 
 namespace DataAccessTest
 {
@@ -107,6 +108,22 @@ namespace DataAccessTest
             templatesStorage.GetTemplateByName("Portal");
         }
 
+        [TestMethod]
+        public void GetAllEmptyTest() {
+            ICollection<Template> query = templatesStorage.GetAll();
+            int actualResult = query.Count;
+            int expectedResult = 0;
+            Assert.AreEqual(actualResult, expectedResult);
+        }
 
+        [TestMethod]
+        public void GetAllNotEmptyTest()
+        {
+            AddTemplates();
+            ICollection<Template> query = templatesStorage.GetAll();
+            int actualResult = query.Count;
+            int expectedResult = 2;
+            Assert.AreEqual(actualResult, expectedResult);
+        }
     }
 }
