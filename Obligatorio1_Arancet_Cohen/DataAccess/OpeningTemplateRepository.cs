@@ -105,8 +105,25 @@ namespace DataAccess
 
         public ICollection<Template> GetAll()
         {
-            throw new NotImplementedException();
+            return SelectByCriteria(ote => true);
         }
+
+        private ICollection<Template> SelectByCriteria(Expression<Func<OpeningTemplateEntity, bool>> aCriteria)
+        {
+            ICollection<Template> elegibleUsers = new List<Template>();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
+                IQueryable<OpeningTemplateEntity> elegibleRecords = context.OpeningTemplates.Where(aCriteria);
+                foreach (OpeningTemplateEntity record in elegibleRecords)
+                {
+                    elegibleUsers.Add(translator.EntityToOpeningTemplate(record));
+                }
+            }
+
+            return elegibleUsers;
+        }
+
 
 
         public bool IsEmpty()
