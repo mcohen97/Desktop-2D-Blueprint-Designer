@@ -164,7 +164,7 @@ namespace Logic.Domain
             }
         }
 
-        public void InsertColumn(Point columnPosition)
+        public override void InsertColumn(Point columnPosition)
         {
             ISinglePointComponent newColumn = new Column(columnPosition);
 
@@ -185,6 +185,14 @@ namespace Logic.Domain
 
             materials.AddColumn(newColumn);
 
+        }
+
+        public override void RemoveColumn(Point columnPosition)
+        {
+            if (materials.GetColumns().Any(c => c.GetPosition().Equals(columnPosition))) {
+                ISinglePointComponent toDelete = materials.GetColumns().First( c => c.GetPosition().Equals(columnPosition));
+                materials.RemoveColumn(toDelete);
+            }
         }
 
         public override void RemoveOpening(Opening anOpening)
