@@ -134,5 +134,33 @@ namespace DataAccessTest
 
         }
 
+        [TestMethod]
+        public void OpeningsPersistenceCountTest() {
+            Template gate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
+            Opening gateOp = new Door(new Point(1, 1), gate);
+            Opening otherGateOp = new Door(new Point(2, 2), gate);
+
+            blueprint1.InsertWall(new Point(0, 2), new Point(4, 2));
+            blueprint1.InsertWall(new Point(0, 1), new Point(4, 1));
+            blueprint1.InsertOpening(gateOp);
+            blueprint1.InsertOpening(otherGateOp);
+            portfolio.Add(blueprint1);
+            IBlueprint retrieved = portfolio.Get(blueprint1.GetId());
+            int expectedResult = 2;
+            int actualResult = retrieved.GetWalls().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void ColumnsPersistenceCountTest() {
+            blueprint1.InsertColumn(new Point(2, 3));
+            blueprint1.InsertColumn(new Point(1, 2));
+            portfolio.Add(blueprint1);
+            IBlueprint retrieved = portfolio.Get(blueprint1.GetId());
+            int expectedResult = 2;
+            int actualResult = retrieved.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
     }
 }
