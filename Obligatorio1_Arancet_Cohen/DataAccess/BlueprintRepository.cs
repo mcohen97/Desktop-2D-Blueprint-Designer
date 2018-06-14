@@ -15,13 +15,15 @@ namespace DataAccess
     {
         public void Add(IBlueprint toStore)
         {
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+            
                 //instantiate the translators.
                 BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
                 MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
 
                 //translate and add the blueprint.
                 BlueprintEntity converted = blueprintTranslator.BlueprintToEntiy(toStore);
+             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
                 context.Blueprints.Add(converted);
                 UserEntity owner = converted.Owner;
 
@@ -33,25 +35,62 @@ namespace DataAccess
                     context.Entry(converted.Owner).State = EntityState.Added;
                 }
 
+                IEnumerable<ColumnEntity> convertedColumns = toStore.GetColumns().Select(c=> materialTranslator.ColumnToEntity((Column)c,converted));
+                context.Columns.AddRange(convertedColumns);
+
                 //translate and add its walls.
                 IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,converted));
-                context.Walls.AddRange(convertedWalls);
-                //translate and add its openings.
-                IEnumerable<OpeningEntity> convertedOpenings = toStore.GetOpenings().Select(o => CreateOpeningEntity(o,materialTranslator,converted));
-                context.Openings.AddRange(convertedOpenings);
+                context.Walls.AddRange(convertedWalls);                
                 
+           
+
+            foreach (Opening op in toStore.GetOpenings()) {
+                    string tempName = op.getTemplateName();
+                    OpeningTemplateEntity itsTemplate = context.OpeningTemplates
+                            .FirstOrDefault(t => t.Name.Equals(tempName));
+                    OpeningEntity opRecord=materialTranslator.OpeningToEntity(op, itsTemplate, converted);
+                    context.Openings.Add(opRecord);
+            }
                 context.SaveChanges();
             }
+            //translate and add its openings.
+            //IEnumerable<OpeningEntity> convertedOpenings = toStore.GetOpenings().Select(o => CreateOpeningEntity(o, materialTranslator, converted));
+
+            /* foreach (OpeningEntity opEntity in convertedOpenings)
+             {
+                 SaveOpening(opEntity);
+                 /*context.Openings.Add(opEntity);
+                 if (context.OpeningTemplates.Any(ot => ot.Name.Equals(opEntity.Template.Name)))
+                 {
+                     context.Entry(opEntity.Template).State = EntityState.Unchanged;
+                 }*/
+
+
         }
 
+
+        private void SaveOpening(OpeningEntity opEntity) {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                context.Entry(opEntity).State=EntityState.Added;
+                if (context.OpeningTemplates.Any(t => t.Name.Equals(opEntity.Template.Name))) {
+                    context.Entry(opEntity.Template).State = EntityState.Modified;
+                }
+                context.SaveChanges();
+            }
+
+        }
         private OpeningEntity CreateOpeningEntity(Opening o, MaterialAndEntityConverter materialTranslator,BlueprintEntity bearer) {
             string tempName = o.getTemplateName();
             OpeningTemplateEntity temp;
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
                temp= context.OpeningTemplates.FirstOrDefault(t => t.Name.Equals(tempName));
+                if (temp == null) {
+                    temp = materialTranslator.GetTemplateFromOpening(o);
+                    context.OpeningTemplates.Add(temp);
+                    context.SaveChanges();
+                }
             }
-
             return materialTranslator.OpeningToEntity(o, temp,bearer);
 
         }
@@ -203,7 +242,7 @@ namespace DataAccess
             {
 
                 wallEnts = context.Walls.Where(we => we.BearerBlueprint.Id == blueprint.Id).ToList();
-                openEnts = context.Openings.Where(we => we.BearerBlueprint.Id== blueprint.Id).ToList();
+                openEnts = context.Openings.Include(o => o.Template).Where(we => we.BearerBlueprint.Id== blueprint.Id).ToList();
                 colEnts = context.Columns.Where(ce => ce.BearerBlueprint.Id== blueprint.Id).ToList();
             }
             IBlueprint builtBlueprint =converter.EntityToBlueprint(blueprint, wallEnts, openEnts, colEnts);
