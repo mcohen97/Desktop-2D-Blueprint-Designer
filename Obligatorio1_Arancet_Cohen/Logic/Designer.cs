@@ -17,6 +17,17 @@ namespace Logic.Domain
             Permissions = GeneratePermissions();
         }
 
+        public Designer(string name, string surname, string userName, string password, DateTime registrationDate,DateTime lastLoginDate)
+        {
+            Name = name;
+            Surname = surname;
+            UserName = userName;
+            Password = password;
+            RegistrationDate = registrationDate;
+            LastLoginDate = lastLoginDate;
+            Permissions = GeneratePermissions();
+        }
+
         private List<Permission> GeneratePermissions()
         {
             List<Permission> perms = new List<Permission>() { 

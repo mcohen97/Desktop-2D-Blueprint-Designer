@@ -1,6 +1,6 @@
 ﻿namespace Entities
 {
-    public class ArchitectEntity
+    public class ArchitectEntity:UserEntity
     {
     }
 }

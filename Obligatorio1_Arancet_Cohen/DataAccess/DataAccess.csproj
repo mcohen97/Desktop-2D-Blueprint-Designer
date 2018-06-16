@@ -49,34 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlueprintPortfolio.cs" />
-    <Compile Include="BlueprintRespository.cs" />
+    <Compile Include="BlueprintAndEntityConverter.cs" />
+    <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806081347082_contextChange.cs" />
-    <Compile Include="Migrations\201806081347082_contextChange.Designer.cs">
-      <DependentUpon>201806081347082_contextChange.cs</DependentUpon>
-    </Compile>
+    <Compile Include="OpeningTemplateRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806070333379_Initial.cs" />
-    <Compile Include="Migrations\201806070333379_Initial.Designer.cs">
-      <DependentUpon>201806070333379_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806071130338_FixedDateType.cs" />
-    <Compile Include="Migrations\201806071130338_FixedDateType.Designer.cs">
-      <DependentUpon>201806071130338_FixedDateType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806071543491_Permissions.cs" />
-    <Compile Include="Migrations\201806071543491_Permissions.Designer.cs">
-      <DependentUpon>201806071543491_Permissions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806071555037_ChangeInPermissions.cs" />
-    <Compile Include="Migrations\201806071555037_ChangeInPermissions.Designer.cs">
-      <DependentUpon>201806071555037_ChangeInPermissions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806071645154_RemovePermissions.cs" />
-    <Compile Include="Migrations\201806071645154_RemovePermissions.Designer.cs">
-      <DependentUpon>201806071645154_RemovePermissions.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="BlueBuilderDBContext.cs" />
@@ -105,26 +82,6 @@
       <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
       <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806070333379_Initial.resx">
-      <DependentUpon>201806070333379_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806071130338_FixedDateType.resx">
-      <DependentUpon>201806071130338_FixedDateType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806071543491_Permissions.resx">
-      <DependentUpon>201806071543491_Permissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806071555037_ChangeInPermissions.resx">
-      <DependentUpon>201806071555037_ChangeInPermissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806071645154_RemovePermissions.resx">
-      <DependentUpon>201806071645154_RemovePermissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806081347082_contextChange.resx">
-      <DependentUpon>201806081347082_contextChange.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

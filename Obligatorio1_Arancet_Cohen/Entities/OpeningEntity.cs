@@ -10,9 +10,9 @@ namespace Entities
     {
         public Guid Id { get; set; }
         public OpeningTemplateEntity Template{get;set;}
+        public float CoordX { get; set; }
 
-        public CostPriceEntity CostPrice { get; set; }
-
-        public PointEntity Position { get; set; }
+        public float CoordY { get; set; }
+        public BlueprintEntity BearerBlueprint { get; set; }
     }
 }

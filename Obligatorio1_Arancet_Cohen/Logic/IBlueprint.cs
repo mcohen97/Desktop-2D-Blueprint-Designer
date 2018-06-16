@@ -13,8 +13,12 @@ namespace Logic.Domain
         public virtual int Length { get; protected set; }
         public virtual int Width { get; protected set; }
         public virtual User Owner { get; set; }   
-        private Guid id;
+        protected Guid id;
         protected ICollection<Signature> signatures;
+
+        public Guid GetId() {
+            return id;
+        }
 
         public virtual void Sign(User signer)
         {
@@ -35,6 +39,21 @@ namespace Logic.Domain
         public virtual ICollection<Signature> GetSignatures()
         {
             return signatures;
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool areEqual;
+            if (obj == null || !(obj is IBlueprint))
+            {
+                areEqual = false;
+            }
+            else
+            {
+                IBlueprint isABlueprint = (IBlueprint)obj;
+                areEqual = GetId().Equals(isABlueprint.GetId());
+            }
+            return areEqual;
         }
 
         public abstract void InsertWall(Point from, Point to);

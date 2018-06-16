@@ -21,6 +21,8 @@ namespace RepositoryInterface
 
         T Get(Guid id);
 
+        T Get(T asked);
+
         ICollection<T> GetAll();
     }
 }

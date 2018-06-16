@@ -17,13 +17,18 @@ namespace DataAccessTest
         private User user3;
         private User user4;
         private User user5;
-        private IRepository<User> repository;
+        private IRepository<User> usersStorage;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            repository = new UserRepository();
-            repository.Clear();
+            usersStorage = new UserRepository();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                Console.WriteLine(context.Database.Exists());
+            }
+
+
+            usersStorage.Clear();
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
             user3 = new Designer("designer1N", "designer1S", "designer1UN", "designer1P", DateTime.Now);
@@ -34,100 +39,100 @@ namespace DataAccessTest
         [TestMethod]
         public void EmptyPorfolioTest()
         {
-            repository.Clear();
-            Assert.IsTrue(repository.IsEmpty());
+            usersStorage.Clear();
+            Assert.IsTrue(usersStorage.IsEmpty());
         }
 
         [TestMethod]
         public void AddUserTest()
         {
-            repository.Add(user1);
-            Assert.IsFalse(repository.IsEmpty());
+            usersStorage.Add(user1);
+            Assert.IsFalse(usersStorage.IsEmpty());
         }
 
         [TestMethod]
         public void AddedUserTest()
         {
-            repository.Add(user1);
-            Assert.IsTrue(repository.Exists(user1));
+            usersStorage.Add(user1);
+            Assert.IsTrue(usersStorage.Exists(user1));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddNullUserTest()
         {
-            repository.Add(null);
+            usersStorage.Add(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(UserAlreadyExistsException))]
         public void AddExistingUser()
         {
-            repository.Add(user1);
-            repository.Add(user1);
+            usersStorage.Add(user1);
+            usersStorage.Add(user1);
         }
 
         [TestMethod]
         public void UserNameExistsTest()
         {
-            repository.Add(user1);
-            Assert.IsTrue(((IUserRepository)repository).ExistsUserName("client1UN"));
+            usersStorage.Add(user1);
+            Assert.IsTrue(((IUserRepository)usersStorage).ExistsUserName("client1UN"));
         }
 
         [TestMethod]
         public void UserNameDoesNotExist()
         {
-            Assert.IsFalse(((IUserRepository)repository).ExistsUserName("client1UN"));
+            Assert.IsFalse(((IUserRepository)usersStorage).ExistsUserName("client1UN"));
         }
 
         [TestMethod]
         public void RemoveExistentUserTest()
         {
-            repository.Add(user1);
-            repository.Add(user2);
-            repository.Delete(user1);
-            Assert.IsFalse(repository.Exists(user1));
+            usersStorage.Add(user1);
+            usersStorage.Add(user2);
+            usersStorage.Delete(user1);
+            Assert.IsFalse(usersStorage.Exists(user1));
         }
 
         [TestMethod]
         public void RemoveNonExistentUserTest()
         {
-            repository.Add(user2);
-            repository.Delete(user1);
+            usersStorage.Add(user2);
+            usersStorage.Delete(user1);
         }
 
         [TestMethod]
         public void GetUserTest()
         {
-            repository.Add(user5);
-            User userInfo = ((IUserRepository)repository).Get(user5);
+            usersStorage.Add(user5);
+            User userInfo = ((IUserRepository)usersStorage).Get(user5);
             Assert.AreEqual(user5, userInfo);
         }
 
         [TestMethod]
         public void GetUserByUserNameTest()
         {
-            repository.Add(user5);
-            User userInfo = ((IUserRepository)repository).GetUserByUserName(user5.UserName);
+            usersStorage.Add(user5);
+            User userInfo = ((IUserRepository)usersStorage).GetUserByUserName(user5.UserName);
             Assert.AreEqual(user5, userInfo);
         }
 
         [TestMethod]
         public void GetAllUsersTest()
         {
-            repository.Add(user1);
-            repository.Add(user2);
+            usersStorage.Add(user1);
+            usersStorage.Add(user2);
             int expectedResult = 3;
-            int actualResult = repository.GetAll().Count;
+            int actualResult = usersStorage.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
         public void GetUsersByPermissionTest()
         {
-            repository.Add(user1);
-            repository.Add(user3);
-            ICollection<User> filtered = ((IUserRepository)repository).GetUsersByPermission(Permission.READ_BLUEPRINT);
+            usersStorage.Add(user1);
+            usersStorage.Add(user3);
+            ICollection<User> filtered = ((IUserRepository)usersStorage).GetUsersByPermission(Permission.READ_BLUEPRINT);
             int expectedResult = 2;
             int actualResult = filtered.Count;
             Assert.AreEqual(expectedResult, actualResult);
@@ -136,23 +141,26 @@ namespace DataAccessTest
         [TestMethod]
         public void RecursiveBlueprintDeletionTest()
         {
-            repository.Add(user1);
-            repository.Add(user2);
-            repository.Add(user3);
+            usersStorage.Add(user1);
+            usersStorage.Add(user2);
+            usersStorage.Add(user3);
 
-            Blueprint blueprint1 = new Blueprint(12, 12, "Blueprint1");
+            BlueprintRepository blueprintsStorage = new BlueprintRepository();
+
+            IBlueprint blueprint1 = new Blueprint(12, 12, "Blueprint1");
             blueprint1.Owner = user1;
-            Blueprint blueprint2 = new Blueprint(12, 12, "Blueprint2");
+            IBlueprint blueprint2 = new Blueprint(12, 12, "Blueprint2");
             blueprint2.Owner = user2;
-            Blueprint blueprint3 = new Blueprint(12, 12, "Blueprint3");
+            IBlueprint blueprint3 = new Blueprint(12, 12, "Blueprint3");
             blueprint3.Owner = user1;
-            BlueprintPortfolio.Instance.Add(blueprint1);
-            BlueprintPortfolio.Instance.Add(blueprint2);
-            BlueprintPortfolio.Instance.Add(blueprint3);
 
-            repository.Delete(user1);
+            blueprintsStorage.Add(blueprint1);
+            blueprintsStorage.Add(blueprint2);
+            blueprintsStorage.Add(blueprint3);
+
+            usersStorage.Delete(user1);
             int expectedResult = 1;
-            int actualResult = BlueprintPortfolio.Instance.GetAll().Count;
+            int actualResult =blueprintsStorage.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
     }

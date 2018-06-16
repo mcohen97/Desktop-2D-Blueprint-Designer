@@ -10,7 +10,7 @@ namespace Entities
     {
         public Guid Id { get; set; }
 
-        public ArchitectEntity Signer { get; set; }
+        public UserEntity Signer { get; set; }
 
         public DateTime SignatureDate { get; set; }
 

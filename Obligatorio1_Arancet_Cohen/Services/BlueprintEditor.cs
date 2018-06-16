@@ -3,26 +3,30 @@ using Logic.Domain;
 using Logic.Exceptions;
 using System.Collections.Generic;
 using Logic;
+using RepositoryInterface;
+using DataAccess;
 
 namespace Services
 {
     public class BlueprintEditor
     {
         private IBlueprint blueprint;
+        private IRepository<IBlueprint> repository;
         private Session session;
 
         public BlueprintEditor(Session session, IBlueprint blueprintTest)
         {
             this.session = session;
             this.blueprint = blueprintTest;
+            this.repository = new BlueprintRepository();
         }
 
         public void SetOwner(User aUser)
         {
             CheckPermission(Permission.EDIT_BLUEPRINT);
             CheckPermission(Permission.HAVE_BLUEPRINT);
-
             blueprint.Owner = aUser;
+            repository.Modify(blueprint);
         }
 
 
@@ -31,6 +35,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertWall(from, to);
+            repository.Modify(blueprint);
         }
 
         public void InsertColumn(Point columnPosition)
@@ -38,6 +43,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertColumn(columnPosition);
+            repository.Modify(blueprint);
         }
 
 
@@ -46,6 +52,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.RemoveWall(from, to);
+            repository.Modify(blueprint);
         }
 
         public void InsertOpening(Opening aOpening)
@@ -53,6 +60,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertOpening(aOpening);
+            repository.Modify(blueprint);
         }
 
         public void RemoveOpening(Opening aOpening)
@@ -60,6 +68,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.RemoveOpening(aOpening);
+            repository.Modify(blueprint);
         }
 
 
@@ -68,6 +77,7 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.Name = name;
+            repository.Modify(blueprint);
         }
 
         public void Sign(User architect)

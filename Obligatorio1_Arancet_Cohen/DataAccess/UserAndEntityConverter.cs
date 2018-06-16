@@ -12,6 +12,11 @@ namespace DataAccess
     {
         public UserEntity toEntity(User toConvert)
         {
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             UserEntity conversion;
             if (toConvert is Admin)
             {
@@ -21,15 +26,23 @@ namespace DataAccess
             {
                 conversion = ClientToEntity((Client)toConvert);
             }
-            else
+            else if (toConvert is Designer)
             {
                 conversion = DesignerToEntity((Designer)toConvert);
+            }
+            else {
+                conversion = ArhitectToEntiy((Architect)toConvert);
             }
             return conversion;
         }
 
         public User toUser(UserEntity toConvert)
         {
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             User conversion;
             if (toConvert is ClientEntity)
             {
@@ -39,9 +52,13 @@ namespace DataAccess
             {
                 conversion = EntityToAdmin((AdminEntity)toConvert);
             }
-            else
+            else if (toConvert is DesignerEntity)
             {
                 conversion = EntityToDesigner((DesignerEntity)toConvert);
+            }
+            else {
+                conversion = EntityToArchitect((ArchitectEntity)toConvert);
+
             }
             return conversion;
         }
@@ -49,14 +66,10 @@ namespace DataAccess
 
         private ClientEntity ClientToEntity(Client toConvert)
         {
-            /*List<int> clientTypePermissions = new List<int>() {
-            (int)Permission.READ_BLUEPRINT,
-            (int)Permission.HOLD_EXTRA_DATA,
-            (int)Permission.FIRST_LOGIN,
-            (int)Permission.HAVE_BLUEPRINT,
-            (int)Permission.EDIT_OWN_DATA,
-            (int)Permission.READ_OWNEDBLUEPRINT};*/
-
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
 
             ClientEntity conversion = new ClientEntity()
             {
@@ -67,7 +80,8 @@ namespace DataAccess
                 Phone = toConvert.Phone,
                 IdCard = toConvert.Id,
                 Address = toConvert.Address,
-                //Permissions = clientTypePermissions
+                RegistrationDate = toConvert.RegistrationDate,
+                LastLoginDate = toConvert.LastLoginDate
             };
         
             return conversion;
@@ -75,9 +89,13 @@ namespace DataAccess
 
         private Client EntityToClient(ClientEntity toConvert)
         {
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
             Client conversion = new Client(toConvert.Name, toConvert.Surname, toConvert.UserName,
                                            toConvert.Password, toConvert.Phone, toConvert.Address,
-                                           toConvert.IdCard, toConvert.RegistrationDate);
+                                           toConvert.IdCard, toConvert.RegistrationDate,toConvert.LastLoginDate);
 
 
             return conversion;
@@ -85,14 +103,10 @@ namespace DataAccess
 
         private AdminEntity AdminToEntity(Admin toConvert)
         {
-            /*List<int> adminTypePermissions = new List<int>() {
-                (int)Permission.CREATE_USER,
-                (int)Permission.EDIT_USER,
-                (int)Permission.READ_USER,
-                (int)Permission.REMOVE_USER,
-                (int)Permission.MANAGE_COSTS,
-                (int)Permission.EDIT_OWN_DATA };*/
-
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
             AdminEntity conversion = new AdminEntity()
             {
                 Name = toConvert.Name,
@@ -109,20 +123,20 @@ namespace DataAccess
 
         private Admin EntityToAdmin(AdminEntity toConvert)
         {
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
             Admin conversion = new Admin(toConvert.Name, toConvert.Surname, toConvert.UserName,
-                                        toConvert.Password, toConvert.RegistrationDate);
+                                        toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
             return conversion;
         }
 
         private DesignerEntity DesignerToEntity(Designer toConvert)
         {
-            /*List<int> designerTypePermissions = new List<int>() {
-                                (int)Permission.CREATE_BLUEPRINT,
-                                (int)Permission.EDIT_BLUEPRINT,
-                                (int)Permission.DELETE_BLUEPRINT,
-                                (int)Permission.READ_BLUEPRINT,
-                                (int)Permission.READ_USER,
-                                (int)Permission.EDIT_OWN_DATA};*/
+            if (toConvert == null) {
+                throw new ArgumentNullException();
+            }
 
             DesignerEntity conversion = new DesignerEntity()
             {
@@ -132,14 +146,38 @@ namespace DataAccess
                 Password = toConvert.Password,
                 RegistrationDate = toConvert.RegistrationDate,
                 LastLoginDate = toConvert.LastLoginDate,
-                //Permissions = designerTypePermissions
             };
             return conversion;
         }
 
         private Designer EntityToDesigner(DesignerEntity toConvert)
         {
-            Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate);
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, 
+                toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            return conversion;
+        }
+
+        private ArchitectEntity ArhitectToEntiy(Architect toConvert) {
+            ArchitectEntity conversion = new ArchitectEntity()
+            {
+                Name = toConvert.Name,
+                Surname = toConvert.Surname,
+                UserName = toConvert.UserName,
+                Password = toConvert.Password,
+                RegistrationDate = toConvert.RegistrationDate,
+                LastLoginDate = toConvert.LastLoginDate
+
+            };
+            return conversion;
+
+        }
+
+        private Architect EntityToArchitect(ArchitectEntity toConvert) {
+            Architect conversion = new Architect(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
             return conversion;
         }
     }

@@ -111,6 +111,28 @@ namespace Logic.Test
             instance.Owner = null;
         }
 
+        [TestMethod]
+        public void EqualsTest() {
+            IBlueprint testBp = new Blueprint(20, 20, "blueprinty",owner ,new MaterialContainer(), new List<Signature>(), instance.GetId());
+            Assert.IsTrue(instance.Equals(testBp));
+        }
+
+        [TestMethod]
+        public void NotEqualsTestDifferentTypesTest() {
+            String test = "test";
+            Assert.IsFalse(instance.Equals(test));
+        }
+
+        [TestMethod]
+        public void NotEqualsNullTest() {
+            Assert.IsFalse(instance.Equals(null));
+        }
+
+        [TestMethod]
+        public void NotEqualsTest() {
+            IBlueprint testBp = new Blueprint(5, 5, "TeSt");
+            Assert.IsFalse(instance.Equals(testBp));
+        }
 
         //Tests for insertion of walls
         [TestMethod]
@@ -470,7 +492,7 @@ namespace Logic.Test
             instance.Sign(architectA);
             Signature lastSignature = instance.GetSignatures().Last();
 
-            Assert.AreEqual(lastSignature.User, architectA);
+            Assert.AreEqual(lastSignature.Signer, architectA);
         }
 
         //Column tests

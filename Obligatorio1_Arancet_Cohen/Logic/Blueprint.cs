@@ -18,6 +18,7 @@ namespace Logic.Domain
         public override string Name { get { return name; } internal set { SetName(value); } }
 
         private int length;
+
         public override int Length { get { return length; } protected set { SetLength(value); } }//Horizontal X Mesaure
 
         private int width;
@@ -28,16 +29,14 @@ namespace Logic.Domain
         private User owner;
         public override  User Owner { get { return owner; } set { SetOwner(value); } }
 
-        private Guid id;
-
         public Blueprint(int aLength, int aWidth, string aName)
         {
             Length = aLength;
             Width = aWidth;
             Name = aName;
             materials = new MaterialContainer();
-            id = Guid.NewGuid();
             signatures = new List<Signature>();
+            id = Guid.NewGuid();
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -46,8 +45,18 @@ namespace Logic.Domain
             Width = aWidth;
             Name = aName;
             materials = container;
-            id = Guid.NewGuid();
             signatures = new List<Signature>();
+            id = Guid.NewGuid();
+        }
+
+        public Blueprint(int aLength, int aWidth, string aName,User anOwner,MaterialContainer container,ICollection<Signature> someSignatures,Guid anId) {
+            Length = aLength;
+            Width = aWidth;
+            Name = aName;
+            Owner = anOwner;
+            signatures = someSignatures;
+            materials = container;
+            id = anId;
         }
 
         private void SetName(string aName)
@@ -206,22 +215,35 @@ namespace Logic.Domain
         private void FractionNewIntersectedWall(Wall aWall)
         {
             List<Point> intersectionPoints = new List<Point>();
-            Point actualIntersection;
             foreach (Wall intersected in WallsIntersectedByThisOne(aWall))
             {
-                if (!aWall.IsConnected(intersected))
-                {
-                    actualIntersection = intersected.GetIntersection(aWall);
-                    PartWall(intersected, actualIntersection);
-                    intersectionPoints.Add(actualIntersection);
-                }
-                else
-                {
-                    PlaceNewWall(aWall);
-                }
+                PartIfDoesNotFormCorner(aWall, intersected, intersectionPoints);
             }
-            intersectionPoints.Sort();
-            SplitWall(aWall, intersectionPoints);
+
+            if (IntersectionsExist(intersectionPoints))
+            {
+                intersectionPoints.Sort();
+                SplitWall(aWall, intersectionPoints);
+            }
+        }
+
+        private void PartIfDoesNotFormCorner(Wall aWall, Wall intersected,  List<Point>  intersectionPoints) {
+            if (!aWall.IsConnected(intersected))
+            {
+                Point actualIntersection;
+                actualIntersection = intersected.GetIntersection(aWall);
+                PartWall(intersected, actualIntersection);
+                intersectionPoints.Add(actualIntersection);
+            }
+            else
+            {
+                PlaceNewWall(aWall);
+            }
+
+        }
+
+        private bool IntersectionsExist(ICollection<Point> intersections) {
+            return intersections.Any();
         }
 
         private void PartWall(Wall aWall, Point splitPoint)
@@ -458,10 +480,9 @@ namespace Logic.Domain
 
         public override string ToString()
         {
-            string strId = id.ToString();
+
             return "Name: " + Name + " "
-                   + "Owner: " + Owner.UserName + " "
-                   + "Id: " + strId.Substring(strId.Length - 5);
+                   + "Owner: " + Owner.UserName + " ";
         }
 
        

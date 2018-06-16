@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using DataAccess;
 using System.Collections.Generic;
+using RepositoryInterface;
 
 namespace DataAccessTest
 {
@@ -13,13 +14,13 @@ namespace DataAccessTest
         private IBlueprint blueprint1;
         private IBlueprint blueprint2;
         private IBlueprint blueprint3;
-        private BlueprintPortfolio portfolio;
+        private BlueprintRepository portfolio;
 
 
         [TestInitialize]
         public void TestInitialize()
         {
-            portfolio = BlueprintPortfolio.Instance;
+            portfolio = new BlueprintRepository();
             portfolio.Clear();
             Client user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             blueprint1 = new Blueprint(12, 12, "Blueprint1");
@@ -74,15 +75,15 @@ namespace DataAccessTest
         public void RemoveNonExistentBlueprintTest()
         {
             portfolio.Add(blueprint2);
-            bool deletionExecuted = portfolio.Delete(blueprint1);
-            Assert.IsFalse(deletionExecuted);
+            portfolio.Delete(blueprint1);
+            Assert.IsFalse(portfolio.IsEmpty());
         }
 
         [TestMethod]
         public void GetEnumeratorBlueprintTest()
         {
             portfolio.Add(blueprint1);
-            IBlueprint blueprintGot = portfolio.Get(blueprint1);
+            IBlueprint blueprintGot = ((IRepository<IBlueprint>)portfolio).Get(blueprint1);
             Assert.AreEqual(blueprintGot, blueprint1);
         }
 
@@ -119,5 +120,19 @@ namespace DataAccessTest
             int actualResult = portfolio.GetAll().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void WallsPersistenceCountTest()
+        {
+            blueprint1.InsertWall(new Point(2, 2), new Point(3, 2));
+            blueprint1.InsertWall(new Point(2, 2), new Point(2, 4));
+            portfolio.Add(blueprint1);
+            IBlueprint retrieved = portfolio.Get(blueprint1.GetId());
+            int expectedResult = 2;
+            int actualResult = retrieved.GetWalls().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+
     }
 }

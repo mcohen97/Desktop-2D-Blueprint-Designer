@@ -15,10 +15,14 @@ namespace Entities
 
         public float Width { get; set; }
 
-        public PointEntity From { get; set; }
+        public float BeginningX { get; set; }
 
-        public PointEntity To { get; set; }
-        
-        public BlueprintEntity Blueprint { get; set; }
+        public float BeginningY { get; set; }
+
+        public float EndX { get; set; }
+
+        public float EndY { get; set; }
+
+        public BlueprintEntity BearerBlueprint { get; set; }
     }
 }

@@ -7,10 +7,9 @@ using Logic.Domain;
 
 namespace DomainRepositoryInterface
 {
-    public interface IBlueprintRepository
+    public interface ITemplateRepository
     {
-        ICollection<IBlueprint> GetBlueprintsOfUser(User owner);
+        Template GetTemplateByName(string name); 
 
-        void DeleteUserBlueprints(User aUser);
     }
 }

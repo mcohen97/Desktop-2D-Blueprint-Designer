@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class PointEntity
+    public class ColumnEntity
     {
         public Guid Id { get; set; }
+        public float Width { get; set; }
+
+        public float Length { get; set; }
+
+        public float Height { get; set; }
+
         public float CoordX { get; set; }
 
         public float CoordY { get; set; }
+
+        public BlueprintEntity BearerBlueprint { get; set; }
+       
     }
 }
