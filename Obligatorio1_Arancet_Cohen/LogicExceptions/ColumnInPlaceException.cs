@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Domain
+namespace LogicExceptions
 {
     [Serializable]
-    internal class ColumnInPlaceException : Exception
+    public class ColumnInPlaceException : Exception
     {
         public ColumnInPlaceException()
         {

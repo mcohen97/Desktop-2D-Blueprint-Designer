@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Domain
+namespace LogicExceptions
 {
     [Serializable]
-    internal class ComponentInWallException : Exception
+    public class ComponentInWallException : Exception
     {
         public ComponentInWallException()
         {

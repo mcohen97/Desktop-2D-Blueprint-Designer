@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Logic.Exceptions;
 using Logic.Domain;
 using DataAccess;
 using RepositoryInterface;
 using DomainRepositoryInterface;
+using ServicesExceptions;
 
 namespace Services
 {

@@ -78,6 +78,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccessExceptions\DataAccessExceptions.csproj">
+      <Project>{5f498c63-2de6-4d25-9504-73b397b5c2f8}</Project>
+      <Name>DataAccessExceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{56AE519E-FDC8-4555-980E-4C9541C19E31}</Project>
       <Name>Entities</Name>

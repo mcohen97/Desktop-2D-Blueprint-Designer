@@ -65,6 +65,10 @@
     <Compile Include="UserAdministratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccessExceptions\DataAccessExceptions.csproj">
+      <Project>{5f498c63-2de6-4d25-9504-73b397b5c2f8}</Project>
+      <Name>DataAccessExceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>
       <Name>DataAccess</Name>
@@ -76,6 +80,10 @@
     <ProjectReference Include="..\RepositoryInterface\RepositoryInterface.csproj">
       <Project>{636b5156-d57e-4d33-b0f9-272ab0c13ffd}</Project>
       <Name>RepositoryInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicesExceptions\ServicesExceptions.csproj">
+      <Project>{85638fb7-11db-4ab2-9ea5-773d04d10ce6}</Project>
+      <Name>ServicesExceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{875d9fdd-57a1-468c-9c18-7596b5c67466}</Project>

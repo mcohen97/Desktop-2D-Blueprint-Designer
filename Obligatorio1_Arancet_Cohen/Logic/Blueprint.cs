@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
-using Logic.Exceptions;
+using LogicExceptions;
 
 [assembly: InternalsVisibleTo("Logic.Test")]
 

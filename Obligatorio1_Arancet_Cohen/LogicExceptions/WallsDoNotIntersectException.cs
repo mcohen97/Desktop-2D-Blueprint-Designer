@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Exceptions {
+namespace LogicExceptions
+{
     public class WallsDoNotIntersectException : Exception {
         public WallsDoNotIntersectException() {
         }

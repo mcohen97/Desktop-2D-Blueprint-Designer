@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Logic.Domain;
-using Logic.Exceptions;
 using System.Linq;
+using LogicExceptions;
 
 namespace Logic.Test
 {

@@ -8,7 +8,7 @@ using RepositoryInterface;
 using Logic.Domain;
 using Entities;
 using System.Data.Entity.Infrastructure;
-using Logic.Exceptions;
+using DataAccessExceptions;
 using System.Linq.Expressions;
 
 namespace DataAccess

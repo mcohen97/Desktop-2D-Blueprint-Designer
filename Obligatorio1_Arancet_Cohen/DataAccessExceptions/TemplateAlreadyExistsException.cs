@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Exceptions
+namespace DataAccessExceptions
 {
     public class TemplateAlreadyExistsException : Exception
     {

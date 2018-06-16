@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
-using Logic.Exceptions;
+using DataAccessExceptions;
+using ServicesExceptions;
 using Services;
 
 namespace UserInterface
