@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InaccessibleDataException.cs" />
+    <Compile Include="InconsistentDataException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateAlreadyExistsException.cs" />
     <Compile Include="TemplateDoesNotExistException.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities;
 using Logic.Domain;
+using DataAccessExceptions;
 
 namespace DataAccess
 {
@@ -30,7 +31,8 @@ namespace DataAccess
             {
                 conversion = DesignerToEntity((Designer)toConvert);
             }
-            else {
+            else
+            {
                 conversion = ArhitectToEntiy((Architect)toConvert);
             }
             return conversion;
@@ -56,7 +58,8 @@ namespace DataAccess
             {
                 conversion = EntityToDesigner((DesignerEntity)toConvert);
             }
-            else {
+            else
+            {
                 conversion = EntityToArchitect((ArchitectEntity)toConvert);
 
             }
@@ -83,7 +86,7 @@ namespace DataAccess
                 RegistrationDate = toConvert.RegistrationDate,
                 LastLoginDate = toConvert.LastLoginDate
             };
-        
+
             return conversion;
         }
 
@@ -93,10 +96,20 @@ namespace DataAccess
             {
                 throw new ArgumentNullException();
             }
-            Client conversion = new Client(toConvert.Name, toConvert.Surname, toConvert.UserName,
-                                           toConvert.Password, toConvert.Phone, toConvert.Address,
-                                           toConvert.IdCard, toConvert.RegistrationDate,toConvert.LastLoginDate);
 
+            Client conversion;
+
+            try
+            {
+                conversion = new Client(toConvert.Name, toConvert.Surname, toConvert.UserName,
+                                               toConvert.Password, toConvert.Phone, toConvert.Address,
+                                               toConvert.IdCard, toConvert.RegistrationDate, toConvert.LastLoginDate);
+
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InconsistentDataException();
+            }
 
             return conversion;
         }
@@ -127,14 +140,23 @@ namespace DataAccess
             {
                 throw new ArgumentNullException();
             }
-            Admin conversion = new Admin(toConvert.Name, toConvert.Surname, toConvert.UserName,
-                                        toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            Admin conversion;
+            try
+            {
+                conversion = new Admin(toConvert.Name, toConvert.Surname, toConvert.UserName,
+                                            toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InconsistentDataException();
+            }
             return conversion;
         }
 
         private DesignerEntity DesignerToEntity(Designer toConvert)
         {
-            if (toConvert == null) {
+            if (toConvert == null)
+            {
                 throw new ArgumentNullException();
             }
 
@@ -156,12 +178,20 @@ namespace DataAccess
             {
                 throw new ArgumentNullException();
             }
-            Designer conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName, 
-                toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
-            return conversion;
+            Designer conversion;
+            try
+            {
+                conversion = new Designer(toConvert.Name, toConvert.Surname, toConvert.UserName,
+                    toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            }
+            catch (ArgumentNullException) {
+                throw new InconsistentDataException();
+            }
+                return conversion;
         }
 
-        private ArchitectEntity ArhitectToEntiy(Architect toConvert) {
+        private ArchitectEntity ArhitectToEntiy(Architect toConvert)
+        {
             ArchitectEntity conversion = new ArchitectEntity()
             {
                 Name = toConvert.Name,
@@ -176,9 +206,21 @@ namespace DataAccess
 
         }
 
-        private Architect EntityToArchitect(ArchitectEntity toConvert) {
-            Architect conversion = new Architect(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
-            return conversion;
+        private Architect EntityToArchitect(ArchitectEntity toConvert)
+        {
+            if (toConvert == null)
+            {
+                throw new ArgumentNullException();
+            }
+            Architect conversion;
+            try
+            {
+                conversion = new Architect(toConvert.Name, toConvert.Surname, toConvert.UserName, toConvert.Password, toConvert.RegistrationDate, toConvert.LastLoginDate);
+            }
+            catch (ArgumentNullException) {
+                throw new InconsistentDataException();
+            }
+                return conversion;
         }
     }
 }
