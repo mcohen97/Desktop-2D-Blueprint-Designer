@@ -1,4 +1,4 @@
-﻿
+﻿using LogicExceptions;
 using System;
 
 namespace Logic.Domain
@@ -13,6 +13,17 @@ namespace Logic.Domain
 
         public Template(string name, float length, float heightAboveFloor, float height, ComponentType type)
         {
+            if (!(type.Equals(ComponentType.DOOR) || type.Equals(ComponentType.WINDOW))) {
+                throw new InvalidTemplateTypeException();
+            }
+            if (type.Equals(ComponentType.DOOR) && heightAboveFloor > 0) {
+                throw new InvalidDoorTemplateException();
+            }
+            if(type.Equals(ComponentType.WINDOW) && heightAboveFloor>= 3)
+            {
+                throw new InvalidWindowTemplateException();
+            }
+
             this.name = name;
             this.length = length;
             this.heightAboveFloor = heightAboveFloor;

@@ -44,6 +44,9 @@
     <Compile Include="ColumnInPlaceException.cs" />
     <Compile Include="ComponentInWallException.cs" />
     <Compile Include="ComponentOutOfWallException.cs" />
+    <Compile Include="InvalidDoorTemplateException.cs" />
+    <Compile Include="InvalidTemplateTypeException.cs" />
+    <Compile Include="InvalidWindowTemplateException.cs" />
     <Compile Include="OccupiedPositionException.cs" />
     <Compile Include="OutOfRangeComponentException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
