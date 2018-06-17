@@ -53,6 +53,7 @@
     <Compile Include="IMaterialType.cs" />
     <Compile Include="IPriceable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
+    <Compile Include="PunctualComponentPositioner.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Door.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wall.cs" />
+    <Compile Include="WallsPositioner.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
