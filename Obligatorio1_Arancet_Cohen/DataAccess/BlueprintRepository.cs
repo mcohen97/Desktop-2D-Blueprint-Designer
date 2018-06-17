@@ -53,61 +53,12 @@ namespace DataAccess
             }
                 context.SaveChanges();
             }
-            //translate and add its openings.
-            //IEnumerable<OpeningEntity> convertedOpenings = toStore.GetOpenings().Select(o => CreateOpeningEntity(o, materialTranslator, converted));
-
-            /* foreach (OpeningEntity opEntity in convertedOpenings)
-             {
-                 SaveOpening(opEntity);
-                 /*context.Openings.Add(opEntity);
-                 if (context.OpeningTemplates.Any(ot => ot.Name.Equals(opEntity.Template.Name)))
-                 {
-                     context.Entry(opEntity.Template).State = EntityState.Unchanged;
-                 }*/
-
-
-        }
-
-
-        private void SaveOpening(OpeningEntity opEntity) {
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                context.Entry(opEntity).State=EntityState.Added;
-                if (context.OpeningTemplates.Any(t => t.Name.Equals(opEntity.Template.Name))) {
-                    context.Entry(opEntity.Template).State = EntityState.Modified;
-                }
-                context.SaveChanges();
-            }
-
-        }
-        private OpeningEntity CreateOpeningEntity(Opening o, MaterialAndEntityConverter materialTranslator,BlueprintEntity bearer) {
-            string tempName = o.getTemplateName();
-            OpeningTemplateEntity temp;
-
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-               temp= context.OpeningTemplates.FirstOrDefault(t => t.Name.Equals(tempName));
-                if (temp == null) {
-                    temp = materialTranslator.GetTemplateFromOpening(o);
-                    context.OpeningTemplates.Add(temp);
-                    context.SaveChanges();
-                }
-            }
-            return materialTranslator.OpeningToEntity(o, temp,bearer);
-
+           
         }
 
         public void Clear()
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                foreach (WallEntity we in context.Walls) {
-                    context.Walls.Remove(we);
-                }
-                foreach (OpeningEntity oe in context.Openings) {
-                    context.Openings.Remove(oe);
-                }
-                foreach (ColumnEntity ce in context.Columns)
-                {
-                    context.Columns.Remove(ce);
-                }
                 foreach (BlueprintEntity bpe in context.Blueprints) {
                     context.Blueprints.Remove(bpe);
                 }
@@ -124,27 +75,6 @@ namespace DataAccess
 
                 using (BlueBuilderDBContext context = new BlueBuilderDBContext())
                 {
-                    foreach (WallEntity we in context.Walls)
-                    {
-                        if (we.BearerBlueprint.Equals(converted))
-                        {
-                            context.Walls.Remove(we);
-                        }
-                    }
-                    foreach (OpeningEntity oe in context.Openings)
-                    {
-                        if (oe.BearerBlueprint.Equals(converted))
-                        {
-                            context.Openings.Remove(oe);
-                        }
-                    }
-                    foreach (ColumnEntity ce in context.Columns)
-                    {
-                        if (ce.BearerBlueprint.Equals(converted))
-                        {
-                            context.Columns.Remove(ce);
-                        }
-                    }
                     context.Blueprints.Attach(converted);
                     context.Blueprints.Remove(converted);
                     context.SaveChanges();
@@ -180,7 +110,6 @@ namespace DataAccess
             return Get(copy.GetId());
         }
 
-
         public ICollection<IBlueprint> GetAll()
         {
             ICollection<IBlueprint> converted = new List<IBlueprint>();
@@ -191,7 +120,6 @@ namespace DataAccess
             }
             return converted;
         }
-
 
         public bool IsEmpty()
         {
