@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
+using LogicExceptions;
 
 namespace Logic.Test
 {
@@ -82,12 +83,12 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(TemplateTypeNotMatchException))]
+        [ExpectedException(typeof(InvalidDoorTemplateException))]
         public void TypeNotMatchConstructorTest()
         {
             Opening opening = new Window(new Point(1, 1), new Template("Not match", 1, 1, 1, ComponentType.DOOR));
         }
 
-        //Validaton tests goes down here
+        
     }
 }
