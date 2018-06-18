@@ -3,7 +3,7 @@ namespace DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class TemplateConstraint : DbMigration
     {
         public override void Up()
         {
@@ -66,10 +66,10 @@ namespace DataAccess.Migrations
                         Height = c.Single(nullable: false),
                         CoordX = c.Single(nullable: false),
                         CoordY = c.Single(nullable: false),
-                        BearerBlueprint_Id = c.Guid(),
+                        BearerBlueprint_Id = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id)
+                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id, cascadeDelete: true)
                 .Index(t => t.BearerBlueprint_Id);
             
             CreateTable(
@@ -90,27 +90,28 @@ namespace DataAccess.Migrations
                         Id = c.Guid(nullable: false, identity: true),
                         CoordX = c.Single(nullable: false),
                         CoordY = c.Single(nullable: false),
-                        BearerBlueprint_Id = c.Guid(),
-                        Template_Id = c.Guid(),
+                        BearerBlueprint_Id = c.Guid(nullable: false),
+                        Template_Name = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id)
-                .ForeignKey("dbo.OpeningTemplateEntities", t => t.Template_Id)
+                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id, cascadeDelete: true)
+                .ForeignKey("dbo.OpeningTemplateEntities", t => t.Template_Name, cascadeDelete: true)
                 .Index(t => t.BearerBlueprint_Id)
-                .Index(t => t.Template_Id);
+                .Index(t => t.Template_Name);
             
             CreateTable(
                 "dbo.OpeningTemplateEntities",
                 c => new
                     {
+                        Name = c.String(nullable: false, maxLength: 128),
                         Id = c.Guid(nullable: false, identity: true),
                         Height = c.Single(nullable: false),
                         Length = c.Single(nullable: false),
                         HeightAboveFloor = c.Single(nullable: false),
-                        Name = c.String(),
                         ComponentType = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Name)
+                .Index(t => t.Name, unique: true);
             
             CreateTable(
                 "dbo.WallEntities",
@@ -123,10 +124,10 @@ namespace DataAccess.Migrations
                         BeginningY = c.Single(nullable: false),
                         EndX = c.Single(nullable: false),
                         EndY = c.Single(nullable: false),
-                        BearerBlueprint_Id = c.Guid(),
+                        BearerBlueprint_Id = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id)
+                .ForeignKey("dbo.BlueprintEntities", t => t.BearerBlueprint_Id, cascadeDelete: true)
                 .Index(t => t.BearerBlueprint_Id);
             
         }
@@ -134,14 +135,15 @@ namespace DataAccess.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.WallEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
-            DropForeignKey("dbo.OpeningEntities", "Template_Id", "dbo.OpeningTemplateEntities");
+            DropForeignKey("dbo.OpeningEntities", "Template_Name", "dbo.OpeningTemplateEntities");
             DropForeignKey("dbo.OpeningEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
             DropForeignKey("dbo.ColumnEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
             DropForeignKey("dbo.SignatureEntities", "BlueprintEntity_Id", "dbo.BlueprintEntities");
             DropForeignKey("dbo.SignatureEntities", "Signer_UserName", "dbo.UserEntities");
             DropForeignKey("dbo.BlueprintEntities", "Owner_UserName", "dbo.UserEntities");
             DropIndex("dbo.WallEntities", new[] { "BearerBlueprint_Id" });
-            DropIndex("dbo.OpeningEntities", new[] { "Template_Id" });
+            DropIndex("dbo.OpeningTemplateEntities", new[] { "Name" });
+            DropIndex("dbo.OpeningEntities", new[] { "Template_Name" });
             DropIndex("dbo.OpeningEntities", new[] { "BearerBlueprint_Id" });
             DropIndex("dbo.ColumnEntities", new[] { "BearerBlueprint_Id" });
             DropIndex("dbo.SignatureEntities", new[] { "BlueprintEntity_Id" });

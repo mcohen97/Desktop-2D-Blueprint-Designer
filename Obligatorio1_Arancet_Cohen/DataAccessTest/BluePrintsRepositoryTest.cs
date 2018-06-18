@@ -169,7 +169,6 @@ namespace DataAccessTest
             Opening otherGateOp = new Door(new Point(2, 2), gate);
 
             blueprint1.InsertColumn(new Point(2, 3));
-            //blueprint1.InsertColumn(new Point(1, 2));
 
             blueprint1.InsertWall(new Point(0, 2), new Point(4, 2));
             blueprint1.InsertWall(new Point(0, 1), new Point(4, 1));

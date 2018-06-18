@@ -52,17 +52,9 @@
     <Compile Include="BlueprintAndEntityConverter.cs" />
     <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806131656220_Initial.cs" />
-    <Compile Include="Migrations\201806131656220_Initial.Designer.cs">
-      <DependentUpon>201806131656220_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806131700360_RequiredBlueprintForMaterials.cs" />
-    <Compile Include="Migrations\201806131700360_RequiredBlueprintForMaterials.Designer.cs">
-      <DependentUpon>201806131700360_RequiredBlueprintForMaterials.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806131847218_OpeningTemplateKey.cs" />
-    <Compile Include="Migrations\201806131847218_OpeningTemplateKey.Designer.cs">
-      <DependentUpon>201806131847218_OpeningTemplateKey.cs</DependentUpon>
+    <Compile Include="Migrations\201806181920403_TemplateConstraint.cs" />
+    <Compile Include="Migrations\201806181920403_TemplateConstraint.Designer.cs">
+      <DependentUpon>201806181920403_TemplateConstraint.cs</DependentUpon>
     </Compile>
     <Compile Include="OpeningTemplateRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
@@ -100,14 +92,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806131656220_Initial.resx">
-      <DependentUpon>201806131656220_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806131700360_RequiredBlueprintForMaterials.resx">
-      <DependentUpon>201806131700360_RequiredBlueprintForMaterials.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806131847218_OpeningTemplateKey.resx">
-      <DependentUpon>201806131847218_OpeningTemplateKey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806181920403_TemplateConstraint.resx">
+      <DependentUpon>201806181920403_TemplateConstraint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
