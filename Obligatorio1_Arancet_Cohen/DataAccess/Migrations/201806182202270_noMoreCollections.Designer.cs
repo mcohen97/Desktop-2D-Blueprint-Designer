@@ -7,13 +7,13 @@ namespace DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class TemplateConstraint : IMigrationMetadata
+    public sealed partial class noMoreCollections : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TemplateConstraint));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(noMoreCollections));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806181920403_TemplateConstraint"; }
+            get { return "201806182202270_noMoreCollections"; }
         }
         
         string IMigrationMetadata.Source

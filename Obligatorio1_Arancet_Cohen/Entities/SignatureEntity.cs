@@ -14,5 +14,7 @@ namespace Entities
 
         public DateTime SignatureDate { get; set; }
 
+        public virtual BlueprintEntity BlueprintSigned { get; set; }
+
     }
 }
