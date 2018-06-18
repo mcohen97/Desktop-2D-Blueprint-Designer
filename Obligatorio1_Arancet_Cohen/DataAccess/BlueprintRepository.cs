@@ -134,17 +134,6 @@ namespace DataAccess
         {
             Delete(entity);
             Add(entity);
-            /*BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
-            BlueprintEntity bpEnt = translator.BlueprintToEntiy(entity);
-
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                context.Entry(bpEnt).State = EntityState.Modified;
-                context.Entry(bpEnt.Owner).State = EntityState.Modified;
-                foreach (SignatureEntity signature in bpEnt.Signatures) {
-                    context.Entry(signature).State = signature.Id.Equals(Guid.Empty) ? EntityState.Added : EntityState.Unchanged;
-                }
-                context.SaveChanges();
-            }*/
           
         }
 
