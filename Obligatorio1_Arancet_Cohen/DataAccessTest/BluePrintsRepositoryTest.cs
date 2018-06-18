@@ -208,5 +208,14 @@ namespace DataAccessTest
             Assert.IsTrue(wallsOk && openingsOk && columnsOk);
         }
 
+        [TestMethod]
+        public void SignTest() {
+            BuildTestBlueprint();
+            User archy = new Architect("Gustave", "Eiffel", "Gustave1886", "password", DateTime.Now);
+            blueprint1.Sign(archy);
+            portfolio.Add(blueprint1);
+            Assert.AreEqual(blueprint1.GetSignatures().Count, 1);
+        }
+
     }
 }
