@@ -24,6 +24,12 @@ namespace DataAccess
         {
 
         }
+
+        public void ClearDataBase() {
+            Database.ExecuteSqlCommand("[DELETE TABLES SQL]");
+
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
