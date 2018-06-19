@@ -64,7 +64,7 @@
     <Compile Include="Point.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="Signature.cs" />
-    <Compile Include="SystemVariables.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Designer.cs" />
     <Compile Include="IPermissible.cs" />
     <Compile Include="Permission.cs" />
