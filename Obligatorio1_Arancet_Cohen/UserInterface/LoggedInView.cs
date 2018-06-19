@@ -25,6 +25,7 @@ namespace UserInterface {
            new ChooseBlueprintView(CurrentSession, this),
            new ManageCostsView(this),
            new CreateBlueprint(CurrentSession,this),
+           new CreateTemplate(mother),
            new AdminUserManagement(CurrentSession,this)
         };
             SetMenu();
