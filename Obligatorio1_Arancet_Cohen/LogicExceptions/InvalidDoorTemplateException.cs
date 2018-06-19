@@ -21,5 +21,10 @@ namespace LogicExceptions
 
         protected InvalidDoorTemplateException(SerializationInfo info, StreamingContext context) : base(info, context) {
         }
+
+        public override string ToString()
+        {
+            return "The should be a door";
+        }
     }
 }

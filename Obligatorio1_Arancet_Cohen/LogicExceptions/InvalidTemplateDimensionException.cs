@@ -22,5 +22,9 @@ namespace LogicExceptions
         protected InvalidTemplateDimensionException(SerializationInfo info, StreamingContext context) : base(info, context) {
         }
 
+        public override string ToString()
+        {
+            return this.Message;
+        }
     }
 }

@@ -16,5 +16,10 @@ namespace DataAccessExceptions
         public TemplateAlreadyExistsException(string message, Exception innerException) : base(message, innerException)
         {
         }
+
+        public override string ToString()
+        {
+            return "There is already a template with this name";
+        }
     }
 }
