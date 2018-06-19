@@ -18,6 +18,7 @@ namespace ServicesTest
         Session currentSession;
         IPriceCostRepository pricesNcosts;
         CostsAndPricesManager manager;
+        int wallType;
 
         [TestInitialize]
         public void SetUp() {
@@ -29,10 +30,17 @@ namespace ServicesTest
             administrator.Add(new Designer("TestDesigner", "TestDesigner", "TestDesigner", "TestDesigner", DateTime.Now));
             pricesNcosts = new PriceCostRepository();
             pricesNcosts.Clear();
-            pricesNcosts.AddCostPrice((int)ComponentType.WALL, 50, 100);
+            wallType = (int)ComponentType.WALL;
+            pricesNcosts.AddCostPrice(wallType, 50, 100);
             manager = new CostsAndPricesManager(currentSession);
         }
 
+        [TestMethod]
+        public void GetPriceTest() {
+            float expectedResult = 100;
+            float actualResult=manager.GetPrice(wallType);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
         
 
         
