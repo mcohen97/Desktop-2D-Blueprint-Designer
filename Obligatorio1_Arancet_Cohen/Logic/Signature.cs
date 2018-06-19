@@ -11,18 +11,22 @@ namespace Logic.Domain
     public class Signature
     {
         private DateTime signatureDate;
-        private User signer;
 
         public Signature(User user, DateTime now)
         {
-            if (!user.HasPermission(Permission.CAN_SIGN_BLUEPRINT)) {
+            if (!user.HasPermission(Permission.CAN_SIGN_BLUEPRINT))
+            {
                 throw new NoPermissionsException();
             }
-            this.signer = user;
-            this.signatureDate = now;
+            ArchitectName = user.Name;
+            ArchitectSurname = user.Surname;
+            ArchitectUserName = user.UserName;
+            signatureDate = now;
         }
 
         public DateTime Date { get { return signatureDate; } internal set { } }
-        public User Signer { get { return signer; } internal set { } }
+        public string ArchitectName{ get; set; }
+        public string ArchitectSurname { get; set; }
+        public string ArchitectUserName { get; set; }
     }
 }

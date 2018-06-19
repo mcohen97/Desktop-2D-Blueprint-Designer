@@ -43,12 +43,13 @@ namespace DataAccess
                 context.Walls.AddRange(convertedWalls);
 
                 IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
-                foreach (SignatureEntity se in convertedSignatures) {
+                context.Signatures.AddRange(convertedSignatures);
+                /*foreach (SignatureEntity se in convertedSignatures) {
                     context.Signatures.Add(se);
-                    if (context.Users.Any(u => u.UserName == se.Signer.UserName)){
+                    if (context.Users.Any(u => u.UserName == se.SignerUserName)){
                         context.Entry(se.Signer).State = EntityState.Modified;
                     }
-                }
+                }*/
                 
 
             foreach (Opening op in toStore.GetOpenings()) {

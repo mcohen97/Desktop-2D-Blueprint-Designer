@@ -10,7 +10,11 @@ namespace Entities
     {
         public Guid Id { get; set; }
 
-        public UserEntity Signer { get; set; }
+        public string SignerName { get; set; }
+
+        public string SignerSurname { get; set; }
+
+        public string SignerUserName { get; set; }
 
         public DateTime SignatureDate { get; set; }
 

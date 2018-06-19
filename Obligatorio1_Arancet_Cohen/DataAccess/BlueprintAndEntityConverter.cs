@@ -40,7 +40,7 @@ namespace DataAccess
         private ICollection<Signature> GetBlueprintSignatures(BlueprintEntity toConvert) {
             ICollection<Signature> signatures = new List<Signature>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                IEnumerable<SignatureEntity> queriedSignatures = context.Signatures.Include("Signer").Where(se => se.BlueprintSigned.Id == toConvert.Id);
+                IEnumerable<SignatureEntity> queriedSignatures = context.Signatures.Where(se => se.BlueprintSigned.Id == toConvert.Id);
                 foreach (SignatureEntity se in queriedSignatures) {
                     signatures.Add(EntityToSignature(se));
                 }
@@ -65,7 +65,9 @@ namespace DataAccess
 
             SignatureEntity conversion = new SignatureEntity()
             {
-                Signer = userEntityConverter.toEntity(toConvert.Signer),
+                SignerName = toConvert.ArchitectName,
+                SignerSurname= toConvert.ArchitectSurname,
+                SignerUserName=toConvert.ArchitectUserName,
                 SignatureDate = toConvert.Date,
                 BlueprintSigned = bearer
             };
@@ -76,8 +78,8 @@ namespace DataAccess
         public Signature EntityToSignature(SignatureEntity toConvert) {
 
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
-
-            Signature conversion = new Signature(userEntityConverter.toUser(toConvert.Signer), toConvert.SignatureDate);
+            Architect dataTransfer = new Architect(toConvert.SignerName, toConvert.SignerSurname, toConvert.SignerUserName, "irrelevant", DateTime.Now);
+            Signature conversion = new Signature(dataTransfer, toConvert.SignatureDate);
             return conversion;
 
         }
