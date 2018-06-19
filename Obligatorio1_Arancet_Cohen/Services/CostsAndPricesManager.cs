@@ -18,7 +18,8 @@ namespace Services
         }
 
         public float GetPrice(int componentType) {
-            return 0;
+            IPriceCostRepository catalog = new PriceCostRepository();
+            return catalog.GetPrice(componentType);
         }
 
 
