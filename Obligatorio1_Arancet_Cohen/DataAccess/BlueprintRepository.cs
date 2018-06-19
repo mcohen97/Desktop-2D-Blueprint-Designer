@@ -44,14 +44,7 @@ namespace DataAccess
 
                 IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
                 context.Signatures.AddRange(convertedSignatures);
-                /*foreach (SignatureEntity se in convertedSignatures) {
-                    context.Signatures.Add(se);
-                    if (context.Users.Any(u => u.UserName == se.SignerUserName)){
-                        context.Entry(se.Signer).State = EntityState.Modified;
-                    }
-                }*/
                 
-
             foreach (Opening op in toStore.GetOpenings()) {
                     string tempName = op.getTemplateName();
                     OpeningTemplateEntity itsTemplate = context.OpeningTemplates
