@@ -12,6 +12,7 @@ using DataAccess;
 using DomainRepositoryInterface;
 using RepositoryInterface;
 using LogicExceptions;
+using DataAccessExceptions;
 
 namespace UserInterface
 {
@@ -19,11 +20,14 @@ namespace UserInterface
     {
 
         private ComponentType typeCreated;
-        public CreateTemplate()
+        private MainWindow mother;
+
+        public CreateTemplate(MainWindow aWindow)
         {
             InitializeComponent();
             typeCreated = ComponentType.WINDOW;
             WindowOption.Checked = true;
+            mother = aWindow;
         }
 
         public Permission GetRequiredPermission()
@@ -38,28 +42,38 @@ namespace UserInterface
 
         public void SetUp()
         {
-           //later
+            nameText.Text = "";
+            spinnerHeight.Value = spinnerHeight.Minimum;
+            spinnerLength.Value = spinnerLength.Minimum;
+            spinnerHeightAboveFloor.Value = spinnerHeightAboveFloor.Minimum;
+        }
+
+        private void ClearMessages() {
+            msgLabel.Text = "";
         }
 
         private void spinnerHeight_ValueChanged(object sender, EventArgs e)
         {
-            spinnerHeightAboveFloor.Maximum = (decimal)2.9 - (decimal)spinnerHeight.Value;
+            spinnerHeightAboveFloor.Maximum = (decimal)Constants.WALL_HEIGHT - (decimal)spinnerHeight.Value;
+            ClearMessages();
         }
 
         private void spinnerHeightAboveFloor_ValueChanged(object sender, EventArgs e)
         {
-            spinnerHeight.Maximum = (decimal)2.9 - (decimal)spinnerHeightAboveFloor.Value;
-
+            spinnerHeight.Maximum = (decimal)Constants.WALL_HEIGHT - (decimal)spinnerHeightAboveFloor.Value;
+            ClearMessages();
         }
 
         private void WindowOption_CheckedChanged(object sender, EventArgs e)
         {
             typeCreated = ComponentType.WINDOW;
+            ClearMessages();
         }
 
         private void doorOption_CheckedChanged(object sender, EventArgs e)
         {
             typeCreated = ComponentType.DOOR;
+            ClearMessages();
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -70,13 +84,28 @@ namespace UserInterface
             float heightAboveFloor = (float)spinnerHeightAboveFloor.Value;
             try
             {
-                Template created = new Template(tempName, length, height, heightAboveFloor, typeCreated);
+                Template created = new Template(tempName, length, heightAboveFloor, height, typeCreated);
                 IRepository<Template> templateStorage = new OpeningTemplateRepository();
                 templateStorage.Add(created);
-            }
-            catch (InvalidDoorTemplateException ) {
+                mother.GoToMenu();
 
             }
+            catch (InvalidTemplateException ex) {
+                InputValidations.ErrorMessage(msgLabel, ex.ToString());
+            }
+            catch (TemplateAlreadyExistsException ex) {
+                InputValidations.ErrorMessage(msgLabel, ex.ToString());
+            }
+        }
+
+        private void nameText_Enter(object sender, EventArgs e)
+        {
+            ClearMessages();
+        }
+
+        private void spinnerLength_ValueChanged(object sender, EventArgs e)
+        {
+            ClearMessages();
         }
     }
 }

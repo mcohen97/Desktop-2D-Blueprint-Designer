@@ -40,6 +40,7 @@
             this.heightLabel = new System.Windows.Forms.Label();
             this.heightAboveFloorLabel = new System.Windows.Forms.Label();
             this.createButton = new System.Windows.Forms.Button();
+            this.msgLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeightAboveFloor)).BeginInit();
@@ -52,9 +53,16 @@
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(173, 20);
             this.nameText.TabIndex = 0;
+            this.nameText.Enter += new System.EventHandler(this.nameText_Enter);
             // 
             // spinnerLength
             // 
+            this.spinnerLength.DecimalPlaces = 1;
+            this.spinnerLength.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinnerLength.Location = new System.Drawing.Point(207, 159);
             this.spinnerLength.Maximum = new decimal(new int[] {
             3,
@@ -74,9 +82,16 @@
             0,
             0,
             65536});
+            this.spinnerLength.ValueChanged += new System.EventHandler(this.spinnerLength_ValueChanged);
             // 
             // spinnerHeight
             // 
+            this.spinnerHeight.DecimalPlaces = 1;
+            this.spinnerHeight.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinnerHeight.Location = new System.Drawing.Point(207, 200);
             this.spinnerHeight.Maximum = new decimal(new int[] {
             3,
@@ -100,7 +115,18 @@
             // 
             // spinnerHeightAboveFloor
             // 
+            this.spinnerHeightAboveFloor.DecimalPlaces = 1;
+            this.spinnerHeightAboveFloor.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.spinnerHeightAboveFloor.Location = new System.Drawing.Point(207, 242);
+            this.spinnerHeightAboveFloor.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.spinnerHeightAboveFloor.Name = "spinnerHeightAboveFloor";
             this.spinnerHeightAboveFloor.Size = new System.Drawing.Size(120, 20);
             this.spinnerHeightAboveFloor.TabIndex = 3;
@@ -187,10 +213,19 @@
             this.createButton.UseVisualStyleBackColor = true;
             this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
+            // msgLabel
+            // 
+            this.msgLabel.AutoSize = true;
+            this.msgLabel.Location = new System.Drawing.Point(127, 408);
+            this.msgLabel.Name = "msgLabel";
+            this.msgLabel.Size = new System.Drawing.Size(0, 13);
+            this.msgLabel.TabIndex = 12;
+            // 
             // CreateTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.msgLabel);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.heightAboveFloorLabel);
             this.Controls.Add(this.heightLabel);
@@ -227,5 +262,6 @@
         private System.Windows.Forms.Label heightLabel;
         private System.Windows.Forms.Label heightAboveFloorLabel;
         private System.Windows.Forms.Button createButton;
+        private System.Windows.Forms.Label msgLabel;
     }
 }
