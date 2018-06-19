@@ -66,7 +66,7 @@ namespace Logic.Test
         [TestMethod]
         [ExpectedException(typeof(InvalidDoorTemplateException))]
         public void BuildDoorTemplateAboveFloorTest() {
-            Template testTemplate = new Template("TEST", 2, 1, 2, ComponentType.DOOR);
+            Template testTemplate = new Template("TEST", 2, 1, 1.9F, ComponentType.DOOR);
         }
 
 
