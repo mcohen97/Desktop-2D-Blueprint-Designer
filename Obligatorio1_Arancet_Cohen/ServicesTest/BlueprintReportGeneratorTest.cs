@@ -19,12 +19,15 @@ namespace ServicesTest
         [TestInitialize]
         public void SetUp()
         {
+            connector = new SessionConnector();
             Session aSession = connector.LogIn("admin", "admin");
             costsNPrices = new CostsAndPricesManager(aSession);
             reporter = new BlueprintReportGenerator();
             toReport = new Blueprint(10,10,"TestBlueprint");
             storage = new PriceCostRepository();
-            
+            AddPrices();
+            SetBlueprint();
+
         }
 
         private void SetBlueprint() {
@@ -50,7 +53,7 @@ namespace ServicesTest
 
         [TestMethod]
         public void TestGetPricesWalls() {
-            BlueprintPriceReport report = reporter.GeneratePriceReport();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 1000;
             float actualResult = report.GetTotalPrice(ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
