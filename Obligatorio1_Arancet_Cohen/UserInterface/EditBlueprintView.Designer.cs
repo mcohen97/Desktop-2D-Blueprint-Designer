@@ -53,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.BlueprintPanel = new System.Windows.Forms.Panel();
+            this.btnColumnTool = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +61,7 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
+            this.ButtonsPanel.Controls.Add(this.btnColumnTool);
             this.ButtonsPanel.Controls.Add(this.btnExportBlueprint);
             this.ButtonsPanel.Controls.Add(this.btnEraserTool);
             this.ButtonsPanel.Controls.Add(this.btnWindowTool);
@@ -277,7 +279,6 @@
             this.lblWalls.Size = new System.Drawing.Size(38, 16);
             this.lblWalls.TabIndex = 6;
             this.lblWalls.Text = "Walls:";
-            this.lblWalls.Click += new System.EventHandler(this.label3_Click);
             // 
             // InventoryPanel
             // 
@@ -381,6 +382,17 @@
             this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
             this.BlueprintPanel.TabIndex = 2;
             // 
+            // btnColumnTool
+            // 
+            this.btnColumnTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColumnTool.Location = new System.Drawing.Point(35, 250);
+            this.btnColumnTool.Name = "btnColumnTool";
+            this.btnColumnTool.Size = new System.Drawing.Size(146, 26);
+            this.btnColumnTool.TabIndex = 18;
+            this.btnColumnTool.Text = "Column";
+            this.btnColumnTool.UseVisualStyleBackColor = true;
+            this.btnColumnTool.Click += new System.EventHandler(this.btnColumnTool_Click);
+            // 
             // EditBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,5 +443,6 @@
         private System.Windows.Forms.Label lblWallsPrice;
         private System.Windows.Forms.Label lblBeamsPrice;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnColumnTool;
     }
 }

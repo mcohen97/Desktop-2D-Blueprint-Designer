@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using System.Drawing.Imaging;
+using Services;
 
 namespace UserInterface {
 
@@ -21,6 +22,7 @@ namespace UserInterface {
         private Bitmap gridLayer;
         private Bitmap wallsLayer;
         private Bitmap beamsLayer;
+        private Bitmap columnsLayer;
         private Bitmap openingLayer;
         private Bitmap currentLineLayer;
         private Bitmap currentPointLayer;
@@ -29,6 +31,8 @@ namespace UserInterface {
         private Pen beamPen;
         private Pen doorPen;
         private Pen windowPen;
+        private Pen columnPen;
+        private BlueprintEditor editor;
 
 
         private int gridCellCountX;
@@ -49,7 +53,9 @@ namespace UserInterface {
             beamPen = new Pen(Brushes.DarkRed, 8);
             doorPen = new Pen(Brushes.DarkGoldenrod, 6);
             windowPen = new Pen(Brushes.Sienna, 5);
+            columnPen = new Pen(Brushes.Purple, 12);
             BlueprintPanel.Cursor = Cursors.Cross;
+            editor = new BlueprintEditor(aSession, aBlueprint);
 
             gridLinesMarginToLayerInPixels = 1;
             drawSurfaceMarginToWindowInPixels = 10;
@@ -62,6 +68,7 @@ namespace UserInterface {
             PaintWalls();
             PaintBeams();
             PaintOpenings();
+            PaintColumns();
             calulateCostsAndPrices();
         }
 
@@ -167,7 +174,7 @@ namespace UserInterface {
             e.Graphics.DrawImage(wallsLayer, zeroing);
             e.Graphics.DrawImage(beamsLayer, zeroing);
             e.Graphics.DrawImage(openingLayer, zeroing);
-
+            e.Graphics.DrawImage(columnsLayer, zeroing);
         }
 
         //Wall events
@@ -185,7 +192,7 @@ namespace UserInterface {
             System.Drawing.Point endPoint = AdjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
 
             try {
-                selectedBluePrint.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
+                editor.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
             } catch (Exception) {
 
             }
@@ -223,7 +230,7 @@ namespace UserInterface {
         }
         private void InsertAndDrawOpening(Opening newOpening) {
             try {
-                selectedBluePrint.InsertOpening(newOpening);
+                editor.InsertOpening(newOpening);
             } catch (Exception) {
                 //error message
             }
@@ -241,11 +248,15 @@ namespace UserInterface {
             try {
                 bool existOpeningInPoint = selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
                 bool existWallInPoint = selectedBluePrint.GetWalls().Any(x => x.DoesContainPoint(deletionPointPrecise));
+                bool existColumnInPoint = selectedBluePrint.GetColumns().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
                 if (existOpeningInPoint) {
-                    selectedBluePrint.RemoveOpening(closestDeletionPointToGridIntersection);
+                    editor.RemoveColumn(closestDeletionPointToGridIntersection);
                 } else if (existWallInPoint && !existOpeningInPoint) {
                     Wall wallToDelete = selectedBluePrint.GetWalls().First(x => x.DoesContainPoint(deletionPointPrecise));
-                    selectedBluePrint.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
+                    editor.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
+                } else if (existColumnInPoint)
+                {
+                    editor.RemoveColumn(closestDeletionPointToGridIntersection);
                 }
             } catch (Exception) {
                 //error message
@@ -254,6 +265,29 @@ namespace UserInterface {
             PaintWalls();
             PaintBeams();
             PaintOpenings();
+            PaintColumns();
+            calulateCostsAndPrices();
+        }
+
+        //Column events
+        private void drawSurface_MouseClickInsertColumn(object sender, MouseEventArgs e)
+        {
+            System.Drawing.Point columnPoint = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
+            InsertAndDrawColumn(columnPoint);
+        }
+        private void InsertAndDrawColumn(System.Drawing.Point newColumnPoint)
+        {
+            Logic.Domain.Point logicColumnPoint = DrawablePointIntoLogicPoint(newColumnPoint);
+            try
+            {
+                editor.InsertColumn(logicColumnPoint);
+            }
+            catch (Exception)
+            {
+                //error message
+            }
+
+            PaintColumns();
             calulateCostsAndPrices();
         }
 
@@ -351,6 +385,18 @@ namespace UserInterface {
             }
             drawSurface.Invalidate();
         }
+        private void PaintColumns()
+        {
+            CreateOrRecreateLayer(ref columnsLayer);
+            ICollection<ISinglePointComponent> columns = selectedBluePrint.GetColumns();
+            foreach (Column column in columns)
+            {
+                PaintColumn(column);
+            }
+
+            drawSurface.Invalidate();
+        }
+
         private void PaintCurrentLine() {
             CreateOrRecreateLayer(ref currentLineLayer);
             using (Graphics graphics = Graphics.FromImage(currentLineLayer)) {
@@ -400,6 +446,15 @@ namespace UserInterface {
                 graphics.DrawPolygon(windowPen, points);
             }
         }
+        private void PaintColumn(Column column)
+        {
+            using (Graphics graphics = Graphics.FromImage(columnsLayer))
+            {
+                System.Drawing.Point drawPoint = LogicPointIntoDrawablePoint(column.GetPosition());
+                graphics.DrawString("■", DefaultFont, columnPen.Brush, drawPoint.X - 7, drawPoint.Y - 5);
+            }
+        }
+
 
         private void CreateOrRecreateLayer(ref Bitmap layer) {
             try {
@@ -447,6 +502,14 @@ namespace UserInterface {
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
             btnEraserTool.Enabled = false;
         }
+        private void btnColumnTool_Click(object sender, EventArgs e)
+        {
+            RemoveEveryHandler();
+            EnableEveryTool();
+            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertColumn);
+            btnColumnTool.Enabled = false;
+        }
+
 
         private void RemoveEveryHandler() {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
@@ -454,6 +517,7 @@ namespace UserInterface {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
             drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
+            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertColumn);
         }
         private void EnableEveryTool() {
             btnPointerTool.Enabled = true;
@@ -461,12 +525,9 @@ namespace UserInterface {
             btnWindowTool.Enabled = true;
             btnDoorTool.Enabled = true;
             btnEraserTool.Enabled = true;
-
+            btnColumnTool.Enabled = true;
         }
 
-        private void label3_Click(object sender, EventArgs e) {
-
-        }
         private void btnExportBlueprint_Click(object sender, EventArgs e) {
             int width = drawSurface.Size.Width;
             int height = drawSurface.Size.Height;
@@ -520,6 +581,7 @@ namespace UserInterface {
             CreateOrRecreateLayer(ref wallsLayer);
             CreateOrRecreateLayer(ref beamsLayer);
             CreateOrRecreateLayer(ref openingLayer);
+            CreateOrRecreateLayer(ref columnsLayer);
             CreateOrRecreateLayer(ref currentLineLayer);
             CreateOrRecreateLayer(ref currentPointLayer);
 
@@ -528,6 +590,7 @@ namespace UserInterface {
             PaintWalls();
             PaintBeams();
             PaintOpenings();
+            PaintColumns();
             drawSurface.Refresh();
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
             EnableEveryTool();
@@ -542,5 +605,8 @@ namespace UserInterface {
             }
             return returnedCellSize;
         }
+
+       
+
     }
 }
