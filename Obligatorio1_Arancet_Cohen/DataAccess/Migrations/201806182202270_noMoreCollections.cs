@@ -3,7 +3,7 @@ namespace DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TemplateConstraint : DbMigration
+    public partial class noMoreCollections : DbMigration
     {
         public override void Up()
         {
@@ -40,21 +40,6 @@ namespace DataAccess.Migrations
                     })
                 .PrimaryKey(t => t.UserName)
                 .Index(t => t.UserName, unique: true);
-            
-            CreateTable(
-                "dbo.SignatureEntities",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false, identity: true),
-                        SignatureDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        Signer_UserName = c.String(maxLength: 100, unicode: false),
-                        BlueprintEntity_Id = c.Guid(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserEntities", t => t.Signer_UserName)
-                .ForeignKey("dbo.BlueprintEntities", t => t.BlueprintEntity_Id)
-                .Index(t => t.Signer_UserName)
-                .Index(t => t.BlueprintEntity_Id);
             
             CreateTable(
                 "dbo.ColumnEntities",
@@ -114,6 +99,22 @@ namespace DataAccess.Migrations
                 .Index(t => t.Name, unique: true);
             
             CreateTable(
+                "dbo.SignatureEntities",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        SignatureDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        BlueprintSigned_Id = c.Guid(nullable: false),
+                        Signer_UserName = c.String(maxLength: 100, unicode: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.BlueprintEntities", t => t.BlueprintSigned_Id, cascadeDelete: true)
+                .ForeignKey("dbo.UserEntities", t => t.Signer_UserName)
+                .Index(t => t.Id, unique: true)
+                .Index(t => t.BlueprintSigned_Id)
+                .Index(t => t.Signer_UserName);
+            
+            CreateTable(
                 "dbo.WallEntities",
                 c => new
                     {
@@ -135,28 +136,29 @@ namespace DataAccess.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.WallEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
+            DropForeignKey("dbo.SignatureEntities", "Signer_UserName", "dbo.UserEntities");
+            DropForeignKey("dbo.SignatureEntities", "BlueprintSigned_Id", "dbo.BlueprintEntities");
             DropForeignKey("dbo.OpeningEntities", "Template_Name", "dbo.OpeningTemplateEntities");
             DropForeignKey("dbo.OpeningEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
             DropForeignKey("dbo.ColumnEntities", "BearerBlueprint_Id", "dbo.BlueprintEntities");
-            DropForeignKey("dbo.SignatureEntities", "BlueprintEntity_Id", "dbo.BlueprintEntities");
-            DropForeignKey("dbo.SignatureEntities", "Signer_UserName", "dbo.UserEntities");
             DropForeignKey("dbo.BlueprintEntities", "Owner_UserName", "dbo.UserEntities");
             DropIndex("dbo.WallEntities", new[] { "BearerBlueprint_Id" });
+            DropIndex("dbo.SignatureEntities", new[] { "Signer_UserName" });
+            DropIndex("dbo.SignatureEntities", new[] { "BlueprintSigned_Id" });
+            DropIndex("dbo.SignatureEntities", new[] { "Id" });
             DropIndex("dbo.OpeningTemplateEntities", new[] { "Name" });
             DropIndex("dbo.OpeningEntities", new[] { "Template_Name" });
             DropIndex("dbo.OpeningEntities", new[] { "BearerBlueprint_Id" });
             DropIndex("dbo.ColumnEntities", new[] { "BearerBlueprint_Id" });
-            DropIndex("dbo.SignatureEntities", new[] { "BlueprintEntity_Id" });
-            DropIndex("dbo.SignatureEntities", new[] { "Signer_UserName" });
             DropIndex("dbo.UserEntities", new[] { "UserName" });
             DropIndex("dbo.BlueprintEntities", new[] { "Owner_UserName" });
             DropIndex("dbo.BlueprintEntities", new[] { "Id" });
             DropTable("dbo.WallEntities");
+            DropTable("dbo.SignatureEntities");
             DropTable("dbo.OpeningTemplateEntities");
             DropTable("dbo.OpeningEntities");
             DropTable("dbo.CostPriceEntities");
             DropTable("dbo.ColumnEntities");
-            DropTable("dbo.SignatureEntities");
             DropTable("dbo.UserEntities");
             DropTable("dbo.BlueprintEntities");
         }

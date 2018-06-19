@@ -217,5 +217,20 @@ namespace DataAccessTest
             Assert.AreEqual(blueprint1.GetSignatures().Count, 1);
         }
 
+        [TestMethod]
+        public void ModifySignaturesTest()
+        {
+            BuildTestBlueprint();
+            User archy = new Architect("Gustave", "Eiffel", "Gustave1886", "password", DateTime.Now);
+            portfolio.Add(blueprint1);
+            blueprint1.Sign(archy);
+            portfolio.Modify(blueprint1);
+            blueprint1 = portfolio.Get(blueprint1.GetId());
+            int expectedResult = 1;
+            int actualResult = blueprint1.GetSignatures().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
     }
 }

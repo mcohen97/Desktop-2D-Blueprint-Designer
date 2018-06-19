@@ -52,11 +52,12 @@
     <Compile Include="BlueprintAndEntityConverter.cs" />
     <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806181920403_TemplateConstraint.cs" />
-    <Compile Include="Migrations\201806181920403_TemplateConstraint.Designer.cs">
-      <DependentUpon>201806181920403_TemplateConstraint.cs</DependentUpon>
+    <Compile Include="Migrations\201806182202270_noMoreCollections.cs" />
+    <Compile Include="Migrations\201806182202270_noMoreCollections.Designer.cs">
+      <DependentUpon>201806182202270_noMoreCollections.cs</DependentUpon>
     </Compile>
     <Compile Include="OpeningTemplateRepository.cs" />
+    <Compile Include="PriceCostRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
@@ -92,8 +93,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806181920403_TemplateConstraint.resx">
-      <DependentUpon>201806181920403_TemplateConstraint.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806182202270_noMoreCollections.resx">
+      <DependentUpon>201806182202270_noMoreCollections.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,9 +40,16 @@ namespace DataAccess
 
                 //translate and add its walls.
                 IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,converted));
-                context.Walls.AddRange(convertedWalls);                
+                context.Walls.AddRange(convertedWalls);
+
+                IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
+                foreach (SignatureEntity se in convertedSignatures) {
+                    context.Signatures.Add(se);
+                    if (context.Users.Any(u => u.UserName == se.Signer.UserName)){
+                        context.Entry(se.Signer).State = EntityState.Modified;
+                    }
+                }
                 
-           
 
             foreach (Opening op in toStore.GetOpenings()) {
                     string tempName = op.getTemplateName();
@@ -59,6 +66,9 @@ namespace DataAccess
         public void Clear()
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                foreach (SignatureEntity se in context.Signatures) {
+                    context.Signatures.Remove(se);
+                }
                 foreach (BlueprintEntity bpe in context.Blueprints) {
                     context.Blueprints.Remove(bpe);
                 }
@@ -75,8 +85,9 @@ namespace DataAccess
 
                 using (BlueBuilderDBContext context = new BlueBuilderDBContext())
                 {
-                    context.Blueprints.Attach(converted);
-                    context.Blueprints.Remove(converted);
+                    Guid removeId = toRemove.GetId();
+                    BlueprintEntity record = context.Blueprints.FirstOrDefault(be => be.Id == removeId);
+                    context.Blueprints.Remove(record);
                     context.SaveChanges();
                 }
             }
@@ -98,8 +109,7 @@ namespace DataAccess
         {
             IBlueprint queried;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                BlueprintEntity record = context.Blueprints.Include(bp=>bp.Owner)
-                    .Include(bp=>bp.Signatures).FirstOrDefault(bp => bp.Id.Equals(id));
+                BlueprintEntity record = context.Blueprints.Include(bp=>bp.Owner).FirstOrDefault(bp => bp.Id.Equals(id));
 
                 queried = BuildBlueprint(record);                 
             }
@@ -114,7 +124,7 @@ namespace DataAccess
         {
             ICollection<IBlueprint> converted = new List<IBlueprint>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                foreach (BlueprintEntity be in context.Blueprints.Include(b=> b.Owner).Include(b=> b.Signatures)) {
+                foreach (BlueprintEntity be in context.Blueprints.Include(b=> b.Owner)) {
                     converted.Add(BuildBlueprint(be));
                 }
             }
@@ -142,7 +152,7 @@ namespace DataAccess
             ICollection<IBlueprint> queriedBlueprints = new List<IBlueprint>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
                 ICollection<BlueprintEntity> query = context.Blueprints.Include(bp=> bp.Owner)
-                    .Include(bp=>bp.Signatures).Where(bp=> bp.Owner.UserName.Equals(owner.UserName)).ToList();
+                    .Where(bp=> bp.Owner.UserName.Equals(owner.UserName)).ToList();
 
                 foreach (BlueprintEntity bpe in query) {
                     queriedBlueprints.Add(BuildBlueprint(bpe));
@@ -156,7 +166,6 @@ namespace DataAccess
             ICollection<WallEntity> wallEnts;
             ICollection<OpeningEntity> openEnts;
             ICollection<ColumnEntity> colEnts;
-
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
 

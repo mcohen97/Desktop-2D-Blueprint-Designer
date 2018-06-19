@@ -24,6 +24,12 @@ namespace DataAccess
         {
 
         }
+
+        public void ClearDataBase() {
+            Database.ExecuteSqlCommand("[DELETE TABLES SQL]");
+
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -36,7 +42,7 @@ namespace DataAccess
             modelBuilder.Entity<OpeningEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<OpeningTemplateEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<ColumnEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<SignatureEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            //modelBuilder.Entity<SignatureEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<CostPriceEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasColumnType("VARCHAR");
@@ -52,8 +58,12 @@ namespace DataAccess
             modelBuilder.Entity<WallEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
             modelBuilder.Entity<ColumnEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
             modelBuilder.Entity<OpeningEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
-            modelBuilder.Entity<OpeningEntity>().HasRequired<OpeningTemplateEntity>(oe=>oe.Template);
+            modelBuilder.Entity<OpeningEntity>().HasRequired<OpeningTemplateEntity>(oe => oe.Template);
 
+
+            modelBuilder.Entity<SignatureEntity>().HasIndex(se => se.Id).IsUnique();
+            //modelBuilder.Entity<SignatureEntity>().HasRequired<UserEntity>(se => se.Signer);
+            modelBuilder.Entity<SignatureEntity>().HasRequired<BlueprintEntity>(se => se.BlueprintSigned);
 
         }
     }

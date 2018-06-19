@@ -13,16 +13,12 @@ namespace DataAccess
     {
         public BlueprintEntity BlueprintToEntiy(IBlueprint toConvert) {
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
-
-            ICollection<SignatureEntity> signatures = toConvert.GetSignatures().Select(s => SignatureToEntity(s)).ToList();
-
             BlueprintEntity conversion = new BlueprintEntity()
             {
                 Name = toConvert.Name,
                 Length = toConvert.Length,
                 Width = toConvert.Width,
                 Owner = userEntityConverter.toEntity(toConvert.Owner),
-                Signatures = signatures,
                 Id = toConvert.GetId()
 
             };
@@ -33,11 +29,23 @@ namespace DataAccess
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
 
             User convertedUser  = userEntityConverter.toUser(toConvert.Owner);
-            ICollection<Signature> convertedSignatures = toConvert.Signatures.Select(s => EntityToSignature(s)).ToList();
+            ICollection<Signature> convertedSignatures = GetBlueprintSignatures(toConvert);
+               
             MaterialContainer materials = BuildUpContainer(wallEnts, openEnts, colEnts);
 
             IBlueprint conversion = new Blueprint(toConvert.Length, toConvert.Width, toConvert.Name, convertedUser,materials, convertedSignatures,toConvert.Id);
             return conversion;
+        }
+
+        private ICollection<Signature> GetBlueprintSignatures(BlueprintEntity toConvert) {
+            ICollection<Signature> signatures = new List<Signature>();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                IEnumerable<SignatureEntity> queriedSignatures = context.Signatures.Include("Signer").Where(se => se.BlueprintSigned.Id == toConvert.Id);
+                foreach (SignatureEntity se in queriedSignatures) {
+                    signatures.Add(EntityToSignature(se));
+                }
+           }
+            return signatures;
         }
 
         private MaterialContainer BuildUpContainer(ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts, ICollection<ColumnEntity> colEnts) {
@@ -51,14 +59,15 @@ namespace DataAccess
 
         }
 
-        public SignatureEntity SignatureToEntity(Signature toConvert) {
+        public SignatureEntity SignatureToEntity(Signature toConvert, BlueprintEntity bearer) {
 
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
 
             SignatureEntity conversion = new SignatureEntity()
             {
                 Signer = userEntityConverter.toEntity(toConvert.Signer),
-                SignatureDate = toConvert.Date
+                SignatureDate = toConvert.Date,
+                BlueprintSigned = bearer
             };
 
             return conversion;
