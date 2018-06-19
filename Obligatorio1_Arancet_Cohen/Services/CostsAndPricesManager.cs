@@ -12,7 +12,7 @@ namespace Services
         private Session currentSession;
 
         public CostsAndPricesManager(Session aSession) {
-
+            currentSession = aSession;
         }
 
 
