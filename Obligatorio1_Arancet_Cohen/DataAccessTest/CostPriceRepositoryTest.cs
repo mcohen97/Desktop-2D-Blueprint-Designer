@@ -18,14 +18,14 @@ namespace DataAccessTest
 
         }
 
-        [TestInitialize]
+        [TestMethod]
         public void GetPriceTest() {
             float expectedResult = 100;
             float actualResult=prices.GetPrice((int)ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        [TestInitialize]
+        [TestMethod]
         public void SetPrice() {
             float expectedResult = 120;
             prices.SetPrice((int)ComponentType.WALL,120);
@@ -33,7 +33,7 @@ namespace DataAccessTest
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        [TestInitialize]
+        [TestMethod]
         public void GetCost() {
             float expectedResult = 50;
             float actualresult = prices.GetCost((int)ComponentType.WALL);

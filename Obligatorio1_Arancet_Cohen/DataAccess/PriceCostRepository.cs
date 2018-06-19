@@ -28,19 +28,29 @@ namespace DataAccess
         public void Clear()
         {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                context.ClearDataBase();
+                foreach (CostPriceEntity record in context.CostsAndPrices) {
+                    context.CostsAndPrices.Remove(record);
+                }
                 context.SaveChanges();
             }
         }
 
         public float GetCost(int componentType)
         {
-            throw new NotImplementedException();
+            float cost;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                cost = context.CostsAndPrices.FirstOrDefault(cp => cp.ComponentType== componentType).Cost;
+            }
+            return cost;
         }
 
         public float GetPrice(int componentType)
         {
-            throw new NotImplementedException();
+            float price;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                price = context.CostsAndPrices.FirstOrDefault(cp=> cp.ComponentType== componentType).Price;
+            }
+            return price;
         }
 
         public void SetCost(int componentType, float cost)
@@ -48,9 +58,13 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        public void SetPrice(int componentType, float price)
+        public void SetPrice(int componentType, float newPrice)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                CostPriceEntity record = context.CostsAndPrices.FirstOrDefault(cp => cp.ComponentType == componentType);
+                record.Price = newPrice;
+                context.SaveChanges();
+            }
         }
     }
 }
