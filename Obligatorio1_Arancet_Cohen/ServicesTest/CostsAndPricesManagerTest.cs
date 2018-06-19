@@ -5,6 +5,7 @@ using RepositoryInterface;
 using Logic.Domain;
 using Services;
 using DomainRepositoryInterface;
+using ServicesExceptions;
 
 namespace ServicesTest
 {
@@ -48,6 +49,14 @@ namespace ServicesTest
             manager.SetPrice(wallType, 150);
             float actualResult = manager.GetPrice(wallType);
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void SetPriceNoPermissionsTest() {
+            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner");
+            manager = new CostsAndPricesManager(noAdmin);
+            manager.SetPrice(wallType, 150);
         }
         
 
