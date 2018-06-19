@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    class BlueprintPriceReport
+    public class BlueprintPriceReport
     {
         private Dictionary<ComponentType, float> catalog;
         public BlueprintPriceReport() {
