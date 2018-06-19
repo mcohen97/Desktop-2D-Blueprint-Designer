@@ -26,21 +26,6 @@ namespace Logic.Test
             Assert.IsTrue((actualResult.CoordX == expectedXResult) && (actualResult.CoordY == expectedYResult));
         }
 
-        [TestMethod]
-        public void GetPriceTest()
-        {
-            float expectedResult = 100;
-            float actualResult = instance.CalculatePrice();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
-        public void GetCostTest()
-        {
-            float expectedResult = 50;
-            float actualResult = instance.CalculateCost();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
 
         [TestMethod]
         public void EqualsTest()

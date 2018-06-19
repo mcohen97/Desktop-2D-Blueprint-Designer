@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Domain
 {
-    public abstract class Opening : ISinglePointComponent, IComponent2D, IPriceable, IMaterialType
+    public abstract class Opening : ISinglePointComponent, IComponent2D, IMaterialType
     {
 
 
@@ -63,11 +63,6 @@ namespace Logic.Domain
         {
             return position.GetHashCode();
         }
-
-        public abstract float CalculatePrice();
-
-        public abstract float CalculateCost();
-
         public abstract ComponentType GetComponentType();
 
         public string getTemplateName() {

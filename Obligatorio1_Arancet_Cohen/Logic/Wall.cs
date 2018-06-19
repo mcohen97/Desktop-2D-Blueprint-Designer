@@ -8,7 +8,7 @@ using LogicExceptions;
 namespace Logic.Domain
 {
 
-    public class Wall : IComponent3D, IMaterialType, IPriceable
+    public class Wall : IComponent3D, IMaterialType
     {
 
         private float heightValue;
@@ -247,16 +247,6 @@ namespace Logic.Domain
         public ComponentType GetComponentType()
         {
             return ComponentType.WALL;
-        }
-
-        public float CalculatePrice()
-        {
-            return Constants.PRICE_CATALOGUE[GetComponentType()] * Length();
-        }
-
-        public float CalculateCost()
-        {
-            return Constants.COST_CATALOGUE[GetComponentType()] * Length();
         }
 
         public override bool Equals(object obj)

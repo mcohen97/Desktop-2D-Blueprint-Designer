@@ -33,15 +33,5 @@ namespace Logic.Domain
         {
             return ComponentType.WINDOW;
         }
-
-        public override float CalculatePrice()
-        {
-            return Constants.PRICE_CATALOGUE[GetComponentType()];
-        }
-
-        public override float CalculateCost()
-        {
-            return Constants.COST_CATALOGUE[GetComponentType()];
-        }
     }
 }

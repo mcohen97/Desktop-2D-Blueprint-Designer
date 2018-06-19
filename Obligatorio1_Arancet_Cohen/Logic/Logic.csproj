@@ -53,7 +53,6 @@
     <Compile Include="IComponent2D.cs" />
     <Compile Include="IComponent3D.cs" />
     <Compile Include="IMaterialType.cs" />
-    <Compile Include="IPriceable.cs" />
     <Compile Include="ISinglePointComponent.cs" />
     <Compile Include="PunctualComponentPositioner.cs" />
     <Compile Include="Session.cs" />

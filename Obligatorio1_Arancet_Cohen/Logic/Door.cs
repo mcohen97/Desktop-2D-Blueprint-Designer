@@ -27,17 +27,6 @@ namespace Logic.Domain
 
             position = point;
             dimensions = template;
-
-        }
-
-        public override float CalculateCost()
-        {
-            return Constants.COST_CATALOGUE[GetComponentType()];
-        }
-
-        public override float CalculatePrice()
-        {
-            return Constants.PRICE_CATALOGUE[GetComponentType()];
         }
 
         public override ComponentType GetComponentType()

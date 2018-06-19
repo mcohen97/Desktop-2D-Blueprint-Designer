@@ -201,14 +201,5 @@ namespace Logic.Domain
             columns.Remove(aColumn);
         }
 
-
-        public ICollection GetPriceables()
-        {
-            ICollection<IPriceable> wallsAsPriceables = new List<IPriceable>(walls);
-            ICollection<IPriceable> doorsAsPriceables = new List<IPriceable>(walls);
-            ICollection<IPriceable> openingsAsPriceables = new List<IPriceable>(walls);
-
-            return (ICollection)wallsAsPriceables.Concat(doorsAsPriceables.Concat(openings));
-        }
     }
 }

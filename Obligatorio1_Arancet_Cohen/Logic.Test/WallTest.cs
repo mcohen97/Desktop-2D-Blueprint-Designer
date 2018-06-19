@@ -78,22 +78,6 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void GetPriceTest()
-        {
-            float expectedResult = 100 * (float)(Math.Sqrt(13));
-            float actualResult = instance.CalculatePrice();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
-        public void GetCostTest()
-        {
-            float expectedResult = 50 * (float)(Math.Sqrt(13));
-            float actualResult = instance.CalculateCost();
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-
-        [TestMethod]
         public void IsNotHorizontalTest()
         {
             Assert.IsFalse(instance.IsHorizontal());
