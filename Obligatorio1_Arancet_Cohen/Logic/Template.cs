@@ -18,6 +18,10 @@ namespace Logic.Domain
                 throw new InvalidTemplateTypeException();
             }
 
+            if (String.IsNullOrEmpty(name)) {
+                throw new EmptyTemplateNameException();
+            }
+
             if (heightAboveFloor < 0) {
                 throw new InvalidTemplateDimensionException("Height above floor can't be negative");
             }
