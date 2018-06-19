@@ -88,5 +88,13 @@ namespace Services
                 throw new NoPermissionsException();
             }
         }
+
+        public void RemoveColumn(Point columnPoint)
+        {
+            CheckPermission(Permission.EDIT_BLUEPRINT);
+
+            blueprint.RemoveColumn(columnPoint);
+            repository.Modify(blueprint);
+        }
     }
 }

@@ -86,9 +86,16 @@ namespace UserInterface
 
         private void testDataButton_Click(object sender, EventArgs e)
         {
+            
             if (!dataGenerated)
             {
-                GenerateTestData();
+                try
+                {
+                    GenerateTestData();
+                }catch (Exception)
+                {
+
+                }
             }
             dataGenerated = true;
             mother.testDataAlreadyGenerated = true;
@@ -96,6 +103,7 @@ namespace UserInterface
 
         private void GenerateTestData()
         {
+            
             SessionConnector connector = new SessionConnector();
             Session fakeSession = connector.LogIn("admin", "admin");
             UserAdministrator uAdministrator = new UserAdministrator(fakeSession);
