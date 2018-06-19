@@ -19,15 +19,15 @@ namespace Logic.Domain
             }
 
             if (heightAboveFloor < 0) {
-                throw new InvalidTemplateDimensionException();
+                throw new InvalidTemplateDimensionException("Height above floor can't be negative");
             }
 
             if (height <= 0 || (height + heightAboveFloor) >= Constants.WALL_HEIGHT) {
-                throw new InvalidTemplateDimensionException();
+                throw new InvalidTemplateDimensionException("Height must be more than "+ 0 +" and less than" + Constants.WALL_HEIGHT);
             }
 
             if (length <= 0 || length > Constants.MAX_OPENING_LENGTH) {
-                throw new InvalidTemplateDimensionException();
+                throw new InvalidTemplateDimensionException("Length must be more than "+0+" and less than" + Constants.MAX_OPENING_LENGTH);
             }
 
             if (type.Equals(ComponentType.DOOR) && heightAboveFloor > 0) {
