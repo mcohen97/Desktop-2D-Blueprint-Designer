@@ -38,6 +38,9 @@ namespace Services
             return catalog.GetCost(componentType);
         }
 
+        public void SetCost(int componentType, float newCost)
+        {
 
+        }
     }
 }
