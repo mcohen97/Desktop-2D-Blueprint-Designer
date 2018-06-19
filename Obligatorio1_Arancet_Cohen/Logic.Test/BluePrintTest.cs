@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Logic.Domain;
-using Logic.Exceptions;
 using System.Linq;
+using LogicExceptions;
 
 namespace Logic.Test
 {
@@ -112,24 +112,28 @@ namespace Logic.Test
         }
 
         [TestMethod]
-        public void EqualsTest() {
-            IBlueprint testBp = new Blueprint(20, 20, "blueprinty",owner ,new MaterialContainer(), new List<Signature>(), instance.GetId());
+        public void EqualsTest()
+        {
+            IBlueprint testBp = new Blueprint(20, 20, "blueprinty", owner, new MaterialContainer(), new List<Signature>(), instance.GetId());
             Assert.IsTrue(instance.Equals(testBp));
         }
 
         [TestMethod]
-        public void NotEqualsTestDifferentTypesTest() {
+        public void NotEqualsTestDifferentTypesTest()
+        {
             String test = "test";
             Assert.IsFalse(instance.Equals(test));
         }
 
         [TestMethod]
-        public void NotEqualsNullTest() {
+        public void NotEqualsNullTest()
+        {
             Assert.IsFalse(instance.Equals(null));
         }
 
         [TestMethod]
-        public void NotEqualsTest() {
+        public void NotEqualsTest()
+        {
             IBlueprint testBp = new Blueprint(5, 5, "TeSt");
             Assert.IsFalse(instance.Equals(testBp));
         }
@@ -272,7 +276,7 @@ namespace Logic.Test
         public void InsertWallInColumnPlaceTest()
         {
             instance.InsertColumn(new Point(2, 5));
-            instance.InsertWall(new Point(2,3), new Point(2,6));
+            instance.InsertWall(new Point(2, 3), new Point(2, 6));
         }
 
         [TestMethod]
@@ -311,6 +315,75 @@ namespace Logic.Test
             instance.InsertOpening(new Door(new Point(2, 0)));
             int expectedResult = 2;
             int actualResult = materials.OpeningsCount();
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void OpeningExceedsBorderTest()
+        {
+            Template gateTemplate = new Template("Gate", 3, 0, 2, ComponentType.DOOR);
+            Opening gate = new Door(new Point(1, 0), gateTemplate);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertOpening(gate);
+            Assert.IsTrue(materials.IsOpeningsEmpty());
+        }
+
+        [TestMethod]
+        public void OpeningBiggerThanWallTest()
+        {
+            Template gateTemplate = new Template("Gate", 5, 0, 2, ComponentType.DOOR);
+            Opening gate = new Door(new Point(1, 0), gateTemplate);
+            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertOpening(gate);
+            Assert.IsTrue(materials.IsOpeningsEmpty());
+        }
+
+        [TestMethod]
+        public void OpeningFitsPerfectlyTest()
+        {
+            Template gateTemplate = new Template("Gate", 4, 0, 2, ComponentType.DOOR);
+            Opening gate = new Door(new Point(2, 0), gateTemplate);
+            instance.InsertWall(new Point(0, 0), new Point(4, 0));
+            instance.InsertOpening(gate);
+            Assert.IsTrue(!materials.IsOpeningsEmpty());
+
+        }
+
+        [TestMethod]
+        public void ThreeOpeningsInWallTest()
+        {
+            instance.InsertWall(new Point(0, 0), new Point(5, 0));
+            Template gateTemplate = new Template("Gate", 1, 0, 2, ComponentType.DOOR);
+
+            Opening gate1 = new Door(new Point(2, 0), gateTemplate);
+            Opening gate2 = new Door(new Point(3, 0), gateTemplate);
+            Opening gate3 = new Door(new Point(4, 0), gateTemplate);
+
+            instance.InsertOpening(gate1);
+            instance.InsertOpening(gate2);
+            instance.InsertOpening(gate3);
+
+            int expectedResult = 3;
+            int actualResult = instance.GetOpenings().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void ThirdOpeningsDoesNotFitInWallTest()
+        {
+            instance.InsertWall(new Point(0, 0), new Point(5, 0));
+            Template gateTemplate = new Template("Gate", 1.5F, 0, 2, ComponentType.DOOR);
+
+            Opening gate1 = new Door(new Point(2, 0), gateTemplate);
+            Opening gate2 = new Door(new Point(3, 0), gateTemplate);
+            Opening gate3 = new Door(new Point(4, 0), gateTemplate);
+
+            instance.InsertOpening(gate1);
+            instance.InsertOpening(gate2);
+            instance.InsertOpening(gate3);
+
+            int expectedResult = 2;
+            int actualResult = instance.GetOpenings().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
 

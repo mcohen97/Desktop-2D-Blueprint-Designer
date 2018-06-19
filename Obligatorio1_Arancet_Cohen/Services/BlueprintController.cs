@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Logic.Exceptions;
+using ServicesExceptions;
 using Logic.Domain;
 using DataAccess;
 

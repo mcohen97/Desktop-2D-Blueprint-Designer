@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Domain
+namespace LogicExceptions
 {
     [Serializable]
-    internal class OccupiedPositionException : Exception
+    public class OccupiedPositionException : Exception
     {
         public OccupiedPositionException()
         {

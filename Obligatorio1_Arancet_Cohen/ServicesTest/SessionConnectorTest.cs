@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
-using Logic.Exceptions;
+using ServicesExceptions;
+using DataAccessExceptions;
 using Services;
 
 namespace ServicesTest

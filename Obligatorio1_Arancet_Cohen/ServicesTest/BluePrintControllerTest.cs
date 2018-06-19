@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic.Exceptions;
 using Logic.Domain;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using Services;
 using DataAccess;
 using DomainRepositoryInterface;
 using RepositoryInterface;
-
+using ServicesExceptions;
 
 
 namespace ServicesTest

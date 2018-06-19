@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
-
+using RepositoryInterface;
+using DataAccess;
 
 namespace UserInterface
 {
@@ -44,12 +45,7 @@ namespace UserInterface
 
         private void ShowOrHideUserData()
         {
-            /* if (AdminEditsItself() || AdminEditsOtherUser()) {
-                 userInfo.Show();//this would be the Admin case
-             } else {
-                 userInfo.Hide(); //this would be the Designer case
-             }*/
-
+       
             if (!AdminEditsItself() && !AdminEditsOtherUser())
             {
                 //in this case it is a designer
@@ -124,6 +120,8 @@ namespace UserInterface
             if (AllFieldsOk())
             {
                 UpdateInfo();
+                IRepository<User> usersStorage = new UserRepository();
+                usersStorage.Modify(edited);
                 parent.CurrentSession.FirstLogin = false;
                 parent.GoToMenu();
             }

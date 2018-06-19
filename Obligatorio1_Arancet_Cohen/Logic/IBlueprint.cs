@@ -66,6 +66,8 @@ namespace Logic.Domain
 
         public abstract void RemoveColumn(Point position);
 
+        public abstract void InsertColumn(Point columnPosition);
+
         public abstract ICollection<Wall> GetWalls();
 
         public abstract ICollection<Beam> GetBeams();
@@ -73,7 +75,5 @@ namespace Logic.Domain
         public abstract ICollection<Opening> GetOpenings();
 
         public abstract ICollection<ISinglePointComponent> GetColumns();
-
-        public abstract void InsertColumn(Point columnPosition);
     }
 }

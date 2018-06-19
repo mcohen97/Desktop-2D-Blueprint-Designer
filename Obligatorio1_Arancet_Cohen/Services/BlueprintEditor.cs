@@ -1,10 +1,10 @@
 ﻿using System;
 using Logic.Domain;
-using Logic.Exceptions;
 using System.Collections.Generic;
 using Logic;
 using RepositoryInterface;
 using DataAccess;
+using ServicesExceptions;
 
 namespace Services
 {
@@ -68,15 +68,6 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.RemoveOpening(aOpening);
-            repository.Modify(blueprint);
-        }
-
-
-        public void SetName(string name)
-        {
-            CheckPermission(Permission.EDIT_BLUEPRINT);
-
-            blueprint.Name = name;
             repository.Modify(blueprint);
         }
 

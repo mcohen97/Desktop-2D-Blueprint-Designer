@@ -34,7 +34,7 @@ namespace DataAccess
             return new Wall(origin, end);
         }
 
-        public ColumnEntity ColumnToEntity(Column toConvert) {
+        public ColumnEntity ColumnToEntity(Column toConvert, BlueprintEntity blueprint) {
 
             ColumnEntity conversion = new ColumnEntity()
             {
@@ -42,7 +42,9 @@ namespace DataAccess
                 Height = toConvert.Height(),
                 Length = toConvert.Length(),
                 CoordX = toConvert.GetPosition().CoordX,
-                CoordY = toConvert.GetPosition().CoordY
+                CoordY = toConvert.GetPosition().CoordY,
+                BearerBlueprint= blueprint
+                
             };
             return conversion;
         }
@@ -96,6 +98,19 @@ namespace DataAccess
                 
             };
             return conversion;
+        }
+
+        public OpeningTemplateEntity GetTemplateFromOpening(Opening anOpening) {
+            OpeningTemplateEntity extracted = new OpeningTemplateEntity()
+            {
+                Name = anOpening.getTemplateName(),
+                Height = anOpening.HeightAboveFloor(),
+                Length = anOpening.Length(),
+                HeightAboveFloor = anOpening.HeightAboveFloor(),
+                ComponentType = (int)anOpening.GetComponentType()
+
+            };
+            return extracted;
         }
 
         public Template EntityToOpeningTemplate(OpeningTemplateEntity toConvert) {

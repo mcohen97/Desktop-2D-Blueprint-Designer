@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.Domain
+namespace LogicExceptions
 {
     [Serializable]
     public class ColumnInPlaceException : Exception

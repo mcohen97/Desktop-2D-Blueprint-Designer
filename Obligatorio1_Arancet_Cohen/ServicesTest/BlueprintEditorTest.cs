@@ -5,9 +5,9 @@ using Logic.Domain;
 using Services;
 using DataAccess;
 using System.Collections.Generic;
-using Logic.Exceptions;
 using Logic;
 using System.Linq;
+using LogicExceptions;
 
 namespace ServicesTest
 {
@@ -27,8 +27,6 @@ namespace ServicesTest
         private User user3;
         private User user4;
         private User architect;
-        private User architectA;
-        private User architectB;
 
         private SessionConnector conn;
         private UserAdministrator administrator;
@@ -38,9 +36,9 @@ namespace ServicesTest
         public void TestInitialize()
         {
             repository = new UserRepository();
-            (repository).Clear();
+            repository.Clear();
             blueprintPortfolio = new BlueprintRepository();
-
+            blueprintPortfolio.Clear();
 
             conn = new SessionConnector();
             Session session = conn.LogIn("admin", "admin");
@@ -55,7 +53,6 @@ namespace ServicesTest
             blueprintTest = new Blueprint(12, 12, "Blueprint1", materials);
             blueprint2 = new Blueprint(10, 10, "Blueprint2");
             blueprint3 = new Blueprint(11, 11, "Blueprint2");
-            materials = new MaterialContainer();
 
             blueprintTest.Owner = user1;
             blueprint2.Owner = user2;
@@ -66,6 +63,10 @@ namespace ServicesTest
             administrator.Add(user3);
             administrator.Add(user4);
             administrator.Add(architect);
+
+            blueprintPortfolio.Add(blueprintTest);
+            blueprintPortfolio.Add(blueprint2);
+            blueprintPortfolio.Add(blueprint3);
 
         }
 
@@ -98,32 +99,6 @@ namespace ServicesTest
             Session session = conn.LogIn("designer3", "12345");
             BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest);
             Assert.IsNotNull(blueEditor);
-        }
-
-
-        [TestMethod]
-        public void SetNameTest()
-        {
-            BlueprintEditor blueEditor = GetInstance();
-            string newName = "New Name";
-            blueEditor.SetName(newName);
-            Assert.AreEqual(newName, blueprintTest.Name);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void SetEmptyNameTest()
-        {
-            BlueprintEditor blueEditor = GetInstance();
-            blueEditor.SetName("");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void SetNullNameTest()
-        {
-            BlueprintEditor blueEditor = GetInstance();
-            blueEditor.SetName(null);
         }
 
         [TestMethod]

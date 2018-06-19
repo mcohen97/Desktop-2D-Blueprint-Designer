@@ -1,8 +1,8 @@
-﻿using Logic.Exceptions;
-using Logic.Domain;
+﻿using Logic.Domain;
 using DataAccess;
 using RepositoryInterface;
 using DomainRepositoryInterface;
+using ServicesExceptions;
 
 namespace Services
 {
