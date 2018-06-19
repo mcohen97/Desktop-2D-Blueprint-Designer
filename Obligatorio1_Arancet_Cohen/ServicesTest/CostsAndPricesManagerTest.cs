@@ -58,6 +58,15 @@ namespace ServicesTest
             manager = new CostsAndPricesManager(noAdmin);
             manager.SetPrice(wallType, 150);
         }
+
+        [TestMethod]
+        public void GetCostTest() {
+            float expectedResult = 50;
+            float actualResult = manager.GetCost(wallType);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
         
 
         
