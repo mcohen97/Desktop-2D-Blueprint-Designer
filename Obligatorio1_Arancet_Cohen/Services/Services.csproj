@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueprintController.cs" />
+    <Compile Include="BlueprintReportGenerator.cs" />
     <Compile Include="CostsAndPricesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionConnector.cs" />
