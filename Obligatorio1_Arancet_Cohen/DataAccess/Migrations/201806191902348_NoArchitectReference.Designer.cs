@@ -7,13 +7,13 @@ namespace DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class noMoreCollections : IMigrationMetadata
+    public sealed partial class NoArchitectReference : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(noMoreCollections));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NoArchitectReference));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806182202270_noMoreCollections"; }
+            get { return "201806191902348_NoArchitectReference"; }
         }
         
         string IMigrationMetadata.Source

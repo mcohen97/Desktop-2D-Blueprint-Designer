@@ -52,9 +52,9 @@
     <Compile Include="BlueprintAndEntityConverter.cs" />
     <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806182202270_noMoreCollections.cs" />
-    <Compile Include="Migrations\201806182202270_noMoreCollections.Designer.cs">
-      <DependentUpon>201806182202270_noMoreCollections.cs</DependentUpon>
+    <Compile Include="Migrations\201806191902348_NoArchitectReference.cs" />
+    <Compile Include="Migrations\201806191902348_NoArchitectReference.Designer.cs">
+      <DependentUpon>201806191902348_NoArchitectReference.cs</DependentUpon>
     </Compile>
     <Compile Include="OpeningTemplateRepository.cs" />
     <Compile Include="PriceCostRepository.cs" />
@@ -93,8 +93,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806182202270_noMoreCollections.resx">
-      <DependentUpon>201806182202270_noMoreCollections.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806191902348_NoArchitectReference.resx">
+      <DependentUpon>201806191902348_NoArchitectReference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
