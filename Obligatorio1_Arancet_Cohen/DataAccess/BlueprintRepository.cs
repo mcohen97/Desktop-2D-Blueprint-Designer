@@ -47,8 +47,17 @@ namespace DataAccess
                 
             foreach (Opening op in toStore.GetOpenings()) {
                     string tempName = op.getTemplateName();
-                    OpeningTemplateEntity itsTemplate = context.OpeningTemplates
-                            .FirstOrDefault(t => t.Name.Equals(tempName));
+                    OpeningTemplateEntity itsTemplate;
+
+                    if (context.OpeningTemplates.Any(t => t.Name.Equals(tempName)))
+                    {
+                        itsTemplate = context.OpeningTemplates
+                                .FirstOrDefault(t => t.Name.Equals(tempName));
+                    }
+                    else {
+                        itsTemplate = materialTranslator.GetTemplateFromOpening(op);
+                        context.OpeningTemplates.Add(itsTemplate);
+                    }
                     OpeningEntity opRecord=materialTranslator.OpeningToEntity(op, itsTemplate, converted);
                     context.Openings.Add(opRecord);
             }

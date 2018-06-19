@@ -4,6 +4,7 @@ using Logic.Domain;
 using DataAccess;
 using System.Collections.Generic;
 using RepositoryInterface;
+using DomainRepositoryInterface;
 
 namespace DataAccessTest
 {
@@ -136,7 +137,10 @@ namespace DataAccessTest
 
         [TestMethod]
         public void OpeningsPersistenceCountTest() {
+            IRepository<Template> tempStorage = new OpeningTemplateRepository();
+            tempStorage.Clear();
             Template gate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
+            tempStorage.Add(gate);
             Opening gateOp = new Door(new Point(1, 1), gate);
             Opening otherGateOp = new Door(new Point(2, 2), gate);
 
@@ -163,20 +167,7 @@ namespace DataAccessTest
         }
 
 
-        public void BuildTestBlueprint() {
-            Template gate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
-            Opening gateOp = new Door(new Point(1, 1), gate);
-            Opening otherGateOp = new Door(new Point(2, 2), gate);
-
-            blueprint1.InsertColumn(new Point(2, 3));
-
-            blueprint1.InsertWall(new Point(0, 2), new Point(4, 2));
-            blueprint1.InsertWall(new Point(0, 1), new Point(4, 1));
-
-            blueprint1.InsertOpening(gateOp);
-            blueprint1.InsertOpening(otherGateOp);
-
-        }
+   
 
         [TestMethod]
         public void ModifyDeletionTest() {
@@ -229,6 +220,25 @@ namespace DataAccessTest
             int expectedResult = 1;
             int actualResult = blueprint1.GetSignatures().Count;
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        public void BuildTestBlueprint()
+        {
+            IRepository<Template> tempStorage = new OpeningTemplateRepository();
+            tempStorage.Clear();
+            Template gate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
+            tempStorage.Add(gate);
+            Opening gateOp = new Door(new Point(1, 1), gate);
+            Opening otherGateOp = new Door(new Point(2, 2), gate);
+
+            blueprint1.InsertColumn(new Point(2, 3));
+
+            blueprint1.InsertWall(new Point(0, 2), new Point(4, 2));
+            blueprint1.InsertWall(new Point(0, 1), new Point(4, 1));
+
+            blueprint1.InsertOpening(gateOp);
+            blueprint1.InsertOpening(otherGateOp);
+
         }
 
 
