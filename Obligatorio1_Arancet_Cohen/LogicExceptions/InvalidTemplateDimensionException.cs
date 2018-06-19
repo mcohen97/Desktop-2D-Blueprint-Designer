@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace LogicExceptions
 {
-    class InvalidTemplateDimension
+    public class InvalidTemplateDimensionException:Exception
     {
+        public InvalidTemplateDimensionException()
+        {
+        }
+
+        public InvalidTemplateDimensionException(string message) : base(message) {
+        }
+
+        public InvalidTemplateDimensionException(string message, Exception innerException) : base(message, innerException) {
+        }
+
+        protected InvalidTemplateDimensionException(SerializationInfo info, StreamingContext context) : base(info, context) {
+        }
+
     }
 }
