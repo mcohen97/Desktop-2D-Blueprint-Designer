@@ -25,6 +25,14 @@ namespace DataAccess
             }
         }
 
+        public void Clear()
+        {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+                context.ClearDataBase();
+                context.SaveChanges();
+            }
+        }
+
         public float GetCost(int componentType)
         {
             throw new NotImplementedException();

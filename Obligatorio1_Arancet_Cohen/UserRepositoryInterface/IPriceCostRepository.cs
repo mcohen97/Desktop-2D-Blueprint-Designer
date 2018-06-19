@@ -17,5 +17,7 @@ namespace DomainRepositoryInterface
         void SetCost(int componentType, float cost);
 
         void AddCostPrice(int componentType, float cost,float price);
+
+        void Clear();
     }
 }
