@@ -24,5 +24,20 @@ namespace DataAccessTest
             float actualResult=prices.GetPrice((int)ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestInitialize]
+        public void SetPrice() {
+            float expectedResult = 120;
+            prices.SetPrice((int)ComponentType.WALL,120);
+            float actualResult = prices.GetPrice((int)ComponentType.WALL);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestInitialize]
+        public void GetCost() {
+            float expectedResult = 50;
+            float actualresult = prices.GetCost((int)ComponentType.WALL);
+            Assert.AreEqual(expectedResult, actualresult);
+        }
     }
 }
