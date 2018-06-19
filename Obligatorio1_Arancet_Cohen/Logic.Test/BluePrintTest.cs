@@ -13,10 +13,10 @@ namespace Logic.Test
 
         private Blueprint instance;
         private MaterialContainer materials;
-        Client owner;
-        User architect;
-        User architectA;
-        User architectB;
+        private Client owner;
+        private User architect;
+        private User architectA;
+        private User architectB;
 
         [TestInitialize]
         public void SetUp()
@@ -532,6 +532,7 @@ namespace Logic.Test
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        //Signature tests
         [TestMethod]
         public void IsSignedFalseTest()
         {
@@ -567,16 +568,66 @@ namespace Logic.Test
             Assert.AreEqual(lastSignature.Signer, architectA);
         }
 
+        //Column tests
         [TestMethod]
-        public void InsertColumnTest()
+        public void InsertColumnCorrectlyTest()
         {
             ISinglePointComponent column = new Column(new Point(2, 2));
             instance.InsertColumn(column.GetPosition());
             Assert.AreEqual(1, instance.GetColumns().Count);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(OutOfRangeComponentException))]
+        public void InsertColumnOutOfRangeTest()
+        {
+            Point columnPosition = new Point(50, -3);
+            instance.InsertColumn(columnPosition);
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(ComponentInWallException))]
+        public void InsertColumnOverWallTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            Point wallStartPoint = new Point(1, 2);
+            Point wallEndPoint = new Point(3, 2);
+            instance.InsertWall(wallStartPoint, wallEndPoint);
+            instance.InsertColumn(columnPosition);
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(OccupiedPositionException))]
+        public void InsertColumnOverColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            instance.InsertColumn(columnPosition);
+            instance.InsertColumn(columnPosition);
+
+        }
+
+        [TestMethod]
+        public void RemoveColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            instance.InsertColumn(columnPosition);
+            instance.RemoveColumn(columnPosition);
+            int expectedResult = 0;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void RemoveUnexistentColumnTest()
+        {
+            Point columnPosition = new Point(2, 2);
+            Point noColumnPosition = new Point(2, 3);
+            instance.InsertColumn(columnPosition);
+            instance.RemoveColumn(noColumnPosition);
+            int expectedResult = 1;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 
 

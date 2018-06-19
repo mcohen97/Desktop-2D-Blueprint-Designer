@@ -15,7 +15,7 @@ namespace Logic.Domain
     {
 
         private string name;
-        public override string Name { get { return name; } protected set { SetName(value); } }
+        public override string Name { get { return name; } internal set { SetName(value); } }
 
         private int length;
 
@@ -30,7 +30,7 @@ namespace Logic.Domain
         private PunctualComponentPositioner openingsManager;
 
         private User owner;
-        public override  User Owner { get { return owner; } set { SetOwner(value); } }
+        public override User Owner { get { return owner; } set { SetOwner(value); } }
 
         public Blueprint(int aLength, int aWidth, string aName)
         {
@@ -40,8 +40,8 @@ namespace Logic.Domain
             materials = new MaterialContainer();
             signatures = new List<Signature>();
             id = Guid.NewGuid();
-            openingsManager = new PunctualComponentPositioner(materials,Width,Length);
-            wallsManager = new WallsPositioner(materials,openingsManager,Width,Length);
+            openingsManager = new PunctualComponentPositioner(materials, Width, Length);
+            wallsManager = new WallsPositioner(materials, openingsManager, Width, Length);
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -56,7 +56,8 @@ namespace Logic.Domain
             wallsManager = new WallsPositioner(materials, openingsManager, Width, Length);
         }
 
-        public Blueprint(int aLength, int aWidth, string aName,User anOwner,MaterialContainer container,ICollection<Signature> someSignatures,Guid anId) {
+        public Blueprint(int aLength, int aWidth, string aName, User anOwner, MaterialContainer container, ICollection<Signature> someSignatures, Guid anId)
+        {
             Length = aLength;
             Width = aWidth;
             Name = aName;
@@ -134,12 +135,6 @@ namespace Logic.Domain
             openingsManager.RemoveOpening(anOpening);
         }
 
-        public override void RemoveOpening(Point actualIntersection)
-        {
-            openingsManager.RemoveOpening(actualIntersection);
-        }
-
-
         public override ICollection<Wall> GetWalls()
         {
             return (ICollection<Wall>)materials.GetWalls();
@@ -166,8 +161,5 @@ namespace Logic.Domain
             return "Name: " + Name + " "
                    + "Owner: " + Owner.UserName + " ";
         }
-
-       
-
     }
 }

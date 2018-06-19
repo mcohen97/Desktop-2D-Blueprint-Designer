@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BluePrintControllerTest.cs" />
+    <Compile Include="BlueprintEditorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionConnectorTest.cs" />
     <Compile Include="UserAdministratorTest.cs" />
@@ -72,6 +73,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicExceptions\LogicExceptions.csproj">
+      <Project>{8BA1D285-3AE8-4259-958C-FF6D69E0A9AD}</Project>
+      <Name>LogicExceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>
