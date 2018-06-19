@@ -40,7 +40,12 @@ namespace Services
 
         public void SetCost(int componentType, float newCost)
         {
-
+            if (!currentSession.UserLogged.HasPermission(Permission.MANAGE_COSTS))
+            {
+                throw new NoPermissionsException();
+            }
+            IPriceCostRepository catalog = new PriceCostRepository();
+            catalog.SetCost(componentType, newCost);
         }
     }
 }

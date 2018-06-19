@@ -69,8 +69,8 @@ namespace ServicesTest
         [TestMethod]
         public void SetCostTest() {
             float expectedResult = 75;
-            manager.SetCost(wallType, 150);
-            float actualResult = manager.GetPrice(wallType);
+            manager.SetCost(wallType, 75);
+            float actualResult = manager.GetCost(wallType);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
