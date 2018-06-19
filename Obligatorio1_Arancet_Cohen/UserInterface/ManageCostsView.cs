@@ -45,18 +45,18 @@ namespace UserInterface
 
         private void materialsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
+           /* ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
             costSpinner.Value = (decimal)Constants.COST_CATALOGUE[selectedMaterial];
             priceSpinner.Value = (decimal)Constants.PRICE_CATALOGUE[selectedMaterial];
-            costPriceInfo.Show();
+            costPriceInfo.Show();*/
         }
 
         private void changePriceButton_Click(object sender, EventArgs e)
         {
-            ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
+           /* ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
             Constants.COST_CATALOGUE[selectedMaterial] = (float)costSpinner.Value;
             Constants.PRICE_CATALOGUE[selectedMaterial] = (float)priceSpinner.Value;
-            costPriceInfo.Hide();
+            costPriceInfo.Hide();*/
         }
 
         private void doneButton_Click(object sender, EventArgs e)

@@ -3,7 +3,7 @@ using System;
 
 namespace Logic.Domain
 {
-    public class Column : ISinglePointComponent, IMaterialType, IPriceable, IComponent3D
+    public class Column : ISinglePointComponent, IMaterialType, IComponent3D
     {
         private Point position;
         private float width;
@@ -37,17 +37,6 @@ namespace Logic.Domain
             }
             return areEqual;
         }
-
-        public float CalculateCost()
-        {
-            return Constants.COST_CATALOGUE[GetComponentType()];
-        }
-
-        public float CalculatePrice()
-        {
-            return Constants.PRICE_CATALOGUE[GetComponentType()];
-        }
-
         public ComponentType GetComponentType()
         {
             return ComponentType.COLUMN;

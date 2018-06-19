@@ -83,7 +83,7 @@ namespace UserInterface {
             return new System.Drawing.Point(Convert.ToInt32(point.CoordX * cellSizeInPixels), Convert.ToInt32(point.CoordY * cellSizeInPixels));
         }
         private void calulateCostsAndPrices() {
-            float wallsCost = 0;
+            /*float wallsCost = 0;
             float beamsCost = 0;
             float doorsCost = 0;
             float windowsCost = 0;
@@ -119,7 +119,7 @@ namespace UserInterface {
             lblBeamsPrice.Text = beamsPrice + "";
             lblDoorsPrice.Text = doorsPrice + "";
             lblWindowsPrice.Text = windowsPrice + "";
-            lblTotalPriceSum.Text = (wallsPrice + beamsPrice + doorsPrice + windowsPrice) + "";
+            lblTotalPriceSum.Text = (wallsPrice + beamsPrice + doorsPrice + windowsPrice) + "";*/
         }
 
 

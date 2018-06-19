@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesExceptions;
+
 
 namespace Logic.Domain
 {
 
-    public class Beam : ISinglePointComponent, IMaterialType, IPriceable
+    public class Beam : ISinglePointComponent, IMaterialType
     {
 
         private Point position;
@@ -47,14 +49,5 @@ namespace Logic.Domain
             return ComponentType.BEAM;
         }
 
-        public float CalculatePrice()
-        {
-            return Constants.PRICE_CATALOGUE[GetComponentType()];
-        }
-
-        public float CalculateCost()
-        {
-            return Constants.COST_CATALOGUE[GetComponentType()];
-        }
     }
 }

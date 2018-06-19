@@ -14,5 +14,6 @@ namespace Logic.Domain
 
         public static readonly float WALL_HEIGHT = 3;
 
+        public static readonly float MAX_OPENING_LENGTH = 3;
     }
 }
