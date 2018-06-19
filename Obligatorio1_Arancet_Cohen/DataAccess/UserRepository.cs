@@ -12,6 +12,7 @@ using DomainRepositoryInterface;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using DataAccessExceptions;
+using System.Data.Common;
 
 namespace DataAccess
 {
@@ -38,8 +39,13 @@ namespace DataAccess
                     context.Users.Add(anEntity);
                     context.SaveChanges();
                 }
+                //existent user in particular.
                 catch (DbUpdateException) {
                     throw new UserAlreadyExistsException();
+                }
+                //the rest of the possible exceptions.
+                catch (DbException ) {
+                    throw new InaccessibleDataException();
                 }
                 
                 
@@ -51,6 +57,7 @@ namespace DataAccess
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserEntity entity = context.Users.FirstOrDefault(r => r.UserName .Equals(toDelete.UserName));
+                //if it exists, delete it.
                 if (entity != null)
                 {
                     context.Users.Remove(entity);

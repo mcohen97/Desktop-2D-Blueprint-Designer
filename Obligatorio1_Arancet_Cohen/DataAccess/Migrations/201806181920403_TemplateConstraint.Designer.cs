@@ -7,13 +7,13 @@ namespace DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RequiredBlueprintForMaterials : IMigrationMetadata
+    public sealed partial class TemplateConstraint : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RequiredBlueprintForMaterials));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TemplateConstraint));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806131700360_RequiredBlueprintForMaterials"; }
+            get { return "201806181920403_TemplateConstraint"; }
         }
         
         string IMigrationMetadata.Source

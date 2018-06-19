@@ -115,7 +115,7 @@ namespace DataAccess
 
         public Template EntityToOpeningTemplate(OpeningTemplateEntity toConvert) {
             Template conversion = new Template(toConvert.Name,
-                toConvert.Length, toConvert.Height, toConvert.Height, 
+                toConvert.Length, toConvert.HeightAboveFloor, toConvert.Height, 
                 (ComponentType)toConvert.ComponentType);
 
             return conversion;

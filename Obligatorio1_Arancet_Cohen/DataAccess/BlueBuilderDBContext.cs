@@ -52,6 +52,7 @@ namespace DataAccess
             modelBuilder.Entity<WallEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
             modelBuilder.Entity<ColumnEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
             modelBuilder.Entity<OpeningEntity>().HasRequired<BlueprintEntity>(we => we.BearerBlueprint);
+            modelBuilder.Entity<OpeningEntity>().HasRequired<OpeningTemplateEntity>(oe=>oe.Template);
 
 
         }

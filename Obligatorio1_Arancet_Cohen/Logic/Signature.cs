@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
+using ServicesExceptions;
 
 namespace Logic.Domain
 {
@@ -14,6 +15,9 @@ namespace Logic.Domain
 
         public Signature(User user, DateTime now)
         {
+            if (!user.HasPermission(Permission.CAN_SIGN_BLUEPRINT)) {
+                throw new NoPermissionsException();
+            }
             this.signer = user;
             this.signatureDate = now;
         }

@@ -162,5 +162,60 @@ namespace DataAccessTest
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+
+        public void BuildTestBlueprint() {
+            Template gate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
+            Opening gateOp = new Door(new Point(1, 1), gate);
+            Opening otherGateOp = new Door(new Point(2, 2), gate);
+
+            blueprint1.InsertColumn(new Point(2, 3));
+
+            blueprint1.InsertWall(new Point(0, 2), new Point(4, 2));
+            blueprint1.InsertWall(new Point(0, 1), new Point(4, 1));
+
+            blueprint1.InsertOpening(gateOp);
+            blueprint1.InsertOpening(otherGateOp);
+
+        }
+
+        [TestMethod]
+        public void ModifyDeletionTest() {
+            BuildTestBlueprint();
+
+            portfolio.Add(blueprint1);
+
+            blueprint1.RemoveColumn(new Point(2, 3));
+            portfolio.Modify(blueprint1);
+
+            blueprint1 = portfolio.Get(blueprint1.GetId());
+
+            int expectedResult = 0;
+            int actualResult = blueprint1.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+        [TestMethod]
+        public void ModifyAdditionTest() {
+            BuildTestBlueprint();
+            portfolio.Add(blueprint1);
+            blueprint1.RemoveWall(new Point(0, 2), new Point(4, 2));
+            blueprint1.InsertColumn(new Point(3, 3));
+            portfolio.Modify(blueprint1);
+            blueprint1 = portfolio.Get(blueprint1.GetId());
+            bool wallsOk = blueprint1.GetWalls().Count == 1;
+            bool openingsOk = blueprint1.GetOpenings().Count == 1;
+            bool columnsOk = blueprint1.GetColumns().Count == 2;
+            Assert.IsTrue(wallsOk && openingsOk && columnsOk);
+        }
+
+        [TestMethod]
+        public void SignTest() {
+            BuildTestBlueprint();
+            User archy = new Architect("Gustave", "Eiffel", "Gustave1886", "password", DateTime.Now);
+            blueprint1.Sign(archy);
+            portfolio.Add(blueprint1);
+            Assert.AreEqual(blueprint1.GetSignatures().Count, 1);
+        }
+
     }
 }
