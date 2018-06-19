@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
+using DataAccess;
+using DomainRepositoryInterface;
 
 namespace Services
 {
@@ -13,6 +15,10 @@ namespace Services
 
         public CostsAndPricesManager(Session aSession) {
             currentSession = aSession;
+        }
+
+        public float GetPrice(int componentType) {
+            return 0;
         }
 
 
