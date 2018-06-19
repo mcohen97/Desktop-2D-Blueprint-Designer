@@ -47,13 +47,13 @@ namespace Services
         private void AddWindowsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
             int windowsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.WINDOW));
             float windowsPrice = costsNPrices.GetPrice((int)ComponentType.WINDOW);
-            report.SetTotalPrice(ComponentType.COLUMN, windowsCount * windowsPrice);
+            report.SetTotalPrice(ComponentType.WINDOW, windowsCount * windowsPrice);
         }
 
         private void AddDoorsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
             int doorsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.DOOR));
             float doorsPrice = costsNPrices.GetPrice((int)ComponentType.DOOR);
-            report.SetTotalPrice(ComponentType.COLUMN, doorsCount * doorsPrice);
+            report.SetTotalPrice(ComponentType.DOOR, doorsCount * doorsPrice);
         }
 
     }
