@@ -227,5 +227,18 @@ namespace Logic.Test
 
             Assert.AreEqual(newType, template.Type);
         }
+
+        [TestMethod]
+        public void ToStringTest()
+        {
+            string name = "My custom template";
+            float length = 1;
+            float width = 0.5f;
+            float height = 1;
+            ComponentType type = ComponentType.WINDOW;
+            Template template = new Template(name, length, width, height, type);
+
+            Assert.AreEqual(template.ToString(), name);
+        }
     }
 }
