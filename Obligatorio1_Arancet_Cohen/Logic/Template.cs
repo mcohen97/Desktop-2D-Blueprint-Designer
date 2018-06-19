@@ -37,5 +37,24 @@ namespace Logic.Domain
         public ComponentType Type { get { return type; } internal set { type = value; } }
         public float HeightAboveFloor { get { return heightAboveFloor; } internal set { heightAboveFloor = value; } }
         public Guid Id { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            bool areEqual;
+            if (obj == null)
+            {
+                areEqual = false;
+            }
+            else
+            {
+                Template otherTemplate = (Template)obj;
+                areEqual = otherTemplate.Name.Equals(this.Name);
+            }
+            return areEqual;
+        }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

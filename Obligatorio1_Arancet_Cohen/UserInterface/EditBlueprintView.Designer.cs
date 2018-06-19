@@ -55,7 +55,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.BlueprintPanel = new System.Windows.Forms.Panel();
             this.cmbTemplates = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOpeningTool = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
-            this.ButtonsPanel.Controls.Add(this.button1);
+            this.ButtonsPanel.Controls.Add(this.btnOpeningTool);
             this.ButtonsPanel.Controls.Add(this.cmbTemplates);
             this.ButtonsPanel.Controls.Add(this.btnColumnTool);
             this.ButtonsPanel.Controls.Add(this.btnExportBlueprint);
@@ -400,19 +400,20 @@
             // cmbTemplates
             // 
             this.cmbTemplates.FormattingEnabled = true;
-            this.cmbTemplates.Location = new System.Drawing.Point(35, 250);
+            this.cmbTemplates.Location = new System.Drawing.Point(35, 244);
             this.cmbTemplates.Name = "cmbTemplates";
             this.cmbTemplates.Size = new System.Drawing.Size(146, 21);
             this.cmbTemplates.TabIndex = 19;
             // 
-            // button1
+            // btnOpeningTool
             // 
-            this.button1.Location = new System.Drawing.Point(35, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 26);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Opening";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnOpeningTool.Location = new System.Drawing.Point(35, 218);
+            this.btnOpeningTool.Name = "btnOpeningTool";
+            this.btnOpeningTool.Size = new System.Drawing.Size(146, 26);
+            this.btnOpeningTool.TabIndex = 20;
+            this.btnOpeningTool.Text = "Opening";
+            this.btnOpeningTool.UseVisualStyleBackColor = true;
+            this.btnOpeningTool.Click += new System.EventHandler(this.btnOpeningTool_Click);
             // 
             // EditBlueprintView
             // 
@@ -465,7 +466,7 @@
         private System.Windows.Forms.Label lblBeamsPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnColumnTool;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOpeningTool;
         private System.Windows.Forms.ComboBox cmbTemplates;
     }
 }

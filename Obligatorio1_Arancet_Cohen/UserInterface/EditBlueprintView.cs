@@ -515,7 +515,21 @@ namespace UserInterface {
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertColumn);
             btnColumnTool.Enabled = false;
         }
+        private void btnOpeningTool_Click(object sender, EventArgs e)
+        {
+            RemoveEveryHandler();
+            EnableEveryTool();
+            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertOpening);
+            btnOpeningTool.Enabled = false;
+        }
 
+        private void drawSurface_MouseClickInsertOpening(object sender, MouseEventArgs e)
+        {
+            System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
+            Logic.Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
+            Opening newWindow = new Window(doorPoint);
+            InsertAndDrawOpening(newWindow);
+        }
 
         private void RemoveEveryHandler() {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
@@ -611,8 +625,6 @@ namespace UserInterface {
             }
             return returnedCellSize;
         }
-
-       
 
     }
 }
