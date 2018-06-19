@@ -41,6 +41,14 @@ namespace ServicesTest
             float actualResult=manager.GetPrice(wallType);
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void SetPriceTest() {
+            float expectedResult = 150;
+            manager.SetPrice(wallType, 150);
+            float actualResult = manager.GetPrice(wallType);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
         
 
         
