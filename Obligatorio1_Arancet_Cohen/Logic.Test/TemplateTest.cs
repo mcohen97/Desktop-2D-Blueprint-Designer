@@ -30,6 +30,12 @@ namespace Logic.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(EmptyTemplateNameException))]
+        public void BuildEmptyNameTemplateTest() {
+            Template testTemplate = new Template("", 1, 1, 1, ComponentType.WINDOW);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidTemplateDimensionException))]
         public void BuildNegativeHeightAboveFloorTemplateTest()
         {
