@@ -192,7 +192,7 @@ namespace UserInterface {
             System.Drawing.Point endPoint = AdjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
 
             try {
-                selectedBluePrint.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
+                editor.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
             } catch (Exception) {
 
             }
@@ -230,7 +230,7 @@ namespace UserInterface {
         }
         private void InsertAndDrawOpening(Opening newOpening) {
             try {
-                selectedBluePrint.InsertOpening(newOpening);
+                editor.InsertOpening(newOpening);
             } catch (Exception) {
                 //error message
             }
@@ -250,10 +250,10 @@ namespace UserInterface {
                 bool existWallInPoint = selectedBluePrint.GetWalls().Any(x => x.DoesContainPoint(deletionPointPrecise));
                 bool existColumnInPoint = selectedBluePrint.GetColumns().Any(x => x.GetPosition().Equals(closestDeletionPointToGridIntersection));
                 if (existOpeningInPoint) {
-                    selectedBluePrint.RemoveColumn(closestDeletionPointToGridIntersection);
+                    editor.RemoveColumn(closestDeletionPointToGridIntersection);
                 } else if (existWallInPoint && !existOpeningInPoint) {
                     Wall wallToDelete = selectedBluePrint.GetWalls().First(x => x.DoesContainPoint(deletionPointPrecise));
-                    selectedBluePrint.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
+                    editor.RemoveWall(wallToDelete.Beginning(), wallToDelete.End());
                 } else if (existColumnInPoint)
                 {
                     editor.RemoveColumn(closestDeletionPointToGridIntersection);
