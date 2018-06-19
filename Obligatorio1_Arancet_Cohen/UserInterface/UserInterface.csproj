@@ -77,6 +77,12 @@
     <Compile Include="CreateBlueprint.Designer.cs">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CreateTemplate.Designer.cs">
+      <DependentUpon>CreateTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     <EmbeddedResource Include="CreateBlueprint.resx">
       <DependentUpon>CreateBlueprint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateTemplate.resx">
+      <DependentUpon>CreateTemplate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateUser.resx">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +218,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicExceptions\LogicExceptions.csproj">
+      <Project>{8ba1d285-3ae8-4259-958c-ff6d69e0a9ad}</Project>
+      <Name>LogicExceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>

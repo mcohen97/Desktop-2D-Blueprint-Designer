@@ -121,7 +121,7 @@
             // createArchitect
             // 
             this.createArchitect.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createArchitect.Location = new System.Drawing.Point(593, 43);
+            this.createArchitect.Location = new System.Drawing.Point(574, 43);
             this.createArchitect.Name = "createArchitect";
             this.createArchitect.Size = new System.Drawing.Size(143, 40);
             this.createArchitect.TabIndex = 11;
