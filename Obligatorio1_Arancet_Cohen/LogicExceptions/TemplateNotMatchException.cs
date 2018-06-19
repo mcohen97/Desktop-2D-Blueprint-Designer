@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Logic.Domain
 {
     [Serializable]
-    internal class TemplateTypeNotMatchException : Exception
+    public class TemplateTypeNotMatchException : Exception
     {
         public TemplateTypeNotMatchException()
         {

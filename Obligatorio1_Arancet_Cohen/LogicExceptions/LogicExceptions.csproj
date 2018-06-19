@@ -47,10 +47,10 @@
     <Compile Include="InvalidDoorTemplateException.cs" />
     <Compile Include="InvalidTemplateDimensionException.cs" />
     <Compile Include="InvalidTemplateTypeException.cs" />
-    <Compile Include="InvalidWindowTemplateException.cs" />
     <Compile Include="OccupiedPositionException.cs" />
     <Compile Include="OutOfRangeComponentException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateNotMatchException.cs" />
     <Compile Include="WallsDoNotIntersectException.cs" />
     <Compile Include="ZeroLengthWallException.cs" />
   </ItemGroup>
