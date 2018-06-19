@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Logic.Domain;
 using DataAccess;
 using DomainRepositoryInterface;
+using ServicesExceptions;
 
 namespace Services
 {
@@ -23,7 +24,12 @@ namespace Services
         }
 
         public void SetPrice(int componentType, float newPrice) {
-            
+            if (currentSession.UserLogged.HasPermission(Permission.MANAGE_COSTS))
+            {
+                throw new NoPermissionsException();
+            }
+            IPriceCostRepository catalog = new PriceCostRepository();
+            catalog.SetPrice(componentType, newPrice);
         }
 
 
