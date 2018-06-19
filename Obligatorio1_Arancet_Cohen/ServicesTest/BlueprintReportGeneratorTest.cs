@@ -54,7 +54,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceWalls() {
+        public void GetPriceWallsTest() {
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 1000;
             float actualResult = report.GetTotalPrice(ComponentType.WALL);
@@ -62,7 +62,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceBeams() {
+        public void GetPriceBeamsTest() {
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 225;
             float actualResult = report.GetTotalPrice(ComponentType.BEAM);
@@ -70,7 +70,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceColumns() {
+        public void GetPriceColumnsTest() {
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 150;
             float actualResult = report.GetTotalPrice(ComponentType.COLUMN);
@@ -78,7 +78,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceWindows()
+        public void GetPriceWindowsTest()
         {
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 150;
@@ -87,7 +87,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceDoors()
+        public void GetPriceDoorsTest()
         {
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 0;
@@ -96,7 +96,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetCostWalls()
+        public void GetCostWallsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
             float expectedResult = 1000;
@@ -105,7 +105,7 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetCostBeams()
+        public void GetCostBeamsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
             float expectedResult = 225;
@@ -114,27 +114,27 @@ namespace ServicesTest
         }
 
         [TestMethod]
-        public void TestGetPriceColumns()
+        public void GetCostColumnsTest()
         {
-            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            BlueprintCostReport report = reporter.GenerateCostReport(toReport);
             float expectedResult = 150;
             float actualResult = report.GetTotalCost(ComponentType.COLUMN);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void TestGetPriceWindows()
+        public void GetCostWindowsTest()
         {
-            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            BlueprintCostReport report = reporter.GenerateCostReport(toReport);
             float expectedResult = 150;
             float actualResult = report.GetTotalCost(ComponentType.WINDOW);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void TestGetPriceDoors()
+        public void GetCostDoorsTest()
         {
-            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            BlueprintCostReport report = reporter.GenerateCostReport(toReport);
             float expectedResult = 0;
             float actualResult = report.GetTotalCost(ComponentType.DOOR);
             Assert.AreEqual(expectedResult, actualResult);
