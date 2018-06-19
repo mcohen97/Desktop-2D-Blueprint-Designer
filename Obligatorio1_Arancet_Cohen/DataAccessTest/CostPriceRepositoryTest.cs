@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DomainRepositoryInterface;
 using Logic.Domain;
+using DataAccess;
 
 namespace DataAccessTest
 {
@@ -12,8 +13,8 @@ namespace DataAccessTest
 
         [TestInitialize]
         public void SetUp() {
-            prices.Clear();
-            prices.Add((int)ComponentType.WALL, 50, 100);
+            //prices.Clear();
+            prices.AddCostPrice((int)ComponentType.WALL, 50, 100);
 
         }
 

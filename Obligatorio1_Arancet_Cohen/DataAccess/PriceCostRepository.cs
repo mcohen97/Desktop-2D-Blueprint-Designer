@@ -8,7 +8,7 @@ using Entities;
 
 namespace DataAccess
 {
-    public class PriceRepository : IPriceCostRepository
+    public class PriceCostRepository : IPriceCostRepository
     {
         public void AddCostPrice(int componentType, float cost, float price)
         {

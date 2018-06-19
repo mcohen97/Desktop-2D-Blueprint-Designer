@@ -57,7 +57,7 @@
       <DependentUpon>201806182202270_noMoreCollections.cs</DependentUpon>
     </Compile>
     <Compile Include="OpeningTemplateRepository.cs" />
-    <Compile Include="PriceRepository.cs" />
+    <Compile Include="PriceCostRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
