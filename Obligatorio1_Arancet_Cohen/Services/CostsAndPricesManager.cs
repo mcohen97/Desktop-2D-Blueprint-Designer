@@ -22,6 +22,10 @@ namespace Services
             return catalog.GetPrice(componentType);
         }
 
+        public void SetPrice(int componentType, float newPrice) {
+            
+        }
+
 
     }
 }
