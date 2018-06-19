@@ -15,7 +15,6 @@ namespace UserInterface {
 
         private LoggedInView parent;
         private Permission particularFeature;
-        private User created;
         private Session CurrentSession { get; set; }
         private UserAdministrator permissionController;
 
@@ -80,9 +79,15 @@ namespace UserInterface {
         }
 
         private void SetUserData() {
-            if (particularFeature.Equals(Permission.HOLD_EXTRA_DATA)) {
+            if (particularFeature.Equals(Permission.HOLD_EXTRA_DATA))
+            {
                 CreateClient();
-            } else {
+            }
+            else if (particularFeature.Equals(Permission.CAN_SIGN_BLUEPRINT))
+            {
+                CreateArchitect();
+            }
+            else {
                 CreateDesigner();
             }
 
@@ -93,8 +98,8 @@ namespace UserInterface {
             string name = nameTxt.Text;
             string surname = surnameText.Text;
             string pass = passwordText.Text;
-            created = new Designer(name, surname, userName, pass, DateTime.Now);
-            Register();
+            User created = new Designer(name, surname, userName, pass, DateTime.Now);
+            Register(created);
         }
 
         private void CreateClient() {
@@ -105,11 +110,20 @@ namespace UserInterface {
             string id = idText.Text;
             string tel = telNumberText.Text;
             string address = addressText.Text;
-            created = new Client(name, surname, userName, pass, tel, address, id, DateTime.Now);
-            Register();
+            User created = new Client(name, surname, userName, pass, tel, address, id, DateTime.Now);
+            Register(created);
         }
 
-        private void Register() {
+        private void CreateArchitect() {
+            string userName = userNameText.Text;
+            string name = nameTxt.Text;
+            string surname = surnameText.Text;
+            string pass = passwordText.Text;
+            User created= new Architect(name, surname, userName, pass, DateTime.Now);
+            Register(created);
+        }
+
+        private void Register(User created) {
             permissionController.Add(created);
             parent.RestartMenu();
         }

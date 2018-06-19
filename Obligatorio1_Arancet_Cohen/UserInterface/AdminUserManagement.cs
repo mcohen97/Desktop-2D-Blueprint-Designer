@@ -70,5 +70,10 @@ namespace UserInterface {
         public void SetUp() {
             FillList();
         }
+
+        private void createArchitect_Click(object sender, EventArgs e)
+        {
+            parent.SetView(new CreateUser(parent, Permission.CAN_SIGN_BLUEPRINT, CurrentSession));
+        }
     }
 }

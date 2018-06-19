@@ -31,6 +31,7 @@
             this.createClient = new System.Windows.Forms.Button();
             this.createDesigner = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.createArchitect = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // userList
@@ -98,7 +99,7 @@
             // createDesigner
             // 
             this.createDesigner.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createDesigner.Location = new System.Drawing.Point(481, 43);
+            this.createDesigner.Location = new System.Drawing.Point(425, 43);
             this.createDesigner.Name = "createDesigner";
             this.createDesigner.Size = new System.Drawing.Size(143, 40);
             this.createDesigner.TabIndex = 9;
@@ -117,11 +118,23 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "User Administration";
             // 
+            // createArchitect
+            // 
+            this.createArchitect.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createArchitect.Location = new System.Drawing.Point(593, 43);
+            this.createArchitect.Name = "createArchitect";
+            this.createArchitect.Size = new System.Drawing.Size(143, 40);
+            this.createArchitect.TabIndex = 11;
+            this.createArchitect.Text = "Create new architect";
+            this.createArchitect.UseVisualStyleBackColor = true;
+            this.createArchitect.Click += new System.EventHandler(this.createArchitect_Click);
+            // 
             // AdminUserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.createArchitect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.createDesigner);
             this.Controls.Add(this.createClient);
@@ -147,5 +160,6 @@
         private System.Windows.Forms.Button createClient;
         private System.Windows.Forms.Button createDesigner;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button createArchitect;
     }
 }
