@@ -56,5 +56,9 @@ namespace Services
             report.SetTotalPrice(ComponentType.DOOR, doorsCount * doorsPrice);
         }
 
+        public BlueprintCostReport GenerateCostReport(IBlueprint toReport)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
