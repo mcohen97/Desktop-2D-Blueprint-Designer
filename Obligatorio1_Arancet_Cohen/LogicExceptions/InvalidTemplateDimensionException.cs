@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace LogicExceptions
 {
-    public class InvalidTemplateDimensionException:Exception
+    public class InvalidTemplateDimensionException:InvalidTemplateException
     {
         public InvalidTemplateDimensionException()
         {
