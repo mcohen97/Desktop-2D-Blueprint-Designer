@@ -99,7 +99,7 @@ namespace ServicesTest
         public void GetCostWallsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
-            float expectedResult = 1000;
+            float expectedResult = 500;
             float actualResult = report.GetTotalCost(ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -108,7 +108,7 @@ namespace ServicesTest
         public void GetCostBeamsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
-            float expectedResult = 225;
+            float expectedResult = 150;
             float actualResult = report.GetTotalCost(ComponentType.BEAM);
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -117,7 +117,7 @@ namespace ServicesTest
         public void GetCostColumnsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
-            float expectedResult = 150;
+            float expectedResult = 100;
             float actualResult = report.GetTotalCost(ComponentType.COLUMN);
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -126,7 +126,7 @@ namespace ServicesTest
         public void GetCostWindowsTest()
         {
             BlueprintCostReport report = reporter.GenerateCostReport(toReport);
-            float expectedResult = 150;
+            float expectedResult = 100;
             float actualResult = report.GetTotalCost(ComponentType.WINDOW);
             Assert.AreEqual(expectedResult, actualResult);
         }
