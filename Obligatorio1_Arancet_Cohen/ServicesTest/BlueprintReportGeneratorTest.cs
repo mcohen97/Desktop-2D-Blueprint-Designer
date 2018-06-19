@@ -37,7 +37,7 @@ namespace ServicesTest
             toReport.InsertWall(new Point(0, 0), new Point(0, 5));
             toReport.InsertColumn(new Point(1, 1));
             toReport.InsertColumn(new Point(1, 2));
-            Template temp = new Template("Slider", 2, 1, 2, ComponentType.WINDOW);
+            Template temp = new Template("Slider", 2, 1, 1.9F, ComponentType.WINDOW);
             Opening window1 = new Window(new Point(0, 2), temp);
             Opening window2 = new Window(new Point(2, 0), temp);
             toReport.InsertOpening(window1);

@@ -62,7 +62,7 @@ namespace DataAccessTest
         [TestMethod]
         public void DoesNotExistTest() {
             AddTemplates();
-            Template template3 = new Template("Sliding-Glass", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            Template template3 = new Template("Sliding-Glass", 1, 1.1F, 1.8F, ComponentType.WINDOW);
             Assert.IsFalse(templatesStorage.Exists(template3));
         }
 
@@ -138,7 +138,7 @@ namespace DataAccessTest
         [TestMethod]
         public void DeleteNotExistentTest() {
             AddTemplates();
-            Template template3 = new Template("Sliding-Glass", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            Template template3 = new Template("Sliding-Glass", 1, 1.1F, 1.8F, ComponentType.WINDOW);
             templatesStorage.Delete(template3);
             int expectedResult = 2;
             int actualResult = templatesStorage.GetAll().Count;
@@ -149,7 +149,7 @@ namespace DataAccessTest
         [TestMethod]
         public void ModifyChangedTest() {
             AddTemplates();
-            Template template3 = new Template("Gate", 1, 1.5F, 1.8F, ComponentType.WINDOW);
+            Template template3 = new Template("Gate", 1, 1.1F, 1.8F, ComponentType.WINDOW);
             templatesStorage.Modify(template3);
             float actualResult = templatesStorage.Get(template3).Height;
             float expectedResult = 1.8F;

@@ -331,9 +331,9 @@ namespace Logic.Test
         [TestMethod]
         public void OpeningBiggerThanWallTest()
         {
-            Template gateTemplate = new Template("Gate", 5, 0, 2, ComponentType.DOOR);
+            Template gateTemplate = new Template("Gate", 3, 0, 2, ComponentType.DOOR);
             Opening gate = new Door(new Point(1, 0), gateTemplate);
-            instance.InsertWall(new Point(0, 0), new Point(3, 0));
+            instance.InsertWall(new Point(0, 0), new Point(2, 0));
             instance.InsertOpening(gate);
             Assert.IsTrue(materials.IsOpeningsEmpty());
         }
@@ -341,9 +341,9 @@ namespace Logic.Test
         [TestMethod]
         public void OpeningFitsPerfectlyTest()
         {
-            Template gateTemplate = new Template("Gate", 4, 0, 2, ComponentType.DOOR);
-            Opening gate = new Door(new Point(2, 0), gateTemplate);
-            instance.InsertWall(new Point(0, 0), new Point(4, 0));
+            Template gateTemplate = new Template("Gate", 2, 0, 2, ComponentType.DOOR);
+            Opening gate = new Door(new Point(1, 0), gateTemplate);
+            instance.InsertWall(new Point(0, 0), new Point(2, 0));
             instance.InsertOpening(gate);
             Assert.IsTrue(!materials.IsOpeningsEmpty());
 
