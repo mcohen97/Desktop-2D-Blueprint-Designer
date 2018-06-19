@@ -53,9 +53,14 @@ namespace DataAccess
             return price;
         }
 
-        public void SetCost(int componentType, float cost)
+        public void SetCost(int componentType, float newCost)
         {
-            throw new NotImplementedException();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                CostPriceEntity record = context.CostsAndPrices.FirstOrDefault(cp => cp.ComponentType == componentType);
+                record.Cost = newCost;
+                context.SaveChanges();
+            }
         }
 
         public void SetPrice(int componentType, float newPrice)
