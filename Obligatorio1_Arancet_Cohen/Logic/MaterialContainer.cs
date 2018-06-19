@@ -26,6 +26,18 @@ namespace Logic.Domain
             openings = openingsSet;
             columns = columnsSet;
             beams = new List<Beam>();
+            Beam toAdd;
+            foreach (Wall w in walls) {
+                toAdd = new Beam(w.Beginning());
+                if (!ContainsBeam(toAdd)) {
+                    beams.Add(toAdd);
+                }
+                toAdd = new Beam(w.End());
+                if (!ContainsBeam(toAdd))
+                {
+                    beams.Add(toAdd);
+                }
+            }
         }
 
         public bool IsWallsEmpty()
