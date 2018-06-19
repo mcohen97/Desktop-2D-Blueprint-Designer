@@ -4,6 +4,7 @@ using Services;
 using Logic.Domain;
 using DomainRepositoryInterface;
 using DataAccess;
+using Logic;
 
 namespace ServicesTest
 {
@@ -91,6 +92,51 @@ namespace ServicesTest
             BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
             float expectedResult = 0;
             float actualResult = report.GetTotalPrice(ComponentType.DOOR);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestGetCostWalls()
+        {
+            BlueprintCostReport report = reporter.GenerateCostReport(toReport);
+            float expectedResult = 1000;
+            float actualResult = report.GetTotalCost(ComponentType.WALL);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestGetCostBeams()
+        {
+            BlueprintCostReport report = reporter.GenerateCostReport(toReport);
+            float expectedResult = 225;
+            float actualResult = report.GetTotalCost(ComponentType.BEAM);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestGetPriceColumns()
+        {
+            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            float expectedResult = 150;
+            float actualResult = report.GetTotalCost(ComponentType.COLUMN);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestGetPriceWindows()
+        {
+            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            float expectedResult = 150;
+            float actualResult = report.GetTotalCost(ComponentType.WINDOW);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestGetPriceDoors()
+        {
+            BlueprintCostReport report = reporter.GeneratePriceReport(toReport);
+            float expectedResult = 0;
+            float actualResult = report.GetTotalCost(ComponentType.DOOR);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
