@@ -1,5 +1,6 @@
 ﻿using LogicExceptions;
 using System;
+using Logic.Domain;
 
 namespace Logic.Domain
 {
@@ -16,12 +17,21 @@ namespace Logic.Domain
             if (!(type.Equals(ComponentType.DOOR) || type.Equals(ComponentType.WINDOW))) {
                 throw new InvalidTemplateTypeException();
             }
+
+            if (heightAboveFloor < 0) {
+                throw new InvalidTemplateDimensionException();
+            }
+
+            if (height <= 0 || (height + heightAboveFloor) >= Constants.WALL_HEIGHT) {
+                throw new InvalidTemplateDimensionException();
+            }
+
+            if (length <= 0 || length > Constants.MAX_OPENING_LENGTH) {
+                throw new InvalidTemplateDimensionException();
+            }
+
             if (type.Equals(ComponentType.DOOR) && heightAboveFloor > 0) {
                 throw new InvalidDoorTemplateException();
-            }
-            if(type.Equals(ComponentType.WINDOW) && heightAboveFloor>= 3)
-            {
-                throw new InvalidWindowTemplateException();
             }
 
             this.name = name;
