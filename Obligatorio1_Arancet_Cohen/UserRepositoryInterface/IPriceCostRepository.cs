@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserRepositoryInterface
+namespace DomainRepositoryInterface
 {
-    interface IPriceCostRepository
+    public interface IPriceCostRepository
     {
         float GetPrice(int componentType);
 
