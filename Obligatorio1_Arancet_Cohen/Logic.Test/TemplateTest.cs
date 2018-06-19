@@ -1,12 +1,75 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
+using LogicExceptions;
 
 namespace Logic.Test
 {
     [TestClass]
     public class TemplateTest
     {
+       
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateTypeException))]
+        public void BuildInvalidTypeTemplate() {
+            Template testTemplate = new Template("TEST", 2, 0, 2, ComponentType.WALL);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildHeigherThanWallTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", 2, 0, 5, ComponentType.DOOR);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildNegativeHeightTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", 2, 0, -2, ComponentType.DOOR);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildNegativeHeightAboveFloorTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", 2, -1, 2, ComponentType.WINDOW);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildOutOfWallTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", 2, 2,2, ComponentType.WINDOW);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildNegativeLengthTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", -2, 2, 2, ComponentType.WINDOW);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildZeroLengthTemplateTest()
+        {
+            Template testTemplate = new Template("TEST", 0, 2, 2, ComponentType.WINDOW);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTemplateDimensionException))]
+        public void BuildInvalidLengthTemplateTest() {
+            Template testTemplate = new Template("TEST", 4, 0, 3, ComponentType.DOOR);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDoorTemplateException))]
+        public void BuildDoorTemplateAboveFloorTest() {
+            Template testTemplate = new Template("TEST", 2, 1, 2, ComponentType.DOOR);
+        }
+
+
         [TestMethod]
         public void TemplateConstructorTest()
         {
