@@ -24,7 +24,7 @@ namespace Services
         }
 
         public void SetPrice(int componentType, float newPrice) {
-            if (currentSession.UserLogged.HasPermission(Permission.MANAGE_COSTS))
+            if (!currentSession.UserLogged.HasPermission(Permission.MANAGE_COSTS))
             {
                 throw new NoPermissionsException();
             }
