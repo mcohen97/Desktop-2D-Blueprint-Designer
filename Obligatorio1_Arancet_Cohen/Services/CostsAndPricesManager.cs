@@ -32,6 +32,12 @@ namespace Services
             catalog.SetPrice(componentType, newPrice);
         }
 
+        public float GetCost(int componentType)
+        {
+            IPriceCostRepository catalog = new PriceCostRepository();
+            return catalog.GetCost(componentType);
+        }
+
 
     }
 }
