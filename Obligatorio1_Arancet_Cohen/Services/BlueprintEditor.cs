@@ -24,7 +24,6 @@ namespace Services
         public void SetOwner(User aUser)
         {
             CheckPermission(Permission.EDIT_BLUEPRINT);
-            CheckPermission(Permission.HAVE_BLUEPRINT);
             blueprint.Owner = aUser;
             repository.Modify(blueprint);
         }
@@ -60,6 +59,12 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertOpening(aOpening);
+            IRepository<Template> templateRepo = new OpeningTemplateRepository();
+
+            if (!templateRepo.Exists(aOpening.getTemplate()))
+            {
+                templateRepo.Add(aOpening.getTemplate());
+            }
             repository.Modify(blueprint);
         }
 

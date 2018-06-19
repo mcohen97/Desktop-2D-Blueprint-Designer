@@ -50,6 +50,7 @@ namespace ServicesTest
             user4 = new Designer("designer2N", "designer2S", "designer2UN", "designer2P", DateTime.Now);
             architect = new Architect("Archi", "Tect", "architect", "architect", DateTime.Now);
 
+            materials = new MaterialContainer();
             blueprintTest = new Blueprint(12, 12, "Blueprint1", materials);
             blueprint2 = new Blueprint(10, 10, "Blueprint2");
             blueprint3 = new Blueprint(11, 11, "Blueprint2");
@@ -63,11 +64,7 @@ namespace ServicesTest
             administrator.Add(user3);
             administrator.Add(user4);
             administrator.Add(architect);
-
-            blueprintPortfolio.Add(blueprintTest);
-            blueprintPortfolio.Add(blueprint2);
-            blueprintPortfolio.Add(blueprint3);
-
+    
         }
 
         [TestCleanup]
@@ -478,6 +475,7 @@ namespace ServicesTest
         [TestMethod]
         public void InsertColumnTest()
         {
+            initializerWithData();
             BlueprintEditor blueEditor = GetInstance();
             ISinglePointComponent column = new Column(new Point(2, 2));
             blueEditor.InsertColumn(column.GetPosition());

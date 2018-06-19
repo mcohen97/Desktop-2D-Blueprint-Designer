@@ -73,5 +73,10 @@ namespace Logic.Domain
         public string getTemplateName() {
             return dimensions.Name;
         }
+
+        public Template getTemplate()
+        {
+            return dimensions;
+        }
     }
 }
