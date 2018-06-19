@@ -472,14 +472,68 @@ namespace ServicesTest
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        //tests for insertion of columns
         [TestMethod]
-        public void InsertColumnTest()
+        [ExpectedException(typeof(OutOfRangeComponentException))]
+        public void InsertColumnOutOfRangeTest()
         {
-            initializerWithData();
             BlueprintEditor blueEditor = GetInstance();
-            ISinglePointComponent column = new Column(new Point(2, 2));
-            blueEditor.InsertColumn(column.GetPosition());
-            Assert.AreEqual(1, blueprintTest.GetColumns().Count);
+            blueEditor.InsertColumn(new Point(50, -3));
+        }
+
+        [TestMethod]
+        public void InsertColumnCorrectly()
+        {
+            BlueprintEditor blueEditor = GetInstance();
+            Point columnPoint = new Point(1, 1);
+            blueEditor.InsertColumn(columnPoint);
+            int expectedResult = 1;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ComponentInWallException))]
+        public void InsertColumnInWall()
+        {
+            BlueprintEditor blueEditor = GetInstance();
+            blueEditor.InsertWall(new Point(1, 1), new Point(1, 4));
+            blueEditor.InsertColumn(new Point(1, 3));
+        }
+
+        [TestMethod]
+        public void MultipleInsertionsOfColumnTest()
+        {
+            BlueprintEditor blueEditor = GetInstance();
+            blueEditor.InsertColumn(new Point(2, 3));
+            blueEditor.InsertColumn(new Point(8, 1));
+            blueEditor.InsertColumn(new Point(10, 1));
+            blueEditor.InsertColumn(new Point(1, 2));
+            int expectedResult = 4;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void RemoveColumnTest()
+        {
+            BlueprintEditor blueEditor = GetInstance();
+            blueEditor.InsertColumn(new Point(1, 1));
+            blueEditor.RemoveColumn(new Point(1, 1));
+            int expectedResult = 0;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void RemoveUnexistentColumn()
+        {
+            BlueprintEditor blueEditor = GetInstance();
+            blueEditor.InsertWall(new Point(2, 3), new Point(2, 1));
+            blueEditor.RemoveColumn(new Point(1, 1));
+            int expectedResult = 0;
+            int actualResult = materials.GetColumns().Count;
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
