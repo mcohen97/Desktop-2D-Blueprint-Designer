@@ -66,9 +66,26 @@ namespace ServicesTest
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        [TestMethod]
+        public void SetCostTest() {
+            float expectedResult = 75;
+            manager.SetCost(wallType, 150);
+            float actualResult = manager.GetPrice(wallType);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
-        
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void SetCostNoPermissionsTest()
+        {
+            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner");
+            manager = new CostsAndPricesManager(noAdmin);
+            manager.SetCost(wallType, 150);
+        }
 
-        
+
+
+
+
     }
 }
