@@ -24,6 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.btnColumnTool = new System.Windows.Forms.Button();
             this.btnExportBlueprint = new System.Windows.Forms.Button();
             this.btnEraserTool = new System.Windows.Forms.Button();
             this.btnWindowTool = new System.Windows.Forms.Button();
@@ -53,7 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.BlueprintPanel = new System.Windows.Forms.Panel();
-            this.btnColumnTool = new System.Windows.Forms.Button();
+            this.cmbTemplates = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +63,8 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
+            this.ButtonsPanel.Controls.Add(this.button1);
+            this.ButtonsPanel.Controls.Add(this.cmbTemplates);
             this.ButtonsPanel.Controls.Add(this.btnColumnTool);
             this.ButtonsPanel.Controls.Add(this.btnExportBlueprint);
             this.ButtonsPanel.Controls.Add(this.btnEraserTool);
@@ -75,6 +79,17 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(211, 450);
             this.ButtonsPanel.TabIndex = 0;
+            // 
+            // btnColumnTool
+            // 
+            this.btnColumnTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColumnTool.Location = new System.Drawing.Point(35, 186);
+            this.btnColumnTool.Name = "btnColumnTool";
+            this.btnColumnTool.Size = new System.Drawing.Size(146, 26);
+            this.btnColumnTool.TabIndex = 18;
+            this.btnColumnTool.Text = "Column";
+            this.btnColumnTool.UseVisualStyleBackColor = true;
+            this.btnColumnTool.Click += new System.EventHandler(this.btnColumnTool_Click);
             // 
             // btnExportBlueprint
             // 
@@ -101,7 +116,7 @@
             // btnWindowTool
             // 
             this.btnWindowTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWindowTool.Location = new System.Drawing.Point(35, 218);
+            this.btnWindowTool.Location = new System.Drawing.Point(35, 312);
             this.btnWindowTool.Name = "btnWindowTool";
             this.btnWindowTool.Size = new System.Drawing.Size(146, 26);
             this.btnWindowTool.TabIndex = 3;
@@ -112,7 +127,7 @@
             // btnDoorTool
             // 
             this.btnDoorTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoorTool.Location = new System.Drawing.Point(35, 186);
+            this.btnDoorTool.Location = new System.Drawing.Point(35, 344);
             this.btnDoorTool.Name = "btnDoorTool";
             this.btnDoorTool.Size = new System.Drawing.Size(146, 26);
             this.btnDoorTool.TabIndex = 2;
@@ -382,16 +397,22 @@
             this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
             this.BlueprintPanel.TabIndex = 2;
             // 
-            // btnColumnTool
+            // cmbTemplates
             // 
-            this.btnColumnTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnTool.Location = new System.Drawing.Point(35, 250);
-            this.btnColumnTool.Name = "btnColumnTool";
-            this.btnColumnTool.Size = new System.Drawing.Size(146, 26);
-            this.btnColumnTool.TabIndex = 18;
-            this.btnColumnTool.Text = "Column";
-            this.btnColumnTool.UseVisualStyleBackColor = true;
-            this.btnColumnTool.Click += new System.EventHandler(this.btnColumnTool_Click);
+            this.cmbTemplates.FormattingEnabled = true;
+            this.cmbTemplates.Location = new System.Drawing.Point(35, 250);
+            this.cmbTemplates.Name = "cmbTemplates";
+            this.cmbTemplates.Size = new System.Drawing.Size(146, 21);
+            this.cmbTemplates.TabIndex = 19;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(35, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 26);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Opening";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // EditBlueprintView
             // 
@@ -444,5 +465,7 @@
         private System.Windows.Forms.Label lblBeamsPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnColumnTool;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmbTemplates;
     }
 }

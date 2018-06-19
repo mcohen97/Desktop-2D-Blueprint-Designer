@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Logic.Domain;
 using System.Drawing.Imaging;
 using Services;
+using DataAccess;
+using RepositoryInterface;
 
 namespace UserInterface {
 
@@ -70,6 +72,10 @@ namespace UserInterface {
             PaintOpenings();
             PaintColumns();
             calulateCostsAndPrices();
+
+            IRepository<Template> templateRepository = new OpeningTemplateRepository();
+            ICollection<Template> templatesInDB = templateRepository.GetAll();
+            cmbTemplates.DataSource = templatesInDB;
         }
 
         //Auxiliar
