@@ -50,9 +50,9 @@ namespace ServicesTest
 
         [TestMethod]
         public void TestGetPricesWalls() {
-            BlueprintPriceReport report = costsNPrices.GeneratePriceReport();
-            int expectedResult = 1000;
-            int actualResult = report.WallsPrice;
+            BlueprintPriceReport report = reporter.GeneratePriceReport();
+            float expectedResult = 1000;
+            float actualResult = report.GetTotalPrice(ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
         }
 
