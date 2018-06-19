@@ -565,7 +565,7 @@ namespace Logic.Test
             instance.Sign(architectA);
             Signature lastSignature = instance.GetSignatures().Last();
 
-            Assert.AreEqual(lastSignature.Signer, architectA);
+            Assert.AreEqual(lastSignature.ArchitectUserName, architectA.UserName);
         }
 
         //Column tests
