@@ -105,7 +105,7 @@ namespace UserInterface
         }
         private void calulateCostsAndPrices()
         {
-            BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
+           BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
             BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
             BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
 
@@ -122,6 +122,7 @@ namespace UserInterface
             lblWindowsPrice.Text = priceReport.GetTotalPrice(ComponentType.WINDOW) + "";
             lblColumnsTotalPrice.Text = priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
             lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
+       
         }
 
 
