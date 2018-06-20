@@ -113,13 +113,15 @@ namespace UserInterface
             lblBeamsTotalCost.Text = costReport.GetTotalCost(ComponentType.BEAM) + "";
             lblDoorsTotalCost.Text = costReport.GetTotalCost(ComponentType.DOOR) + "";
             lblWindowsTotalCost.Text = costReport.GetTotalCost(ComponentType.WINDOW) + "";
-            lblTotalCostSum.Text = (costReport.GetTotalCost(ComponentType.WALL) + costReport.GetTotalCost(ComponentType.BEAM) + costReport.GetTotalCost(ComponentType.DOOR) + costReport.GetTotalCost(ComponentType.WINDOW)) + "";
+            lblColumnsTotalCost.Text = costReport.GetTotalCost(ComponentType.COLUMN) + "";
+            lblTotalCostSum.Text = (costReport.GetTotalCost(ComponentType.WALL) + costReport.GetTotalCost(ComponentType.BEAM) + costReport.GetTotalCost(ComponentType.DOOR) + costReport.GetTotalCost(ComponentType.WINDOW)) + costReport.GetTotalCost(ComponentType.COLUMN) + "";
 
             lblWallsPrice.Text = priceReport.GetTotalPrice(ComponentType.WALL) + "";
             lblBeamsPrice.Text = priceReport.GetTotalPrice(ComponentType.BEAM) + "";
             lblDoorsPrice.Text = priceReport.GetTotalPrice(ComponentType.DOOR) + "";
             lblWindowsPrice.Text = priceReport.GetTotalPrice(ComponentType.WINDOW) + "";
-            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + "";
+            lblColumnsTotalPrice.Text = priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
+            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
         }
 
 
