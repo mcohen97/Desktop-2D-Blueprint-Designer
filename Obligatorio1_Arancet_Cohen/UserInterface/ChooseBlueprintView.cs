@@ -151,13 +151,19 @@ namespace UserInterface {
         private void ShowSignatures()
         {
             IBlueprint selected = (Blueprint)blueprintList.SelectedItem;
-            if (selected.IsSigned()) {
-                signaturesList.Show();
-                stateLabel.Text = "State: SIGNED";
-                signaturesList.DataSource = selected.GetSignatures();
-            } else {
-                signaturesList.Hide();
-                stateLabel.Text = "State: NO SIGNED";
+            if (selected != null)
+            {
+                if (selected.IsSigned())
+                {
+                    signaturesList.Show();
+                    stateLabel.Text = "State: SIGNED";
+                    signaturesList.DataSource = selected.GetSignatures();
+                }
+                else
+                {
+                    signaturesList.Hide();
+                    stateLabel.Text = "State: NO SIGNED";
+                }
             }
         }
     }

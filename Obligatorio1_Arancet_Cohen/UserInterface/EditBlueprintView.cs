@@ -55,6 +55,7 @@ namespace UserInterface
             CurrentSession = aSession;
             parent = aParent;
             selectedBluePrint = aBlueprint;
+            parent.ParentForm.FormClosing += new FormClosingEventHandler(CheckSignmentEventHandler);
 
             BlueprintPanel.Cursor = Cursors.Cross;
             editor = new BlueprintEditor(aSession, aBlueprint);
@@ -86,9 +87,15 @@ namespace UserInterface
             PaintOpenings();
             PaintColumns();
             calulateCostsAndPrices();
+            ShowOrHideSignButton();
 
             ICollection<Template> templatesInDB = templateRepository.GetAll();
             cmbTemplates.DataSource = templatesInDB;
+        }
+
+        private void ShowOrHideSignButton()
+        {
+            btnSign.Visible = CurrentSession.UserLogged.HasPermission(Permission.CAN_SIGN_BLUEPRINT);
         }
 
         //Auxiliar
@@ -105,7 +112,7 @@ namespace UserInterface
         }
         private void calulateCostsAndPrices()
         {
-           BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
+            BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
             BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
             BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
 
@@ -121,8 +128,7 @@ namespace UserInterface
             lblDoorsPrice.Text = priceReport.GetTotalPrice(ComponentType.DOOR) + "";
             lblWindowsPrice.Text = priceReport.GetTotalPrice(ComponentType.WINDOW) + "";
             lblColumnsTotalPrice.Text = priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
-            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
-       
+            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + priceReport.GetTotalPrice(ComponentType.COLUMN) + "";      
         }
 
 
@@ -240,20 +246,13 @@ namespace UserInterface
         }
 
         //Opening events
-        private void drawSurface_MouseClickInsertDoor(object sender, MouseEventArgs e)
+        private void drawSurface_MouseClickInsertOpening(object sender, MouseEventArgs e)
         {
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Logic.Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
-            Opening newDoor = new Door(doorPoint);
-            InsertAndDrawOpening(newDoor);
-
-        }
-        private void drawSurface_MouseClickInsertWindow(object sender, MouseEventArgs e)
-        {
-            System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Logic.Domain.Point doorPoint = DrawablePointIntoLogicPoint(point);
-            Opening newWindow = new Window(doorPoint);
-            InsertAndDrawOpening(newWindow);
+            Logic.Domain.Point openingPoint = DrawablePointIntoLogicPoint(point);
+            Template selectedTemplate = (Template)cmbTemplates.SelectedItem;
+            Opening newOpening = openingFactory.CreateFromTemplate(openingPoint, selectedTemplate.Name);
+            InsertAndDrawOpening(newOpening);
         }
         private void InsertAndDrawOpening(Opening newOpening)
         {
@@ -625,18 +624,6 @@ namespace UserInterface
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickStartWall);
             btnWallTool.Enabled = false;
         }
-        private void btnWindowTool_Click(object sender, EventArgs e)
-        {
-            RemoveEveryHandler();
-            EnableEveryTool();
-            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-        }
-        private void btnDoorTool_Click(object sender, EventArgs e)
-        {
-            RemoveEveryHandler();
-            EnableEveryTool();
-            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-        }
         private void btnEraserTool_Click(object sender, EventArgs e)
         {
             RemoveEveryHandler();
@@ -660,20 +647,10 @@ namespace UserInterface
             btnOpeningTool.Enabled = false;
         }
 
-        private void drawSurface_MouseClickInsertOpening(object sender, MouseEventArgs e)
-        {
-            System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            Logic.Domain.Point openingPoint = DrawablePointIntoLogicPoint(point);
-            Template selectedTemplate = (Template)cmbTemplates.SelectedItem;
-            Opening newOpening = openingFactory.CreateFromTemplate(openingPoint, selectedTemplate.Name);
-            InsertAndDrawOpening(newOpening);
-        }
 
         private void RemoveEveryHandler()
         {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertWindow);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickErase);
             drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertColumn);
@@ -798,5 +775,33 @@ namespace UserInterface
             setUpDrawSurface(cellSizeInPixels);
 
         }
+
+        private void btnSign_Click(object sender, EventArgs e)
+        {
+            editor.Sign();
+            parent.RestartMenu();
+        }
+
+        private void EditBlueprintView_Leave(object sender, EventArgs e)
+        {
+            CheckSignment();
+        }
+
+        public void CheckSignment()
+        {
+
+            if (CurrentSession.UserLogged.HasPermission(Permission.CAN_SIGN_BLUEPRINT) && selectedBluePrint.IsSigned() && editor.HasBeenModify)
+            {
+                editor.Sign();
+            }
+        }
+
+        public void CheckSignmentEventHandler(object sender, EventArgs e)
+        {
+            CheckSignment();
+
+        }
+
+
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
+using System.Linq;
+using System.Collections;
 
 namespace UserInterface {
     public partial class LoggedInView : UserControl {
@@ -16,7 +18,9 @@ namespace UserInterface {
         MainWindow mother;
         List<IUserFeatureControl> availableViews;
 
-        public LoggedInView(MainWindow aWindow, Session aSession) {
+
+        public 
+            LoggedInView(MainWindow aWindow, Session aSession) {
             InitializeComponent();
             CurrentSession = aSession;
             mother = aWindow;
@@ -94,6 +98,32 @@ namespace UserInterface {
             mother.GoToMenu();//should be changed for a home screen if we have time
         }
 
+        public void HideMenu()
+        {
+            ControlCollection controls = this.Controls;
+            foreach (var control in controls)
+            {
+                if(control is Button)
+                {
+                    ((Button)control).Visible = false;
+                }
+            }
+
+        }
+
+        public void ShowMenu()
+        {
+            ControlCollection controls = this.Controls;
+            foreach (var control in controls)
+            {
+                if (control is Button)
+                {
+                    ((Button)control).Visible = true;
+                }
+            }
+
+        }
+
         private void AddDelegate(Button currentButton, UserControl control) {
             currentButton.Click += delegate (object sender, EventArgs e) {
                 dynamicPanel.Controls.Clear();
@@ -105,5 +135,6 @@ namespace UserInterface {
         private void RestartPanel(UserControl aControl) {
             ((IUserFeatureControl)aControl).SetUp();
         }
+
     }
 }

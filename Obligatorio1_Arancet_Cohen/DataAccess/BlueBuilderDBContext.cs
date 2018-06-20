@@ -38,6 +38,7 @@ namespace DataAccess
             modelBuilder.Entity<OpeningTemplateEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<ColumnEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<CostPriceEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<SignatureEntity>().Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasColumnType("VARCHAR");
             modelBuilder.Entity<UserEntity>().Property(x => x.UserName).HasMaxLength(100);

@@ -52,14 +52,9 @@
     <Compile Include="BlueprintAndEntityConverter.cs" />
     <Compile Include="BlueprintRepository.cs" />
     <Compile Include="MaterialAndEntityConverter.cs" />
-    <Compile Include="Migrations\201806191902348_NoArchitectReference.cs" />
-    <Compile Include="Migrations\201806191902348_NoArchitectReference.Designer.cs">
-      <DependentUpon>201806191902348_NoArchitectReference.cs</DependentUpon>
-    </Compile>
     <Compile Include="OpeningTemplateRepository.cs" />
     <Compile Include="PriceCostRepository.cs" />
     <Compile Include="UserAndEntityConverter.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="BlueBuilderDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,11 +86,6 @@
       <Project>{6667b00c-a48f-457b-88c2-1069968de922}</Project>
       <Name>DomainRepositoryInterface</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806191902348_NoArchitectReference.resx">
-      <DependentUpon>201806191902348_NoArchitectReference.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

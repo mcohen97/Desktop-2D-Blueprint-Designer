@@ -13,12 +13,23 @@ namespace Services
         private IBlueprint blueprint;
         private IRepository<IBlueprint> repository;
         private Session session;
+        private bool hasBeenModify;
+
+        public bool HasBeenModify {
+            get {
+                return hasBeenModify;
+            }
+            internal set {
+                hasBeenModify = value;
+            }
+        }
 
         public BlueprintEditor(Session session, IBlueprint blueprintTest)
         {
             this.session = session;
             this.blueprint = blueprintTest;
             this.repository = new BlueprintRepository();
+            HasBeenModify = false;
         }
 
         public void SetOwner(User aUser)
@@ -26,8 +37,8 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
             blueprint.Owner = aUser;
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
-
 
         public void InsertWall(Point from, Point to)
         {
@@ -35,6 +46,7 @@ namespace Services
 
             blueprint.InsertWall(from, to);
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
 
         public void InsertColumn(Point columnPosition)
@@ -43,8 +55,8 @@ namespace Services
 
             blueprint.InsertColumn(columnPosition);
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
-
 
         public void RemoveWall(Point from, Point to)
         {
@@ -52,6 +64,7 @@ namespace Services
 
             blueprint.RemoveWall(from, to);
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
 
         public void InsertOpening(Opening aOpening)
@@ -66,6 +79,7 @@ namespace Services
                 templateRepo.Add(aOpening.getTemplate());
             }
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
 
         public void RemoveOpening(Opening aOpening)
@@ -74,11 +88,16 @@ namespace Services
 
             blueprint.RemoveOpening(aOpening);
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
 
-        public void Sign(User architect)
+        public void Sign()
         {
-            throw new NotImplementedException();
+            CheckPermission(Permission.CAN_SIGN_BLUEPRINT);
+
+            blueprint.Sign(session.UserLogged);
+            repository.Modify(blueprint);
+            HasBeenModify = false;
         }
 
         private void CheckPermission(Permission permission)
@@ -95,6 +114,7 @@ namespace Services
 
             blueprint.RemoveColumn(columnPoint);
             repository.Modify(blueprint);
+            HasBeenModify = true;
         }
     }
 }
