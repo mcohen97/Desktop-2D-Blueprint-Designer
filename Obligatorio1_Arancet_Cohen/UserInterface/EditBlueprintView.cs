@@ -105,43 +105,21 @@ namespace UserInterface
         }
         private void calulateCostsAndPrices()
         {
-            /*float wallsCost = 0;
-            float beamsCost = 0;
-            float doorsCost = 0;
-            float windowsCost = 0;
-            float wallsPrice = 0;
-            float beamsPrice = 0;
-            float doorsPrice = 0;
-            float windowsPrice = 0;
+            BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
+            BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
+            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
 
-            foreach (Wall wall in selectedBluePrint.GetWalls()) {
-                wallsCost += wall.CalculateCost();
-                wallsPrice += wall.CalculatePrice();
-            }
-            foreach (Beam beam in selectedBluePrint.GetBeams()) {
-                beamsCost += beam.CalculateCost();
-                beamsPrice += beam.CalculatePrice();
-            }
-            foreach (Door door in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.DOOR)) {
-                doorsCost += door.CalculateCost();
-                doorsPrice += door.CalculatePrice();
-            }
-            foreach (Window window in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.WINDOW)) {
-                windowsCost += window.CalculateCost();
-                windowsPrice += window.CalculatePrice();
-            }
+            lblWallsTotalCost.Text = costReport.GetTotalCost(ComponentType.WALL) + "";
+            lblBeamsTotalCost.Text = costReport.GetTotalCost(ComponentType.BEAM) + "";
+            lblDoorsTotalCost.Text = costReport.GetTotalCost(ComponentType.DOOR) + "";
+            lblWindowsTotalCost.Text = costReport.GetTotalCost(ComponentType.WINDOW) + "";
+            lblTotalCostSum.Text = (costReport.GetTotalCost(ComponentType.WALL) + costReport.GetTotalCost(ComponentType.BEAM) + costReport.GetTotalCost(ComponentType.DOOR) + costReport.GetTotalCost(ComponentType.WINDOW)) + "";
 
-            lblWallsTotalCost.Text = wallsCost + "";
-            lblBeamsTotalCost.Text = beamsCost + "";
-            lblDoorsTotalCost.Text = doorsCost + "";
-            lblWindowsTotalCost.Text = windowsCost + "";
-            lblTotalCostSum.Text = (wallsCost + beamsCost + doorsCost + windowsCost) + "";
-
-            lblWallsPrice.Text = wallsPrice + "";
-            lblBeamsPrice.Text = beamsPrice + "";
-            lblDoorsPrice.Text = doorsPrice + "";
-            lblWindowsPrice.Text = windowsPrice + "";
-            lblTotalPriceSum.Text = (wallsPrice + beamsPrice + doorsPrice + windowsPrice) + "";*/
+            lblWallsPrice.Text = priceReport.GetTotalPrice(ComponentType.WALL) + "";
+            lblBeamsPrice.Text = priceReport.GetTotalPrice(ComponentType.BEAM) + "";
+            lblDoorsPrice.Text = priceReport.GetTotalPrice(ComponentType.DOOR) + "";
+            lblWindowsPrice.Text = priceReport.GetTotalPrice(ComponentType.WINDOW) + "";
+            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + "";
         }
 
 
