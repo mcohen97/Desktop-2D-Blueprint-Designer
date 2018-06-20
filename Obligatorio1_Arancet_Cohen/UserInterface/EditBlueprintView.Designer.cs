@@ -24,11 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.lblOpeningLength = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnOpeningTool = new System.Windows.Forms.Button();
+            this.cmbTemplates = new System.Windows.Forms.ComboBox();
             this.btnColumnTool = new System.Windows.Forms.Button();
             this.btnExportBlueprint = new System.Windows.Forms.Button();
             this.btnEraserTool = new System.Windows.Forms.Button();
-            this.btnWindowTool = new System.Windows.Forms.Button();
-            this.btnDoorTool = new System.Windows.Forms.Button();
             this.btnWallTool = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPointerTool = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.BlueprintPanel = new System.Windows.Forms.Panel();
-            this.cmbTemplates = new System.Windows.Forms.ComboBox();
-            this.btnOpeningTool = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,13 +63,13 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
+            this.ButtonsPanel.Controls.Add(this.lblOpeningLength);
+            this.ButtonsPanel.Controls.Add(this.label4);
             this.ButtonsPanel.Controls.Add(this.btnOpeningTool);
             this.ButtonsPanel.Controls.Add(this.cmbTemplates);
             this.ButtonsPanel.Controls.Add(this.btnColumnTool);
             this.ButtonsPanel.Controls.Add(this.btnExportBlueprint);
             this.ButtonsPanel.Controls.Add(this.btnEraserTool);
-            this.ButtonsPanel.Controls.Add(this.btnWindowTool);
-            this.ButtonsPanel.Controls.Add(this.btnDoorTool);
             this.ButtonsPanel.Controls.Add(this.btnWallTool);
             this.ButtonsPanel.Controls.Add(this.label2);
             this.ButtonsPanel.Controls.Add(this.btnPointerTool);
@@ -79,6 +79,45 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(211, 450);
             this.ButtonsPanel.TabIndex = 0;
+            // 
+            // lblOpeningLength
+            // 
+            this.lblOpeningLength.AutoSize = true;
+            this.lblOpeningLength.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpeningLength.Location = new System.Drawing.Point(81, 268);
+            this.lblOpeningLength.Name = "lblOpeningLength";
+            this.lblOpeningLength.Size = new System.Drawing.Size(0, 16);
+            this.lblOpeningLength.TabIndex = 22;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(33, 268);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 16);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Length:";
+            // 
+            // btnOpeningTool
+            // 
+            this.btnOpeningTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpeningTool.Location = new System.Drawing.Point(35, 218);
+            this.btnOpeningTool.Name = "btnOpeningTool";
+            this.btnOpeningTool.Size = new System.Drawing.Size(146, 26);
+            this.btnOpeningTool.TabIndex = 20;
+            this.btnOpeningTool.Text = "Opening";
+            this.btnOpeningTool.UseVisualStyleBackColor = true;
+            this.btnOpeningTool.Click += new System.EventHandler(this.btnOpeningTool_Click);
+            // 
+            // cmbTemplates
+            // 
+            this.cmbTemplates.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTemplates.Location = new System.Drawing.Point(35, 243);
+            this.cmbTemplates.Name = "cmbTemplates";
+            this.cmbTemplates.Size = new System.Drawing.Size(146, 24);
+            this.cmbTemplates.TabIndex = 19;
+            this.cmbTemplates.SelectedValueChanged += new System.EventHandler(this.cmbTemplates_SelectedValueChanged);
             // 
             // btnColumnTool
             // 
@@ -112,28 +151,6 @@
             this.btnEraserTool.Text = "Eraser";
             this.btnEraserTool.UseVisualStyleBackColor = true;
             this.btnEraserTool.Click += new System.EventHandler(this.btnEraserTool_Click);
-            // 
-            // btnWindowTool
-            // 
-            this.btnWindowTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWindowTool.Location = new System.Drawing.Point(35, 312);
-            this.btnWindowTool.Name = "btnWindowTool";
-            this.btnWindowTool.Size = new System.Drawing.Size(146, 26);
-            this.btnWindowTool.TabIndex = 3;
-            this.btnWindowTool.Text = "Window";
-            this.btnWindowTool.UseVisualStyleBackColor = true;
-            this.btnWindowTool.Click += new System.EventHandler(this.btnWindowTool_Click);
-            // 
-            // btnDoorTool
-            // 
-            this.btnDoorTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoorTool.Location = new System.Drawing.Point(35, 344);
-            this.btnDoorTool.Name = "btnDoorTool";
-            this.btnDoorTool.Size = new System.Drawing.Size(146, 26);
-            this.btnDoorTool.TabIndex = 2;
-            this.btnDoorTool.Text = "Door";
-            this.btnDoorTool.UseVisualStyleBackColor = true;
-            this.btnDoorTool.Click += new System.EventHandler(this.btnDoorTool_Click);
             // 
             // btnWallTool
             // 
@@ -397,24 +414,6 @@
             this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
             this.BlueprintPanel.TabIndex = 2;
             // 
-            // cmbTemplates
-            // 
-            this.cmbTemplates.FormattingEnabled = true;
-            this.cmbTemplates.Location = new System.Drawing.Point(35, 244);
-            this.cmbTemplates.Name = "cmbTemplates";
-            this.cmbTemplates.Size = new System.Drawing.Size(146, 21);
-            this.cmbTemplates.TabIndex = 19;
-            // 
-            // btnOpeningTool
-            // 
-            this.btnOpeningTool.Location = new System.Drawing.Point(35, 218);
-            this.btnOpeningTool.Name = "btnOpeningTool";
-            this.btnOpeningTool.Size = new System.Drawing.Size(146, 26);
-            this.btnOpeningTool.TabIndex = 20;
-            this.btnOpeningTool.Text = "Opening";
-            this.btnOpeningTool.UseVisualStyleBackColor = true;
-            this.btnOpeningTool.Click += new System.EventHandler(this.btnOpeningTool_Click);
-            // 
             // EditBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,8 +437,6 @@
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.Panel InventoryPanel;
         private System.Windows.Forms.Panel BlueprintPanel;
-        private System.Windows.Forms.Button btnWindowTool;
-        private System.Windows.Forms.Button btnDoorTool;
         private System.Windows.Forms.Button btnWallTool;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPointerTool;
@@ -468,5 +465,7 @@
         private System.Windows.Forms.Button btnColumnTool;
         private System.Windows.Forms.Button btnOpeningTool;
         private System.Windows.Forms.ComboBox cmbTemplates;
+        private System.Windows.Forms.Label lblOpeningLength;
+        private System.Windows.Forms.Label label4;
     }
 }
