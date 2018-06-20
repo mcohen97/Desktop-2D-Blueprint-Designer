@@ -56,7 +56,7 @@ namespace UserInterface {
             BlueprintController bpAdmin = new BlueprintController(CurrentSession);
             bpAdmin.Add(created);
 
-            parent.OpenBlueprintEditor(usersList.SelectedItem,created );
+            parent.OpenBlueprintEditor(created );
         }
 
         public Permission GetRequiredPermission() {
