@@ -208,6 +208,27 @@ namespace ServicesTest
             administrator.ExistsUserName("JamesHetfield63");
         }
 
+        [TestMethod]
+        public void GetUsersByPermissionTest() {
+            intializerWithData();
+            Session aSession = conn.LogIn("designer1UN", "designer1P");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> query =administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
+            int expectedResult = 2;
+            int actualResult = query.Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
 
-    }
+        [TestMethod]
+        [ExpectedException(typeof(NoPermissionsException))]
+        public void GetUsersByPermissionNotAllowedTest()
+        {
+            intializerWithData();
+            Session aSession = conn.LogIn("client1UN", "client1P");
+            UserAdministrator administrator = new UserAdministrator(aSession);
+            ICollection<User> query = administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
+
+        }
+
+        }
 }

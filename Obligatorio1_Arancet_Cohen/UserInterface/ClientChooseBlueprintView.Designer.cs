@@ -1,5 +1,5 @@
 ﻿namespace UserInterface {
-    partial class ChooseBlueprintView {
+    partial class ClientChooseBlueprintView {
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -25,10 +25,7 @@
         private void InitializeComponent() {
             this.title = new System.Windows.Forms.Label();
             this.selectButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
             this.blueprintList = new System.Windows.Forms.ListBox();
-            this.stateLabel = new System.Windows.Forms.Label();
-            this.signaturesList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // title
@@ -45,24 +42,13 @@
             // selectButton
             // 
             this.selectButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectButton.Location = new System.Drawing.Point(512, 356);
+            this.selectButton.Location = new System.Drawing.Point(220, 368);
             this.selectButton.Name = "selectButton";
             this.selectButton.Size = new System.Drawing.Size(142, 47);
             this.selectButton.TabIndex = 2;
             this.selectButton.Text = "Select";
             this.selectButton.UseVisualStyleBackColor = true;
-            this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(221, 356);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(142, 47);
-            this.deleteButton.TabIndex = 3;
-            this.deleteButton.Text = "Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.selectButton.Click += new System.EventHandler(this.selectButton_ClickView);
             // 
             // blueprintList
             // 
@@ -73,37 +59,16 @@
             this.blueprintList.Name = "blueprintList";
             this.blueprintList.Size = new System.Drawing.Size(434, 308);
             this.blueprintList.TabIndex = 4;
-            this.blueprintList.SelectedIndexChanged += new System.EventHandler(this.blueprintList_SelectedIndexChanged);
             // 
-            // stateLabel
-            // 
-            this.stateLabel.AutoSize = true;
-            this.stateLabel.Location = new System.Drawing.Point(38, 53);
-            this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(35, 13);
-            this.stateLabel.TabIndex = 5;
-            this.stateLabel.Text = "State:";
-            // 
-            // signaturesList
-            // 
-            this.signaturesList.FormattingEnabled = true;
-            this.signaturesList.Location = new System.Drawing.Point(41, 69);
-            this.signaturesList.Name = "signaturesList";
-            this.signaturesList.Size = new System.Drawing.Size(154, 238);
-            this.signaturesList.TabIndex = 6;
-            // 
-            // ChooseBlueprintView
+            // ClientChooseBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.signaturesList);
-            this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.blueprintList);
-            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.title);
-            this.Name = "ChooseBlueprintView";
+            this.Name = "ClientChooseBlueprintView";
             this.Size = new System.Drawing.Size(884, 461);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -113,9 +78,6 @@
         #endregion
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button selectButton;
-        private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ListBox blueprintList;
-        private System.Windows.Forms.Label stateLabel;
-        private System.Windows.Forms.ListBox signaturesList;
     }
 }

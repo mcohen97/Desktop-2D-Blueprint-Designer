@@ -100,5 +100,15 @@ namespace Services
             allUsers.Remove(Session.UserLogged);
             return allUsers;
         }
+
+        public ICollection<User> GetUsersByPermission(Permission aPermission)
+        {
+            if (!Session.UserLogged.HasPermission(Permission.READ_USER))
+            {
+                throw new NoPermissionsException();
+            }
+            IUserRepository usersStorage = new UserRepository();
+            return usersStorage.GetUsersByPermission(aPermission);
+        }
     }
 }

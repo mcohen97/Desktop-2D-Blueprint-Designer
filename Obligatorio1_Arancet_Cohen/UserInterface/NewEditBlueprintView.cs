@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Services;
 using Logic.Domain;
 
+
 namespace UserInterface
 {
     public partial class NewEditBlueprintView : UserControl, IUserFeatureControl
@@ -28,12 +29,27 @@ namespace UserInterface
 
         public void SetUp()
         {
-            FillList();
+            FillLists();
         }
 
-        private void FillList()
+        private void FillLists()
         {
-            
+            UserAdministrator administrator = new UserAdministrator(CurrentSession);
+            userList.DataSource=administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
+            signatureLists.Hide();
+            if (userList.SelectedIndex != -1) {
+                User selected = (User)userList.SelectedItem;
+                FillBlueprintsLists(selected);
+            }
+        }
+
+        private void FillBlueprintsLists(User selected)
+        {
+            ICollection<IBlueprint> usersBlueprints = permissionController.GetBlueprints().Where(bp => bp.Owner.Equals(selected)).ToList();
+            ICollection<IBlueprint> signed = usersBlueprints.Where(bp => bp.IsSigned()).ToList();
+            ICollection<IBlueprint> unSigned = usersBlueprints.Where(bp => !bp.IsSigned()).ToList();
+            signedList.DataSource = signed;
+            unSignedList.DataSource = unSigned;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -43,12 +59,12 @@ namespace UserInterface
 
         public Permission GetRequiredPermission()
         {
-            throw new NotImplementedException();
+            return Permission.EDIT_BLUEPRINT;
         }
 
         public Button OptionMenuButton()
         {
-            throw new NotImplementedException();
+            return ButtonCreator.GenerateButton("New Blueprint Edition ");
         }
 
        

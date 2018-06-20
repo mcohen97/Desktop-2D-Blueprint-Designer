@@ -28,5 +28,10 @@ namespace Logic.Domain
         public string ArchitectName{ get; set; }
         public string ArchitectSurname { get; set; }
         public string ArchitectUserName { get; set; }
+
+        public override string ToString()
+        {
+            return "Arquitecto: " + ArchitectName + " " + ArchitectSurname + ", Fecha: " + Date;
+        }
     }
 }
