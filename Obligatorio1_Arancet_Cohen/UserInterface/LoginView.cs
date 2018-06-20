@@ -11,6 +11,8 @@ using Logic.Domain;
 using DataAccessExceptions;
 using ServicesExceptions;
 using Services;
+using DataAccess;
+using DomainRepositoryInterface;
 
 namespace UserInterface
 {
@@ -122,19 +124,27 @@ namespace UserInterface
             fakeSession = connector.LogIn("testDesigner1", "password");
             BlueprintController bpController = new BlueprintController(fakeSession);
             Blueprint bp1 = new Blueprint(8, 8, "Mi tablero de ajedrez gigante");
-            bp1.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
+            bp1.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(1, 5));
+            bp1.InsertWall(new Logic.Domain.Point(2, 2), new Logic.Domain.Point(5, 2));
             bp1.Sign(archy);
             bp1.Owner = c1;
             Blueprint bp2 = new Blueprint(10, 10, "oficina nueva");
-            bp2.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
+            bp2.InsertWall(new Logic.Domain.Point(3, 3), new Logic.Domain.Point(3, 1));
+            bp2.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(1, 5));
             bp2.Owner = c2;
             Blueprint bp3 = new Blueprint(6, 5, "Barbacoa en el fondo");
-            bp3.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
+            bp3.InsertWall(new Logic.Domain.Point(2, 2), new Logic.Domain.Point(5, 2));
+            bp3.InsertWall(new Logic.Domain.Point(3, 3), new Logic.Domain.Point(3, 1));
             bp3.Owner = c2;
             bpController.Add(bp1);
             bpController.Add(bp2);
             bpController.Add(bp3);
-
+            IPriceCostRepository prices = new PriceCostRepository();
+            prices.AddCostPrice((int)ComponentType.WALL, 50, 100);
+            prices.AddCostPrice((int)ComponentType.BEAM, 50, 100);
+            prices.AddCostPrice((int)ComponentType.DOOR, 50, 100);
+            prices.AddCostPrice((int)ComponentType.WINDOW, 50, 75);
+            prices.AddCostPrice((int)ComponentType.COLUMN, 25, 50);
             testDataButton.Hide();
         }
     }
