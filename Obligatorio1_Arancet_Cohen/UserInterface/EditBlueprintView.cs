@@ -413,6 +413,16 @@ namespace UserInterface
         {
             PaintPoint(Brushes.Red);
         }
+        private void drawSurface_MouseClickShowTemplateInfo(object sender, MouseEventArgs e)
+        {
+            System.Drawing.Point selectedPoint = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
+            Logic.Domain.Point domainSeleectedPoint = DrawablePointIntoLogicPoint(selectedPoint);
+            if (selectedBluePrint.GetOpenings().Any(x => x.GetPosition().Equals(domainSeleectedPoint)))
+            {
+                Opening selectedOpening = selectedBluePrint.GetOpenings().First(x => x.GetPosition().Equals(domainSeleectedPoint));
+                ShowTemplateInfo(selectedOpening.getTemplate());
+            }
+        }
 
         //Paint functions
         private void PaintWalls()
@@ -579,7 +589,6 @@ namespace UserInterface
                 graphics.FillPolygon(windowPen.Brush, points);
             }
         }
-
         private void PaintColumn(Column column)
         {
             using (Graphics graphics = Graphics.FromImage(columnsLayer))
@@ -615,7 +624,7 @@ namespace UserInterface
             RemoveEveryHandler();
             EnableEveryTool();
             btnPointerTool.Enabled = false;
-
+            drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickShowTemplateInfo);
         }
         private void btnWallTool_Click(object sender, EventArgs e)
         {
@@ -629,16 +638,12 @@ namespace UserInterface
             RemoveEveryHandler();
             EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertWindow);
-            btnWindowTool.Enabled = false;
-
         }
         private void btnDoorTool_Click(object sender, EventArgs e)
         {
             RemoveEveryHandler();
             EnableEveryTool();
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertDoor);
-            btnDoorTool.Enabled = false;
-
         }
         private void btnEraserTool_Click(object sender, EventArgs e)
         {
@@ -681,13 +686,12 @@ namespace UserInterface
             drawSurface.MouseMove -= new MouseEventHandler(drawSurface_MouseMoveDeleteSelectedPoint);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertColumn);
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickInsertOpening);
+            drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickShowTemplateInfo);
         }
         private void EnableEveryTool()
         {
             btnPointerTool.Enabled = true;
             btnWallTool.Enabled = true;
-            btnWindowTool.Enabled = true;
-            btnDoorTool.Enabled = true;
             btnEraserTool.Enabled = true;
             btnColumnTool.Enabled = true;
             btnOpeningTool.Enabled = true;
@@ -786,5 +790,15 @@ namespace UserInterface
             return returnedCellSize;
         }
 
+        private void ShowTemplateInfo(Template template)
+        {
+            lblOpeningLength.Text = template.Length.ToString();
+            cmbTemplates.SelectedItem = template;
+        }
+
+        private void cmbTemplates_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lblOpeningLength.Text = ((Template)cmbTemplates.SelectedValue).Length.ToString();
+        }
     }
 }
