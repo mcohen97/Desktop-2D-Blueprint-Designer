@@ -628,7 +628,30 @@ namespace Logic.Test
             int actualResult = materials.GetColumns().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void LIntersectionTest()
+        {
+            instance.InsertWall(new Point(1, 1), new Point(7, 1));
+            instance.InsertWall(new Point(7, 1), new Point(7, 7));
+            int expectedResult = 4;
+            int actualResult = instance.GetWalls().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+
+        [TestMethod]
+        public void FormedHWallsTest()
+        {
+            instance.InsertWall(new Point(1,0),new Point(1,3));
+            instance.InsertWall(new Point(1, 2), new Point(2, 2));
+            instance.InsertWall(new Point(3, 0), new Point(3, 3));
+            instance.InsertWall(new Point(2, 2), new Point(3, 2));
+            int expectedResult = 5;
+            int actualResult = instance.GetWalls().Count;
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+
     }
-
-
 }
