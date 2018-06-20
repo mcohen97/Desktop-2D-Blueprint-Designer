@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
+using Services;
 
 namespace UserInterface
 {
@@ -15,11 +16,15 @@ namespace UserInterface
     {
 
         private LoggedInView parent;
+        private CostsAndPricesManager costsNprices;
+        private Session current;
 
-        public ManageCostsView(LoggedInView aControl)
+        public ManageCostsView(LoggedInView aControl,Session aSession)
         {
             InitializeComponent();
             parent = aControl;
+            current = aSession;
+            costsNprices = new CostsAndPricesManager(current);
             costPriceInfo.Hide();
         }
 
@@ -45,18 +50,20 @@ namespace UserInterface
 
         private void materialsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
-            costSpinner.Value = (decimal)Constants.COST_CATALOGUE[selectedMaterial];
-            priceSpinner.Value = (decimal)Constants.PRICE_CATALOGUE[selectedMaterial];
-            costPriceInfo.Show();*/
+           ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
+            costSpinner.Value = (decimal)costsNprices.GetCost((int)selectedMaterial);
+            priceSpinner.Value = (decimal)costsNprices.GetPrice((int)selectedMaterial);
+            costPriceInfo.Show();
         }
 
         private void changePriceButton_Click(object sender, EventArgs e)
         {
-           /* ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
-            Constants.COST_CATALOGUE[selectedMaterial] = (float)costSpinner.Value;
-            Constants.PRICE_CATALOGUE[selectedMaterial] = (float)priceSpinner.Value;
-            costPriceInfo.Hide();*/
+           ComponentType selectedMaterial = (ComponentType)materialsList.SelectedItem;
+            float newCost = (float)costSpinner.Value;
+            float newPrice= (float)priceSpinner.Value;
+            costsNprices.SetCost((int)selectedMaterial, newCost);
+            costsNprices.SetPrice((int)selectedMaterial, newPrice);
+            costPriceInfo.Hide();
         }
 
         private void doneButton_Click(object sender, EventArgs e)
