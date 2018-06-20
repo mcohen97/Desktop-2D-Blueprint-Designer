@@ -73,6 +73,12 @@ namespace UserInterface
             gridCellCountY = aBlueprint.Width;
             windowXBoundryInPixels = this.BlueprintPanel.Width;
             windowYBoundryInPixels = this.BlueprintPanel.Height;
+
+            ICollection<IGridPaintStrategy> gridPaintStrategies = new List<IGridPaintStrategy>();
+            gridPaintStrategies.Add(new CompleteLineGridPaint(gridLayer, gridCellCountX, gridCellCountY, gridLinesMarginToLayerInPixels));
+            gridPaintStrategies.Add(new DottedLineGridPaint(gridLayer, gridCellCountX, gridCellCountY, gridLinesMarginToLayerInPixels));
+            gridPaintStrategies.Add(new NoPaintedGridLinesStrategy());
+            cmbGridLines.DataSource = gridPaintStrategies;
             setUpDrawSurface(40);
 
             PaintWalls();
@@ -142,8 +148,13 @@ namespace UserInterface
         //Grid and panel config functions
         private void PaintGrid()
         {
-
-            using (Graphics graphics = Graphics.FromImage(gridLayer))
+            IGridPaintStrategy gridPainter = (IGridPaintStrategy)cmbGridLines.SelectedItem;
+            gridPainter.SetCountX(gridCellCountX);
+            gridPainter.SetCountY(gridCellCountY);
+            gridPainter.SetLayer(gridLayer);
+            gridPainter.SetMargin(gridLinesMarginToLayerInPixels);
+            gridPainter.PaintGrid();
+            /*using (Graphics graphics = Graphics.FromImage(gridLayer))
             {
                 for (int i = 0; i < gridCellCountY; i++)
                 {
@@ -154,7 +165,7 @@ namespace UserInterface
                     DrawGridVerticalLines(graphics, i);
                 }
                 DrawGridRightAndBottomLines(graphics);
-            }
+            }*/
             drawSurface.Invalidate();
         }
         private void DrawGridHorizontalLines(Graphics graphics, int axis)
@@ -799,6 +810,12 @@ namespace UserInterface
         private void cmbTemplates_SelectedValueChanged(object sender, EventArgs e)
         {
             lblOpeningLength.Text = ((Template)cmbTemplates.SelectedValue).Length.ToString();
+        }
+
+        private void cmbGridLines_SelectedValueChanged(object sender, EventArgs e)
+        {
+            setUpDrawSurface(cellSizeInPixels);
+
         }
     }
 }
