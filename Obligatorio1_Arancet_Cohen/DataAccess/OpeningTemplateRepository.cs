@@ -10,6 +10,7 @@ using Entities;
 using System.Data.Entity.Infrastructure;
 using DataAccessExceptions;
 using System.Linq.Expressions;
+using System.Data.Common;
 
 namespace DataAccess
 {
@@ -17,6 +18,16 @@ namespace DataAccess
     {
         public void Add(Template entity)
         {
+            try
+            {
+                TryAdding(entity);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+        }
+
+        private void TryAdding(Template entity) {
             MaterialAndEntityConverter translator = new MaterialAndEntityConverter();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -33,10 +44,22 @@ namespace DataAccess
 
 
             }
+
         }
 
         public void Clear()
         {
+            try
+            {
+                TryClearing();
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+
+        }
+
+        private void TryClearing() {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 foreach (OpeningTemplateEntity template in context.OpeningTemplates)
@@ -45,11 +68,21 @@ namespace DataAccess
                 }
                 context.SaveChanges();
             }
-
         }
 
         public void Delete(Template toDelete)
         {
+            try
+            {
+                TryDeleting(toDelete);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            
+        }
+
+        private void TryDeleting(Template toDelete) {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 OpeningTemplateEntity entity = context.OpeningTemplates.FirstOrDefault(ote => ote.Name.Equals(toDelete.Name));
@@ -64,6 +97,18 @@ namespace DataAccess
 
         public bool Exists(Template record)
         {
+            bool doesExist;
+            try
+            {
+                doesExist = TryAskingIfExists(record);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return doesExist;
+        }
+
+        private bool TryAskingIfExists(Template record) {
             bool doesExist;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -85,11 +130,23 @@ namespace DataAccess
 
         public Template GetTemplateByName(string name)
         {
-            return SelectFirstOrDefault(t => t.Name.Equals(name));
+            return SelectFirstOrDefault(t => t.Name.Equals(name.ToUpper()));
         }
 
         private Template SelectFirstOrDefault(Expression<Func<OpeningTemplateEntity, bool>> aCondition)
         {
+            Template firstToComply;
+            try
+            {
+                firstToComply = TrySelectFirstOrDefault(aCondition);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return firstToComply;
+        }
+
+        private Template TrySelectFirstOrDefault(Expression<Func<OpeningTemplateEntity, bool>> aCondition) {
             Template firstToComply;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -116,6 +173,18 @@ namespace DataAccess
 
         private ICollection<Template> SelectByCriteria(Expression<Func<OpeningTemplateEntity, bool>> aCriteria)
         {
+            ICollection<Template> elegibleUsers;
+            try
+            {
+                elegibleUsers = TrySelectingByCriteria(aCriteria);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return elegibleUsers;
+        }
+
+        private ICollection<Template> TrySelectingByCriteria(Expression<Func<OpeningTemplateEntity, bool>> aCriteria) {
             ICollection<Template> elegibleUsers = new List<Template>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
@@ -133,6 +202,18 @@ namespace DataAccess
         public bool IsEmpty()
         {
             bool isEmpty;
+            try
+            {
+                isEmpty = TryAskingIfEmpty();
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return isEmpty;
+        }
+
+        private bool TryAskingIfEmpty() {
+            bool isEmpty;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 isEmpty = !context.OpeningTemplates.Any();
@@ -142,6 +223,16 @@ namespace DataAccess
 
         public void Modify(Template entity)
         {
+            try
+            {
+                TryModifying(entity);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+        }
+
+        private void TryModifying(Template entity) {
             if (!Exists(entity))
             {
                 throw new TemplateDoesNotExistException();

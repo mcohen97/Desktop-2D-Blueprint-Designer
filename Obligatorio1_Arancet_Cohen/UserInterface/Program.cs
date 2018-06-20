@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataAccessExceptions;
 
 namespace UserInterface
 {
@@ -13,7 +14,21 @@ namespace UserInterface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            try
+            {
+                Application.Run(new MainWindow());
+            }
+            catch (InaccessibleDataException) {
+                CloseWithMessage("Connection to database failed");
+            }
+            catch (InconsistentDataException) {
+                CloseWithMessage("Database data is inconsistent");
+            }
+        }
+
+        private static void CloseWithMessage(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }

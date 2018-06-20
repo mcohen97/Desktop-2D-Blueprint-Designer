@@ -62,7 +62,7 @@
             // 
             // spinnerLength
             // 
-            this.spinnerLength.DecimalPlaces = 1;
+            this.spinnerLength.DecimalPlaces = 2;
             this.spinnerLength.Increment = new decimal(new int[] {
             1,
             0,
@@ -92,7 +92,7 @@
             // 
             // spinnerHeight
             // 
-            this.spinnerHeight.DecimalPlaces = 1;
+            this.spinnerHeight.DecimalPlaces = 2;
             this.spinnerHeight.Increment = new decimal(new int[] {
             1,
             0,
@@ -121,7 +121,7 @@
             // 
             // spinnerHeightAboveFloor
             // 
-            this.spinnerHeightAboveFloor.DecimalPlaces = 1;
+            this.spinnerHeightAboveFloor.DecimalPlaces = 2;
             this.spinnerHeightAboveFloor.Increment = new decimal(new int[] {
             1,
             0,

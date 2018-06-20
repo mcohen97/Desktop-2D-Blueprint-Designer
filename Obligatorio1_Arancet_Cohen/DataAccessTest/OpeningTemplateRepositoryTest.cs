@@ -98,7 +98,7 @@ namespace DataAccessTest
         public void GetByNameTest() {
             AddTemplates();
             Template retrieved = templatesStorage.GetTemplateByName("Gate");
-            Assert.AreEqual(retrieved.Name,"Gate");
+            Assert.AreEqual(retrieved.Name,"GATE");
         }
 
         [TestMethod]

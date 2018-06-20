@@ -63,6 +63,11 @@
             // costSpinner
             // 
             this.costSpinner.Location = new System.Drawing.Point(44, 0);
+            this.costSpinner.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.costSpinner.Name = "costSpinner";
             this.costSpinner.Size = new System.Drawing.Size(58, 20);
             this.costSpinner.TabIndex = 7;
@@ -70,6 +75,11 @@
             // priceSpinner
             // 
             this.priceSpinner.Location = new System.Drawing.Point(44, 44);
+            this.priceSpinner.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.priceSpinner.Name = "priceSpinner";
             this.priceSpinner.Size = new System.Drawing.Size(58, 20);
             this.priceSpinner.TabIndex = 6;

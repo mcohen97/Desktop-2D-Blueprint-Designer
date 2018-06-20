@@ -21,23 +21,31 @@ namespace DataAccess
 
         public bool IsEmpty() {
             bool isEmpty;
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            try
             {
-                isEmpty=!context.Users.Any(u=> !u.UserName.Equals("admin"));
+               isEmpty = TryAskIsEmpty();
+            }catch(DbException){
+                throw new InaccessibleDataException();
             }
             return isEmpty;
         }
 
-        public void Add(User aUser)
-        {
+        private bool TryAskIsEmpty() {
+            bool isEmpty;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                    UserAndEntityConverter translator = new UserAndEntityConverter();
-                    UserEntity anEntity = translator.toEntity(aUser);
+                isEmpty = !context.Users.Any(u => !u.UserName.Equals("admin"));
+            }
+            return isEmpty;
+
+        }
+
+        public void Add(User aUser)
+        {
+            
                 try
                 {
-                    context.Users.Add(anEntity);
-                    context.SaveChanges();
+                TryAdd(aUser);
                 }
                 //existent user in particular.
                 catch (DbUpdateException) {
@@ -49,14 +57,35 @@ namespace DataAccess
                 }
                 
                 
-            }
+            
         }
+
+        private void TryAdd(User aUser) {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                UserAndEntityConverter translator = new UserAndEntityConverter();
+                UserEntity anEntity = translator.toEntity(aUser);
+                context.Users.Add(anEntity);
+                context.SaveChanges();
+            }
+
+            }
 
         public void Delete(User toDelete)
         {
+            try {
+                TryDelete(toDelete);
+            }catch (DbException)
+            {
+                throw new InaccessibleDataException();
+            }
+
+        }
+
+        private void TryDelete(User toDelete) {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                UserEntity entity = context.Users.FirstOrDefault(r => r.UserName .Equals(toDelete.UserName));
+                UserEntity entity = context.Users.FirstOrDefault(r => r.UserName.Equals(toDelete.UserName));
                 //if it exists, delete it.
                 if (entity != null)
                 {
@@ -68,24 +97,36 @@ namespace DataAccess
 
         public bool Exists(User toLookup) {
             bool doesExist;
-
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            try {
+                doesExist= TryAskIfExists(toLookup.UserName);
+            }catch (DbException)
             {
-                doesExist = context.Users.Any(u => u.UserName.Equals(toLookup.UserName));
+                throw new InaccessibleDataException();
             }
-
             return doesExist;
         }
 
+
         public void Clear() {
+            try {
+                TryClearUsers();
+            }
+            catch (DbException)
+            {
+                throw new InaccessibleDataException();
+            }
+
+        }
+
+        private void TryClearUsers() {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-  
+
                 foreach (UserEntity userEnt in context.Users)
                 {
                     context.Users.Remove(userEnt);
                 }
-                AdminEntity putBackAdmin = new AdminEntity() { Name = "admin", Surname="admin", UserName= "admin", Password="admin"};
+                AdminEntity putBackAdmin = new AdminEntity() { Name = "admin", Surname = "admin", UserName = "admin", Password = "admin" };
 
                 context.Users.Add(putBackAdmin);
                 context.SaveChanges();
@@ -95,8 +136,21 @@ namespace DataAccess
 
         public bool ExistsUserName(string aUserName) {
             bool doesExist;
+            try
+            {
+                doesExist= TryAskIfExists(aUserName);
+            }
+            catch (DbException)
+            {
+                throw new InaccessibleDataException();
+            }
+            return doesExist;
+        }
+        private bool TryAskIfExists(string aUserName) {
+            bool doesExist;
 
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
                 doesExist = context.Users.Any(u => u.UserName.Equals(aUserName));
             }
 
@@ -120,6 +174,18 @@ namespace DataAccess
 
         private User SelectFirstOrDefault(Expression<Func<UserEntity, bool>> aCondition) {
             User firstToComply;
+            try
+            {
+                firstToComply=TryGetFirst(aCondition);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return firstToComply;
+        }
+
+        private User TryGetFirst(Expression<Func<UserEntity, bool>> aCondition) {
+            User firstToComply;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserAndEntityConverter translator = new UserAndEntityConverter();
@@ -136,6 +202,7 @@ namespace DataAccess
             }
 
             return firstToComply;
+
         }
 
         public ICollection<User> GetUsersByPermission(Permission aFeature)
@@ -151,12 +218,24 @@ namespace DataAccess
         }
 
         private ICollection<User> SelectByCriteria(Expression<Func<UserEntity, bool>> aCriteria) {
+            ICollection<User> elegibleUsers;
+            try {
+                elegibleUsers = TryFilter(aCriteria);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return elegibleUsers;
+        }
+
+        private ICollection<User> TryFilter(Expression<Func<UserEntity, bool>> aCriteria) {
             ICollection<User> elegibleUsers = new List<User>();
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserAndEntityConverter translator = new UserAndEntityConverter();
                 IQueryable<UserEntity> elegibleRecords = context.Users.Where(aCriteria);
-                foreach (UserEntity record in elegibleRecords) {
+                foreach (UserEntity record in elegibleRecords)
+                {
                     elegibleUsers.Add(translator.toUser(record));
                 }
             }
@@ -166,6 +245,16 @@ namespace DataAccess
 
         public void Modify(User modified)
         {
+            try
+            {
+                TryModify(modified);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+        }
+
+        private void TryModify(User modified) {
             UserAndEntityConverter translator = new UserAndEntityConverter();
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
@@ -175,6 +264,7 @@ namespace DataAccess
                 context.Entry(record).State = EntityState.Modified;
                 context.SaveChanges();
             }
+
         }
 
     }
