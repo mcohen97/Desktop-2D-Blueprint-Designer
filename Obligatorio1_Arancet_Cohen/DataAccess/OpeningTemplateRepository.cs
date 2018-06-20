@@ -130,7 +130,7 @@ namespace DataAccess
 
         public Template GetTemplateByName(string name)
         {
-            return SelectFirstOrDefault(t => t.Name.Equals(name));
+            return SelectFirstOrDefault(t => t.Name.Equals(name.ToUpper()));
         }
 
         private Template SelectFirstOrDefault(Expression<Func<OpeningTemplateEntity, bool>> aCondition)

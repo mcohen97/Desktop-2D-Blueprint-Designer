@@ -99,7 +99,7 @@ namespace Logic.Test
             ComponentType type = ComponentType.WINDOW;
             Template template = new Template(name, length, width, height, type);
 
-            Assert.AreEqual(name, template.Name);
+            Assert.AreEqual(name.ToUpper(), template.Name);
         }
 
         [TestMethod]
@@ -244,7 +244,7 @@ namespace Logic.Test
             ComponentType type = ComponentType.WINDOW;
             Template template = new Template(name, length, width, height, type);
 
-            Assert.AreEqual(template.ToString(), name);
+            Assert.AreEqual(template.ToString(), name.ToUpper());
         }
     }
 }
