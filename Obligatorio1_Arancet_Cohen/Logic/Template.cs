@@ -59,13 +59,18 @@ namespace Logic.Domain
             {
                 areEqual = false;
             }
-            else
-            {
+            else if (obj is Template) { 
                 Template otherTemplate = (Template)obj;
                 areEqual = otherTemplate.Name.Equals(this.Name);
             }
+            else
+            {
+                areEqual = false;
+            }
+
             return areEqual;
         }
+
         public override string ToString()
         {
             return name;

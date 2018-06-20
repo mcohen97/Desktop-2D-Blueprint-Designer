@@ -139,6 +139,7 @@
     <Compile Include="NoFlickerPanel.Designer.cs">
       <DependentUpon>NoFlickerPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginView.cs">
