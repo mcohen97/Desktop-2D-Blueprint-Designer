@@ -8,6 +8,8 @@ using DomainRepositoryInterface;
 using RepositoryInterface;
 using Entities;
 using System.Data.Entity;
+using System.Data.Common;
+using DataAccessExceptions;
 
 namespace DataAccess
 {
@@ -22,8 +24,13 @@ namespace DataAccess
                 IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w, converted));
                 IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
                 ICollection<Opening> itsOpenings = toStore.GetOpenings();
+            try
+            {
                 AddBlueprintEntity(converted, convertedWalls, convertedColumns, itsOpenings, convertedSignatures);
-
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
         }
 
         private void AddBlueprintEntity(BlueprintEntity converted, IEnumerable<WallEntity> itsWalls,
@@ -59,11 +66,23 @@ namespace DataAccess
 
         public void Clear()
         {
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                foreach (SignatureEntity se in context.Signatures) {
+            try {
+                TryToClear();
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+        }
+
+        private void TryToClear() {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                foreach (SignatureEntity se in context.Signatures)
+                {
                     context.Signatures.Remove(se);
                 }
-                foreach (BlueprintEntity bpe in context.Blueprints) {
+                foreach (BlueprintEntity bpe in context.Blueprints)
+                {
                     context.Blueprints.Remove(bpe);
                 }
                 context.SaveChanges();
@@ -72,6 +91,16 @@ namespace DataAccess
 
         public void Delete(IBlueprint toRemove)
         {
+            try
+            {
+                TryToDelete(toRemove);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }   
+        }
+
+        private void TryToDelete(IBlueprint toRemove) {
             if (Exists(toRemove))
             {
                 BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
@@ -85,50 +114,106 @@ namespace DataAccess
                     context.SaveChanges();
                 }
             }
+
         }
 
         public bool Exists(IBlueprint asked)
         {
             bool exists;
-            BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
-            BlueprintEntity toAsk = translator.BlueprintToEntiy(asked);
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                Guid askedId = asked.GetId();
-                exists = context.Blueprints.Any(bp => bp.Id==askedId);
+            try
+            {
+                exists = TryAskingIfExists(asked);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
             }
             return exists;
+        }
+
+        private bool TryAskingIfExists(IBlueprint asked) {
+            bool exists;
+            BlueprintAndEntityConverter translator = new BlueprintAndEntityConverter();
+            BlueprintEntity toAsk = translator.BlueprintToEntiy(asked);
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                Guid askedId = asked.GetId();
+                exists = context.Blueprints.Any(bp => bp.Id == askedId);
+            }
+            return exists;
+        }
+
+        public IBlueprint Get(IBlueprint copy)
+        {
+            return Get(copy.GetId());
         }
 
         public IBlueprint Get(Guid id)
         {
             IBlueprint queried;
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                BlueprintEntity record = context.Blueprints.Include(bp=>bp.Owner).FirstOrDefault(bp => bp.Id.Equals(id));
-
-                queried = BuildBlueprint(record);                 
+            try
+            {
+                queried = TryGetting(id);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
             }
             return queried;
         }
 
-        public IBlueprint Get(IBlueprint copy) {
-            return Get(copy.GetId());
+        private IBlueprint TryGetting(Guid id) {
+            IBlueprint queried;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                BlueprintEntity record = context.Blueprints.Include(bp => bp.Owner).FirstOrDefault(bp => bp.Id.Equals(id));
+
+                queried = BuildBlueprint(record);
+            }
+            return queried;
         }
 
         public ICollection<IBlueprint> GetAll()
         {
+            ICollection<IBlueprint> themAll;
+            try
+            {
+                themAll = TryGetAll();
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return themAll;
+        }
+
+        private ICollection<IBlueprint> TryGetAll() {
             ICollection<IBlueprint> converted = new List<IBlueprint>();
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                foreach (BlueprintEntity be in context.Blueprints.Include(b=> b.Owner)) {
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                foreach (BlueprintEntity be in context.Blueprints.Include(b => b.Owner))
+                {
                     converted.Add(BuildBlueprint(be));
                 }
             }
             return converted;
+
         }
 
         public bool IsEmpty()
         {
             bool isEmpty;
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
+            try
+            {
+                isEmpty = TryAskIsEmpty();
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return isEmpty;
+        }
+
+        private bool TryAskIsEmpty() {
+            bool isEmpty;
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
                 isEmpty = !context.Blueprints.Any();
             }
             return isEmpty;
@@ -143,12 +228,25 @@ namespace DataAccess
 
         public ICollection<IBlueprint> GetBlueprintsOfUser(User owner)
         {
-            ICollection<IBlueprint> queriedBlueprints = new List<IBlueprint>();
-            using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
-                ICollection<BlueprintEntity> query = context.Blueprints.Include(bp=> bp.Owner)
-                    .Where(bp=> bp.Owner.UserName.Equals(owner.UserName)).ToList();
+            ICollection<IBlueprint> blueprints;
+            try {
+                blueprints = TryGettingBlueprintsOfUser(owner);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+            return blueprints;
+        }
 
-                foreach (BlueprintEntity bpe in query) {
+        private ICollection<IBlueprint> TryGettingBlueprintsOfUser(User owner) {
+            ICollection<IBlueprint> queriedBlueprints = new List<IBlueprint>();
+            using (BlueBuilderDBContext context = new BlueBuilderDBContext())
+            {
+                ICollection<BlueprintEntity> query = context.Blueprints.Include(bp => bp.Owner)
+                    .Where(bp => bp.Owner.UserName.Equals(owner.UserName)).ToList();
+
+                foreach (BlueprintEntity bpe in query)
+                {
                     queriedBlueprints.Add(BuildBlueprint(bpe));
                 }
             }
@@ -173,6 +271,16 @@ namespace DataAccess
 
         public void DeleteUserBlueprints(User aUser)
         {
+            try
+            {
+                TryDeletingBlueprintsOfUser(aUser);
+            }
+            catch (DbException) {
+                throw new InaccessibleDataException();
+            }
+        }
+
+        private void TryDeletingBlueprintsOfUser(User aUser) {
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 foreach (BlueprintEntity bpEnt in context.Blueprints.Where(bp => bp.Owner.UserName.Equals(aUser.UserName)))
