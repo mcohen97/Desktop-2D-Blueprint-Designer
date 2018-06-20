@@ -272,12 +272,12 @@ namespace ServicesTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ColumnInPlaceException))]
         public void InsertWallInColumnPlaceBorderTest()
         {
             BlueprintEditor blueEditor = GetInstance();
-            blueEditor.InsertColumn(new Point(2, 3));
+            blueEditor.InsertColumn(new Point(2, 6));
             blueEditor.InsertWall(new Point(2, 3), new Point(2, 6));
-            Assert.AreEqual(1, blueprintTest.GetWalls().Count);
         }
 
         [TestMethod]
@@ -543,6 +543,17 @@ namespace ServicesTest
             BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest);
             blueEditor.Sign();
             Assert.AreEqual(1, blueprintTest.GetSignatures().Count);
+        }
+
+
+        [TestMethod]
+        public void GetOpeningTemplatesTest()
+        {
+            initializerWithData();
+            Session session = conn.LogIn("architect", "architect");
+            BlueprintEditor editor = new BlueprintEditor(session, blueprintTest);
+            ICollection<Template> templates = editor.GetTemplates();
+            Assert.IsNotNull(templates);
         }
 
     }

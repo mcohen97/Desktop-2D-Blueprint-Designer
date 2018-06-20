@@ -38,7 +38,7 @@ namespace UserInterface {
 
 
         private void SetMenu() {
-            int buttonX = 170;
+            int buttonX = 150;
             int buttonY = 20;
             Button currentButton;
             foreach (IUserFeatureControl control in availableViews) {
@@ -50,7 +50,7 @@ namespace UserInterface {
                     currentButton.Top = buttonY;
                     AddDelegate(currentButton, (UserControl)control);
                     menuPanel.Controls.Add(currentButton);
-                    buttonX += 170;
+                    buttonX += 140;
 
                 }
             }
@@ -72,7 +72,7 @@ namespace UserInterface {
 
         internal void OpenBlueprintViewer(Blueprint blueprint) {
             dynamicPanel.Controls.Clear();
-            dynamicPanel.Controls.Add(new BlueprintViewer(CurrentSession, this, blueprint));
+            dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
         }
 
         internal void SetView(UserControl aControl) {

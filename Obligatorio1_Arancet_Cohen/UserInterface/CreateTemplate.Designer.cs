@@ -45,6 +45,7 @@
             this.msgLength = new System.Windows.Forms.Label();
             this.msgHeight = new System.Windows.Forms.Label();
             this.msgHightAboveFloor = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeightAboveFloor)).BeginInit();
@@ -53,7 +54,7 @@
             // 
             // nameText
             // 
-            this.nameText.Location = new System.Drawing.Point(207, 117);
+            this.nameText.Location = new System.Drawing.Point(457, 77);
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(173, 20);
             this.nameText.TabIndex = 0;
@@ -63,12 +64,13 @@
             // spinnerLength
             // 
             this.spinnerLength.DecimalPlaces = 2;
+            this.spinnerLength.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spinnerLength.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.spinnerLength.Location = new System.Drawing.Point(207, 159);
+            this.spinnerLength.Location = new System.Drawing.Point(457, 119);
             this.spinnerLength.Maximum = new decimal(new int[] {
             3,
             0,
@@ -80,7 +82,7 @@
             0,
             65536});
             this.spinnerLength.Name = "spinnerLength";
-            this.spinnerLength.Size = new System.Drawing.Size(120, 20);
+            this.spinnerLength.Size = new System.Drawing.Size(120, 26);
             this.spinnerLength.TabIndex = 1;
             this.spinnerLength.Value = new decimal(new int[] {
             1,
@@ -93,12 +95,13 @@
             // spinnerHeight
             // 
             this.spinnerHeight.DecimalPlaces = 2;
+            this.spinnerHeight.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spinnerHeight.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.spinnerHeight.Location = new System.Drawing.Point(207, 200);
+            this.spinnerHeight.Location = new System.Drawing.Point(457, 160);
             this.spinnerHeight.Maximum = new decimal(new int[] {
             3,
             0,
@@ -110,7 +113,7 @@
             0,
             65536});
             this.spinnerHeight.Name = "spinnerHeight";
-            this.spinnerHeight.Size = new System.Drawing.Size(120, 20);
+            this.spinnerHeight.Size = new System.Drawing.Size(120, 26);
             this.spinnerHeight.TabIndex = 2;
             this.spinnerHeight.Value = new decimal(new int[] {
             1,
@@ -122,28 +125,30 @@
             // spinnerHeightAboveFloor
             // 
             this.spinnerHeightAboveFloor.DecimalPlaces = 2;
+            this.spinnerHeightAboveFloor.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spinnerHeightAboveFloor.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.spinnerHeightAboveFloor.Location = new System.Drawing.Point(207, 242);
+            this.spinnerHeightAboveFloor.Location = new System.Drawing.Point(457, 202);
             this.spinnerHeightAboveFloor.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.spinnerHeightAboveFloor.Name = "spinnerHeightAboveFloor";
-            this.spinnerHeightAboveFloor.Size = new System.Drawing.Size(120, 20);
+            this.spinnerHeightAboveFloor.Size = new System.Drawing.Size(120, 26);
             this.spinnerHeightAboveFloor.TabIndex = 3;
             this.spinnerHeightAboveFloor.ValueChanged += new System.EventHandler(this.spinnerHeightAboveFloor_ValueChanged);
             // 
             // WindowOption
             // 
             this.WindowOption.AutoSize = true;
+            this.WindowOption.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WindowOption.Location = new System.Drawing.Point(6, 19);
             this.WindowOption.Name = "WindowOption";
-            this.WindowOption.Size = new System.Drawing.Size(64, 17);
+            this.WindowOption.Size = new System.Drawing.Size(88, 24);
             this.WindowOption.TabIndex = 4;
             this.WindowOption.TabStop = true;
             this.WindowOption.Text = "Window";
@@ -153,9 +158,10 @@
             // doorOption
             // 
             this.doorOption.AutoSize = true;
+            this.doorOption.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.doorOption.Location = new System.Drawing.Point(6, 42);
             this.doorOption.Name = "doorOption";
-            this.doorOption.Size = new System.Drawing.Size(48, 17);
+            this.doorOption.Size = new System.Drawing.Size(63, 24);
             this.doorOption.TabIndex = 5;
             this.doorOption.TabStop = true;
             this.doorOption.Text = "Door";
@@ -166,7 +172,8 @@
             // 
             this.groupBox1.Controls.Add(this.doorOption);
             this.groupBox1.Controls.Add(this.WindowOption);
-            this.groupBox1.Location = new System.Drawing.Point(207, 289);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(282, 244);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(161, 69);
             this.groupBox1.TabIndex = 6;
@@ -176,44 +183,49 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 117);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(278, 77);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Model name:";
             // 
             // lengthLabel
             // 
             this.lengthLabel.AutoSize = true;
-            this.lengthLabel.Location = new System.Drawing.Point(80, 159);
+            this.lengthLabel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lengthLabel.Location = new System.Drawing.Point(278, 121);
             this.lengthLabel.Name = "lengthLabel";
-            this.lengthLabel.Size = new System.Drawing.Size(43, 13);
+            this.lengthLabel.Size = new System.Drawing.Size(63, 20);
             this.lengthLabel.TabIndex = 8;
             this.lengthLabel.Text = "Length:";
             // 
             // heightLabel
             // 
             this.heightLabel.AutoSize = true;
-            this.heightLabel.Location = new System.Drawing.Point(80, 200);
+            this.heightLabel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heightLabel.Location = new System.Drawing.Point(278, 162);
             this.heightLabel.Name = "heightLabel";
-            this.heightLabel.Size = new System.Drawing.Size(41, 13);
+            this.heightLabel.Size = new System.Drawing.Size(60, 20);
             this.heightLabel.TabIndex = 9;
             this.heightLabel.Text = "Height:";
             // 
             // heightAboveFloorLabel
             // 
             this.heightAboveFloorLabel.AutoSize = true;
-            this.heightAboveFloorLabel.Location = new System.Drawing.Point(80, 242);
+            this.heightAboveFloorLabel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heightAboveFloorLabel.Location = new System.Drawing.Point(278, 204);
             this.heightAboveFloorLabel.Name = "heightAboveFloorLabel";
-            this.heightAboveFloorLabel.Size = new System.Drawing.Size(97, 13);
+            this.heightAboveFloorLabel.Size = new System.Drawing.Size(151, 20);
             this.heightAboveFloorLabel.TabIndex = 10;
             this.heightAboveFloorLabel.Text = "Height above floor:";
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(419, 400);
+            this.createButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createButton.Location = new System.Drawing.Point(356, 350);
             this.createButton.Name = "createButton";
-            this.createButton.Size = new System.Drawing.Size(162, 23);
+            this.createButton.Size = new System.Drawing.Size(162, 41);
             this.createButton.TabIndex = 11;
             this.createButton.Text = "Create";
             this.createButton.UseVisualStyleBackColor = true;
@@ -222,7 +234,7 @@
             // msgLabel
             // 
             this.msgLabel.AutoSize = true;
-            this.msgLabel.Location = new System.Drawing.Point(127, 408);
+            this.msgLabel.Location = new System.Drawing.Point(328, 365);
             this.msgLabel.Name = "msgLabel";
             this.msgLabel.Size = new System.Drawing.Size(0, 13);
             this.msgLabel.TabIndex = 12;
@@ -230,7 +242,7 @@
             // msgName
             // 
             this.msgName.AutoSize = true;
-            this.msgName.Location = new System.Drawing.Point(432, 117);
+            this.msgName.Location = new System.Drawing.Point(636, 82);
             this.msgName.Name = "msgName";
             this.msgName.Size = new System.Drawing.Size(0, 13);
             this.msgName.TabIndex = 13;
@@ -238,7 +250,7 @@
             // msgLength
             // 
             this.msgLength.AutoSize = true;
-            this.msgLength.Location = new System.Drawing.Point(374, 159);
+            this.msgLength.Location = new System.Drawing.Point(583, 126);
             this.msgLength.Name = "msgLength";
             this.msgLength.Size = new System.Drawing.Size(0, 13);
             this.msgLength.TabIndex = 14;
@@ -246,7 +258,7 @@
             // msgHeight
             // 
             this.msgHeight.AutoSize = true;
-            this.msgHeight.Location = new System.Drawing.Point(374, 200);
+            this.msgHeight.Location = new System.Drawing.Point(583, 167);
             this.msgHeight.Name = "msgHeight";
             this.msgHeight.Size = new System.Drawing.Size(0, 13);
             this.msgHeight.TabIndex = 15;
@@ -254,15 +266,29 @@
             // msgHightAboveFloor
             // 
             this.msgHightAboveFloor.AutoSize = true;
-            this.msgHightAboveFloor.Location = new System.Drawing.Point(374, 242);
+            this.msgHightAboveFloor.Location = new System.Drawing.Point(583, 209);
             this.msgHightAboveFloor.Name = "msgHightAboveFloor";
             this.msgHightAboveFloor.Size = new System.Drawing.Size(0, 13);
             this.msgHightAboveFloor.TabIndex = 16;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
+            this.label2.Location = new System.Drawing.Point(352, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(166, 23);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Create Template";
+            this.label2.UseMnemonic = false;
             // 
             // CreateTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.msgHightAboveFloor);
             this.Controls.Add(this.msgHeight);
             this.Controls.Add(this.msgLength);
@@ -309,5 +335,6 @@
         private System.Windows.Forms.Label msgLength;
         private System.Windows.Forms.Label msgHeight;
         private System.Windows.Forms.Label msgHightAboveFloor;
+        private System.Windows.Forms.Label label2;
     }
 }

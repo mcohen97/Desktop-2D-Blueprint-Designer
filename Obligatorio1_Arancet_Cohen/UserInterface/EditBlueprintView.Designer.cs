@@ -23,7 +23,7 @@
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.ToolsPanel = new System.Windows.Forms.Panel();
             this.cmbGridLines = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblOpeningLength = new System.Windows.Forms.Label();
@@ -62,31 +62,30 @@
             this.lblColumnsTotalCost = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnSign = new System.Windows.Forms.Button();
-            this.ButtonsPanel.SuspendLayout();
+            this.ToolsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ButtonsPanel
+            // ToolsPanel
             // 
-            this.ButtonsPanel.BackColor = System.Drawing.Color.White;
-            this.ButtonsPanel.Controls.Add(this.cmbGridLines);
-            this.ButtonsPanel.Controls.Add(this.label6);
-            this.ButtonsPanel.Controls.Add(this.lblOpeningLength);
-            this.ButtonsPanel.Controls.Add(this.label4);
-            this.ButtonsPanel.Controls.Add(this.btnOpeningTool);
-            this.ButtonsPanel.Controls.Add(this.cmbTemplates);
-            this.ButtonsPanel.Controls.Add(this.btnColumnTool);
-            this.ButtonsPanel.Controls.Add(this.btnExportBlueprint);
-            this.ButtonsPanel.Controls.Add(this.btnEraserTool);
-            this.ButtonsPanel.Controls.Add(this.btnWallTool);
-            this.ButtonsPanel.Controls.Add(this.label2);
-            this.ButtonsPanel.Controls.Add(this.btnPointerTool);
-            this.ButtonsPanel.Controls.Add(this.btnZoomIn);
-            this.ButtonsPanel.Controls.Add(this.btnZoomOut);
-            this.ButtonsPanel.Location = new System.Drawing.Point(3, 3);
-            this.ButtonsPanel.Name = "ButtonsPanel";
-            this.ButtonsPanel.Size = new System.Drawing.Size(211, 450);
-            this.ButtonsPanel.TabIndex = 0;
+            this.ToolsPanel.BackColor = System.Drawing.Color.White;
+            this.ToolsPanel.Controls.Add(this.cmbGridLines);
+            this.ToolsPanel.Controls.Add(this.label6);
+            this.ToolsPanel.Controls.Add(this.lblOpeningLength);
+            this.ToolsPanel.Controls.Add(this.label4);
+            this.ToolsPanel.Controls.Add(this.btnOpeningTool);
+            this.ToolsPanel.Controls.Add(this.cmbTemplates);
+            this.ToolsPanel.Controls.Add(this.btnColumnTool);
+            this.ToolsPanel.Controls.Add(this.btnEraserTool);
+            this.ToolsPanel.Controls.Add(this.btnWallTool);
+            this.ToolsPanel.Controls.Add(this.label2);
+            this.ToolsPanel.Controls.Add(this.btnPointerTool);
+            this.ToolsPanel.Controls.Add(this.btnZoomIn);
+            this.ToolsPanel.Controls.Add(this.btnZoomOut);
+            this.ToolsPanel.Location = new System.Drawing.Point(3, 3);
+            this.ToolsPanel.Name = "ToolsPanel";
+            this.ToolsPanel.Size = new System.Drawing.Size(211, 450);
+            this.ToolsPanel.TabIndex = 0;
             // 
             // cmbGridLines
             // 
@@ -121,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(32, 329);
+            this.label4.Location = new System.Drawing.Point(33, 329);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 16);
             this.label4.TabIndex = 21;
@@ -162,7 +161,7 @@
             // btnExportBlueprint
             // 
             this.btnExportBlueprint.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportBlueprint.Location = new System.Drawing.Point(45, 409);
+            this.btnExportBlueprint.Location = new System.Drawing.Point(42, 416);
             this.btnExportBlueprint.Name = "btnExportBlueprint";
             this.btnExportBlueprint.Size = new System.Drawing.Size(123, 31);
             this.btnExportBlueprint.TabIndex = 17;
@@ -325,7 +324,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(81, 33);
+            this.label1.Location = new System.Drawing.Point(67, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 21);
             this.label1.TabIndex = 7;
@@ -351,6 +350,7 @@
             this.InventoryPanel.Controls.Add(this.lblTotalPriceSum);
             this.InventoryPanel.Controls.Add(this.lblWindowsPrice);
             this.InventoryPanel.Controls.Add(this.lblDoorsPrice);
+            this.InventoryPanel.Controls.Add(this.btnExportBlueprint);
             this.InventoryPanel.Controls.Add(this.lblWallsPrice);
             this.InventoryPanel.Controls.Add(this.lblBeamsPrice);
             this.InventoryPanel.Controls.Add(this.label3);
@@ -421,7 +421,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
-            this.label3.Location = new System.Drawing.Point(46, 3);
+            this.label3.Location = new System.Drawing.Point(37, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 23);
             this.label3.TabIndex = 19;
@@ -431,7 +431,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(154, 33);
+            this.label5.Location = new System.Drawing.Point(140, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 21);
             this.label5.TabIndex = 18;
@@ -478,7 +478,7 @@
             // btnSign
             // 
             this.btnSign.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSign.Location = new System.Drawing.Point(50, 410);
+            this.btnSign.Location = new System.Drawing.Point(43, 380);
             this.btnSign.Name = "btnSign";
             this.btnSign.Size = new System.Drawing.Size(122, 30);
             this.btnSign.TabIndex = 28;
@@ -492,13 +492,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.BlueprintPanel);
             this.Controls.Add(this.InventoryPanel);
-            this.Controls.Add(this.ButtonsPanel);
+            this.Controls.Add(this.ToolsPanel);
             this.Name = "EditBlueprintView";
             this.Size = new System.Drawing.Size(884, 461);
             this.Load += new System.EventHandler(this.EditBlueprintView_Load);
             this.Leave += new System.EventHandler(this.EditBlueprintView_Leave);
-            this.ButtonsPanel.ResumeLayout(false);
-            this.ButtonsPanel.PerformLayout();
+            this.ToolsPanel.ResumeLayout(false);
+            this.ToolsPanel.PerformLayout();
             this.InventoryPanel.ResumeLayout(false);
             this.InventoryPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -507,7 +507,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel ButtonsPanel;
+        private System.Windows.Forms.Panel ToolsPanel;
         private System.Windows.Forms.Panel InventoryPanel;
         private System.Windows.Forms.Panel BlueprintPanel;
         private System.Windows.Forms.Button btnWallTool;
