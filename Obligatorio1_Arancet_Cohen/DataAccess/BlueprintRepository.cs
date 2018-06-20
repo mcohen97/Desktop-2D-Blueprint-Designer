@@ -15,56 +15,47 @@ namespace DataAccess
     {
         public void Add(IBlueprint toStore)
         {
-            
-                //instantiate the translators.
                 BlueprintAndEntityConverter blueprintTranslator = new BlueprintAndEntityConverter();
                 MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
-
-                //translate and add the blueprint.
                 BlueprintEntity converted = blueprintTranslator.BlueprintToEntiy(toStore);
-             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
-            {
+                IEnumerable<ColumnEntity> convertedColumns = toStore.GetColumns().Select(c => materialTranslator.ColumnToEntity((Column)c, converted));
+                IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w, converted));
+                IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
+                ICollection<Opening> itsOpenings = toStore.GetOpenings();
+                AddBlueprintEntity(converted, convertedWalls, convertedColumns, itsOpenings, convertedSignatures);
+
+        }
+
+        private void AddBlueprintEntity(BlueprintEntity converted, IEnumerable<WallEntity> itsWalls,
+                                  IEnumerable<ColumnEntity> itsColumns, ICollection<Opening> itsOpenings, IEnumerable<SignatureEntity> itsSignatures) {
+
+         using (BlueBuilderDBContext context = new BlueBuilderDBContext()) {
                 context.Blueprints.Add(converted);
                 UserEntity owner = converted.Owner;
 
-                if (context.Users.Any(u=>u.UserName.Equals(owner.UserName)))
+                if (context.Users.Any(u => u.UserName.Equals(owner.UserName)))
                 {
                     context.Entry(converted.Owner).State = EntityState.Unchanged;
                 }
-                else {
-                    context.Entry(converted.Owner).State = EntityState.Added;
-                }
 
-                IEnumerable<ColumnEntity> convertedColumns = toStore.GetColumns().Select(c=> materialTranslator.ColumnToEntity((Column)c,converted));
-                context.Columns.AddRange(convertedColumns);
+                context.Columns.AddRange(itsColumns);
+                context.Walls.AddRange(itsWalls);
+                context.Signatures.AddRange(itsSignatures);
 
-                //translate and add its walls.
-                IEnumerable<WallEntity> convertedWalls = toStore.GetWalls().Select(w => materialTranslator.WallToEntity(w,converted));
-                context.Walls.AddRange(convertedWalls);
-
-                IEnumerable<SignatureEntity> convertedSignatures = toStore.GetSignatures().Select(s => blueprintTranslator.SignatureToEntity(s, converted));
-                context.Signatures.AddRange(convertedSignatures);
-                
-            foreach (Opening op in toStore.GetOpenings()) {
+                MaterialAndEntityConverter materialTranslator = new MaterialAndEntityConverter();
+                foreach (Opening op in itsOpenings)
+                {
                     string tempName = op.getTemplateName();
-                    OpeningTemplateEntity itsTemplate;
-
-                    if (context.OpeningTemplates.Any(t => t.Name.Equals(tempName)))
-                    {
-                        itsTemplate = context.OpeningTemplates
-                                .FirstOrDefault(t => t.Name.Equals(tempName));
-                    }
-                    else {
-                        itsTemplate = materialTranslator.GetTemplateFromOpening(op);
-                        context.OpeningTemplates.Add(itsTemplate);
-                    }
-                    OpeningEntity opRecord=materialTranslator.OpeningToEntity(op, itsTemplate, converted);
+                    OpeningTemplateEntity itsTemplate = context.OpeningTemplates
+                                        .FirstOrDefault(t => t.Name.Equals(tempName));
+                    
+                    OpeningEntity opRecord = materialTranslator.OpeningToEntity(op, itsTemplate, converted);
                     context.Openings.Add(opRecord);
-            }
+                }
                 context.SaveChanges();
             }
-           
         }
+        
 
         public void Clear()
         {

@@ -42,7 +42,7 @@ namespace Logic.Domain
 
         public bool IsWallsEmpty()
         {
-            return walls.Count == 0;//couln't find anything like isEmpty();
+            return walls.Count == 0;
         }
 
         public bool IsBeamsEmpty()
