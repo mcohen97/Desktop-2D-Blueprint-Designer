@@ -72,5 +72,15 @@ namespace UserInterface {
             } 
             return valid;
         }
+
+        public static bool ValidateStrictMinor(float value, float max, Label msgLabel, string errorMsg)
+        {
+            bool valid = value < max;
+            if (!valid)
+            {
+                ErrorMessage(msgLabel, errorMsg);
+            }
+            return valid;
+        }
     }
 }

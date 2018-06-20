@@ -41,6 +41,10 @@
             this.heightAboveFloorLabel = new System.Windows.Forms.Label();
             this.createButton = new System.Windows.Forms.Button();
             this.msgLabel = new System.Windows.Forms.Label();
+            this.msgName = new System.Windows.Forms.Label();
+            this.msgLength = new System.Windows.Forms.Label();
+            this.msgHeight = new System.Windows.Forms.Label();
+            this.msgHightAboveFloor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinnerHeightAboveFloor)).BeginInit();
@@ -54,6 +58,7 @@
             this.nameText.Size = new System.Drawing.Size(173, 20);
             this.nameText.TabIndex = 0;
             this.nameText.Enter += new System.EventHandler(this.nameText_Enter);
+            this.nameText.Leave += new System.EventHandler(this.nameText_Leave);
             // 
             // spinnerLength
             // 
@@ -83,6 +88,7 @@
             0,
             65536});
             this.spinnerLength.ValueChanged += new System.EventHandler(this.spinnerLength_ValueChanged);
+            this.spinnerLength.Enter += new System.EventHandler(this.spinnerLength_Enter);
             // 
             // spinnerHeight
             // 
@@ -221,10 +227,46 @@
             this.msgLabel.Size = new System.Drawing.Size(0, 13);
             this.msgLabel.TabIndex = 12;
             // 
+            // msgName
+            // 
+            this.msgName.AutoSize = true;
+            this.msgName.Location = new System.Drawing.Point(432, 117);
+            this.msgName.Name = "msgName";
+            this.msgName.Size = new System.Drawing.Size(0, 13);
+            this.msgName.TabIndex = 13;
+            // 
+            // msgLength
+            // 
+            this.msgLength.AutoSize = true;
+            this.msgLength.Location = new System.Drawing.Point(374, 159);
+            this.msgLength.Name = "msgLength";
+            this.msgLength.Size = new System.Drawing.Size(0, 13);
+            this.msgLength.TabIndex = 14;
+            // 
+            // msgHeight
+            // 
+            this.msgHeight.AutoSize = true;
+            this.msgHeight.Location = new System.Drawing.Point(374, 200);
+            this.msgHeight.Name = "msgHeight";
+            this.msgHeight.Size = new System.Drawing.Size(0, 13);
+            this.msgHeight.TabIndex = 15;
+            // 
+            // msgHightAboveFloor
+            // 
+            this.msgHightAboveFloor.AutoSize = true;
+            this.msgHightAboveFloor.Location = new System.Drawing.Point(374, 242);
+            this.msgHightAboveFloor.Name = "msgHightAboveFloor";
+            this.msgHightAboveFloor.Size = new System.Drawing.Size(0, 13);
+            this.msgHightAboveFloor.TabIndex = 16;
+            // 
             // CreateTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.msgHightAboveFloor);
+            this.Controls.Add(this.msgHeight);
+            this.Controls.Add(this.msgLength);
+            this.Controls.Add(this.msgName);
             this.Controls.Add(this.msgLabel);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.heightAboveFloorLabel);
@@ -263,5 +305,9 @@
         private System.Windows.Forms.Label heightAboveFloorLabel;
         private System.Windows.Forms.Button createButton;
         private System.Windows.Forms.Label msgLabel;
+        private System.Windows.Forms.Label msgName;
+        private System.Windows.Forms.Label msgLength;
+        private System.Windows.Forms.Label msgHeight;
+        private System.Windows.Forms.Label msgHightAboveFloor;
     }
 }

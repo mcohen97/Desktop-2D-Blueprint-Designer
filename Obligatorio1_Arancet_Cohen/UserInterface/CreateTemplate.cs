@@ -78,17 +78,10 @@ namespace UserInterface
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            string tempName = nameText.Text;
-            float length = (float)spinnerLength.Value;
-            float height = (float)spinnerHeight.Value;
-            float heightAboveFloor = (float)spinnerHeightAboveFloor.Value;
+            
             try
             {
-                Template created = new Template(tempName, length, heightAboveFloor, height, typeCreated);
-                IRepository<Template> templateStorage = new OpeningTemplateRepository();
-                templateStorage.Add(created);
-                mother.GoToMenu();
-
+                CreateTemplateAndSave();
             }
             catch (InvalidTemplateException ex) {
                 InputValidations.ErrorMessage(msgLabel, ex.ToString());
@@ -98,14 +91,54 @@ namespace UserInterface
             }
         }
 
+        private void CreateTemplateAndSave() {
+            
+            //the purpose of dataOk is the in-field message displays
+            if (DataOk())
+            {
+                string tempName = nameText.Text;
+                float length = (float)spinnerLength.Value;
+                float height = (float)spinnerHeight.Value;
+                float heightAboveFloor = (float)spinnerHeightAboveFloor.Value;
+                Template created = new Template(tempName, length, heightAboveFloor, height, typeCreated);
+                IRepository<Template> templateStorage = new OpeningTemplateRepository();
+                templateStorage.Add(created);
+                mother.GoToMenu();
+            }
+        }
+
+        private bool DataOk()
+        {
+            bool nameOk = InputValidations.ValidateIfEmpty(nameText, msgName);
+            float heightSums = (float)(spinnerHeightAboveFloor.Value + spinnerHeight.Value);
+            bool heightSumsOk = InputValidations.ValidateStrictMinor(heightSums, Constants.WALL_HEIGHT, msgHeight,
+                "height plus elevation can't be higher than wall: " + Constants.WALL_HEIGHT + " m");
+            bool allOk = nameOk && heightSumsOk;
+            return allOk;
+
+        }
+
+      
+
         private void nameText_Enter(object sender, EventArgs e)
         {
             ClearMessages();
+            InputValidations.ClearField(msgName);
         }
 
         private void spinnerLength_ValueChanged(object sender, EventArgs e)
         {
             ClearMessages();
+        }
+
+        private void nameText_Leave(object sender, EventArgs e)
+        {
+            InputValidations.ValidateIfEmpty(nameText, msgName);
+        }
+
+        private void spinnerLength_Enter(object sender, EventArgs e)
+        {
+            InputValidations.ClearField(msgHeight);
         }
     }
 }
