@@ -535,5 +535,15 @@ namespace ServicesTest
             int actualResult = materials.GetColumns().Count;
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+        [TestMethod]
+        public void SignBlueprintTest()
+        {
+            Session session = conn.LogIn("architect", "architect");
+            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest);
+            blueEditor.Sign();
+            Assert.AreEqual(1, blueprintTest.GetSignatures().Count);
+        }
+
     }
 }

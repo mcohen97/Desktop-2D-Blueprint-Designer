@@ -61,6 +61,7 @@
             this.lblColumnsTotalPrice = new System.Windows.Forms.Label();
             this.lblColumnsTotalCost = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnSign = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -343,6 +344,7 @@
             // InventoryPanel
             // 
             this.InventoryPanel.BackColor = System.Drawing.Color.White;
+            this.InventoryPanel.Controls.Add(this.btnSign);
             this.InventoryPanel.Controls.Add(this.lblColumnsTotalPrice);
             this.InventoryPanel.Controls.Add(this.lblColumnsTotalCost);
             this.InventoryPanel.Controls.Add(this.label9);
@@ -473,6 +475,17 @@
             this.label9.TabIndex = 25;
             this.label9.Text = "Columns:";
             // 
+            // btnSign
+            // 
+            this.btnSign.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSign.Location = new System.Drawing.Point(50, 410);
+            this.btnSign.Name = "btnSign";
+            this.btnSign.Size = new System.Drawing.Size(122, 30);
+            this.btnSign.TabIndex = 28;
+            this.btnSign.Text = "Sign Blueprint";
+            this.btnSign.UseVisualStyleBackColor = true;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
+            // 
             // EditBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +496,7 @@
             this.Name = "EditBlueprintView";
             this.Size = new System.Drawing.Size(884, 461);
             this.Load += new System.EventHandler(this.EditBlueprintView_Load);
+            this.Leave += new System.EventHandler(this.EditBlueprintView_Leave);
             this.ButtonsPanel.ResumeLayout(false);
             this.ButtonsPanel.PerformLayout();
             this.InventoryPanel.ResumeLayout(false);
@@ -531,5 +545,6 @@
         private System.Windows.Forms.Label lblColumnsTotalPrice;
         private System.Windows.Forms.Label lblColumnsTotalCost;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnSign;
     }
 }
