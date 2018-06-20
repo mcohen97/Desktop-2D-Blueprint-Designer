@@ -62,12 +62,12 @@ namespace UserInterface {
 
         }
 
-        internal void OpenBlueprintEditor(object selectedItem, Blueprint blueprint) {
+        internal void OpenBlueprintEditor(Blueprint blueprint) {
             dynamicPanel.Controls.Clear();
             dynamicPanel.Controls.Add(new EditBlueprintView(CurrentSession, this, blueprint));
         }
 
-        internal void OpenBlueprintViewer(object selectedItem, Blueprint blueprint) {
+        internal void OpenBlueprintViewer(Blueprint blueprint) {
             dynamicPanel.Controls.Clear();
             dynamicPanel.Controls.Add(new BlueprintViewer(CurrentSession, this, blueprint));
         }

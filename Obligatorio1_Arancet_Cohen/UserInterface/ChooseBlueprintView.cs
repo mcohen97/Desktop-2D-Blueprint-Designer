@@ -89,13 +89,13 @@ namespace UserInterface {
         private void selectButton_ClickEdit(object sender, EventArgs e) {
             Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
             //permissionController.
-            parent.OpenBlueprintEditor(selectedCopy.Owner,selectedCopy);
+            parent.OpenBlueprintEditor(selectedCopy);
         }
 
         private void selectButton_ClickView(object sender, EventArgs e) {
             Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
             //permissionController.
-            parent.OpenBlueprintViewer(selectedCopy.Owner, selectedCopy);
+            parent.OpenBlueprintViewer(selectedCopy);
         }
 
         private void selectButton_Click(object sender, EventArgs e) {
