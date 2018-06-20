@@ -112,6 +112,8 @@ namespace UserInterface
             Client c3 = new Client("Isabelle", "Gomes", "testClient3", "password", "9610-94-47", "Colombes 1092", "1.429.972-1", DateTime.Now);
             Designer d1 = new Designer("Fabrizio ", "Ferrari", "testDesigner1", "password", DateTime.Now);
             Designer d2 = new Designer("Nazzareno ", "Iadanza", "testDesigner2", "password", DateTime.Now);
+            Architect archy = new Architect("Gustave", "Eiffel", "testArchitect1", "password", DateTime.Now);
+            uAdministrator.Add(archy);
             uAdministrator.Add(c1);
             uAdministrator.Add(c2);
             uAdministrator.Add(c3);
@@ -120,10 +122,14 @@ namespace UserInterface
             fakeSession = connector.LogIn("testDesigner1", "password");
             BlueprintController bpController = new BlueprintController(fakeSession);
             Blueprint bp1 = new Blueprint(8, 8, "Mi tablero de ajedrez gigante");
+            bp1.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
+            bp1.Sign(archy);
             bp1.Owner = c1;
             Blueprint bp2 = new Blueprint(10, 10, "oficina nueva");
+            bp2.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
             bp2.Owner = c2;
             Blueprint bp3 = new Blueprint(6, 5, "Barbacoa en el fondo");
+            bp3.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(3, 1));
             bp3.Owner = c2;
             bpController.Add(bp1);
             bpController.Add(bp2);

@@ -31,13 +31,43 @@ namespace UserInterface {
         }
 
         private void FillList() {
+            ShowBlueprints();
+            EnableSignaturesIfApply();
+
+        }
+
+
+        private void ShowBlueprints() {
             ICollection<IBlueprint> selectedBlueprints;
-            if (IsDesigner()) {
+            if (IsArchitect())
+            {
                 selectedBlueprints = permissionController.GetBlueprints();
-            } else {
+            }
+            else if (IsDesigner()) {
+                selectedBlueprints = permissionController.GetBlueprints().Where(bp => !bp.IsSigned()).ToList();
+
+            }
+            else
+            {
                 selectedBlueprints = permissionController.GetBlueprints(CurrentSession.UserLogged);
             }
             blueprintList.DataSource = selectedBlueprints;
+
+        }
+
+
+        private void EnableSignaturesIfApply()
+        {
+            if (IsArchitect() || IsClient())
+            {
+                signaturesList.Show();
+                stateLabel.Show();
+                ShowSignatures();
+            }
+            else {
+                signaturesList.Hide();
+                stateLabel.Hide();
+            }
         }
 
         public Permission GetRequiredPermission() {
@@ -60,6 +90,14 @@ namespace UserInterface {
             return CurrentSession.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT);
         }
 
+        private bool IsArchitect() {
+            return CurrentSession.UserLogged.HasPermission(Permission.CAN_SIGN_BLUEPRINT);
+        }
+
+        private bool IsClient() {
+            return CurrentSession.UserLogged.HasPermission(Permission.HAVE_BLUEPRINT);
+        }
+
         public void SetSession(Session aSession) {
             CurrentSession = aSession;
         }
@@ -67,7 +105,7 @@ namespace UserInterface {
         
 
         private void SetButons() {
-            if (IsDesigner()) {
+            if (IsDesigner() || IsArchitect()) {
                 selectButton.Text = "Edit Blueprint";
                 deleteButton.Show();
                 selectButton.Click += new System.EventHandler(this.selectButton_ClickEdit);
@@ -100,6 +138,27 @@ namespace UserInterface {
 
         private void selectButton_Click(object sender, EventArgs e) {
 
+        }
+
+        private void blueprintList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (blueprintList.SelectedIndex != -1)
+            {
+                ShowSignatures();
+            }
+        }
+
+        private void ShowSignatures()
+        {
+            IBlueprint selected = (Blueprint)blueprintList.SelectedItem;
+            if (selected.IsSigned()) {
+                signaturesList.Show();
+                stateLabel.Text = "State: SIGNED";
+                signaturesList.DataSource = selected.GetSignatures();
+            } else {
+                signaturesList.Hide();
+                stateLabel.Text = "State: NO SIGNED";
+            }
         }
     }
 }

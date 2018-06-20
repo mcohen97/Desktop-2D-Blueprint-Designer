@@ -23,7 +23,6 @@ namespace UserInterface {
             availableViews = new List<IUserFeatureControl>() {
            new UserDataVerificationView(CurrentSession.UserLogged,mother),
            new ChooseBlueprintView(CurrentSession, this),
-           new NewEditBlueprintView(CurrentSession, this),
            new ManageCostsView(this),
            new CreateBlueprint(CurrentSession,this),
            new CreateTemplate(mother),
