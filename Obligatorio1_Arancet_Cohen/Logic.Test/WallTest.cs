@@ -138,14 +138,14 @@ namespace Logic.Test
 
 
         }
-        [TestMethod]
+       /* [TestMethod]
         public void GetIntersectionContinuousWalls()
         {
             Wall testWall = new Wall(new Point(3, 2), new Point(5, 4));
             Point expectedResult = new Point(3, 2);
             Point actualResult = instance.GetIntersection(testWall);
             Assert.AreEqual(expectedResult, actualResult);
-        }
+        }*/
 
         [TestMethod]
         [ExpectedException(typeof(CollinearWallsException))]

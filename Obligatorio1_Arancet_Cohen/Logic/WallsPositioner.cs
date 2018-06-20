@@ -83,15 +83,12 @@ namespace Logic.Domain
             {
                 FractionNewIntersectedWall(aWall);
             }
-            else if (Oversized(aWall))
-            {
-                InsertOversizedWall(aWall);
-            }
             else
             {
-                PlaceNewWall(aWall);
+                InsertUnintersectedWall(aWall);
             }
-        }
+            }
+
 
         private void FractionNewIntersectedWall(Wall aWall)
         {
@@ -105,6 +102,17 @@ namespace Logic.Domain
             {
                 intersectionPoints.Sort();
                 SplitWall(aWall, intersectionPoints);
+            }
+        }
+
+        private void InsertUnintersectedWall(Wall aWall) {
+            if (Oversized(aWall))
+            {
+                InsertOversizedWall(aWall);
+            }
+            else
+            {
+                PlaceNewWall(aWall);
             }
         }
 
@@ -161,13 +169,17 @@ namespace Logic.Domain
 
         private void SplitWall(Wall newWall, List<Point> intersectionPoints)
         {
-            CreateAndPlaceWall(newWall.Beginning(), intersectionPoints.First());
+            if (!newWall.Beginning().Equals(intersectionPoints.First()))
+            {
+                InsertUnintersectedWall(new Wall(newWall.Beginning(), intersectionPoints.First()));
+            }
             for (int i = 0; i < intersectionPoints.Count - 1; i++)
             {
                 CreateAndPlaceWall(intersectionPoints[i], intersectionPoints[i + 1]);
             }
-            CreateAndPlaceWall(intersectionPoints.Last(), newWall.End());
-
+            if (!intersectionPoints.Last().Equals(newWall.End())) {
+                CreateAndPlaceWall(intersectionPoints.Last(), newWall.End());
+            }
         }
 
         private void CreateAndPlaceWall(Point from, Point to)
@@ -261,7 +273,7 @@ namespace Logic.Domain
             }
             else
             {
-                PlaceNewWall(aWall);
+                InsertUnintersectedWall(aWall);
             }
 
         }

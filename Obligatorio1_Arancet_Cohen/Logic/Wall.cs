@@ -73,7 +73,11 @@ namespace Logic.Domain
 
         public bool DoesIntersect(Wall otherWall)
         {
+            return !IsConnected(otherWall) && CalculateIfIntersects(otherWall);
+            
+        }
 
+        private bool CalculateIfIntersects(Wall otherWall) {
             float[] equationVariables = AlfaNumerator_BetaNumerator_Denominator(otherWall);
 
             float alphaNumerator = equationVariables[0];
@@ -85,6 +89,7 @@ namespace Logic.Domain
             intersect &= CompareNumeratorWithDenominator(betaNumerator, denominator);
 
             return intersect;
+
         }
 
         public Point GetIntersection(Wall otherWall)
