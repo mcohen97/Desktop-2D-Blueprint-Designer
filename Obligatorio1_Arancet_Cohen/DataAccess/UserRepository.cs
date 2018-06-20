@@ -13,6 +13,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using DataAccessExceptions;
 using System.Data.Common;
+using System.Data.Entity.Core;
 
 namespace DataAccess
 {
@@ -222,7 +223,7 @@ namespace DataAccess
             try {
                 elegibleUsers = TryFilter(aCriteria);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
             return elegibleUsers;
@@ -249,7 +250,7 @@ namespace DataAccess
             {
                 TryModify(modified);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
         }

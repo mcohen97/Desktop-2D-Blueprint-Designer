@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 using DataAccessExceptions;
 using System.Linq.Expressions;
 using System.Data.Common;
+using System.Data.Entity.Core;
 
 namespace DataAccess
 {
@@ -22,7 +23,7 @@ namespace DataAccess
             {
                 TryAdding(entity);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
         }

@@ -10,6 +10,7 @@ using Entities;
 using System.Data.Entity;
 using System.Data.Common;
 using DataAccessExceptions;
+using System.Data.Entity.Core;
 
 namespace DataAccess
 {
@@ -178,7 +179,7 @@ namespace DataAccess
             {
                 themAll = TryGetAll();
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
             return themAll;
@@ -232,7 +233,8 @@ namespace DataAccess
             try {
                 blueprints = TryGettingBlueprintsOfUser(owner);
             }
-            catch (DbException) {
+            catch (EntityException)
+            {
                 throw new InaccessibleDataException();
             }
             return blueprints;

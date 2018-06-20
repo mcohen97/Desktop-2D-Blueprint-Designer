@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainRepositoryInterface;
 using Entities;
-using System.Data.Common;
 using DataAccessExceptions;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 
 namespace DataAccess
 {
@@ -18,7 +19,7 @@ namespace DataAccess
             try {
                 TryAddPrice(toSave);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
 
@@ -51,7 +52,7 @@ namespace DataAccess
             {
                 TryToClear();
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
         }
@@ -74,7 +75,7 @@ namespace DataAccess
             {
                 cost = TryGettingCost(componentType);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
             return cost;
@@ -84,7 +85,8 @@ namespace DataAccess
             float cost;
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                cost = context.CostsAndPrices.FirstOrDefault(cp => cp.ComponentType == componentType).Cost;
+               CostPriceEntity query = context.CostsAndPrices.FirstOrDefault(cp => cp.ComponentType == componentType);
+                cost = query.Cost;
             }
             return cost;
         }
@@ -95,7 +97,7 @@ namespace DataAccess
             try {
                 price = TryGettingPrice(componentType);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
             return price;
@@ -117,7 +119,7 @@ namespace DataAccess
             {
                 TrySettingCost(componentType, newCost);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
         }
@@ -137,7 +139,7 @@ namespace DataAccess
             {
                 TrySettingPrice(componentType, newPrice);
             }
-            catch (DbException) {
+            catch (EntityException) {
                 throw new InaccessibleDataException();
             }
         }
