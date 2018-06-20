@@ -38,7 +38,7 @@ namespace Services
 
         public ICollection<IBlueprint> GetBlueprints(User aUser)
         {
-            if (!Session.UserLogged.HasPermission(Permission.READ_OWNEDBLUEPRINT))
+            if (!Session.UserLogged.HasPermission(Permission.READ_BLUEPRINT))
             {
                 throw new NoPermissionsException();
             }
