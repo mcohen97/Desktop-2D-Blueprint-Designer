@@ -224,7 +224,7 @@ namespace ServicesTest
         public void GetUsersByPermissionNotAllowedTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("designer1UN", "designer1P");
+            Session aSession = conn.LogIn("client1UN", "client1P");
             UserAdministrator administrator = new UserAdministrator(aSession);
             ICollection<User> query = administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
 
