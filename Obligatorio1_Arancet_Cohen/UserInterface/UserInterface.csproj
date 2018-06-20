@@ -127,6 +127,12 @@
     <Compile Include="ManageCostsView.Designer.cs">
       <DependentUpon>ManageCostsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewEditBlueprintView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewEditBlueprintView.Designer.cs">
+      <DependentUpon>NewEditBlueprintView.cs</DependentUpon>
+    </Compile>
     <Compile Include="NoFlickerPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageCostsView.resx">
       <DependentUpon>ManageCostsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewEditBlueprintView.resx">
+      <DependentUpon>NewEditBlueprintView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
