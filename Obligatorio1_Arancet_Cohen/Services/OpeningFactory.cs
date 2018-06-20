@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ServicesExceptions;
 using DataAccessExceptions;
+using DataAccess;
 
 namespace Services
 {
@@ -15,6 +16,11 @@ namespace Services
         public OpeningFactory(IRepository<Template> repository)
         {
             this.templatesRepository = repository;
+        }
+
+        public OpeningFactory()
+        {
+            this.templatesRepository = new OpeningTemplateRepository();
         }
 
         public Opening CreateFromTemplate(Point position, string templateName)

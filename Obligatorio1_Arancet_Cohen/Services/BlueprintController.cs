@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ServicesExceptions;
 using Logic.Domain;
 using DataAccess;
+using RepositoryInterface;
 
 namespace Services
 {
@@ -74,5 +75,6 @@ namespace Services
             }
             aBlueprint.Sign(Session.UserLogged);
         }
+
     }
 }

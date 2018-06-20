@@ -36,7 +36,7 @@
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(120)))));
-            this.title.Location = new System.Drawing.Point(217, 13);
+            this.title.Location = new System.Drawing.Point(58, 28);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(206, 23);
             this.title.TabIndex = 1;
@@ -45,7 +45,7 @@
             // selectButton
             // 
             this.selectButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectButton.Location = new System.Drawing.Point(512, 356);
+            this.selectButton.Location = new System.Drawing.Point(353, 371);
             this.selectButton.Name = "selectButton";
             this.selectButton.Size = new System.Drawing.Size(142, 47);
             this.selectButton.TabIndex = 2;
@@ -56,7 +56,7 @@
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(221, 356);
+            this.deleteButton.Location = new System.Drawing.Point(62, 371);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(142, 47);
             this.deleteButton.TabIndex = 3;
@@ -69,7 +69,7 @@
             this.blueprintList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blueprintList.FormattingEnabled = true;
             this.blueprintList.ItemHeight = 16;
-            this.blueprintList.Location = new System.Drawing.Point(220, 42);
+            this.blueprintList.Location = new System.Drawing.Point(61, 57);
             this.blueprintList.Name = "blueprintList";
             this.blueprintList.Size = new System.Drawing.Size(434, 308);
             this.blueprintList.TabIndex = 4;
@@ -78,18 +78,21 @@
             // stateLabel
             // 
             this.stateLabel.AutoSize = true;
-            this.stateLabel.Location = new System.Drawing.Point(38, 53);
+            this.stateLabel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stateLabel.Location = new System.Drawing.Point(537, 35);
             this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(35, 13);
+            this.stateLabel.Size = new System.Drawing.Size(40, 16);
             this.stateLabel.TabIndex = 5;
             this.stateLabel.Text = "State:";
             // 
             // signaturesList
             // 
+            this.signaturesList.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signaturesList.FormattingEnabled = true;
-            this.signaturesList.Location = new System.Drawing.Point(41, 69);
+            this.signaturesList.ItemHeight = 16;
+            this.signaturesList.Location = new System.Drawing.Point(540, 57);
             this.signaturesList.Name = "signaturesList";
-            this.signaturesList.Size = new System.Drawing.Size(154, 238);
+            this.signaturesList.Size = new System.Drawing.Size(285, 308);
             this.signaturesList.TabIndex = 6;
             // 
             // ChooseBlueprintView

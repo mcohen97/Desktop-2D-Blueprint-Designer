@@ -68,7 +68,7 @@ namespace Logic.Domain
             bool existColumnInWallPlace = false;
             foreach (ISinglePointComponent column in materials.GetColumns())
             {
-                if (newWall.DoesContainComponent(column))
+                if (newWall.DoesContainComponent(column) || column.GetPosition().Equals(newWall.End()) || column.GetPosition().Equals(newWall.Beginning()))
                 {
                     existColumnInWallPlace = true;
                 }

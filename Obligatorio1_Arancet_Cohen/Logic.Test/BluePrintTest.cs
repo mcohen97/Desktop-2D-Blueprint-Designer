@@ -280,11 +280,11 @@ namespace Logic.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ColumnInPlaceException))]
         public void InsertWallInColumnPlaceBorderTest()
         {
             instance.InsertColumn(new Point(2, 3));
             instance.InsertWall(new Point(2, 3), new Point(2, 6));
-            Assert.AreEqual(1, instance.GetWalls().Count);
         }
 
         [TestMethod]
@@ -651,6 +651,14 @@ namespace Logic.Test
             int actualResult = instance.GetWalls().Count;
             Assert.AreEqual(expectedResult, actualResult);
 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ColumnInPlaceException))]
+        public void InsertBeamOnColumnTest()
+        {
+            instance.InsertColumn(new Point(1, 0));
+            instance.InsertWall(new Point(1, 0), new Point(1, 3));
         }
 
     }
