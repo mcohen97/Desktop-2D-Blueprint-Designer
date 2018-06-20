@@ -71,6 +71,7 @@
     <Compile Include="ChooseBlueprintView.Designer.cs">
       <DependentUpon>ChooseBlueprintView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CompleteLineGridPaint.cs" />
     <Compile Include="CreateBlueprint.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +96,7 @@
     <Compile Include="BlueprintView.Designer.cs">
       <DependentUpon>BlueprintView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DottedLineGridPaint.cs" />
     <Compile Include="EditBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +109,7 @@
     <Compile Include="GenericHome.Designer.cs">
       <DependentUpon>GenericHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridPaintStrategy.cs" />
     <Compile Include="InputValidations.cs" />
     <Compile Include="IUserFeatureControl.cs" />
     <Compile Include="LoggedInView.cs">
@@ -139,6 +142,7 @@
     <Compile Include="NoFlickerPanel.Designer.cs">
       <DependentUpon>NoFlickerPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoPaintedGridLinesStrategy.cs" />
     <Compile Include="PointConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

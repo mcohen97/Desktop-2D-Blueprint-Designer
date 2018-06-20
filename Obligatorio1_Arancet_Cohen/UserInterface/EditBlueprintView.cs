@@ -73,6 +73,12 @@ namespace UserInterface
             gridCellCountY = aBlueprint.Width;
             windowXBoundryInPixels = this.BlueprintPanel.Width;
             windowYBoundryInPixels = this.BlueprintPanel.Height;
+
+            ICollection<IGridPaintStrategy> gridPaintStrategies = new List<IGridPaintStrategy>();
+            gridPaintStrategies.Add(new CompleteLineGridPaint(gridLayer, gridCellCountX, gridCellCountY, gridLinesMarginToLayerInPixels));
+            gridPaintStrategies.Add(new DottedLineGridPaint(gridLayer, gridCellCountX, gridCellCountY, gridLinesMarginToLayerInPixels));
+            gridPaintStrategies.Add(new NoPaintedGridLinesStrategy());
+            cmbGridLines.DataSource = gridPaintStrategies;
             setUpDrawSurface(40);
 
             PaintWalls();
@@ -99,51 +105,37 @@ namespace UserInterface
         }
         private void calulateCostsAndPrices()
         {
-            /*float wallsCost = 0;
-            float beamsCost = 0;
-            float doorsCost = 0;
-            float windowsCost = 0;
-            float wallsPrice = 0;
-            float beamsPrice = 0;
-            float doorsPrice = 0;
-            float windowsPrice = 0;
+           BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
+            BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
+            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
 
-            foreach (Wall wall in selectedBluePrint.GetWalls()) {
-                wallsCost += wall.CalculateCost();
-                wallsPrice += wall.CalculatePrice();
-            }
-            foreach (Beam beam in selectedBluePrint.GetBeams()) {
-                beamsCost += beam.CalculateCost();
-                beamsPrice += beam.CalculatePrice();
-            }
-            foreach (Door door in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.DOOR)) {
-                doorsCost += door.CalculateCost();
-                doorsPrice += door.CalculatePrice();
-            }
-            foreach (Window window in selectedBluePrint.GetOpenings().Where(x => x.GetComponentType() == ComponentType.WINDOW)) {
-                windowsCost += window.CalculateCost();
-                windowsPrice += window.CalculatePrice();
-            }
+            lblWallsTotalCost.Text = costReport.GetTotalCost(ComponentType.WALL) + "";
+            lblBeamsTotalCost.Text = costReport.GetTotalCost(ComponentType.BEAM) + "";
+            lblDoorsTotalCost.Text = costReport.GetTotalCost(ComponentType.DOOR) + "";
+            lblWindowsTotalCost.Text = costReport.GetTotalCost(ComponentType.WINDOW) + "";
+            lblColumnsTotalCost.Text = costReport.GetTotalCost(ComponentType.COLUMN) + "";
+            lblTotalCostSum.Text = (costReport.GetTotalCost(ComponentType.WALL) + costReport.GetTotalCost(ComponentType.BEAM) + costReport.GetTotalCost(ComponentType.DOOR) + costReport.GetTotalCost(ComponentType.WINDOW)) + costReport.GetTotalCost(ComponentType.COLUMN) + "";
 
-            lblWallsTotalCost.Text = wallsCost + "";
-            lblBeamsTotalCost.Text = beamsCost + "";
-            lblDoorsTotalCost.Text = doorsCost + "";
-            lblWindowsTotalCost.Text = windowsCost + "";
-            lblTotalCostSum.Text = (wallsCost + beamsCost + doorsCost + windowsCost) + "";
-
-            lblWallsPrice.Text = wallsPrice + "";
-            lblBeamsPrice.Text = beamsPrice + "";
-            lblDoorsPrice.Text = doorsPrice + "";
-            lblWindowsPrice.Text = windowsPrice + "";
-            lblTotalPriceSum.Text = (wallsPrice + beamsPrice + doorsPrice + windowsPrice) + "";*/
+            lblWallsPrice.Text = priceReport.GetTotalPrice(ComponentType.WALL) + "";
+            lblBeamsPrice.Text = priceReport.GetTotalPrice(ComponentType.BEAM) + "";
+            lblDoorsPrice.Text = priceReport.GetTotalPrice(ComponentType.DOOR) + "";
+            lblWindowsPrice.Text = priceReport.GetTotalPrice(ComponentType.WINDOW) + "";
+            lblColumnsTotalPrice.Text = priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
+            lblTotalPriceSum.Text = (priceReport.GetTotalPrice(ComponentType.WALL) + priceReport.GetTotalPrice(ComponentType.BEAM) + priceReport.GetTotalPrice(ComponentType.DOOR) + priceReport.GetTotalPrice(ComponentType.WINDOW)) + priceReport.GetTotalPrice(ComponentType.COLUMN) + "";
+       
         }
 
 
         //Grid and panel config functions
         private void PaintGrid()
         {
-
-            using (Graphics graphics = Graphics.FromImage(gridLayer))
+            IGridPaintStrategy gridPainter = (IGridPaintStrategy)cmbGridLines.SelectedItem;
+            gridPainter.SetCountX(gridCellCountX);
+            gridPainter.SetCountY(gridCellCountY);
+            gridPainter.SetLayer(gridLayer);
+            gridPainter.SetMargin(gridLinesMarginToLayerInPixels);
+            gridPainter.PaintGrid();
+            /*using (Graphics graphics = Graphics.FromImage(gridLayer))
             {
                 for (int i = 0; i < gridCellCountY; i++)
                 {
@@ -154,7 +146,7 @@ namespace UserInterface
                     DrawGridVerticalLines(graphics, i);
                 }
                 DrawGridRightAndBottomLines(graphics);
-            }
+            }*/
             drawSurface.Invalidate();
         }
         private void DrawGridHorizontalLines(Graphics graphics, int axis)
@@ -799,6 +791,12 @@ namespace UserInterface
         private void cmbTemplates_SelectedValueChanged(object sender, EventArgs e)
         {
             lblOpeningLength.Text = ((Template)cmbTemplates.SelectedValue).Length.ToString();
+        }
+
+        private void cmbGridLines_SelectedValueChanged(object sender, EventArgs e)
+        {
+            setUpDrawSurface(cellSizeInPixels);
+
         }
     }
 }

@@ -24,6 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.cmbGridLines = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblOpeningLength = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnOpeningTool = new System.Windows.Forms.Button();
@@ -56,6 +58,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.BlueprintPanel = new System.Windows.Forms.Panel();
+            this.lblColumnsTotalPrice = new System.Windows.Forms.Label();
+            this.lblColumnsTotalCost = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.ButtonsPanel.SuspendLayout();
             this.InventoryPanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +68,8 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
+            this.ButtonsPanel.Controls.Add(this.cmbGridLines);
+            this.ButtonsPanel.Controls.Add(this.label6);
             this.ButtonsPanel.Controls.Add(this.lblOpeningLength);
             this.ButtonsPanel.Controls.Add(this.label4);
             this.ButtonsPanel.Controls.Add(this.btnOpeningTool);
@@ -80,11 +87,31 @@
             this.ButtonsPanel.Size = new System.Drawing.Size(211, 450);
             this.ButtonsPanel.TabIndex = 0;
             // 
+            // cmbGridLines
+            // 
+            this.cmbGridLines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGridLines.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGridLines.Location = new System.Drawing.Point(35, 149);
+            this.cmbGridLines.Name = "cmbGridLines";
+            this.cmbGridLines.Size = new System.Drawing.Size(146, 24);
+            this.cmbGridLines.TabIndex = 24;
+            this.cmbGridLines.SelectedValueChanged += new System.EventHandler(this.cmbGridLines_SelectedValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(81, 130);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 16);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Grid lines";
+            // 
             // lblOpeningLength
             // 
             this.lblOpeningLength.AutoSize = true;
             this.lblOpeningLength.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpeningLength.Location = new System.Drawing.Point(81, 268);
+            this.lblOpeningLength.Location = new System.Drawing.Point(81, 329);
             this.lblOpeningLength.Name = "lblOpeningLength";
             this.lblOpeningLength.Size = new System.Drawing.Size(0, 16);
             this.lblOpeningLength.TabIndex = 22;
@@ -93,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(33, 268);
+            this.label4.Location = new System.Drawing.Point(32, 329);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 16);
             this.label4.TabIndex = 21;
@@ -102,7 +129,7 @@
             // btnOpeningTool
             // 
             this.btnOpeningTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpeningTool.Location = new System.Drawing.Point(35, 218);
+            this.btnOpeningTool.Location = new System.Drawing.Point(35, 277);
             this.btnOpeningTool.Name = "btnOpeningTool";
             this.btnOpeningTool.Size = new System.Drawing.Size(146, 26);
             this.btnOpeningTool.TabIndex = 20;
@@ -112,8 +139,9 @@
             // 
             // cmbTemplates
             // 
+            this.cmbTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTemplates.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTemplates.Location = new System.Drawing.Point(35, 243);
+            this.cmbTemplates.Location = new System.Drawing.Point(35, 302);
             this.cmbTemplates.Name = "cmbTemplates";
             this.cmbTemplates.Size = new System.Drawing.Size(146, 24);
             this.cmbTemplates.TabIndex = 19;
@@ -122,7 +150,7 @@
             // btnColumnTool
             // 
             this.btnColumnTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnTool.Location = new System.Drawing.Point(35, 186);
+            this.btnColumnTool.Location = new System.Drawing.Point(35, 245);
             this.btnColumnTool.Name = "btnColumnTool";
             this.btnColumnTool.Size = new System.Drawing.Size(146, 26);
             this.btnColumnTool.TabIndex = 18;
@@ -155,7 +183,7 @@
             // btnWallTool
             // 
             this.btnWallTool.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWallTool.Location = new System.Drawing.Point(35, 154);
+            this.btnWallTool.Location = new System.Drawing.Point(35, 213);
             this.btnWallTool.Name = "btnWallTool";
             this.btnWallTool.Size = new System.Drawing.Size(146, 26);
             this.btnWallTool.TabIndex = 1;
@@ -210,7 +238,7 @@
             // lblTotalCostSum
             // 
             this.lblTotalCostSum.AutoSize = true;
-            this.lblTotalCostSum.Location = new System.Drawing.Point(82, 164);
+            this.lblTotalCostSum.Location = new System.Drawing.Point(82, 187);
             this.lblTotalCostSum.Name = "lblTotalCostSum";
             this.lblTotalCostSum.Size = new System.Drawing.Size(10, 13);
             this.lblTotalCostSum.TabIndex = 16;
@@ -220,7 +248,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(18, 164);
+            this.lblTotal.Location = new System.Drawing.Point(18, 187);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(37, 16);
             this.lblTotal.TabIndex = 15;
@@ -315,6 +343,9 @@
             // InventoryPanel
             // 
             this.InventoryPanel.BackColor = System.Drawing.Color.White;
+            this.InventoryPanel.Controls.Add(this.lblColumnsTotalPrice);
+            this.InventoryPanel.Controls.Add(this.lblColumnsTotalCost);
+            this.InventoryPanel.Controls.Add(this.label9);
             this.InventoryPanel.Controls.Add(this.lblTotalPriceSum);
             this.InventoryPanel.Controls.Add(this.lblWindowsPrice);
             this.InventoryPanel.Controls.Add(this.lblDoorsPrice);
@@ -341,7 +372,7 @@
             // lblTotalPriceSum
             // 
             this.lblTotalPriceSum.AutoSize = true;
-            this.lblTotalPriceSum.Location = new System.Drawing.Point(155, 164);
+            this.lblTotalPriceSum.Location = new System.Drawing.Point(155, 187);
             this.lblTotalPriceSum.Name = "lblTotalPriceSum";
             this.lblTotalPriceSum.Size = new System.Drawing.Size(10, 13);
             this.lblTotalPriceSum.TabIndex = 24;
@@ -414,6 +445,34 @@
             this.BlueprintPanel.Size = new System.Drawing.Size(450, 450);
             this.BlueprintPanel.TabIndex = 2;
             // 
+            // lblColumnsTotalPrice
+            // 
+            this.lblColumnsTotalPrice.AutoSize = true;
+            this.lblColumnsTotalPrice.Location = new System.Drawing.Point(155, 152);
+            this.lblColumnsTotalPrice.Name = "lblColumnsTotalPrice";
+            this.lblColumnsTotalPrice.Size = new System.Drawing.Size(10, 13);
+            this.lblColumnsTotalPrice.TabIndex = 27;
+            this.lblColumnsTotalPrice.Text = "-";
+            // 
+            // lblColumnsTotalCost
+            // 
+            this.lblColumnsTotalCost.AutoSize = true;
+            this.lblColumnsTotalCost.Location = new System.Drawing.Point(82, 152);
+            this.lblColumnsTotalCost.Name = "lblColumnsTotalCost";
+            this.lblColumnsTotalCost.Size = new System.Drawing.Size(10, 13);
+            this.lblColumnsTotalCost.TabIndex = 26;
+            this.lblColumnsTotalCost.Text = "-";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 152);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 16);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Columns:";
+            // 
             // EditBlueprintView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,5 +526,10 @@
         private System.Windows.Forms.ComboBox cmbTemplates;
         private System.Windows.Forms.Label lblOpeningLength;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbGridLines;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblColumnsTotalPrice;
+        private System.Windows.Forms.Label lblColumnsTotalCost;
+        private System.Windows.Forms.Label label9;
     }
 }
