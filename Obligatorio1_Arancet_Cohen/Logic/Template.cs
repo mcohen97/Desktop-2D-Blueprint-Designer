@@ -22,8 +22,8 @@ namespace Logic.Domain
                 throw new EmptyTemplateNameException();
             }
 
-            if (heightAboveFloor < 0) {
-                throw new InvalidTemplateDimensionException("Height above floor can't be negative");
+            if (heightAboveFloor < 0 || heightAboveFloor> Constants.MAX_HEIGHT_ABOVE_FLOOR) {
+                throw new InvalidTemplateDimensionException("Height above floor must be between "+0+" and "+Constants.MAX_HEIGHT_ABOVE_FLOOR);
             }
 
             if (height <= 0 || (height + heightAboveFloor) >= Constants.WALL_HEIGHT) {
@@ -37,8 +37,8 @@ namespace Logic.Domain
             if (type.Equals(ComponentType.DOOR) && heightAboveFloor > 0) {
                 throw new InvalidDoorTemplateException();
             }
-
-            this.name = name;
+            //a way to ignore cases in equal names.
+            this.name = name.ToUpper();
             this.length = length;
             this.heightAboveFloor = heightAboveFloor;
             this.height = height;
