@@ -108,36 +108,28 @@ namespace UserInterface {
             if (IsDesigner() || IsArchitect()) {
                 selectButton.Text = "Edit Blueprint";
                 deleteButton.Show();
-                selectButton.Click += new System.EventHandler(this.selectButton_ClickEdit);
-                selectButton.Click -= new System.EventHandler(this.selectButton_ClickView);
             } else {
                 selectButton.Text = "View Blueprint";
                 deleteButton.Hide();
-                selectButton.Click -= new System.EventHandler(this.selectButton_ClickEdit);
-                selectButton.Click += new System.EventHandler(this.selectButton_ClickView);
             }
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
             IBlueprint selected = (IBlueprint)blueprintList.SelectedItem;
-            permissionController.Remove(selected);
-            FillList();
-        }
-
-        private void selectButton_ClickEdit(object sender, EventArgs e) {
-            Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
-            //permissionController.
-            parent.OpenBlueprintEditor(selectedCopy);
-        }
-
-        private void selectButton_ClickView(object sender, EventArgs e) {
-            Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
-            //permissionController.
-            parent.OpenBlueprintViewer(selectedCopy);
+            if (selected != null)
+            {
+                permissionController.Remove(selected);
+                FillList();
+            }
         }
 
         private void selectButton_Click(object sender, EventArgs e) {
-
+            Blueprint selectedCopy = (Blueprint)blueprintList.SelectedItem;
+            //permissionController.
+            if (selectedCopy != null)
+            {
+                parent.OpenBlueprintViewer(selectedCopy);
+            }
         }
 
         private void blueprintList_SelectedIndexChanged(object sender, EventArgs e)

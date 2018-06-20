@@ -24,10 +24,10 @@ namespace Services
             }
         }
 
-        public BlueprintEditor(Session session, IBlueprint blueprintTest)
+        public BlueprintEditor(Session session, IBlueprint blueprint)
         {
             this.session = session;
-            this.blueprint = blueprintTest;
+            this.blueprint = blueprint;
             this.repository = new BlueprintRepository();
             HasBeenModify = false;
         }
@@ -115,6 +115,12 @@ namespace Services
             blueprint.RemoveColumn(columnPoint);
             repository.Modify(blueprint);
             HasBeenModify = true;
+        }
+
+        public ICollection<Template> GetTemplates()
+        {
+            IRepository<Template> repository = new OpeningTemplateRepository();
+            return repository.GetAll();
         }
     }
 }

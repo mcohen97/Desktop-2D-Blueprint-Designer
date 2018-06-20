@@ -214,6 +214,7 @@
             // 
             // createButton
             // 
+            this.createButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createButton.Location = new System.Drawing.Point(366, 390);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(141, 53);

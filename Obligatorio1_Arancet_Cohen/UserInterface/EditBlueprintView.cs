@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using Logic.Domain;
 using System.Drawing.Imaging;
 using Services;
-using DataAccess;
-using RepositoryInterface;
 
 namespace UserInterface
 {
@@ -39,7 +37,6 @@ namespace UserInterface
         private BlueprintEditor editor;
         private OpeningFactory openingFactory;
 
-
         private int gridCellCountX;
         private int gridCellCountY;
         private int cellSizeInPixels;
@@ -59,8 +56,7 @@ namespace UserInterface
 
             BlueprintPanel.Cursor = Cursors.Cross;
             editor = new BlueprintEditor(aSession, aBlueprint);
-            IRepository<Template> templateRepository = new OpeningTemplateRepository();
-            openingFactory = new OpeningFactory(templateRepository);
+            openingFactory = new OpeningFactory();
 
             wallPen = new Pen(Brushes.Black, 5);
             beamPen = new Pen(Brushes.DarkRed, 8);
@@ -88,11 +84,16 @@ namespace UserInterface
             PaintColumns();
             calulateCostsAndPrices();
             ShowOrHideSignButton();
+            ShowOrHideTools();
 
-            ICollection<Template> templatesInDB = templateRepository.GetAll();
+            ICollection<Template> templatesInDB = editor.GetTemplates();
             cmbTemplates.DataSource = templatesInDB;
         }
 
+        private void ShowOrHideTools()
+        {
+            ToolsPanel.Visible = CurrentSession.UserLogged.HasPermission(Permission.EDIT_BLUEPRINT);
+        }
         private void ShowOrHideSignButton()
         {
             btnSign.Visible = CurrentSession.UserLogged.HasPermission(Permission.CAN_SIGN_BLUEPRINT);
@@ -251,8 +252,11 @@ namespace UserInterface
             System.Drawing.Point point = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
             Logic.Domain.Point openingPoint = DrawablePointIntoLogicPoint(point);
             Template selectedTemplate = (Template)cmbTemplates.SelectedItem;
-            Opening newOpening = openingFactory.CreateFromTemplate(openingPoint, selectedTemplate.Name);
-            InsertAndDrawOpening(newOpening);
+            if (selectedTemplate != null)
+            {
+                Opening newOpening = openingFactory.CreateFromTemplate(openingPoint, selectedTemplate.Name);
+                InsertAndDrawOpening(newOpening);
+            }
         }
         private void InsertAndDrawOpening(Opening newOpening)
         {
@@ -584,10 +588,20 @@ namespace UserInterface
         {
             using (Graphics graphics = Graphics.FromImage(columnsLayer))
             {
-                System.Drawing.Point drawPoint = LogicPointIntoDrawablePoint(column.GetPosition());
-                graphics.DrawString("■", DefaultFont, columnPen.Brush, drawPoint.X - 7, drawPoint.Y - 5);
+                System.Drawing.Point center = LogicPointIntoDrawablePoint(column.GetPosition());
+                int halfLengthInPixels = Convert.ToInt32((column.Length() * cellSizeInPixels) / 2);
+                System.Drawing.Point[] points = {
+                            new System.Drawing.Point(center.X+halfLengthInPixels, center.Y+halfLengthInPixels),
+                            new System.Drawing.Point(center.X-halfLengthInPixels, center.Y+halfLengthInPixels),
+                            new System.Drawing.Point(center.X-halfLengthInPixels, center.Y-halfLengthInPixels),
+                            new System.Drawing.Point(center.X+halfLengthInPixels, center.Y-halfLengthInPixels)
+
+                        };
+                graphics.DrawPolygon(columnPen, points);
+                graphics.FillPolygon(columnPen.Brush, points);
             }
         }
+       
 
 
         private void CreateOrRecreateLayer(ref Bitmap layer)
@@ -646,8 +660,14 @@ namespace UserInterface
             drawSurface.MouseClick += new MouseEventHandler(drawSurface_MouseClickInsertOpening);
             btnOpeningTool.Enabled = false;
         }
-
-
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+            setUpDrawSurface(cellSizeInPixels + 10);
+        }
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+            setUpDrawSurface(cellSizeInPixels - 10);
+        }
         private void RemoveEveryHandler()
         {
             drawSurface.MouseClick -= new MouseEventHandler(drawSurface_MouseClickStartWall);
@@ -700,16 +720,7 @@ namespace UserInterface
             }
         }
 
-        private void btnZoomIn_Click(object sender, EventArgs e)
-        {
-            setUpDrawSurface(cellSizeInPixels + 10);
-        }
-
-        private void btnZoomOut_Click(object sender, EventArgs e)
-        {
-            setUpDrawSurface(cellSizeInPixels - 10);
-        }
-
+       
         private void setUpDrawSurface(int cellSize)
         {
             if (BlueprintPanel.Controls.Contains(drawSurface))
@@ -723,17 +734,7 @@ namespace UserInterface
             int cellSizeInPixelsY = (windowXBoundryInPixels - 2 * drawSurfaceMarginToWindowInPixels) / gridCellCountY;
             int drawSurfaceSizeX = cellSizeInPixels * gridCellCountX;
             int drawSurfaceSizeY = cellSizeInPixels * gridCellCountY;
-
-            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
-            CreateOrRecreateLayer(ref gridLayer);
-            PaintGrid();
-            CreateOrRecreateLayer(ref wallsLayer);
-            CreateOrRecreateLayer(ref beamsLayer);
-            CreateOrRecreateLayer(ref openingLayer);
-            CreateOrRecreateLayer(ref columnsLayer);
-            CreateOrRecreateLayer(ref currentLineLayer);
-            CreateOrRecreateLayer(ref currentPointLayer);
-
+            CreateOrRecreateLayers(drawSurfaceSizeX, drawSurfaceSizeY);
             BlueprintPanel.Refresh();
 
             PaintWalls();
@@ -744,7 +745,18 @@ namespace UserInterface
             drawSurface.MouseMove += new MouseEventHandler(drawSurface_MouseMoveShowSelectedPoint);
             EnableEveryTool();
         }
-
+        private void CreateOrRecreateLayers(int drawSurfaceSizeX, int drawSurfaceSizeY)
+        {
+            CreateDrawSurface(drawSurfaceSizeX, drawSurfaceSizeY);
+            CreateOrRecreateLayer(ref gridLayer);
+            PaintGrid();
+            CreateOrRecreateLayer(ref wallsLayer);
+            CreateOrRecreateLayer(ref beamsLayer);
+            CreateOrRecreateLayer(ref openingLayer);
+            CreateOrRecreateLayer(ref columnsLayer);
+            CreateOrRecreateLayer(ref currentLineLayer);
+            CreateOrRecreateLayer(ref currentPointLayer);
+        }
         private int ValidateCellSize(int cellSize)
         {
             int returnedCellSize = cellSize;
@@ -764,7 +776,6 @@ namespace UserInterface
             lblOpeningLength.Text = template.Length.ToString();
             cmbTemplates.SelectedItem = template;
         }
-
         private void cmbTemplates_SelectedValueChanged(object sender, EventArgs e)
         {
             lblOpeningLength.Text = ((Template)cmbTemplates.SelectedValue).Length.ToString();
@@ -776,17 +787,16 @@ namespace UserInterface
 
         }
 
+        //Signment
         private void btnSign_Click(object sender, EventArgs e)
         {
             editor.Sign();
             parent.RestartMenu();
         }
-
         private void EditBlueprintView_Leave(object sender, EventArgs e)
         {
             CheckSignment();
         }
-
         public void CheckSignment()
         {
 
@@ -795,7 +805,6 @@ namespace UserInterface
                 editor.Sign();
             }
         }
-
         public void CheckSignmentEventHandler(object sender, EventArgs e)
         {
             CheckSignment();
