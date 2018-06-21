@@ -27,7 +27,7 @@ namespace Logic.Domain
         private MaterialContainer materials;
 
         private WallsPositioner wallsManager;
-        private PunctualComponentPositioner openingsManager;
+        private PunctualComponentPositioner punctualComponentManager;
 
         private User owner;
         public override User Owner { get { return owner; } set { SetOwner(value); } }
@@ -40,8 +40,8 @@ namespace Logic.Domain
             materials = new MaterialContainer();
             signatures = new List<Signature>();
             id = Guid.NewGuid();
-            openingsManager = new PunctualComponentPositioner(materials, Width, Length);
-            wallsManager = new WallsPositioner(materials, openingsManager, Width, Length);
+            punctualComponentManager = new PunctualComponentPositioner(materials, Width, Length);
+            wallsManager = new WallsPositioner(materials, punctualComponentManager, Width, Length);
         }
 
         public Blueprint(int aLength, int aWidth, string aName, MaterialContainer container)
@@ -52,8 +52,8 @@ namespace Logic.Domain
             materials = container;
             signatures = new List<Signature>();
             id = Guid.NewGuid();
-            openingsManager = new PunctualComponentPositioner(materials, Width, Length);
-            wallsManager = new WallsPositioner(materials, openingsManager, Width, Length);
+            punctualComponentManager = new PunctualComponentPositioner(materials, Width, Length);
+            wallsManager = new WallsPositioner(materials, punctualComponentManager, Width, Length);
         }
 
         public Blueprint(int aLength, int aWidth, string aName, User anOwner, MaterialContainer container, ICollection<Signature> someSignatures, Guid anId)
@@ -65,8 +65,8 @@ namespace Logic.Domain
             signatures = someSignatures;
             materials = container;
             id = anId;
-            openingsManager = new PunctualComponentPositioner(materials, Width, Length);
-            wallsManager = new WallsPositioner(materials, openingsManager, Width, Length);
+            punctualComponentManager = new PunctualComponentPositioner(materials, Width, Length);
+            wallsManager = new WallsPositioner(materials, punctualComponentManager, Width, Length);
         }
 
         private void SetName(string aName)
@@ -117,22 +117,22 @@ namespace Logic.Domain
 
         public override void InsertOpening(Opening newOpening)
         {
-            openingsManager.InsertOpening(newOpening);
+            punctualComponentManager.InsertOpening(newOpening);
         }
 
         public override void InsertColumn(Point columnPosition)
         {
-            openingsManager.InsertColumn(columnPosition);
+            punctualComponentManager.InsertColumn(columnPosition);
         }
 
         public override void RemoveColumn(Point columnPosition)
         {
-            openingsManager.RemoveColumn(columnPosition);
+            punctualComponentManager.RemoveColumn(columnPosition);
         }
 
         public override void RemoveOpening(Opening anOpening)
         {
-            openingsManager.RemoveOpening(anOpening);
+            punctualComponentManager.RemoveOpening(anOpening);
         }
 
         public override ICollection<Wall> GetWalls()
