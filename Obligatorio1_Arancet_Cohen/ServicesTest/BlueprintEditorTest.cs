@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Logic;
 using System.Linq;
 using LogicExceptions;
+using DomainRepositoryInterface;
 
 namespace ServicesTest
 {
@@ -41,8 +42,9 @@ namespace ServicesTest
             blueprintPortfolio.Clear();
 
             conn = new SessionConnector();
-            Session session = conn.LogIn("admin", "admin");
-            administrator = new UserAdministrator(session);
+
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)repository);
+            administrator = new UserAdministrator(session,repository);
 
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
@@ -64,7 +66,7 @@ namespace ServicesTest
             administrator.Add(user3);
             administrator.Add(user4);
             administrator.Add(architect);
-    
+
         }
 
         [TestCleanup]
@@ -76,8 +78,9 @@ namespace ServicesTest
 
         private void initializerWithData()
         {
-            Session session = conn.LogIn("designer3", "12345");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer3", "12345", (IUserRepository)repository);
+            IRepository<IBlueprint> blueprintStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session, blueprintStorage);
             controller.Add(blueprintTest);
             controller.Add(blueprint2);
             controller.Add(blueprint3);
@@ -85,18 +88,20 @@ namespace ServicesTest
 
         private BlueprintEditor GetInstance()
         {
-            Session session = conn.LogIn("designer3", "12345");
-            BlueprintEditor newInstance = new BlueprintEditor(session, blueprintTest);
+            Session session = conn.LogIn("designer3", "12345", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintEditor newInstance = new BlueprintEditor(session, blueprintTest, bpStorage);
             return newInstance;
         }
 
         [TestMethod]
         public void ConstructorTest()
         {
-            Session session = conn.LogIn("designer3", "12345");
-            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest);
+            Session session = conn.LogIn("designer3", "12345", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest, bpStorage);
             Assert.IsNotNull(blueEditor);
-        }
+        } 
 
         [TestMethod]
         public void SetOwnerTest()
@@ -539,8 +544,10 @@ namespace ServicesTest
         [TestMethod]
         public void SignBlueprintTest()
         {
-            Session session = conn.LogIn("architect", "architect");
-            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest);
+            IUserRepository users = new UserRepository();
+            Session session = conn.LogIn("architect", "architect",users);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest,bpStorage);
             blueEditor.Sign();
             Assert.AreEqual(1, blueprintTest.GetSignatures().Count);
         }
@@ -550,8 +557,9 @@ namespace ServicesTest
         public void GetOpeningTemplatesTest()
         {
             initializerWithData();
-            Session session = conn.LogIn("architect", "architect");
-            BlueprintEditor editor = new BlueprintEditor(session, blueprintTest);
+            Session session = conn.LogIn("architect", "architect", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintEditor editor = new BlueprintEditor(session, blueprintTest,bpStorage);
             ICollection<Template> templates = editor.GetTemplates();
             Assert.IsNotNull(templates);
         }

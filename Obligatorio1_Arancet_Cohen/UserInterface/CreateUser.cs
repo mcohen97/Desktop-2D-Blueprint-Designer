@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using Services;
+using RepositoryInterface;
+using DataAccess;
 
 namespace UserInterface {
     public partial class CreateUser : UserControl {
@@ -22,7 +24,8 @@ namespace UserInterface {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            permissionController = new UserAdministrator(CurrentSession);
+            IRepository<User> userStorage = new UserRepository();
+            permissionController = new UserAdministrator(CurrentSession,userStorage);
             particularFeature = aFeature;
             ShowExtraFields();
         }

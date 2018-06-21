@@ -4,17 +4,19 @@ using ServicesExceptions;
 using Logic.Domain;
 using DataAccess;
 using RepositoryInterface;
+using DomainRepositoryInterface;
 
 namespace Services
 {
     public class BlueprintController
     {
         public Session Session { get; }
-        
+        private IRepository<IBlueprint> repository;
 
-        public BlueprintController(Session session)
+        public BlueprintController(Session session, IRepository<IBlueprint> aRepository )
         {
             this.Session = session;
+            this.repository = aRepository;
         }
 
         public void Add(IBlueprint aBlueprint)
@@ -23,7 +25,6 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            BlueprintRepository repository = new BlueprintRepository();
             repository.Add(aBlueprint);
         }
 
@@ -33,7 +34,6 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            BlueprintRepository repository = new BlueprintRepository();
             return repository.Exists(aBlueprint);
         }
 
@@ -43,8 +43,7 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            BlueprintRepository repository = new BlueprintRepository();
-            return repository.GetBlueprintsOfUser(aUser);
+            return ((IBlueprintRepository)repository).GetBlueprintsOfUser(aUser);
         }
 
         public ICollection<IBlueprint> GetBlueprints()
@@ -53,17 +52,15 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            BlueprintRepository repository = new BlueprintRepository();
             return repository.GetAll();
         }
 
         public void Remove(IBlueprint aBlueprint)
         {
             if (!Session.UserLogged.HasPermission(Permission.CREATE_BLUEPRINT))
-            {//you cant destroy what you did not create
+            {
                 throw new NoPermissionsException();
             }
-            BlueprintRepository repository = new BlueprintRepository();
             repository.Delete(aBlueprint);
         }
 
@@ -74,6 +71,7 @@ namespace Services
                 throw new NoPermissionsException();
             }
             aBlueprint.Sign(Session.UserLogged);
+            repository.Modify(aBlueprint);
         }
 
     }

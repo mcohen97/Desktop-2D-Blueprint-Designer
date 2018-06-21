@@ -21,12 +21,13 @@ namespace ServicesTest
         public void SetUp()
         {
             connector = new SessionConnector();
-            Session aSession = connector.LogIn("admin", "admin");
-            costsNPrices = new CostsAndPricesManager(aSession);
+            IUserRepository users = new UserRepository();
+            Session aSession = connector.LogIn("admin", "admin",users);
+            storage = new PriceCostRepository();
+            costsNPrices = new CostsAndPricesManager(aSession,storage);
             reporter = new BlueprintReportGenerator();
             toReport = new Blueprint(10,10,"TestBlueprint");
-            SetBlueprint();
-            storage = new PriceCostRepository();
+            SetBlueprint();          
             AddPrices();
             
 
@@ -55,7 +56,8 @@ namespace ServicesTest
 
         [TestMethod]
         public void GetPriceWallsTest() {
-            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport,pricesNcosts);
             float expectedResult = 1000;
             float actualResult = report.GetTotalPrice(ComponentType.WALL);
             Assert.AreEqual(expectedResult, actualResult);
@@ -63,7 +65,8 @@ namespace ServicesTest
 
         [TestMethod]
         public void GetPriceBeamsTest() {
-            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport, pricesNcosts);
             float expectedResult = 225;
             float actualResult = report.GetTotalPrice(ComponentType.BEAM);
             Assert.AreEqual(expectedResult, actualResult);
@@ -71,7 +74,8 @@ namespace ServicesTest
 
         [TestMethod]
         public void GetPriceColumnsTest() {
-            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport, pricesNcosts);
             float expectedResult = 150;
             float actualResult = report.GetTotalPrice(ComponentType.COLUMN);
             Assert.AreEqual(expectedResult, actualResult);
@@ -80,7 +84,8 @@ namespace ServicesTest
         [TestMethod]
         public void GetPriceWindowsTest()
         {
-            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport, pricesNcosts);
             float expectedResult = 150;
             float actualResult = report.GetTotalPrice(ComponentType.WINDOW);
             Assert.AreEqual(expectedResult, actualResult);
@@ -89,7 +94,8 @@ namespace ServicesTest
         [TestMethod]
         public void GetPriceDoorsTest()
         {
-            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport report = reporter.GeneratePriceReport(toReport, pricesNcosts);
             float expectedResult = 0;
             float actualResult = report.GetTotalPrice(ComponentType.DOOR);
             Assert.AreEqual(expectedResult, actualResult);

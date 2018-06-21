@@ -13,13 +13,13 @@ namespace Services
     public class CostsAndPricesManager
     {
         private Session currentSession;
-
-        public CostsAndPricesManager(Session aSession) {
+        IPriceCostRepository catalog;
+        public CostsAndPricesManager(Session aSession, IPriceCostRepository aCatalog) {
             currentSession = aSession;
+            catalog = aCatalog;
         }
 
         public float GetPrice(int componentType) {
-            IPriceCostRepository catalog = new PriceCostRepository();
             return catalog.GetPrice(componentType);
         }
 
@@ -28,13 +28,11 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            IPriceCostRepository catalog = new PriceCostRepository();
             catalog.SetPrice(componentType, newPrice);
         }
 
         public float GetCost(int componentType)
         {
-            IPriceCostRepository catalog = new PriceCostRepository();
             return catalog.GetCost(componentType);
         }
 
@@ -44,7 +42,6 @@ namespace Services
             {
                 throw new NoPermissionsException();
             }
-            IPriceCostRepository catalog = new PriceCostRepository();
             catalog.SetCost(componentType, newCost);
         }
     }

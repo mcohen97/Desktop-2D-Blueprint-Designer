@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using Services;
+using DataAccess;
+using RepositoryInterface;
 
 namespace UserInterface {
     public partial class CreateBlueprint : UserControl, IUserFeatureControl {
@@ -21,7 +23,8 @@ namespace UserInterface {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            permissionController = new UserAdministrator(CurrentSession);
+            IRepository<User> usersStorage = new UserRepository();
+            permissionController = new UserAdministrator(CurrentSession,usersStorage);
         }
 
 
@@ -52,8 +55,8 @@ namespace UserInterface {
             string name = nameText.Text;
             Blueprint created = new Blueprint(length, width, name);
             created.Owner = (Client)usersList.SelectedItem;
-
-            BlueprintController bpAdmin = new BlueprintController(CurrentSession);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController bpAdmin = new BlueprintController(CurrentSession,bpStorage);
             bpAdmin.Add(created);
 
             parent.OpenBlueprintEditor(created );

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
-using System.Linq;
 using System.Collections;
 
 namespace UserInterface {

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using Services;
+using DomainRepositoryInterface;
+using DataAccess;
 
 namespace UserInterface
 {
@@ -24,7 +26,8 @@ namespace UserInterface
             InitializeComponent();
             parent = aControl;
             current = aSession;
-            costsNprices = new CostsAndPricesManager(current);
+            IPriceCostRepository catalog = new PriceCostRepository();
+            costsNprices = new CostsAndPricesManager(current,catalog);
             costPriceInfo.Hide();
         }
 

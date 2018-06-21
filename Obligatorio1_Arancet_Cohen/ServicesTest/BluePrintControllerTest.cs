@@ -40,8 +40,8 @@ namespace ServicesTest
 
 
             conn = new SessionConnector();
-            Session session = conn.LogIn("admin", "admin");
-            administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin",(IUserRepository)repository);
+            administrator = new UserAdministrator(session,repository);
 
             user1 = new Client("client1N", "client1S", "client1UN", "client1P", "999000111", "dir", "55555555", DateTime.Now);
             user2 = new Client("client2N", "client2S", "client2UN", "client2P", "999000111", "dir", "55555556", DateTime.Now);
@@ -73,8 +73,9 @@ namespace ServicesTest
 
         private void initializerWithData()
         {
-            Session session = conn.LogIn("designer1UN", "designer1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer1UN", "designer1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             controller.Add(blueprint1);
             controller.Add(blueprint2);
             controller.Add(blueprint3);
@@ -83,16 +84,18 @@ namespace ServicesTest
         [TestMethod]
         public void NewBlueprintControllerTest()
         {
-            Session session = conn.LogIn("designer1UN", "designer1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer1UN", "designer1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             Assert.IsNotNull(controller);
         }
 
         [TestMethod]
         public void AddBlueprintTest()
         {
-            Session session = conn.LogIn("designer1UN", "designer1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer1UN", "designer1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             controller.Add(blueprint1);
             Assert.IsTrue(controller.Exist(blueprint1));
         }
@@ -101,8 +104,9 @@ namespace ServicesTest
         [ExpectedException(typeof(NoPermissionsException))]
         public void AddBlueprintNoPermissionsTest()
         {
-            Session session = conn.LogIn("client1UN", "client1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             controller.Add(blueprint3);
         }
 
@@ -110,8 +114,9 @@ namespace ServicesTest
         public void GetBlueprintAsDesignerTest()
         {
             initializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             ICollection<IBlueprint> blueprints = controller.GetBlueprints(user1);
             int expectedResult = 2;
             int actualResult = blueprints.Count;
@@ -123,8 +128,9 @@ namespace ServicesTest
         {
 
             initializerWithData();
-            Session session = conn.LogIn("designer1UN", "designer1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer1UN", "designer1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             controller.Remove(blueprint1);
             Assert.IsFalse(controller.Exist(blueprint1));
         }
@@ -134,8 +140,9 @@ namespace ServicesTest
         public void DeleteBlueprintNoPermissionTest()
         {
             initializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             controller.Remove(blueprint1);
         }
 
@@ -143,8 +150,9 @@ namespace ServicesTest
         public void SignBlueprintTest()
         {
             initializerWithData();
-            Session session = conn.LogIn("architect", "architect");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("architect", "architect", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             IBlueprint aBlueprint = controller.GetBlueprints().First();
             controller.Sign(aBlueprint);
             Assert.IsTrue(aBlueprint.IsSigned());
@@ -155,8 +163,9 @@ namespace ServicesTest
         public void SignBlueprintNoPermissionTest()
         {
             initializerWithData();
-            Session session = conn.LogIn("designer1UN", "designer1P");
-            BlueprintController controller = new BlueprintController(session);
+            Session session = conn.LogIn("designer1UN", "designer1P", (IUserRepository)repository);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController controller = new BlueprintController(session,bpStorage);
             IBlueprint aBlueprint = controller.GetBlueprints().First();
             controller.Sign(aBlueprint);
         }

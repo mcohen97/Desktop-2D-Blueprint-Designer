@@ -8,9 +8,9 @@ namespace Services
 {
     public class SessionConnector
     {
-        public Session LogIn(string userName, string password)
+        public Session LogIn(string userName, string password, IUserRepository userStorage)
         {
-            IUserRepository userStorage = new UserRepository();
+            
             User userLogging = userStorage.GetUserByUserName(userName);
             if (userLogging.Password != password)
             {

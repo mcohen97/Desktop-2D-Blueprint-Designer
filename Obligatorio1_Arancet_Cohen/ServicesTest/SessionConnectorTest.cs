@@ -4,6 +4,8 @@ using Logic.Domain;
 using ServicesExceptions;
 using DataAccessExceptions;
 using Services;
+using DataAccess;
+using DomainRepositoryInterface;
 
 namespace ServicesTest
 {
@@ -14,7 +16,8 @@ namespace ServicesTest
         public void LogInTest()
         {
             SessionConnector conn = new SessionConnector();
-            Session session = conn.LogIn("admin", "admin");
+            IUserRepository userStorage = new UserRepository();
+            Session session = conn.LogIn("admin", "admin",userStorage);
 
             Assert.IsNotNull(session);
         }
@@ -24,7 +27,8 @@ namespace ServicesTest
         public void LogInWrongPasswordTest()
         {
             SessionConnector conn = new SessionConnector();
-            Session session = conn.LogIn("admin", "");
+            IUserRepository userStorage = new UserRepository();
+            Session session = conn.LogIn("admin", "",userStorage);
         }
 
         [TestMethod]
@@ -32,7 +36,8 @@ namespace ServicesTest
         public void LogInNonExistentUserTest()
         {
             SessionConnector conn = new SessionConnector();
-            Session session = conn.LogIn("jorge", "");
+            IUserRepository userStorage = new UserRepository();
+            Session session = conn.LogIn("jorge", "",userStorage);
         }
     }
 }

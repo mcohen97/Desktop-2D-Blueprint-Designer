@@ -11,9 +11,10 @@ namespace Services
 {
     public class BlueprintReportGenerator
     {
-        public BlueprintPriceReport GeneratePriceReport(IBlueprint aBlueprint)
+        
+
+        public BlueprintPriceReport GeneratePriceReport(IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
         {
-            IPriceCostRepository costsNPrices = new PriceCostRepository();
             BlueprintPriceReport report = new BlueprintPriceReport();
             AddWallsPrice(report, aBlueprint, costsNPrices);
             AddBeamsPrice(report, aBlueprint, costsNPrices);

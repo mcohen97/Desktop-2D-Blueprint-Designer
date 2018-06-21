@@ -13,6 +13,7 @@ using ServicesExceptions;
 using Services;
 using DataAccess;
 using DomainRepositoryInterface;
+using RepositoryInterface;
 
 namespace UserInterface
 {
@@ -52,7 +53,8 @@ namespace UserInterface
         {
             try
             {
-                mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text);
+                IUserRepository users = new UserRepository();
+                mother.CurrentSession = connector.LogIn(UsernameText.Text, PasswordText.Text,users);
                 mother.GoToMenu();
             }
             catch (WrongPasswordException)
@@ -105,10 +107,10 @@ namespace UserInterface
 
         private void GenerateTestData()
         {
-            
+            IUserRepository users = new UserRepository();   
             SessionConnector connector = new SessionConnector();
-            Session fakeSession = connector.LogIn("admin", "admin");
-            UserAdministrator uAdministrator = new UserAdministrator(fakeSession);
+            Session fakeSession = connector.LogIn("admin", "admin",users);
+            UserAdministrator uAdministrator = new UserAdministrator(fakeSession, (IRepository<User>)users);
             Client c1 = new Client("Enzo", "Ferreira", "testClient1", "password", "9595-01-73", "Colonia Ofir 7763", "4.435.511-2", DateTime.Now);
             Client c2 = new Client("Camila", "Pinto", "testClient2", "password", "9780-93-03", "Florianapolis 7256", "2.817.601-3", DateTime.Now);
             Client c3 = new Client("Isabelle", "Gomes", "testClient3", "password", "9610-94-47", "Colombes 1092", "1.429.972-1", DateTime.Now);
@@ -121,8 +123,9 @@ namespace UserInterface
             uAdministrator.Add(c3);
             uAdministrator.Add(d1);
             uAdministrator.Add(d2);
-            fakeSession = connector.LogIn("testDesigner1", "password");
-            BlueprintController bpController = new BlueprintController(fakeSession);
+            fakeSession = connector.LogIn("testDesigner1", "password",users);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            BlueprintController bpController = new BlueprintController(fakeSession,bpStorage);
             Blueprint bp1 = new Blueprint(8, 8, "Mi tablero de ajedrez gigante");
             bp1.InsertWall(new Logic.Domain.Point(1, 1), new Logic.Domain.Point(1, 5));
             bp1.InsertWall(new Logic.Domain.Point(2, 2), new Logic.Domain.Point(5, 2));

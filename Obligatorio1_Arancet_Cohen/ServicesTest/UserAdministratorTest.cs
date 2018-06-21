@@ -38,8 +38,8 @@ namespace ServicesTest
         private void intializerWithData()
         {
             portfolio.Clear();
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administator = new UserAdministrator(session,portfolio);
             administator.Add(user1);
             administator.Add(user2);
             administator.Add(user3);
@@ -50,16 +50,16 @@ namespace ServicesTest
         [TestMethod]
         public void NewUsersAdministratorTest()
         {
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             Assert.IsNotNull(administrator);
         }
 
         [TestMethod]
         public void AddUserTest()
         {
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Add(user1);
             Assert.IsTrue(administrator.Exist(user1));
         }
@@ -68,7 +68,7 @@ namespace ServicesTest
         public void AddUserUpdateLoginDateTest()
         {
             intializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
             User actualDBRecord = ((IUserRepository)portfolio).GetUserByUserName("client1UN");
             Assert.AreNotEqual(actualDBRecord, Constants.NEVER);
         }
@@ -76,8 +76,8 @@ namespace ServicesTest
         [TestMethod]
         public void GetUserTest()
         {
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Add(user1);
             User userAsked = administrator.GetUser(user1.UserName);
             Assert.AreEqual(userAsked, user1);
@@ -86,8 +86,8 @@ namespace ServicesTest
         [TestMethod]
         public void UpdateUserTest()
         {
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Add(user1);
             user1.Name = "Miguel";
             administrator.Update(user1);
@@ -98,8 +98,8 @@ namespace ServicesTest
         [TestMethod]
         public void RemoveUserTest()
         {
-            Session session = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Add(user1);
             administrator.Remove(user1);
 
@@ -111,8 +111,8 @@ namespace ServicesTest
         public void AddUserNoPermissionTest()
         {
             intializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Add(new Client("a", "b", "c", "d", "e", "f", "g", DateTime.Now));
         }
 
@@ -121,8 +121,8 @@ namespace ServicesTest
         public void UpdateUserNoPermissionTest()
         {
             intializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Update(user2);
         }
 
@@ -131,8 +131,8 @@ namespace ServicesTest
         public void RemoveUserNoPermissionTest()
         {
             intializerWithData();
-            Session session = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(session);
+            Session session = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(session,portfolio);
             administrator.Remove(user2);
         }
 
@@ -140,8 +140,8 @@ namespace ServicesTest
         public void GetClientsTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> allClients = administrator.GetAllClients();
             int expectedResult = 2;
             int actualResult = allClients.Count;
@@ -153,8 +153,8 @@ namespace ServicesTest
         public void GetClientsNoPermissionTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> allClients = administrator.GetAllClients();
         }
 
@@ -162,8 +162,8 @@ namespace ServicesTest
         public void GetAllUsersExceptMeTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
             int expectedResult = 5;
             int actualResult = usersMinus1.Count;
@@ -175,8 +175,8 @@ namespace ServicesTest
         public void GetUsersExceptMeNoPermissionTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> usersMinus1 = administrator.GetAllUsersExceptMe();
         }
 
@@ -184,8 +184,8 @@ namespace ServicesTest
         public void ExistsUserNameTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             Assert.IsTrue(administrator.ExistsUserName("client1UN"));
         }
 
@@ -193,8 +193,8 @@ namespace ServicesTest
         public void UserNameDoesNotTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("admin", "admin");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("admin", "admin", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             Assert.IsFalse(administrator.ExistsUserName("JamesHetfield63"));
         }
 
@@ -203,16 +203,16 @@ namespace ServicesTest
         public void ExistsUserNameNoPermissionTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             administrator.ExistsUserName("JamesHetfield63");
         }
 
         [TestMethod]
         public void GetUsersByPermissionTest() {
             intializerWithData();
-            Session aSession = conn.LogIn("designer1UN", "designer1P");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("designer1UN", "designer1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> query =administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
             int expectedResult = 2;
             int actualResult = query.Count;
@@ -224,8 +224,8 @@ namespace ServicesTest
         public void GetUsersByPermissionNotAllowedTest()
         {
             intializerWithData();
-            Session aSession = conn.LogIn("client1UN", "client1P");
-            UserAdministrator administrator = new UserAdministrator(aSession);
+            Session aSession = conn.LogIn("client1UN", "client1P", (IUserRepository)portfolio);
+            UserAdministrator administrator = new UserAdministrator(aSession,portfolio);
             ICollection<User> query = administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
 
         }

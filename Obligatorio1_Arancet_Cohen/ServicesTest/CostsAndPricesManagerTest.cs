@@ -26,14 +26,14 @@ namespace ServicesTest
             usersStorage = new UserRepository();
             usersStorage.Clear();
             connector = new SessionConnector();
-            currentSession=connector.LogIn("admin", "admin");
-            administrator = new UserAdministrator(currentSession);
+            currentSession=connector.LogIn("admin", "admin", (IUserRepository)usersStorage);
+            administrator = new UserAdministrator(currentSession,usersStorage);
             administrator.Add(new Designer("TestDesigner", "TestDesigner", "TestDesigner", "TestDesigner", DateTime.Now));
             pricesNcosts = new PriceCostRepository();
             pricesNcosts.Clear();
             wallType = (int)ComponentType.WALL;
             pricesNcosts.AddCostPrice(wallType, 50, 100);
-            manager = new CostsAndPricesManager(currentSession);
+            manager = new CostsAndPricesManager(currentSession,pricesNcosts);
         }
 
         [TestMethod]
@@ -54,8 +54,8 @@ namespace ServicesTest
         [TestMethod]
         [ExpectedException(typeof(NoPermissionsException))]
         public void SetPriceNoPermissionsTest() {
-            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner");
-            manager = new CostsAndPricesManager(noAdmin);
+            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner", (IUserRepository)usersStorage);
+            manager = new CostsAndPricesManager(noAdmin,pricesNcosts);
             manager.SetPrice(wallType, 150);
         }
 
@@ -78,8 +78,8 @@ namespace ServicesTest
         [ExpectedException(typeof(NoPermissionsException))]
         public void SetCostNoPermissionsTest()
         {
-            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner");
-            manager = new CostsAndPricesManager(noAdmin);
+            Session noAdmin = connector.LogIn("TestDesigner", "TestDesigner", (IUserRepository)usersStorage);
+            manager = new CostsAndPricesManager(noAdmin,pricesNcosts);
             manager.SetCost(wallType, 150);
         }
 

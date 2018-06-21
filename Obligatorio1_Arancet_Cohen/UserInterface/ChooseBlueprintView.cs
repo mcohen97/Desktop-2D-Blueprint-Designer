@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using Services;
+using DataAccess;
+using RepositoryInterface;
 
 namespace UserInterface {
     public partial class ChooseBlueprintView : UserControl, IUserFeatureControl {
@@ -21,7 +23,8 @@ namespace UserInterface {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            permissionController = new BlueprintController(CurrentSession);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            permissionController = new BlueprintController(CurrentSession, bpStorage);
         }
 
         public void SetUp() {

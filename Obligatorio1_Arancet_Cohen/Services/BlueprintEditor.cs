@@ -24,11 +24,11 @@ namespace Services
             }
         }
 
-        public BlueprintEditor(Session session, IBlueprint blueprint)
+        public BlueprintEditor(Session session, IBlueprint blueprint, IRepository<IBlueprint> aRepository)
         {
             this.session = session;
             this.blueprint = blueprint;
-            this.repository = new BlueprintRepository();
+            this.repository = aRepository;
             HasBeenModify = false;
         }
 

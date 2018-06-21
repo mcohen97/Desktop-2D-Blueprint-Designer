@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
 using Services;
+using DataAccess;
+using RepositoryInterface;
 
 namespace UserInterface {
     public partial class AdminUserManagement : UserControl, IUserFeatureControl {
@@ -21,7 +23,8 @@ namespace UserInterface {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            controller = new UserAdministrator(CurrentSession);
+            IRepository<User> repository = new UserRepository();
+            controller = new UserAdministrator(CurrentSession,repository);
         }
 
         private void FillList() {

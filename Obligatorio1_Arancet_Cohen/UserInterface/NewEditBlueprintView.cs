@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Services;
 using Logic.Domain;
-
+using DataAccess;
+using RepositoryInterface;
 
 namespace UserInterface
 {
@@ -24,7 +25,8 @@ namespace UserInterface
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
-            permissionController = new BlueprintController(CurrentSession);
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            permissionController = new BlueprintController(CurrentSession,bpStorage);
         }
 
         public void SetUp()
@@ -34,7 +36,8 @@ namespace UserInterface
 
         private void FillLists()
         {
-            UserAdministrator administrator = new UserAdministrator(CurrentSession);
+            IRepository<User> repository = new UserRepository();
+            UserAdministrator administrator = new UserAdministrator(CurrentSession,repository);
             userList.DataSource=administrator.GetUsersByPermission(Permission.HAVE_BLUEPRINT);
             signatureLists.Hide();
             if (userList.SelectedIndex != -1) {

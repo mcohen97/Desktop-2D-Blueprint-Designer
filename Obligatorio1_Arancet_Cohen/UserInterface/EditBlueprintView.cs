@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using Logic.Domain;
 using System.Drawing.Imaging;
 using Services;
+using RepositoryInterface;
+using DataAccess;
+using DomainRepositoryInterface;
 
 namespace UserInterface
 {
@@ -55,8 +58,10 @@ namespace UserInterface
             parent.ParentForm.FormClosing += new FormClosingEventHandler(CheckSignmentEventHandler);
 
             BlueprintPanel.Cursor = Cursors.Cross;
-            editor = new BlueprintEditor(aSession, aBlueprint);
-            openingFactory = new OpeningFactory();
+            IRepository<IBlueprint> bpStorage = new BlueprintRepository();
+            editor = new BlueprintEditor(aSession, aBlueprint,bpStorage);
+            IRepository<Template> templates = new OpeningTemplateRepository();
+            openingFactory = new OpeningFactory(templates);
 
             wallPen = new Pen(Brushes.Black, 5);
             beamPen = new Pen(Brushes.DarkRed, 8);
@@ -115,7 +120,8 @@ namespace UserInterface
         {
             BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
             BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
-            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
+            IPriceCostRepository pricesNcosts = new PriceCostRepository();
+            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint,pricesNcosts);
 
             lblWallsTotalCost.Text = costReport.GetTotalCost(ComponentType.WALL) + "";
             lblBeamsTotalCost.Text = costReport.GetTotalCost(ComponentType.BEAM) + "";
