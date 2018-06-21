@@ -43,7 +43,7 @@ namespace UserInterface
 
         public Button OptionMenuButton()
         {
-            return ButtonCreator.GenerateButton("Manage material prices and costs");
+            return ButtonCreator.GenerateButton("Manage prices and costs");
         }
 
         public void SetSession(Session aSession)

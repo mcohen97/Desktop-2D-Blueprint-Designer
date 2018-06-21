@@ -37,9 +37,16 @@ namespace UserInterface {
             if (InputValidations.IsListItemSelected(usersList,listMsg,"You must choose a user first")) {
 
                 bool validWidth = InputValidations.ValidateGreaterThanZero(widthField.Text, widthMsg,
-                    "width must be greater than zero");
+                    "width must be greater than zero")
+                    &&
+                    InputValidations.ValidateStrictMinor(Convert.ToInt32(widthField.Text), 101, widthMsg,
+                    "width must be lower than 100");
+                    
                 bool validLength= InputValidations.ValidateGreaterThanZero(widthField.Text, lengthMsg,
-                    "length must be greater than zero");
+                    "length must be greater than zero")
+                    &&
+                    InputValidations.ValidateStrictMinor(Convert.ToInt32(lengthField.Text), 101, lengthMsg,
+                    "length must be lower than 100");
                 bool validName = InputValidations.ValidateIfEmpty(nameText, nameMsg);
 
                 if (validName && validWidth && validLength) {
@@ -92,6 +99,7 @@ namespace UserInterface {
 
         private void widthField_Leave(object sender, EventArgs e) {
             InputValidations.ValidateGreaterThanZero(widthField.Text, widthMsg, "width must be greater than zero");
+            InputValidations.ValidateStrictMinor(Convert.ToInt32(widthField.Text), 101, widthMsg, "width must be lower than 100");
         }
 
         private void lengthField_Enter(object sender, EventArgs e) {
@@ -100,6 +108,7 @@ namespace UserInterface {
 
         private void lengthField_Leave(object sender, EventArgs e) {
             InputValidations.ValidateGreaterThanZero(lengthField.Text, lengthMsg, "length must be greater than zero");
+            InputValidations.ValidateStrictMinor(Convert.ToInt32(lengthField.Text), 101, lengthMsg, "length must be lower than 100");
         }
     }
 }
