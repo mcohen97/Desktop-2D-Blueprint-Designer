@@ -1,5 +1,5 @@
 ﻿namespace UserInterface {
-    partial class CreateUser {
+    partial class CreateUserView {
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>

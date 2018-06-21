@@ -84,11 +84,11 @@
     <Compile Include="CreateTemplate.Designer.cs">
       <DependentUpon>CreateTemplate.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateUser.cs">
+    <Compile Include="CreateUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CreateUser.Designer.cs">
-      <DependentUpon>CreateUser.cs</DependentUpon>
+    <Compile Include="CreateUserView.Designer.cs">
+      <DependentUpon>CreateUserView.cs</DependentUpon>
     </Compile>
     <Compile Include="DottedLineGridPaint.cs" />
     <Compile Include="EditBlueprintView.cs">
@@ -164,8 +164,8 @@
     <EmbeddedResource Include="CreateTemplate.resx">
       <DependentUpon>CreateTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateUser.resx">
-      <DependentUpon>CreateUser.cs</DependentUpon>
+    <EmbeddedResource Include="CreateUserView.resx">
+      <DependentUpon>CreateUserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditBlueprintView.resx">
       <DependentUpon>EditBlueprintView.cs</DependentUpon>

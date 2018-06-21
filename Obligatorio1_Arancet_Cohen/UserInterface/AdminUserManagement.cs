@@ -63,11 +63,11 @@ namespace UserInterface {
         }
 
         private void createDesigner_Click(object sender, EventArgs e) { 
-            parent.SetView(new CreateUser(parent,Permission.CREATE_BLUEPRINT,CurrentSession));
+            parent.SetView(new CreateUserView(parent,Permission.CREATE_BLUEPRINT,CurrentSession));
         }
 
         private void createClient_Click(object sender, EventArgs e) {
-            parent.SetView(new CreateUser(parent, Permission.HOLD_EXTRA_DATA,CurrentSession));
+            parent.SetView(new CreateUserView(parent, Permission.HOLD_EXTRA_DATA,CurrentSession));
         }
 
         public void SetUp() {
@@ -76,7 +76,7 @@ namespace UserInterface {
 
         private void createArchitect_Click(object sender, EventArgs e)
         {
-            parent.SetView(new CreateUser(parent, Permission.CAN_SIGN_BLUEPRINT, CurrentSession));
+            parent.SetView(new CreateUserView(parent, Permission.CAN_SIGN_BLUEPRINT, CurrentSession));
         }
     }
 }

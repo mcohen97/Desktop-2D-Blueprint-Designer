@@ -13,14 +13,14 @@ using RepositoryInterface;
 using DataAccess;
 
 namespace UserInterface {
-    public partial class CreateUser : UserControl {
+    public partial class CreateUserView : UserControl {
 
         private LoggedInView parent;
         private Permission particularFeature;
         private Session CurrentSession { get; set; }
         private UserAdministrator permissionController;
 
-        public CreateUser(LoggedInView aControl, Permission aFeature, Session aSession) {
+        public CreateUserView(LoggedInView aControl, Permission aFeature, Session aSession) {
             InitializeComponent();
             parent = aControl;
             CurrentSession = aSession;
