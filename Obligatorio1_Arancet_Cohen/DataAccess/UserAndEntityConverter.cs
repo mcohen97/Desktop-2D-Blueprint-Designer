@@ -11,7 +11,7 @@ namespace DataAccess
 {
     class UserAndEntityConverter
     {
-        public UserEntity toEntity(User toConvert)
+        public UserEntity ToEntity(User toConvert)
         {
             if (toConvert == null)
             {
@@ -38,7 +38,7 @@ namespace DataAccess
             return conversion;
         }
 
-        public User toUser(UserEntity toConvert)
+        public User ToUser(UserEntity toConvert)
         {
             if (toConvert == null)
             {
