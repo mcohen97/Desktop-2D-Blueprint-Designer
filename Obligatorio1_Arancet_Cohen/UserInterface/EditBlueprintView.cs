@@ -149,18 +149,6 @@ namespace UserInterface
             gridPainter.SetLayer(gridLayer);
             gridPainter.SetMargin(gridLinesMarginToLayerInPixels);
             gridPainter.PaintGrid();
-            /*using (Graphics graphics = Graphics.FromImage(gridLayer))
-            {
-                for (int i = 0; i < gridCellCountY; i++)
-                {
-                    DrawGridHorizontalLines(graphics, i);
-                }
-                for (int i = 0; i < gridCellCountX; i++)
-                {
-                    DrawGridVerticalLines(graphics, i);
-                }
-                DrawGridRightAndBottomLines(graphics);
-            }*/
             drawSurface.Invalidate();
         }
         private void DrawGridHorizontalLines(Graphics graphics, int axis)
@@ -224,11 +212,11 @@ namespace UserInterface
         {
 
             System.Drawing.Point gridAjustedPoint = AdjustPointToGridIntersection(drawSurface.PointToClient(Cursor.Position));
-            System.Drawing.Point endPoint = AdjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
+            System.Drawing.Point end = AdjustPointToHorizontalOrVerticalLine(gridAjustedPoint);
 
             try
             {
-                editor.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(endPoint));
+                editor.InsertWall(DrawablePointIntoLogicPoint(start), DrawablePointIntoLogicPoint(end));
             }
             catch (Exception)
             {
@@ -372,13 +360,6 @@ namespace UserInterface
 
             adjustedPoint = new System.Drawing.Point(adjustedCoordX * cellSizeInPixels, adjustedCoordY * cellSizeInPixels);
             return adjustedPoint;
-
-            /*decimal gridCellWidth = gridLayer.Width / gridCellCountX;
-            decimal gridCellHeight = gridLayer.Height / gridCellCountY;
-            decimal x = point.X * (gridCellCountX + 1) / gridLayer.Width;
-            decimal y = point.Y * (gridCellCountY + 1) / gridLayer.Height;
-            point = new System.Drawing.Point(Convert.ToInt32(Math.Round(x * gridCellWidth)), Convert.ToInt32(Math.Round(y * gridCellHeight)));
-            return point;*/
         }
         private System.Drawing.Point AdjustPointToGrid(System.Drawing.Point point)
         {
