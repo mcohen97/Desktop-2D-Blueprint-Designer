@@ -23,6 +23,7 @@ namespace Logic.Domain
         MANAGE_COSTS,
         HAVE_BLUEPRINT,
         EDIT_OWN_DATA,
-        CAN_SIGN_BLUEPRINT
+        CAN_SIGN_BLUEPRINT,
+        VIEW_COSTS
     }
 }

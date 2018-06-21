@@ -28,7 +28,6 @@
             this.PasswordText = new System.Windows.Forms.TextBox();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.PasswordLabel = new System.Windows.Forms.Label();
-            this.testDataButton = new System.Windows.Forms.Button();
             this.UserNameMsg = new System.Windows.Forms.Label();
             this.PasswordMsg = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -97,16 +96,6 @@
             this.PasswordLabel.Size = new System.Drawing.Size(100, 22);
             this.PasswordLabel.TabIndex = 5;
             this.PasswordLabel.Text = "Password:";
-            // 
-            // testDataButton
-            // 
-            this.testDataButton.Location = new System.Drawing.Point(320, 533);
-            this.testDataButton.Name = "testDataButton";
-            this.testDataButton.Size = new System.Drawing.Size(236, 25);
-            this.testDataButton.TabIndex = 6;
-            this.testDataButton.Text = "Generate data for testing";
-            this.testDataButton.UseVisualStyleBackColor = true;
-            this.testDataButton.Click += new System.EventHandler(this.testDataButton_Click);
             // 
             // UserNameMsg
             // 
@@ -189,7 +178,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PasswordMsg);
             this.Controls.Add(this.UserNameMsg);
-            this.Controls.Add(this.testDataButton);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.PasswordText);
@@ -212,7 +200,6 @@
         private System.Windows.Forms.TextBox PasswordText;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label PasswordLabel;
-        private System.Windows.Forms.Button testDataButton;
         private System.Windows.Forms.Label UserNameMsg;
         private System.Windows.Forms.Label PasswordMsg;
         private System.Windows.Forms.PictureBox pictureBox1;

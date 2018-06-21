@@ -38,6 +38,7 @@ namespace Logic.Domain
             perms.Add(Permission.READ_USER);
             perms.Add(Permission.EDIT_OWN_DATA);
             perms.Add(Permission.CAN_SIGN_BLUEPRINT);
+            perms.Add(Permission.VIEW_COSTS);
             return perms;
         }
 

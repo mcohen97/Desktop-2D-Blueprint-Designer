@@ -22,20 +22,14 @@ namespace UserInterface
 
         SessionConnector connector;
         MainWindow mother;
-        bool dataGenerated;
 
-        public LoginView(MainWindow aWindow, bool dataAlreadyGenerated)
+        public LoginView(MainWindow aWindow)
         {
 
             InitializeComponent();
             mother = aWindow;
             connector = new SessionConnector();
-            dataGenerated = dataAlreadyGenerated;
             PasswordText.PasswordChar = '*';
-            if (dataGenerated)
-            {
-                testDataButton.Hide();
-            }
 
         }
 
@@ -88,23 +82,6 @@ namespace UserInterface
             InputValidations.ValidateIfEmpty(PasswordText, PasswordMsg);
         }
 
-        private void testDataButton_Click(object sender, EventArgs e)
-        {
-            
-            if (!dataGenerated)
-            {
-                try
-                {
-                    GenerateTestData();
-                }catch (Exception)
-                {
-
-                }
-            }
-            dataGenerated = true;
-            mother.testDataAlreadyGenerated = true;
-        }
-
         private void GenerateTestData()
         {
             IUserRepository users = new UserRepository();   
@@ -148,7 +125,6 @@ namespace UserInterface
             prices.AddCostPrice((int)ComponentType.DOOR, 50, 100);
             prices.AddCostPrice((int)ComponentType.WINDOW, 50, 75);
             prices.AddCostPrice((int)ComponentType.COLUMN, 25, 50);
-            testDataButton.Hide();
         }
     }
 }
