@@ -79,10 +79,6 @@
       <Project>{8ba1d285-3ae8-4259-958c-ff6d69e0a9ad}</Project>
       <Name>LogicExceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServicesExceptions\ServicesExceptions.csproj">
-      <Project>{85638FB7-11DB-4AB2-9EA5-773D04D10CE6}</Project>
-      <Name>ServicesExceptions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
