@@ -28,11 +28,11 @@
             this.nameTitle = new System.Windows.Forms.Label();
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.onlyClientFields = new System.Windows.Forms.Panel();
+            this.telNumberText = new System.Windows.Forms.TextBox();
+            this.idText = new System.Windows.Forms.TextBox();
             this.telNumberMsg = new System.Windows.Forms.Label();
-            this.telNumberText = new System.Windows.Forms.MaskedTextBox();
             this.idMsg = new System.Windows.Forms.Label();
             this.IDTitle = new System.Windows.Forms.Label();
-            this.idText = new System.Windows.Forms.MaskedTextBox();
             this.addressText = new System.Windows.Forms.TextBox();
             this.addressMsg = new System.Windows.Forms.Label();
             this.addressTitle = new System.Windows.Forms.Label();
@@ -92,42 +92,52 @@
             // 
             // onlyClientFields
             // 
-            this.onlyClientFields.Controls.Add(this.telNumberMsg);
             this.onlyClientFields.Controls.Add(this.telNumberText);
+            this.onlyClientFields.Controls.Add(this.idText);
+            this.onlyClientFields.Controls.Add(this.telNumberMsg);
             this.onlyClientFields.Controls.Add(this.idMsg);
             this.onlyClientFields.Controls.Add(this.IDTitle);
-            this.onlyClientFields.Controls.Add(this.idText);
             this.onlyClientFields.Controls.Add(this.addressText);
             this.onlyClientFields.Controls.Add(this.addressMsg);
             this.onlyClientFields.Controls.Add(this.addressTitle);
             this.onlyClientFields.Controls.Add(this.telNumberTitle);
             this.onlyClientFields.Location = new System.Drawing.Point(193, 229);
             this.onlyClientFields.Name = "onlyClientFields";
-            this.onlyClientFields.Size = new System.Drawing.Size(619, 142);
+            this.onlyClientFields.Size = new System.Drawing.Size(619, 155);
             this.onlyClientFields.TabIndex = 22;
+            // 
+            // telNumberText
+            // 
+            this.telNumberText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telNumberText.Location = new System.Drawing.Point(267, 56);
+            this.telNumberText.Name = "telNumberText";
+            this.telNumberText.Size = new System.Drawing.Size(187, 31);
+            this.telNumberText.TabIndex = 39;
+            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
+            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
+            // 
+            // idText
+            // 
+            this.idText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.idText.Location = new System.Drawing.Point(267, 14);
+            this.idText.Name = "idText";
+            this.idText.Size = new System.Drawing.Size(187, 31);
+            this.idText.TabIndex = 38;
+            this.idText.Enter += new System.EventHandler(this.idText_Enter);
+            this.idText.Leave += new System.EventHandler(this.idText_Leave);
             // 
             // telNumberMsg
             // 
             this.telNumberMsg.AutoSize = true;
-            this.telNumberMsg.Location = new System.Drawing.Point(355, 68);
+            this.telNumberMsg.Location = new System.Drawing.Point(469, 66);
             this.telNumberMsg.Name = "telNumberMsg";
             this.telNumberMsg.Size = new System.Drawing.Size(0, 13);
             this.telNumberMsg.TabIndex = 34;
             // 
-            // telNumberText
-            // 
-            this.telNumberText.Location = new System.Drawing.Point(267, 63);
-            this.telNumberText.Mask = "0000-00-00";
-            this.telNumberText.Name = "telNumberText";
-            this.telNumberText.Size = new System.Drawing.Size(68, 20);
-            this.telNumberText.TabIndex = 37;
-            this.telNumberText.Enter += new System.EventHandler(this.telNumberText_Enter);
-            this.telNumberText.Leave += new System.EventHandler(this.telNumberText_Leave);
-            // 
             // idMsg
             // 
             this.idMsg.AutoSize = true;
-            this.idMsg.Location = new System.Drawing.Point(355, 26);
+            this.idMsg.Location = new System.Drawing.Point(469, 24);
             this.idMsg.Name = "idMsg";
             this.idMsg.Size = new System.Drawing.Size(0, 13);
             this.idMsg.TabIndex = 33;
@@ -142,17 +152,6 @@
             this.IDTitle.TabIndex = 10;
             this.IDTitle.Text = "ID";
             // 
-            // idText
-            // 
-            this.idText.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.idText.Location = new System.Drawing.Point(267, 21);
-            this.idText.Mask = "0.000.000-0";
-            this.idText.Name = "idText";
-            this.idText.Size = new System.Drawing.Size(68, 20);
-            this.idText.TabIndex = 36;
-            this.idText.Enter += new System.EventHandler(this.idText_Enter);
-            this.idText.Leave += new System.EventHandler(this.idText_Leave);
-            // 
             // addressText
             // 
             this.addressText.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -166,7 +165,7 @@
             // addressMsg
             // 
             this.addressMsg.AutoSize = true;
-            this.addressMsg.Location = new System.Drawing.Point(469, 127);
+            this.addressMsg.Location = new System.Drawing.Point(469, 109);
             this.addressMsg.Name = "addressMsg";
             this.addressMsg.Size = new System.Drawing.Size(0, 13);
             this.addressMsg.TabIndex = 35;
@@ -247,7 +246,7 @@
             // userNameMsg
             // 
             this.userNameMsg.AutoSize = true;
-            this.userNameMsg.Location = new System.Drawing.Point(743, 74);
+            this.userNameMsg.Location = new System.Drawing.Point(662, 70);
             this.userNameMsg.Name = "userNameMsg";
             this.userNameMsg.Size = new System.Drawing.Size(0, 13);
             this.userNameMsg.TabIndex = 29;
@@ -255,7 +254,7 @@
             // passwordMsg
             // 
             this.passwordMsg.AutoSize = true;
-            this.passwordMsg.Location = new System.Drawing.Point(743, 116);
+            this.passwordMsg.Location = new System.Drawing.Point(662, 116);
             this.passwordMsg.Name = "passwordMsg";
             this.passwordMsg.Size = new System.Drawing.Size(0, 13);
             this.passwordMsg.TabIndex = 30;
@@ -263,7 +262,7 @@
             // surnameMsg
             // 
             this.surnameMsg.AutoSize = true;
-            this.surnameMsg.Location = new System.Drawing.Point(743, 159);
+            this.surnameMsg.Location = new System.Drawing.Point(662, 159);
             this.surnameMsg.Name = "surnameMsg";
             this.surnameMsg.Size = new System.Drawing.Size(0, 13);
             this.surnameMsg.TabIndex = 31;
@@ -271,7 +270,7 @@
             // nameMsg
             // 
             this.nameMsg.AutoSize = true;
-            this.nameMsg.Location = new System.Drawing.Point(743, 202);
+            this.nameMsg.Location = new System.Drawing.Point(662, 202);
             this.nameMsg.Name = "nameMsg";
             this.nameMsg.Size = new System.Drawing.Size(0, 13);
             this.nameMsg.TabIndex = 32;
@@ -288,7 +287,7 @@
             this.label1.Text = "Create User";
             this.label1.UseMnemonic = false;
             // 
-            // CreateUser
+            // CreateUserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -308,7 +307,7 @@
             this.Controls.Add(this.nameTitle);
             this.Controls.Add(this.onlyClientFields);
             this.Controls.Add(this.UsernameTitle);
-            this.Name = "CreateUser";
+            this.Name = "CreateUserView";
             this.Size = new System.Drawing.Size(884, 461);
             this.onlyClientFields.ResumeLayout(false);
             this.onlyClientFields.PerformLayout();
@@ -340,8 +339,8 @@
         private System.Windows.Forms.Label idMsg;
         private System.Windows.Forms.Label telNumberMsg;
         private System.Windows.Forms.Label addressMsg;
-        private System.Windows.Forms.MaskedTextBox telNumberText;
-        private System.Windows.Forms.MaskedTextBox idText;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox telNumberText;
+        private System.Windows.Forms.TextBox idText;
     }
 }

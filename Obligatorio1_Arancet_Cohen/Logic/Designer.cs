@@ -36,7 +36,9 @@ namespace Logic.Domain
             Permission.DELETE_BLUEPRINT,
             Permission.READ_BLUEPRINT,
             Permission.READ_USER,
-            Permission.EDIT_OWN_DATA};
+            Permission.EDIT_OWN_DATA,
+            Permission.VIEW_COSTS};
+            
             return perms;
         }
     }

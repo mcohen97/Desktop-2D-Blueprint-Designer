@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UserInterface
 {
-    interface IGridPaintStrategy
+    public interface IGridPaintStrategy
     {
         void PaintGrid();
         void SetCountX(int xLines);

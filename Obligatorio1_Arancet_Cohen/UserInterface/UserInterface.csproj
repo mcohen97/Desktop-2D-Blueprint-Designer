@@ -91,6 +91,7 @@
       <DependentUpon>CreateUserView.cs</DependentUpon>
     </Compile>
     <Compile Include="DottedLineGridPaint.cs" />
+    <Compile Include="Drawer.cs" />
     <Compile Include="EditBlueprintView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +107,7 @@
     <Compile Include="GridPaintStrategy.cs" />
     <Compile Include="InputValidations.cs" />
     <Compile Include="IUserFeatureControl.cs" />
+    <Compile Include="LayersStructure.cs" />
     <Compile Include="LoggedInView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +133,7 @@
       <DependentUpon>NoFlickerPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="NoPaintedGridLinesStrategy.cs" />
+    <Compile Include="Pencilcase.cs" />
     <Compile Include="PointConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
