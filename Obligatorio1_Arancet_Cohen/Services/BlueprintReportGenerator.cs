@@ -4,27 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logic.Domain;
-using DataAccess;
 using DomainRepositoryInterface;
 
 namespace Services
 {
     public class BlueprintReportGenerator
     {
-        
+        IPriceCostRepository costsNPrices;
 
-        public BlueprintPriceReport GeneratePriceReport(IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        public BlueprintReportGenerator(IPriceCostRepository catalog) {
+            costsNPrices = catalog;
+        }
+        public BlueprintPriceReport GeneratePriceReport(IBlueprint aBlueprint)
         {
             BlueprintPriceReport report = new BlueprintPriceReport();
-            AddWallsPrice(report, aBlueprint, costsNPrices);
-            AddBeamsPrice(report, aBlueprint, costsNPrices);
-            AddColumnsPrice(report, aBlueprint, costsNPrices);
-            AddWindowsPrice(report, aBlueprint, costsNPrices);
-            AddDoorsPrice(report, aBlueprint, costsNPrices);
+            AddWallsPrice(report, aBlueprint);
+            AddBeamsPrice(report, aBlueprint);
+            AddColumnsPrice(report, aBlueprint);
+            AddWindowsPrice(report, aBlueprint);
+            AddDoorsPrice(report, aBlueprint);
             return report;
         }
 
-        private void AddWallsPrice(BlueprintPriceReport report, IBlueprint aBlueprint,IPriceCostRepository costsNPrices) {
+        private void AddWallsPrice(BlueprintPriceReport report, IBlueprint aBlueprint) {
             float wallMetersCount = 0;
             foreach (Wall existent in aBlueprint.GetWalls()) {
                 wallMetersCount += existent.Length();
@@ -33,25 +35,25 @@ namespace Services
             report.SetTotalPrice(ComponentType.WALL, wallMetersCount * wallPrice);
         }
 
-        private void AddBeamsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
+        private void AddBeamsPrice(BlueprintPriceReport report, IBlueprint aBlueprint) {
             int beamsCount = aBlueprint.GetBeams().Count;
             float beamPrice = costsNPrices.GetPrice((int)ComponentType.BEAM);
             report.SetTotalPrice(ComponentType.BEAM, beamsCount * beamPrice);
         }
 
-        private void AddColumnsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
+        private void AddColumnsPrice(BlueprintPriceReport report, IBlueprint aBlueprint) {
             int columnsCount = aBlueprint.GetColumns().Count;
             float columnPrice = costsNPrices.GetPrice((int)ComponentType.COLUMN);
             report.SetTotalPrice(ComponentType.COLUMN, columnsCount * columnPrice);
         }
 
-        private void AddWindowsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
+        private void AddWindowsPrice(BlueprintPriceReport report, IBlueprint aBlueprint) {
             int windowsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.WINDOW));
             float windowsPrice = costsNPrices.GetPrice((int)ComponentType.WINDOW);
             report.SetTotalPrice(ComponentType.WINDOW, windowsCount * windowsPrice);
         }
 
-        private void AddDoorsPrice(BlueprintPriceReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices) {
+        private void AddDoorsPrice(BlueprintPriceReport report, IBlueprint aBlueprint) {
             int doorsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.DOOR));
             float doorsPrice = costsNPrices.GetPrice((int)ComponentType.DOOR);
             report.SetTotalPrice(ComponentType.DOOR, doorsCount * doorsPrice);
@@ -59,17 +61,16 @@ namespace Services
 
         public BlueprintCostReport GenerateCostReport(IBlueprint aBlueprint)
         {
-            IPriceCostRepository costsNPrices = new PriceCostRepository();
             BlueprintCostReport report = new BlueprintCostReport();
-            AddWallsCost(report, aBlueprint, costsNPrices);
-            AddBeamsCost(report, aBlueprint, costsNPrices);
-            AddColumnsCost(report, aBlueprint, costsNPrices);
-            AddWindowsCost(report, aBlueprint, costsNPrices);
-            AddDoorsCost(report, aBlueprint, costsNPrices);
+            AddWallsCost(report, aBlueprint);
+            AddBeamsCost(report, aBlueprint);
+            AddColumnsCost(report, aBlueprint);
+            AddWindowsCost(report, aBlueprint);
+            AddDoorsCost(report, aBlueprint);
             return report;
         }
 
-        private void AddWallsCost(BlueprintCostReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        private void AddWallsCost(BlueprintCostReport report, IBlueprint aBlueprint)
         {
             float wallMetersCount = 0;
             foreach (Wall existent in aBlueprint.GetWalls())
@@ -80,28 +81,28 @@ namespace Services
             report.SetTotalCost(ComponentType.WALL, wallMetersCount * wallPrice);
         }
 
-        private void AddBeamsCost(BlueprintCostReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        private void AddBeamsCost(BlueprintCostReport report, IBlueprint aBlueprint)
         {
             int beamsCount = aBlueprint.GetBeams().Count;
             float beamPrice = costsNPrices.GetCost((int)ComponentType.BEAM);
             report.SetTotalCost(ComponentType.BEAM, beamsCount * beamPrice);
         }
 
-        private void AddColumnsCost(BlueprintCostReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        private void AddColumnsCost(BlueprintCostReport report, IBlueprint aBlueprint)
         {
             int columnsCount = aBlueprint.GetColumns().Count;
             float columnPrice = costsNPrices.GetCost((int)ComponentType.COLUMN);
             report.SetTotalCost(ComponentType.COLUMN, columnsCount * columnPrice);
         }
 
-        private void AddWindowsCost(BlueprintCostReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        private void AddWindowsCost(BlueprintCostReport report, IBlueprint aBlueprint)
         {
             int windowsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.WINDOW));
             float windowsPrice = costsNPrices.GetCost((int)ComponentType.WINDOW);
             report.SetTotalCost(ComponentType.WINDOW, windowsCount * windowsPrice);
         }
 
-        private void AddDoorsCost(BlueprintCostReport report, IBlueprint aBlueprint, IPriceCostRepository costsNPrices)
+        private void AddDoorsCost(BlueprintCostReport report, IBlueprint aBlueprint)
         {
             int doorsCount = aBlueprint.GetOpenings().Count(o => o.GetComponentType().Equals(ComponentType.DOOR));
             float doorsPrice = costsNPrices.GetCost((int)ComponentType.DOOR);

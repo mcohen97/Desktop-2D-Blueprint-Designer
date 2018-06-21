@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ServicesExceptions;
 using Logic.Domain;
-using DataAccess;
 using RepositoryInterface;
 using DomainRepositoryInterface;
 

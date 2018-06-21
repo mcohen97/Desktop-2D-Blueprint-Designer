@@ -90,7 +90,8 @@ namespace ServicesTest
         {
             Session session = conn.LogIn("designer3", "12345", (IUserRepository)repository);
             IRepository<IBlueprint> bpStorage = new BlueprintRepository();
-            BlueprintEditor newInstance = new BlueprintEditor(session, blueprintTest, bpStorage);
+            IRepository<Template> templatesStorage = new OpeningTemplateRepository();
+            BlueprintEditor newInstance = new BlueprintEditor(session, blueprintTest, bpStorage,templatesStorage);
             return newInstance;
         }
 
@@ -99,7 +100,8 @@ namespace ServicesTest
         {
             Session session = conn.LogIn("designer3", "12345", (IUserRepository)repository);
             IRepository<IBlueprint> bpStorage = new BlueprintRepository();
-            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest, bpStorage);
+            IRepository<Template> templatesStorage = new OpeningTemplateRepository();
+            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest, bpStorage,templatesStorage);
             Assert.IsNotNull(blueEditor);
         } 
 
@@ -547,7 +549,8 @@ namespace ServicesTest
             IUserRepository users = new UserRepository();
             Session session = conn.LogIn("architect", "architect",users);
             IRepository<IBlueprint> bpStorage = new BlueprintRepository();
-            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest,bpStorage);
+            IRepository<Template> templatesStorage = new OpeningTemplateRepository();
+            BlueprintEditor blueEditor = new BlueprintEditor(session, blueprintTest,bpStorage,templatesStorage);
             blueEditor.Sign();
             Assert.AreEqual(1, blueprintTest.GetSignatures().Count);
         }
@@ -559,7 +562,8 @@ namespace ServicesTest
             initializerWithData();
             Session session = conn.LogIn("architect", "architect", (IUserRepository)repository);
             IRepository<IBlueprint> bpStorage = new BlueprintRepository();
-            BlueprintEditor editor = new BlueprintEditor(session, blueprintTest,bpStorage);
+            IRepository<Template> templatesStorage = new OpeningTemplateRepository();
+            BlueprintEditor editor = new BlueprintEditor(session, blueprintTest,bpStorage,templatesStorage);
             ICollection<Template> templates = editor.GetTemplates();
             Assert.IsNotNull(templates);
         }

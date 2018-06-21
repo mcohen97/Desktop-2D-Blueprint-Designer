@@ -59,7 +59,8 @@ namespace UserInterface
 
             BlueprintPanel.Cursor = Cursors.Cross;
             IRepository<IBlueprint> bpStorage = new BlueprintRepository();
-            editor = new BlueprintEditor(aSession, aBlueprint,bpStorage);
+            IRepository<Template> templatesRepository = new OpeningTemplateRepository();
+            editor = new BlueprintEditor(aSession, aBlueprint,bpStorage,templatesRepository);
             IRepository<Template> templates = new OpeningTemplateRepository();
             openingFactory = new OpeningFactory(templates);
 
@@ -118,10 +119,10 @@ namespace UserInterface
         }
         private void calulateCostsAndPrices()
         {
-            BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator();
-            BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);
             IPriceCostRepository pricesNcosts = new PriceCostRepository();
-            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint,pricesNcosts);
+            BlueprintReportGenerator reportGenerator = new BlueprintReportGenerator(pricesNcosts);
+            BlueprintCostReport costReport = reportGenerator.GenerateCostReport(selectedBluePrint);         
+            BlueprintPriceReport priceReport = reportGenerator.GeneratePriceReport(selectedBluePrint);
 
             lblWallsTotalCost.Text = costReport.GetTotalCost(ComponentType.WALL) + "";
             lblBeamsTotalCost.Text = costReport.GetTotalCost(ComponentType.BEAM) + "";

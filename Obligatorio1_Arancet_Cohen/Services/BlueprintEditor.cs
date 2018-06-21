@@ -3,7 +3,6 @@ using Logic.Domain;
 using System.Collections.Generic;
 using Logic;
 using RepositoryInterface;
-using DataAccess;
 using ServicesExceptions;
 
 namespace Services
@@ -14,6 +13,7 @@ namespace Services
         private IRepository<IBlueprint> repository;
         private Session session;
         private bool hasBeenModify;
+        private IRepository<Template> templates;
 
         public bool HasBeenModify {
             get {
@@ -24,8 +24,9 @@ namespace Services
             }
         }
 
-        public BlueprintEditor(Session session, IBlueprint blueprint, IRepository<IBlueprint> aRepository)
+        public BlueprintEditor(Session session, IBlueprint blueprint, IRepository<IBlueprint> aRepository, IRepository<Template> tempsRepository)
         {
+            this.templates = tempsRepository;
             this.session = session;
             this.blueprint = blueprint;
             this.repository = aRepository;
@@ -72,11 +73,10 @@ namespace Services
             CheckPermission(Permission.EDIT_BLUEPRINT);
 
             blueprint.InsertOpening(aOpening);
-            IRepository<Template> templateRepo = new OpeningTemplateRepository();
 
-            if (!templateRepo.Exists(aOpening.getTemplate()))
+            if (!templates.Exists(aOpening.getTemplate()))
             {
-                templateRepo.Add(aOpening.getTemplate());
+                templates.Add(aOpening.getTemplate());
             }
             repository.Modify(blueprint);
             HasBeenModify = true;
@@ -119,8 +119,7 @@ namespace Services
 
         public ICollection<Template> GetTemplates()
         {
-            IRepository<Template> repository = new OpeningTemplateRepository();
-            return repository.GetAll();
+            return templates.GetAll();
         }
     }
 }

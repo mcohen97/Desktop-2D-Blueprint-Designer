@@ -1,5 +1,4 @@
 ﻿using Logic.Domain;
-using DataAccess;
 using RepositoryInterface;
 using DomainRepositoryInterface;
 using ServicesExceptions;
