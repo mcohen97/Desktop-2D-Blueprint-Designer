@@ -4,7 +4,7 @@ using RepositoryInterface;
 using Logic.Domain;
 using DataAccess;
 using Services;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 
 namespace ServicesTest
 {

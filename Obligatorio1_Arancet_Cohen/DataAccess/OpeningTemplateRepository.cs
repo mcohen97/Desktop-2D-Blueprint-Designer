@@ -8,7 +8,7 @@ using RepositoryInterface;
 using Logic.Domain;
 using Entities;
 using System.Data.Entity.Infrastructure;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using System.Linq.Expressions;
 using System.Data.Common;
 using System.Data.Entity.Core;

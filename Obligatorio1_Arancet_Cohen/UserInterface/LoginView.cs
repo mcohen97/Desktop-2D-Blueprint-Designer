@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic.Domain;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using ServicesExceptions;
 using Services;
 using DataAccess;

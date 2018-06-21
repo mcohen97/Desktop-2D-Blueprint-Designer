@@ -68,9 +68,9 @@
     <Compile Include="UsersRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessExceptions\DataAccessExceptions.csproj">
+    <ProjectReference Include="..\DataAccessExceptions\BusinessDataExceptions.csproj">
       <Project>{5f498c63-2de6-4d25-9504-73b397b5c2f8}</Project>
-      <Name>DataAccessExceptions</Name>
+      <Name>BusinessDataExceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{cbb1e074-07a5-4c42-a76c-27ea24c33101}</Project>

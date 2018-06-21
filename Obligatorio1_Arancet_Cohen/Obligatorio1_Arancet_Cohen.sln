@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTest", "DataAccessTest\DataAccessTest.csproj", "{01BD1CF1-325E-4028-ABEB-DD7A3E62DDB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessExceptions", "DataAccessExceptions\DataAccessExceptions.csproj", "{5F498C63-2DE6-4D25-9504-73B397B5C2F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessDataExceptions", "DataAccessExceptions\BusinessDataExceptions.csproj", "{5F498C63-2DE6-4D25-9504-73B397B5C2F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesExceptions", "ServicesExceptions\ServicesExceptions.csproj", "{85638FB7-11DB-4AB2-9EA5-773D04D10CE6}"
 EndProject

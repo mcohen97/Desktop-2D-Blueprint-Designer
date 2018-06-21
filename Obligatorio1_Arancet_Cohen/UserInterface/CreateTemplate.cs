@@ -12,7 +12,7 @@ using DataAccess;
 using DomainRepositoryInterface;
 using RepositoryInterface;
 using LogicExceptions;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 
 namespace UserInterface
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace DataAccessExceptions
+namespace BusinessDataExceptions
 {
     public class UserAlreadyExistsException : Exception
     {

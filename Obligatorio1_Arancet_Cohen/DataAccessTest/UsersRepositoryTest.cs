@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using DataAccess;
 using DomainRepositoryInterface;
 using RepositoryInterface;

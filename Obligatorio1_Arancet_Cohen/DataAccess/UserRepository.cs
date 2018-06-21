@@ -11,7 +11,7 @@ using Logic.Domain;
 using DomainRepositoryInterface;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using System.Data.Common;
 using System.Data.Entity.Core;
 

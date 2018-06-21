@@ -9,7 +9,7 @@ using RepositoryInterface;
 using Entities;
 using System.Data.Entity;
 using System.Data.Common;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using System.Data.Entity.Core;
 
 namespace DataAccess

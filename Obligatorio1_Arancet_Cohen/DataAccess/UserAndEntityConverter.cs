@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities;
 using Logic.Domain;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 
 namespace DataAccess
 {

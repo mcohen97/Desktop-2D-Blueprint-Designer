@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainRepositoryInterface;
 using Entities;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
 

@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataAccess;
 using Logic.Domain;
 using System.Collections.Generic;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 
 namespace DataAccessTest
 {

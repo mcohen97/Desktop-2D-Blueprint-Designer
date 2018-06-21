@@ -50,9 +50,9 @@
     <Compile Include="UserAdministrator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessExceptions\DataAccessExceptions.csproj">
+    <ProjectReference Include="..\DataAccessExceptions\BusinessDataExceptions.csproj">
       <Project>{5F498C63-2DE6-4D25-9504-73B397B5C2F8}</Project>
-      <Name>DataAccessExceptions</Name>
+      <Name>BusinessDataExceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4812c714-5750-45b7-8b01-88c8a5298218}</Project>

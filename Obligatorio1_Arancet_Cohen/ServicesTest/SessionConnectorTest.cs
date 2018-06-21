@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Domain;
 using ServicesExceptions;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 using Services;
 using DataAccess;
 using DomainRepositoryInterface;

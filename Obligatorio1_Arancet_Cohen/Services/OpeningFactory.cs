@@ -4,7 +4,7 @@ using RepositoryInterface;
 using System.Linq;
 using System.Collections.Generic;
 using ServicesExceptions;
-using DataAccessExceptions;
+using BusinessDataExceptions;
 
 namespace Services
 {
