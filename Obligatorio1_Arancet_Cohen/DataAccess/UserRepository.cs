@@ -65,7 +65,7 @@ namespace DataAccess
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
                 UserAndEntityConverter translator = new UserAndEntityConverter();
-                UserEntity anEntity = translator.toEntity(aUser);
+                UserEntity anEntity = translator.ToEntity(aUser);
                 context.Users.Add(anEntity);
                 context.SaveChanges();
             }
@@ -198,7 +198,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    firstToComply = translator.toUser(firstRecord);
+                    firstToComply = translator.ToUser(firstRecord);
                 }
             }
 
@@ -237,7 +237,7 @@ namespace DataAccess
                 IQueryable<UserEntity> elegibleRecords = context.Users.Where(aCriteria);
                 foreach (UserEntity record in elegibleRecords)
                 {
-                    elegibleUsers.Add(translator.toUser(record));
+                    elegibleUsers.Add(translator.ToUser(record));
                 }
             }
 
@@ -260,7 +260,7 @@ namespace DataAccess
 
             using (BlueBuilderDBContext context = new BlueBuilderDBContext())
             {
-                UserEntity record = translator.toEntity(modified);
+                UserEntity record = translator.ToEntity(modified);
                 context.Users.Attach(record);
                 context.Entry(record).State = EntityState.Modified;
                 context.SaveChanges();

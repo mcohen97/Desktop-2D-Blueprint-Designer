@@ -18,7 +18,7 @@ namespace DataAccess
                 Name = toConvert.Name,
                 Length = toConvert.Length,
                 Width = toConvert.Width,
-                Owner = userEntityConverter.toEntity(toConvert.Owner),
+                Owner = userEntityConverter.ToEntity(toConvert.Owner),
                 Id = toConvert.GetId()
 
             };
@@ -28,7 +28,7 @@ namespace DataAccess
         public IBlueprint EntityToBlueprint(BlueprintEntity toConvert, ICollection<WallEntity> wallEnts, ICollection<OpeningEntity> openEnts, ICollection<ColumnEntity> colEnts) {
             UserAndEntityConverter userEntityConverter = new UserAndEntityConverter();
 
-            User convertedUser  = userEntityConverter.toUser(toConvert.Owner);
+            User convertedUser  = userEntityConverter.ToUser(toConvert.Owner);
             ICollection<Signature> convertedSignatures = GetBlueprintSignatures(toConvert);
                
             MaterialContainer materials = BuildUpContainer(wallEnts, openEnts, colEnts);

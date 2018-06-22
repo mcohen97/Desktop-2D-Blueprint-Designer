@@ -32,28 +32,14 @@ namespace Services
             }
 
             Template templateAsked = templatesRepository.GetAll().FirstOrDefault(x => x.Name.Equals(templateName));
-            switch (templateAsked.Type)
-            {
-                case ComponentType.WALL:
-                    throw new InvalidComponentTypeException();
-                    break;
-                case ComponentType.BEAM:
-                    throw new InvalidComponentTypeException();
-                    break;
-                case ComponentType.DOOR:
-                    returnedOpening = new Door(position, templateAsked);
-                    break;
-                case ComponentType.WINDOW:
-                    returnedOpening = new Window(position, templateAsked);
-                    break;
-                case ComponentType.COLUMN:
-                    throw new InvalidComponentTypeException();
-                    break;
-                default:
-                    throw new InvalidComponentTypeException();
-                    break;
-            }
 
+            if (templateAsked.Type.Equals(ComponentType.DOOR) ) {
+                returnedOpening = new Door(position, templateAsked);
+            } else if (templateAsked.Type.Equals(ComponentType.WINDOW)) {
+                returnedOpening = new Window(position, templateAsked);
+            } else{
+                throw new InvalidComponentTypeException();
+            }
             return returnedOpening;
         }
 
